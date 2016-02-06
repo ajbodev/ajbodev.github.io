@@ -109,32 +109,57 @@
 	  },
 	  updateAll: function(data, cb){},
 	  destroy: function(id, cb){
-	    var item, index, i$, ref$, len$;
-	    item = {};
-	    index = -1;
-	    for (i$ = 0, len$ = (ref$ = this.list).length; i$ < len$; ++i$) {
-	      (fn$.call(this, i$, ref$[i$]));
-	    }
-	    if (index > -1) {
-	      this.list.splice(index, 1);
-	    }
-	    if (cb) {
-	      cb(item);
-	    }
-	    item;
-	    function fn$(i, el){
-	      if (el.id === id) {
-	        index = i;
-	        item = el;
-	      }
-	    }
+	    this.db[this.table]['delete'](id).then(function(){
+	      cb(id);
+	    });
 	  },
-	  destroyAll: function(ids, cb){}
+	  destroyAll: function(ids, cb){},
+	  groupByKey: function(key, cb){
+	    var _this, _data;
+	    _this = this;
+	    _data = {};
+	    this.db[this.table].orderBy(key).uniqueKeys().then(function(keys){
+	      var i$, len$, results$ = [];
+	      _data[''] = {
+	        count: 0
+	      };
+	      for (i$ = 0, len$ = keys.length; i$ < len$; ++i$) {
+	        results$.push((fn$.call(this, i$, keys[i$])));
+	      }
+	      return results$;
+	      function fn$(index, key){
+	        return _data[key] = {
+	          count: 0
+	        };
+	      }
+	    }).then(function(){
+	      return _this.db[_this.table].each(function(item){
+	        _data[item[key] || ''].count++;
+	      });
+	    }).then(function(){
+	      cb(_data);
+	    });
+	  },
+	  'import': function(data, cb){
+	    var _this;
+	    _this = this;
+	    this.db.transaction('rw', this.table, function(){
+	      var i$, ref$, len$, i, el, results$ = [];
+	      for (i$ = 0, len$ = (ref$ = data).length; i$ < len$; ++i$) {
+	        i = i$;
+	        el = ref$[i$];
+	        results$.push(_this.db[_this.table].put(el));
+	      }
+	      return results$;
+	    }).then(function(){
+	      cb();
+	    });
+	  }
 	};
 	if (true) {
 	  module.exports = Data;
 	}
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\app\data\indexeddb\notes\data.ls.map
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\app\data\indexeddb\notes\lib\data.ls.map
 
 
 /***/ },
@@ -155,7 +180,6 @@
 	    save: 0,
 	    load: 0
 	  };
-	  this.exports = {};
 	  this.trees = {};
 	  this.lists = {};
 	  this.reports = {};
@@ -168,53 +192,73 @@
 	  init: function(){
 	    this.initRouter();
 	    this.initEditors();
-	    this.initCheckboxes();
-	    this.initExports();
-	    this.initImports();
 	    this.initTree();
 	    this.initList();
 	    this.initCalendar();
 	    this.initReports();
+	    this.initCheckboxes();
+	    this.initExports();
+	    this.initImports();
 	  },
 	  initRouter: function(){
-	    this.routeCreate(this.props.router);
+	    this.initRouterDir();
 	  },
 	  initEditors: function(){
-	    var _this;
-	    _this = this;
-	    this.editors.notes = this.editorCreate(this.props.editors.notes);
-	    $('#content__editors__run').click(function(){
-	      _this.outputRun();
-	    });
-	    $('#content__editors__save').click(function(){
-	      _this.editorSaveId();
-	    });
-	    $('#content__editors__load').click(function(){
-	      _this.editorLoadId();
-	    });
+	    this.initEditorsJqyCdm();
+	  },
+	  initTree: function(){
+	    this.initTreeJstree();
+	  },
+	  initTreeActions: function(){
+	    return this.initTreeActionsJstree();
+	  },
+	  initTreeEvents: function(){
+	    this.initTreeEventsJstree();
+	  },
+	  initTreeFilters: function(){
+	    this.initTreeFiltersJstree();
+	  },
+	  initList: function(){
+	    this.initListDtb();
+	  },
+	  initCalendar: function(){
+	    this.initCalendarFulcal();
+	  },
+	  initReports: function(){
+	    this.initReportsDtbCharti();
 	  },
 	  initCheckboxes: function(){
-	    this.initCheckboxesIcheck();
+	    this.initCheckboxesIcheckCdm();
 	  },
-	  initExports: function(){},
-	  initImports: function(){},
-	  initTree: function(){},
-	  initList: function(){
-	    this.listCreate(this.props.lists.main);
+	  initExports: function(){
+	    this.initExportsJqy();
 	  },
-	  initCalendar: function(){},
-	  initReports: function(){},
+	  initImports: function(){
+	    this.initImportsJqy();
+	  },
+	  routeCreate: function(o){
+	    this.routeCreateDir(o);
+	  },
+	  routeSetById: function(id){
+	    this.routeSetByIdDir(id);
+	  },
 	  editorCreate: function(o){
 	    return this.editorCreateCdm(o);
 	  },
-	  editorLoadId: function(){
-	    this.editorLoadIdCdm();
+	  editorLoadById: function(){
+	    this.editorLoadByIdCdm();
 	  },
-	  editorSaveId: function(){
-	    this.editorSaveIdCdm();
+	  editorSaveById: function(){
+	    this.editorSaveByIdCdm();
 	  },
-	  outputRun: function(){
-	    this.outputRunCdm();
+	  editorExport: function(editor){
+	    this.editorExportCdmMmt(editor);
+	  },
+	  editorImport: function(o){
+	    this.editorImportCdmFlr(o);
+	  },
+	  treeRefresh: function(){
+	    this.treeRefreshJstree();
 	  },
 	  listCreate: function(o){
 	    this.listCreateDtb(o);
@@ -225,13 +269,130 @@
 	  listGetColumns: function(){
 	    return this.listGetColumnsDtb();
 	  },
-	  routeCreate: function(o){
-	    this.routeCreateDir(o);
+	  listMakeEditable: function(){
+	    this.listMakeEditableDtb();
 	  },
-	  routeSetId: function(id){
-	    this.routeSetIdDir(id);
+	  listMakeCheckall: function(){
+	    this.listMakeCheckallDtb();
 	  },
-	  initCheckboxesIcheck: function(){
+	  listExport: function(){
+	    this.listExportDtb();
+	  },
+	  listRefresh: function(){
+	    this.listRefreshDtb();
+	  },
+	  reportCreate: function(o){
+	    return this.reportCreateDtb(o);
+	  },
+	  reportGetData: function(data){
+	    return this.reportGetDataJs(data);
+	  },
+	  reportChartCreateLine: function(o){
+	    return this.reportChartCreateLineCharti(o);
+	  },
+	  reportChartCreateBar: function(o){
+	    return this.reportChartCreateBarCharti(o);
+	  },
+	  reportChartGetDataDate: function(data){
+	    return this.reportChartGetDataDateMmt(data);
+	  },
+	  reportChartGetDataBar: function(data){
+	    return this.reportChartGetDataBarJs(data);
+	  },
+	  reportsRefresh: function(){
+	    this.reportsRefreshCharti();
+	  },
+	  outputRun: function(){
+	    this.outputRunCdm();
+	  },
+	  outputExport: function(num){
+	    this.outputExportCdm(num);
+	  },
+	  initRouterDir: function(){
+	    this.routeCreate(this.props.router);
+	  },
+	  routeCreateDir: function(o){
+	    var _this, routes;
+	    _this = this;
+	    routes = {};
+	    routes['/id/:id'] = function(id){
+	      _this.id = id;
+	      _this.editorLoadById();
+	    };
+	    this.router = Router(routes);
+	    this.router.init();
+	  },
+	  routeSetByIdDir: function(id){
+	    return this.router.setRoute('id/' + id);
+	  },
+	  initEditorsJqyCdm: function(){
+	    var _this;
+	    _this = this;
+	    this.editors.notes = this.editorCreate(this.props.editors.notes);
+	    $('#content__editors__run').click(function(){
+	      _this.outputRun();
+	    });
+	    $('#content__editors__save').click(function(){
+	      _this.editorSaveById();
+	    });
+	    $('#content__editors__load').click(function(){
+	      _this.editorLoadById();
+	    });
+	  },
+	  editorCreateCdm: function(o){
+	    return CodeMirror.fromTextArea(document.getElementById(o.id), {
+	      mode: o.mode || 'text/plain',
+	      theme: 'blackboard',
+	      gutters: ['CodeMirror-lint-markers'],
+	      tabMode: 'indent',
+	      lineNumbers: true,
+	      indentUnit: 2,
+	      lineWrapping: true,
+	      lint: o.lint || false
+	    });
+	  },
+	  editorLoadByIdCdm: function(){
+	    var _this, id, cb;
+	    _this = this;
+	    id = this.id;
+	    cb = function(data){
+	      _this.editors.notes.setValue(data.notes || '');
+	    };
+	    this.data.find(parseInt(id), cb);
+	  },
+	  editorSaveByIdCdm: function(){
+	    var _this, id, attrs, cb;
+	    _this = this;
+	    id = this.id;
+	    attrs = {
+	      notes: this.editors.notes.getValue()
+	    };
+	    cb = function(id){
+	      console.log('Update', id);
+	    };
+	    this.data.update(parseInt(id), attrs, cb);
+	  },
+	  editorExportCdmMmt: function(editor){
+	    var input, type, ext, blob, date;
+	    input = this.editors[editor].getValue();
+	    type = this.props.editors[editor].type;
+	    ext = this.props.editors[editor].ext;
+	    blob = new Blob([input], {
+	      type: type + ';charset=utf-8'
+	    });
+	    date = moment().format('MMM[]Do-h[]mm[]a');
+	    saveAs(blob, 'rcx-frontend-html-css-js' + date + '.' + ext);
+	  },
+	  editorImportCdmFlr: function(o){
+	    var _this, reader;
+	    _this = this;
+	    reader = new FileReader();
+	    reader.readAsText(o.input);
+	    reader.onload = function(e){
+	      _this.editors[o.editor].getDoc().setValue(e.target.result);
+	    };
+	  },
+	  initCheckboxesIcheckCdm: function(){
 	    var _this, _config, i$, ref$;
 	    _this = this;
 	    _config = {
@@ -252,18 +413,24 @@
 	      (fn1$.call(this, i$, ref$[i$]));
 	    }
 	    $('#content__editors__load__auto').on('ifChanged', function(){
-	      var _state, _load;
+	      var state, load;
 	      clearTimeout(_this.delays.load);
-	      _state = $('#content__editors__load__auto').prop('checked');
-	      _load = function(){
-	        console.log('Load');
-	        _this.editorLoadId();
+	      state = $('#content__editors__load__auto').prop('checked');
+	      load = function(){
+	        var editorNotesVal, cb;
+	        editorNotesVal = _this.editors.notes.getValue();
+	        cb = function(data){
+	          if (data.notes !== editorNotesVal) {
+	            _this.editorLoadById();
+	          }
+	        };
+	        _this.data.find(parseInt(_this.id), cb);
 	        _this.delays.load = setTimeout(function(){
-	          _load();
-	        }, 500);
+	          load();
+	        }, 1000);
 	      };
-	      if (_state && _this.id) {
-	        _load();
+	      if (state && _this.id) {
+	        load();
 	      } else {
 	        clearTimeout(_this.delays.load);
 	      }
@@ -277,12 +444,14 @@
 	      _alt = $('#content__layout__alt').prop('checked') ? 'check' : 'uncheck';
 	      $('#app').html('');
 	      if (_alt === 'check') {
-	        _html = '_alt';
+	        _html = 'alt';
+	      } else {
+	        _html = 'default';
 	      }
-	      $('#app').html(app.html.notes['bible' + _html]);
+	      $('#app').html(_this.tmpl[_html]);
 	      $('#content__layout__alt').iCheck(_alt);
-	      clearTimeout(o.delays.load);
-	      o.init();
+	      clearTimeout(_this.delays.load);
+	      _this.init();
 	      $('#content__editors__run__auto').iCheck(_run);
 	      $('#content__editors__save__auto').iCheck(_save);
 	      $('#content__editors__load__auto').iCheck(_load);
@@ -294,77 +463,333 @@
 	    }
 	    function fn1$(i, j){
 	      this.editors[i].on('change', function(){
-	        var _run, _save;
-	        _run = $('#content__editors__run__auto').prop('checked');
-	        _save = $('#content__editors__save__auto').prop('checked');
+	        var run, save;
+	        run = $('#content__editors__run__auto').prop('checked');
+	        save = $('#content__editors__save__auto').prop('checked');
 	        clearTimeout(_this.delays.run);
 	        clearTimeout(_this.delays.save);
-	        if (_run) {
+	        if (run) {
 	          _this.delays.run = setTimeout(function(){
 	            _this.outputRun();
 	          }, 300);
 	        }
-	        if (_save && _this.id) {
+	        if (save && _this.id) {
 	          _this.delays.save = setTimeout(function(){
-	            _this.editorSaveId();
+	            _this.editorSaveById();
 	          }, 300);
 	        }
-	        console.clear();
 	      });
 	    }
 	  },
-	  editorCreateCdm: function(o){
-	    return CodeMirror.fromTextArea(document.getElementById(o.id), {
-	      mode: o.mode || 'text/plain',
-	      theme: 'blackboard',
-	      gutters: ['CodeMirror-lint-markers'],
-	      tabMode: 'indent',
-	      lineNumbers: true,
-	      indentUnit: 2,
-	      lineWrapping: true,
-	      lint: o.lint || false
-	    });
-	  },
-	  editorLoadIdCdm: function(){
-	    var _this, id, cb;
-	    _this = this;
-	    id = this.id;
-	    cb = function(data){
-	      _this.editors.notes.setValue(data.notes || '');
-	    };
-	    this.data.find(parseInt(id), cb);
-	  },
-	  editorSaveIdCdm: function(){
-	    var _this, id, attrs, cb;
-	    _this = this;
-	    id = this.id;
-	    attrs = {
-	      notes: this.editors.notes.getValue()
-	    };
-	    cb = function(id){
-	      console.log('Update', id);
-	    };
-	    this.data.update(parseInt(id), attrs, cb);
-	  },
-	  outputRunCdm: function(){
+	  initExportsJqy: function(){
 	    var _this;
 	    _this = this;
-	    [1, 2].map(function(el, i){
-	      var _html, _output_init, _output;
-	      _html = function(_o){
-	        return '<!DOCTYPE html><html><head><style>' + _o.style + '</style></head><body>' + _o.content + '<script>' + _o.script + '</script>' + '</body></html>';
+	    $('#content__editors__notes__export').click(function(){
+	      _this.editorExport('notes');
+	    });
+	    $('#content__output1__iframe__export').click(function(){
+	      _this.outputExport(1);
+	    });
+	    $('#content__output2__iframe__export').click(function(){
+	      _this.outputExport(2);
+	    });
+	    $('#content__list__export').click(function(){
+	      _this.listExport();
+	    });
+	  },
+	  initImportsJqy: function(){
+	    var _this;
+	    _this = this;
+	    $('#content__editors__notes__import').change(function(){
+	      _this.editorImport({
+	        input: this.files[0],
+	        editor: 'notes'
+	      });
+	    });
+	  },
+	  initTreeJstree: function(){
+	    var _this;
+	    _this = this;
+	    $('#content__tree').jstree({
+	      core: {
+	        check_callback: true,
+	        strings: {
+	          'New node': 'new_node'
+	        }
+	      },
+	      plugins: ['search', 'contextmenu', 'sort'],
+	      contextmenu: {
+	        items: this.initTreeActions()
+	      }
+	    });
+	    this.treeRefresh();
+	    this.initTreeEventsJstree();
+	    $('#content__tree__refresh').click(function(){
+	      _this.treeRefresh();
+	    });
+	    this.initTreeFiltersJstree();
+	  },
+	  initTreeActionsJstree: function(){
+	    var _this;
+	    _this = this;
+	    return function(node){
+	      var tree, actions;
+	      console.log(_this);
+	      tree = $('#content__tree').jstree(true);
+	      actions = {
+	        create: {
+	          separator_before: false,
+	          separator_after: false,
+	          label: 'Create',
+	          action: function(obj){
+	            var _node;
+	            _node = tree.create_node(node);
+	            return tree.edit(_node);
+	          }
+	        },
+	        rename: {
+	          separator_before: false,
+	          separator_after: false,
+	          label: 'Rename',
+	          action: function(obj){
+	            return tree.edit(node);
+	          }
+	        },
+	        remove: {
+	          separator_before: false,
+	          separator_after: false,
+	          label: 'Remove',
+	          action: function(obj){
+	            var _children, i$, ref$, len$;
+	            _children = [];
+	            _children.push(node.li_attr.data_id);
+	            for (i$ = 0, len$ = (ref$ = node.children_d).length; i$ < len$; ++i$) {
+	              (fn$.call(this, i$, ref$[i$]));
+	            }
+	            for (i$ = 0, len$ = _children.length; i$ < len$; ++i$) {
+	              (fn1$.call(this, i$, _children[i$]));
+	            }
+	            return tree.delete_node(node);
+	            function fn$(i, el){
+	              var _child, _child_id;
+	              _child = tree.get_node('#' + el);
+	              _child_id = _child.li_attr.data_id;
+	              _children.push(_child_id);
+	            }
+	            function fn1$(i, el){
+	              _this.data.destroy(parseInt(el), function(){
+	                _this.treeRefresh();
+	              });
+	            }
+	          }
+	        },
+	        sibling: {
+	          separator_before: false,
+	          separator_after: false,
+	          label: 'Create Sibling',
+	          action: function(obj){
+	            var _node;
+	            _node = tree.create_node(node.parent, {});
+	            return tree.edit(_node);
+	          }
+	        }
 	      };
-	      $('#content__output' + el + '__iframe').remove();
-	      $('<iframe id="content__output' + el + '__iframe"></iframe>').appendTo('#content__output' + el + '__iframe__holder');
-	      _output_init = document.getElementById('content__output' + el + '__iframe');
-	      _output = _output_init.contentDocument || _output_init.contentWindow.document;
-	      _output.open();
-	      _output.write(_html({
-	        style: 'body { font-size: 16px; }',
-	        content: marked(_this.editors.notes.getValue()),
-	        script: ''
-	      }));
-	      _output.close();
+	      return actions;
+	    };
+	  },
+	  initTreeEventsJstree: function(){
+	    var _this;
+	    _this = this;
+	    $('#content__tree').on('select_node.jstree', function(e, data){
+	      var id, cb;
+	      id = data.node.li_attr.data_id;
+	      cb = function(item){
+	        $('#content__tree__node__id').val(item.id || '');
+	        $('#content__tree__node__date').val(item.date || '');
+	        $('#content__tree__node__labels').val(item.labels || '');
+	        $('#content__tree__node__status').val(item.status || '');
+	        $('#content__tree__node__title').val(item.title || '');
+	        $('#content__tree__node__tree').val(item.tree || '');
+	        $('#content__tree__node__date_start').val(item.date_start || '');
+	        $('#content__tree__node__date_end').val(item.date_end || '');
+	      };
+	      _this.data.find(parseInt(id), cb);
+	      return _this.routeSetById(parseInt(id));
+	    });
+	    $('#content__tree').on('rename_node.jstree', function(e, data){
+	      var tree, _parent_id, _new_id, _id, _data_id, _tree, _data, _cb, _update;
+	      tree = $('#content__tree').jstree(true);
+	      _parent_id = data.node.parent;
+	      _new_id = data.text;
+	      _id = _parent_id + '/' + _new_id;
+	      _data_id = data.node.li_attr.data_id;
+	      _tree = _parent_id === '#'
+	        ? _new_id
+	        : _parent_id.substr(14, _parent_id.length) + '/' + _new_id;
+	      if (data.node.data === null) {
+	        tree.set_id(data.node, _id);
+	        data.node.data = _tree;
+	        _data = {
+	          date: moment().format('DD/MM/YYYY'),
+	          tree: _tree
+	        };
+	        _cb = function(id){
+	          data.node.li_attr.data_id = id;
+	          _this.treeRefresh();
+	        };
+	        return _this.data.create(_data, _cb);
+	      } else {
+	        _update = function(){
+	          var _children_parent_old, i$, ref$, len$;
+	          _children_parent_old = data.node.data;
+	          for (i$ = 0, len$ = (ref$ = data.node.children_d).length; i$ < len$; ++i$) {
+	            (fn$.call(this, i$, ref$[i$]));
+	          }
+	          function fn$(i, el){
+	            var _child, _child_id, _child_data, _item;
+	            _child = tree.get_node('#' + el);
+	            _child_id = _child.li_attr.data_id;
+	            _child_data = _child.data;
+	            _item = {
+	              tree: _child_data.replace(_children_parent_old, _tree)
+	            };
+	            _this.data.update(parseInt(_child_id), _item, function(){
+	              _this.treeRefresh();
+	            });
+	          }
+	        };
+	        _data = {
+	          tree: _tree
+	        };
+	        _cb = function(){
+	          _update();
+	          _this.treeRefresh();
+	        };
+	        return _this.data.update(parseInt(_data_id), _data, _cb);
+	      }
+	    });
+	  },
+	  initTreeFiltersJstree: function(){
+	    var searchTimeout;
+	    searchTimeout = false;
+	    $('#content__tree__search__tree').keyup(function(){
+	      if (searchTimeout) {
+	        clearTimeout(searchTimeout);
+	      }
+	      searchTimeout = setTimeout(function(){
+	        $('#content__tree').jstree(true).search($('#content__tree__search__tree').val());
+	      }, 250);
+	    });
+	  },
+	  treeRefreshJstree: function(){
+	    var cb;
+	    $('#tab__tree input[type="text"], #tab__tree input[disabled!="disabled"],#tab__tree textarea,#tab__tree select').each(function(){
+	      $(this).val('');
+	    });
+	    cb = function(data){
+	      var _data, i$, len$;
+	      _data = [];
+	      for (i$ = 0, len$ = data.length; i$ < len$; ++i$) {
+	        (fn$.call(this, i$, data[i$]));
+	      }
+	      $('#content__tree').jstree(true).settings.core.data = _data;
+	      $('#content__tree').jstree(true).refresh();
+	      function fn$(i, item){
+	        var _item, _text_index;
+	        _item = {};
+	        if (item.tree) {
+	          _text_index = item.tree.lastIndexOf('/');
+	          _item.id = 'content__tree_' + item.tree;
+	          _item.data = item.tree;
+	          _item.text = _text_index > 0
+	            ? item.tree.substr(_text_index + 1, item.tree.length)
+	            : item.tree;
+	          _item.li_attr = {
+	            data_id: item.id
+	          };
+	          _item.parent = _text_index > 0 ? 'content__tree_' + item.tree.substr(0, _text_index) : '#';
+	          _data.push(_item);
+	        }
+	      }
+	    };
+	    this.data.findAll(cb);
+	  },
+	  initListDtb: function(){
+	    var _this;
+	    _this = this;
+	    this.listCreate(this.props.lists.main);
+	    $('#content__list__add').click(function(){
+	      var attrs, cb;
+	      attrs = {
+	        date: moment().format('DD/MM/YYYY')
+	      };
+	      cb = function(){
+	        _this.allRefresh();
+	      };
+	      _this.data.create(attrs, cb);
+	    });
+	    $('#content__list__delete').click(function(){
+	      $('#content__list tbody tr input:checked').each(function(key, val){
+	        var id, cb;
+	        id = $(this).attr('data-id');
+	        cb = function(){
+	          _this.allRefresh();
+	        };
+	        _this.data.destroy(parseInt(id), cb);
+	      });
+	    });
+	    $('#content__list__refresh').click(function(){
+	      _this.listRefresh();
+	    });
+	    this.listMakeEditable();
+	    this.listMakeCheckall();
+	    $('#content__list__title').on('keyup', function(){
+	      _this.lists.main.column(2).search(this.value, {
+	        regex: true
+	      }).draw();
+	    });
+	    $('#content__list__tree').on('keyup', function(){
+	      _this.lists.main.column(3).search(this.value, {
+	        regex: true
+	      }).draw();
+	    });
+	    $('#content__list__labels').on('keyup', function(){
+	      _this.lists.main.column(4).search(this.value, {
+	        regex: true
+	      }).draw();
+	    });
+	    $('#content__list__status').on('keyup', function(){
+	      _this.lists.main.column(5).search(this.value, {
+	        regex: true
+	      }).draw();
+	    });
+	    $('#content__list__date').on('keyup', function(){
+	      _this.lists.main.column(6).search(this.value, {
+	        regex: true
+	      }).draw();
+	    });
+	    $('#content__list__date_start').on('keyup', function(){
+	      _this.lists.main.column(7).search(this.value, {
+	        regex: true
+	      }).draw();
+	    });
+	    $('#content__list__date_end').on('keyup', function(){
+	      _this.lists.main.column(8).search(this.value, {
+	        regex: true
+	      }).draw();
+	    });
+	    $('#content__list__import').on('change', function(){
+	      var reader;
+	      reader = new FileReader();
+	      reader.readAsText(this.files[0]);
+	      reader.onload = function(e){
+	        var data, cb;
+	        data = JSON.parse(e.target.result);
+	        cb = function(){
+	          _this.allRefresh();
+	        };
+	        _this.data['import'](data, cb);
+	      };
 	    });
 	  },
 	  listCreateDtb: function(o){
@@ -377,7 +802,7 @@
 	        columns: _this.listGetColumns(),
 	        order: [[1, 'desc']]
 	      };
-	      _this.lists['main'] = $('#content__list').DataTable(table);
+	      _this.lists[o.name] = $('#content__list').DataTable(table);
 	    };
 	    return this.data.findAll(cb);
 	  },
@@ -389,7 +814,7 @@
 	      _item = function(val, attr){
 	        return '<span data-id="' + item.id + '" data-attr="' + attr + '">' + val + '</span>' || '';
 	      };
-	      _data.push(['<input type="checkbox" data-id="' + item.id + '">', '<a onclick="app.component.routeSetId(' + item.id + ')">' + item.id + '</a>', _item(item.title || '', 'title'), _item(item.tree || '', 'tree'), _item(item.labels || '', 'labels'), _item(item.status || '', 'status'), _item(item.date || '', 'date'), _item(item.date_start || '', 'date_start'), _item(item.date_end || '', 'date_end')]);
+	      _data.push(['<input type="checkbox" data-id="' + item.id + '">', '<a onclick="app.component.routeSetById(' + item.id + ')">' + item.id + '</a>', _item(item.title || '', 'title'), _item(item.tree || '', 'tree'), _item(item.labels || '', 'labels'), _item(item.status || '', 'status'), _item(item.date || '', 'date'), _item(item.date_start || '', 'date_start'), _item(item.date_end || '', 'date_end')]);
 	    });
 	    return _data;
 	  },
@@ -428,25 +853,365 @@
 	    ];
 	    return columns;
 	  },
-	  routeCreateDir: function(o){
-	    var _this, routes;
+	  listMakeEditableDtb: function(){
+	    var _this;
 	    _this = this;
-	    routes = {};
-	    routes['/id/:id'] = function(id){
-	      _this.id = id;
-	      _this.editorLoadId();
-	    };
-	    this.router = Router(routes);
-	    this.router.init();
+	    $('#content__list').on('click', 'tbody tr :not(:first-child):not(:nth-child(2))', function(e){
+	      var td, val, id, attr, cb;
+	      td = $(this);
+	      val = td.find('span').html();
+	      id = parseInt(td.find('span').attr('data-id'));
+	      attr = td.find('span').attr('data-attr');
+	      cb = function(){
+	        _this.allRefresh();
+	      };
+	      $(td).find('span').editable({
+	        type: 'textarea',
+	        success: function(response, val){
+	          var attrs;
+	          attrs = {};
+	          attrs[attr] = val;
+	          _this.data.update(id, attrs, cb);
+	        }
+	      });
+	    });
 	  },
-	  routeSetIdDir: function(id){
-	    return this.router.setRoute('id/' + id);
+	  listMakeCheckallDtb: function(){
+	    $('#content__list').on('change', 'thead tr th input[type="checkbox"]:first-child', function(){
+	      if ($(this).is(':checked')) {
+	        $('#content__list tbody tr input:first-child').each(function(){
+	          $(this).prop('checked', true);
+	        });
+	      } else {
+	        $('#content__list tbody tr input:first-child').each(function(){
+	          $(this).prop('checked', false);
+	        });
+	      }
+	    });
+	  },
+	  listRefreshDtb: function(){
+	    $('#tab__list input[type="text"]').each(function(){
+	      $(this).val('');
+	    });
+	    $('#content__list_wrapper').html('<table id="content__list" class="table table-bordered table-hover"></table>');
+	    this.listCreate(this.props.lists.main);
+	    this.listMakeEditable();
+	    this.listMakeCheckall();
+	  },
+	  listExportDtb: function(){
+	    var _this, cb;
+	    _this = this;
+	    cb = function(data){
+	      var blob, date;
+	      blob = new Blob([JSON.stringify(data, null, 2)], {
+	        type: 'application/json;charset=utf-8'
+	      });
+	      date = moment().format('MMM[]Do-h[]mm[]a');
+	      saveAs(blob, 'notes-' + _this.data.table + '-' + date + '.json');
+	    };
+	    this.data.findAll(cb);
+	  },
+	  initCalendarFulcal: function(){
+	    var _this, cb;
+	    _this = this;
+	    $('#tab__calendar').html('<button id="content__calendar__refresh" type="button" class="btn btn-primary"><i class="fa fa-refresh"></i></button><div id="content__calendar"></div>');
+	    $('#content__calendar__refresh').click(function(){
+	      _this.initCalendar();
+	    });
+	    cb = function(data){
+	      var _color, _data;
+	      _color = {
+	        0: '#A8A8A8',
+	        1: '#dd4b39',
+	        2: '#00a65a'
+	      };
+	      _data = [];
+	      data.forEach(function(item, i){
+	        var _item;
+	        _item = {};
+	        _item.title = item.id;
+	        _item.tooltip = item.title;
+	        _item.id = item.id;
+	        _item.start = moment(item.date, 'DD/MM/YYYY').format('YYYY-MM-DD');
+	        _item.color = _color[0];
+	        _data.push(_item);
+	        _item = {};
+	        if (item.date_start) {
+	          _item.title = item.id + ' ' + item.tree || item.id;
+	          _item.tooltip = item.title;
+	          _item.id = item.id;
+	          _item.start = moment(item.date_start, 'DD/MM/YYYY').format('YYYY-MM-DD');
+	          _item.end = moment(item.date_end, 'DD/MM/YYYY').format('YYYY-MM-DD');
+	          _item.color = _color[item.status || 0];
+	          _data.push(_item);
+	        }
+	      });
+	      $('#content__calendar').fullCalendar({
+	        events: _data,
+	        eventRender: function(calEvent, element){
+	          element.attr('data-toggle', 'tooltip');
+	          element.attr('data-placement', 'top');
+	          element.attr('data-original-title', calEvent.tooltip);
+	        },
+	        eventClick: function(calEvent, jsEvent, view){
+	          _this.routeById(calEvent.id);
+	        }
+	      });
+	    };
+	    this.data.findAll(cb);
+	    setTimeout(function(){
+	      $('button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right').click();
+	    }, 200);
+	  },
+	  initReportsDtbCharti: function(){
+	    var _this;
+	    _this = this;
+	    this.reportCreate({
+	      name: 'Date',
+	      key: 'date',
+	      chart: 'Line',
+	      data: 'Date'
+	    });
+	    this.reportCreate({
+	      name: 'Status',
+	      key: 'status',
+	      chart: 'Bar',
+	      data: 'Bar'
+	    });
+	    $('#content__reports__refresh').click(function(){
+	      reportsRefresh();
+	    });
+	    $('#content__reports__date__date').on('keyup', function(){
+	      var _filtered;
+	      _this.reports.date.column(0).search(this.value, {
+	        regex: true
+	      }).draw();
+	      _filtered = {};
+	      _this.reports.date.rows({
+	        search: 'applied'
+	      }).data().each(function(row, index){
+	        _filtered[row[0]] = {
+	          count: row[1]
+	        };
+	      });
+	      _this.reportChartCreateLine({
+	        key: 'date',
+	        data: _this.reportChartGetDataDate(_filtered)
+	      });
+	    });
+	    $('#content__reports__status__status').on('keyup', function(){
+	      var _filtered;
+	      _this.reports.status.column(0).search(this.value, {
+	        regex: true
+	      }).draw();
+	      _filtered = {};
+	      _this.reports.status.rows({
+	        search: 'applied'
+	      }).data().each(function(row, index){
+	        _filtered[row[0]] = {
+	          count: row[1]
+	        };
+	      });
+	      _this.reportChartCreateBar({
+	        key: 'status',
+	        data: _this.reportChartGetDataBar(_filtered)
+	      });
+	    });
+	  },
+	  reportCreateDtb: function(o){
+	    var _this, key, cb;
+	    _this = this;
+	    key = o.key;
+	    cb = function(data){
+	      _this.reports[key] = $('#content__reports__' + key).DataTable({
+	        data: _this.reportGetData(data),
+	        columns: [
+	          {
+	            title: o.name,
+	            width: '20%'
+	          }, {
+	            title: 'Notes'
+	          }
+	        ],
+	        order: [[0, 'desc']]
+	      });
+	      _this['reportChartCreate' + o.chart]({
+	        key: o.key,
+	        data: _this['reportChartGetData' + o.data](data)
+	      });
+	    };
+	    this.data.groupByKey(key, cb);
+	  },
+	  reportGetDataJs: function(data){
+	    var _data, i$;
+	    _data = [];
+	    for (i$ in data) {
+	      (fn$.call(this, i$, data[i$]));
+	    }
+	    return _data;
+	    function fn$(key, attr){
+	      _data.push([key, attr.count]);
+	    }
+	  },
+	  reportChartCreateLineCharti: function(o){
+	    return new Chartist.Line('#content__charts__' + o.key, o.data, {
+	      low: 0,
+	      showArea: true,
+	      width: '600px',
+	      height: '200px'
+	    }, [
+	      [
+	        '(max-width: 600px)', {
+	          width: '400px'
+	        }
+	      ], [
+	        '(max-width: 300px)', {
+	          width: '200px'
+	        }
+	      ]
+	    ]);
+	  },
+	  reportChartCreateBarCharti: function(o){
+	    return new Chartist.Bar('#content__charts__' + o.key, o.data, {
+	      width: '600px',
+	      height: '200px'
+	    }, [
+	      [
+	        '(max-width: 600px)', {
+	          width: '400px'
+	        }
+	      ], [
+	        '(max-width: 300px)', {
+	          width: '200px'
+	        }
+	      ]
+	    ]);
+	  },
+	  reportChartGetDataDateMmt: function(data){
+	    var _chart, _labels, _series, i$, _min, _max, i, _date, _count;
+	    _chart = {
+	      labels: [],
+	      series: []
+	    };
+	    _labels = [];
+	    _series = [];
+	    for (i$ in data) {
+	      (fn$.call(this, i$, data[i$]));
+	    }
+	    _min = _labels.reduce(function(a, b){
+	      if (moment(a, 'DD/MM/YYYY').diff(moment(b, 'DD/MM/YYYY')) < 0) {
+	        return a;
+	      } else {
+	        return b;
+	      }
+	    });
+	    _max = _labels.reduce(function(a, b){
+	      if (moment(a, 'DD/MM/YYYY').diff(moment(b, 'DD/MM/YYYY')) > 0) {
+	        return a;
+	      } else {
+	        return b;
+	      }
+	    });
+	    i = moment(_min, 'DD/MM/YYYY');
+	    while (i.isBefore(moment(_max, 'DD/MM/YYYY').add(1, 'days'))) {
+	      _date = i.format('DD/MM/YYYY');
+	      _count = data[_date] ? data[_date].count : 0;
+	      _chart.labels.push(_date);
+	      _series.push(_count);
+	      i.add(1, 'days');
+	    }
+	    _chart.series.push(_series);
+	    return _chart;
+	    function fn$(i, obj){
+	      if (i !== '') {
+	        _labels.push(i);
+	      }
+	    }
+	  },
+	  reportChartGetDataBarJs: function(data){
+	    var _chart, _series, i$;
+	    _chart = {
+	      labels: [],
+	      series: []
+	    };
+	    _series = [];
+	    for (i$ in data) {
+	      (fn$.call(this, i$, data[i$]));
+	    }
+	    _chart.series.push(_series);
+	    return _chart;
+	    function fn$(i, obj){
+	      _chart.labels.push(i);
+	      _series.push(obj.count);
+	    }
+	  },
+	  reportsRefreshDtb: function(){
+	    var i$, ref$;
+	    $('#tab__reports input[type="text"]').each(function(){
+	      $(this).val('');
+	    });
+	    for (i$ in ref$ = o.reports) {
+	      (fn$.call(this, i$, ref$[i$]));
+	    }
+	    this.reportCreate({
+	      name: 'Date',
+	      key: 'date',
+	      chart: 'Line',
+	      data: 'Date'
+	    });
+	    this.reportCreate({
+	      name: 'Status',
+	      key: 'status',
+	      chart: 'Bar',
+	      data: 'Bar'
+	    });
+	    function fn$(i, j){
+	      $('#content__reports__' + i + '_wrapper').html('<table id="content__reports__' + i + '" class="table table-bordered table-hover"></table>');
+	    }
+	  },
+	  outputRunCdm: function(){
+	    var _this;
+	    _this = this;
+	    [1, 2].map(function(el, i){
+	      var _html, _output_init, _output;
+	      _html = function(_o){
+	        return '<!DOCTYPE html><html><head><style>' + _o.style + '</style></head><body>' + _o.content + '<script>' + _o.script + '</script>' + '</body></html>';
+	      };
+	      $('#content__output' + el + '__iframe').remove();
+	      $('<iframe id="content__output' + el + '__iframe"></iframe>').appendTo('#content__output' + el + '__iframe__holder');
+	      _output_init = document.getElementById('content__output' + el + '__iframe');
+	      _output = _output_init.contentDocument || _output_init.contentWindow.document;
+	      _output.open();
+	      _output.write(_html({
+	        style: _this.sources.primer_css + '\n' + 'body { font-size: 16px; }',
+	        content: marked(_this.editors.notes.getValue()),
+	        script: ''
+	      }));
+	      _output.close();
+	    });
+	  },
+	  outputExportCdm: function(id){
+	    var outputInit, output, input, blob, date;
+	    outputInit = document.getElementById('content__output' + id + '__iframe');
+	    output = outputInit.contentDocument || outputInit.contentWindow.document;
+	    input = '<!DOCTYPE html>\n' + output.getElementsByTagName('html')[0].outerHTML;
+	    blob = new Blob([input], {
+	      type: 'text/html;charset=utf-8'
+	    });
+	    date = moment().format('MMM[]Do-h[]mm[]a');
+	    saveAs(blob, 'notes-' + date + '.html');
+	  },
+	  allRefresh: function(){
+	    this.treeRefresh();
+	    this.listRefresh();
+	    this.calendarRefresh();
+	    this.reportsRefresh();
 	  }
 	};
 	if (true) {
 	  module.exports = Component;
 	}
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\app\component\jquery\notes\component.ls.map
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\app\component\jquery\notes\lib\component.ls.map
 
 
 /***/ },
@@ -484,7 +1249,7 @@
 	  signal: db._table['rcx'][1]
 	});
 	window.db._init('notes');
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\app\data\indexeddb\notes\db.ls.map
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\app\data\indexeddb\notes\lib\db.ls.map
 
 
 /***/ },
@@ -495,7 +1260,9 @@
 	props = {
 	  editors: {
 	    notes: {
-	      id: 'content__editors__notes'
+	      id: 'content__editors__notes',
+	      type: 'text/x-markdown',
+	      ext: 'md'
 	    }
 	  },
 	  lists: {
@@ -523,13 +1290,13 @@
 /* 5 */
 /***/ function(module, exports) {
 
-	module.exports = " <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-file-text-o\"></i>&nbspNotes (Bible)<small>0.1.0</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-file-text-o\"></i>Notes</a></li><li><a href=\"#/\"><i class=\"fa fa-book\"></i>Bible</a></li></ol></section><section id=\"\" class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__editors__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__editors__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__editors__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-12 col-sm-3 col-md-6\"><span style=\"float: right;\">Alternative Layout&nbsp&nbsp<input id=\"content__layout__alt\" type=\"checkbox\" style=\"float: right;\"></span></div></div><br><div id=\"content__layout\" class=\"row\"><div style=\"padding-right: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__editors\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__notes\" href=\"#tab__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li style=\"\"><a id=\"tab__menu__editors__output1\" href=\"#tab__output1\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li></ul><div class=\"tab-content\"><div id=\"tab__notes\" class=\"tab-pane fade in active\"><textarea id=\"content__editors__notes\"></textarea><br><button type=\"button\" id=\"content__undefined__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__undefined__notes__import\"></span>&nbsp&nbsp</div><div id=\"tab__output1\" class=\"tab-pane fade in undefined\"><div id=\"content__output1__iframe__holder\" class=\"tab-pane fade in undefined\"><iframe id=\"content__output1__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output1__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output1__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output1__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div></div></div></div><div style=\"padding-left: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__main\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__calendar\" href=\"#tab__calendar\" data-toggle=\"tab\"><i class=\"fa fa-calendar\"></i>&nbsp&nbsp Calendar</a></li><li style=\"\"><a id=\"tab__menu__main__tree\" href=\"#tab__tree\" data-toggle=\"tab\"><i class=\"fa fa-sitemap\"></i>&nbsp&nbsp Tree</a></li><li style=\"\"><a id=\"tab__menu__main__list\" href=\"#tab__list\" data-toggle=\"tab\"><i class=\"fa fa-list\"></i>&nbsp&nbsp List</a></li><li style=\"\"><a id=\"tab__menu__main__reports\" href=\"#tab__reports\" data-toggle=\"tab\"><i class=\"fa fa-bar-chart\"></i>&nbsp&nbsp Report(s)</a></li><li style=\"\"><a id=\"tab__menu__editors__output2\" href=\"#tab__output2\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li></ul><div class=\"tab-content\"><div id=\"tab__calendar\" class=\"tab-pane fade in active\"><div class=\"row\"><div class=\"col-md-12\"><div id=\"tab__calendar\" class=\"tab-pane fade in\"><button id=\"content__calendar__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button><div id=\"content__calendar\"></div></div></div></div></div><div id=\"tab__tree\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-6\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><h3>Tree Search</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__search__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__search__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__search__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__search__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__search__labels\" disabled class=\"form-control\"></div></div><br></div><div class=\"col-md-6\"><h3>Tree Node</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__node__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__node__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__node__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__node__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__node__labels\" disabled class=\"form-control\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__add\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button><button id=\"content__list__delete\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div style=\"padding: 0;\" class=\"col-md-12\"><h3>List</h3></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-8\"><input id=\"content__list__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__list__responsive\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__list__import\" type=\"file\"></span></div></div></div><div id=\"tab__reports\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__reports__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div></div><br><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__report__date\" data-toggle=\"tab\">Notes by Date</a></li><li><a href=\"#tab__report__status\" data-toggle=\"tab\">Notes by Status</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__report__date\" class=\"tab-pane fade in active\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>Notes by Date</h3><input type=\"text\" placeholder=\"DD/MM/YYYY (Date)\" id=\"content__reports__date__date\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__date\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__date\" class=\"table-bordered table-condensed\"></table></div></div></div></div><div id=\"tab__report__status\" class=\"tab-pane fade in\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>Notes by Status</h3><input type=\"text\" placeholder=\"(Status)\" id=\"content__reports__status__status\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__status\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__status\" class=\"table-bordered table-condensed\"></table></div></div></div></div></div></div></div></div><div id=\"tab__output2\" class=\"tab-pane fade in undefined\"><div id=\"content__output2__iframe__holder\" class=\"tab-pane fade in undefined\"><iframe id=\"content__output2__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output2__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output2__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output2__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div></div></div></div></div></section>";
+	module.exports = " <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-file-text-o\"></i>&nbspNotes (Bible)<small>0.1.0</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-file-text-o\"></i>Notes</a></li><li><a href=\"#/\"><i class=\"fa fa-book\"></i>Bible</a></li></ol></section><section id=\"\" class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__editors__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__editors__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__editors__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-12 col-sm-3 col-md-6\"><span style=\"float: right;\">Alternative Layout&nbsp&nbsp<input id=\"content__layout__alt\" type=\"checkbox\" style=\"float: right;\"></span></div></div><br><div id=\"content__layout\" class=\"row\"><div style=\"padding-right: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__editors\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__notes\" href=\"#tab__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li style=\"\"><a id=\"tab__menu__editors__output1\" href=\"#tab__output1\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li></ul><div class=\"tab-content\"><div id=\"tab__notes\" class=\"tab-pane fade in active\"><textarea id=\"content__editors__notes\"></textarea><br><button type=\"button\" id=\"content__editors__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__notes__import\"></span>&nbsp&nbsp</div><div id=\"tab__output1\" class=\"tab-pane fade in undefined\"><div id=\"content__output1__iframe__holder\" class=\"tab-pane fade in undefined\"><iframe id=\"content__output1__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output1__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output1__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output1__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div></div></div></div><div style=\"padding-left: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__main\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__tree\" href=\"#tab__tree\" data-toggle=\"tab\"><i class=\"fa fa-sitemap\"></i>&nbsp&nbsp Tree</a></li><li style=\"\"><a id=\"tab__menu__main__list\" href=\"#tab__list\" data-toggle=\"tab\"><i class=\"fa fa-list\"></i>&nbsp&nbsp List</a></li><li style=\"\"><a id=\"tab__menu__main__calendar\" href=\"#tab__calendar\" data-toggle=\"tab\"><i class=\"fa fa-calendar\"></i>&nbsp&nbsp Calendar</a></li><li style=\"\"><a id=\"tab__menu__main__reports\" href=\"#tab__reports\" data-toggle=\"tab\"><i class=\"fa fa-bar-chart\"></i>&nbsp&nbsp Report(s)</a></li><li style=\"\"><a id=\"tab__menu__editors__output2\" href=\"#tab__output2\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li></ul><div class=\"tab-content\"><div id=\"tab__tree\" class=\"tab-pane fade in active\"><div class=\"row\"><div class=\"col-md-6\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><h3>Tree Search</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__search__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__search__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__search__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__search__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__search__labels\" disabled class=\"form-control\"></div></div><br></div><div class=\"col-md-6\"><h3>Tree Node</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__node__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__node__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__node__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__node__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__node__labels\" disabled class=\"form-control\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__add\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button><button id=\"content__list__delete\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div style=\"padding: 0;\" class=\"col-md-12\"><h3>List</h3></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-8\"><input id=\"content__list__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__list__responsive\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__list__import\" type=\"file\"></span></div></div></div><div id=\"tab__calendar\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><div id=\"tab__calendar\" class=\"tab-pane fade in\"><button id=\"content__calendar__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button><div id=\"content__calendar\"></div></div></div></div></div><div id=\"tab__reports\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__reports__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div></div><br><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__report__date\" data-toggle=\"tab\">Notes by Date</a></li><li><a href=\"#tab__report__status\" data-toggle=\"tab\">Notes by Status</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__report__date\" class=\"tab-pane fade in active\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>Notes by Date</h3><input type=\"text\" placeholder=\"DD/MM/YYYY (Date)\" id=\"content__reports__date__date\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__date\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__date\" class=\"table-bordered table-condensed\"></table></div></div></div></div><div id=\"tab__report__status\" class=\"tab-pane fade in\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>Notes by Status</h3><input type=\"text\" placeholder=\"(Status)\" id=\"content__reports__status__status\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__status\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__status\" class=\"table-bordered table-condensed\"></table></div></div></div></div></div></div></div></div><div id=\"tab__output2\" class=\"tab-pane fade in undefined\"><div id=\"content__output2__iframe__holder\" class=\"tab-pane fade in undefined\"><iframe id=\"content__output2__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output2__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output2__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output2__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div></div></div></div></div></section>";
 
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = " <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-file-text-o\"></i>&nbspNotes (Bible)<small>0.1.0</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-file-text-o\"></i>Notes</a></li><li><a href=\"#/\"><i class=\"fa fa-book\"></i>Bible</a></li></ol></section><section id=\"\" class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__editors__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__editors__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__editors__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-12 col-sm-3 col-md-6\"><span style=\"float: right;\">Alternative Layout&nbsp&nbsp<input id=\"content__layout__alt\" type=\"checkbox\" style=\"float: right;\"></span></div></div><br><div id=\"content__layout\" class=\"row\"><div class=\"col-sm-12\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__editors\" data-toggle=\"tab\">Editors</a></li><li><a href=\"#tab__main\" data-toggle=\"tab\">Main</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__editors\" class=\"tab-pane active\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__editors\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__notes\" href=\"#tab__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li style=\"\"><a id=\"tab__menu__editors__output1\" href=\"#tab__output1\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li></ul><div class=\"tab-content\"><div id=\"tab__notes\" class=\"tab-pane fade in active\"><textarea id=\"content__editors__notes\"></textarea><br><button type=\"button\" id=\"content__undefined__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__undefined__notes__import\"></span>&nbsp&nbsp</div><div id=\"tab__output1\" class=\"tab-pane fade in undefined\"><div id=\"content__output1__iframe__holder\" class=\"tab-pane fade in undefined\"><iframe id=\"content__output1__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output1__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output1__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output1__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div></div></div></div><div id=\"tab__main\" class=\"tab-pane\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__main\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__calendar\" href=\"#tab__calendar\" data-toggle=\"tab\"><i class=\"fa fa-calendar\"></i>&nbsp&nbsp Calendar</a></li><li style=\"\"><a id=\"tab__menu__main__tree\" href=\"#tab__tree\" data-toggle=\"tab\"><i class=\"fa fa-sitemap\"></i>&nbsp&nbsp Tree</a></li><li style=\"\"><a id=\"tab__menu__main__list\" href=\"#tab__list\" data-toggle=\"tab\"><i class=\"fa fa-list\"></i>&nbsp&nbsp List</a></li><li style=\"\"><a id=\"tab__menu__main__reports\" href=\"#tab__reports\" data-toggle=\"tab\"><i class=\"fa fa-bar-chart\"></i>&nbsp&nbsp Report(s)</a></li><li style=\"\"><a id=\"tab__menu__editors__output2\" href=\"#tab__output2\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li></ul><div class=\"tab-content\"><div id=\"tab__calendar\" class=\"tab-pane fade in active\"><div class=\"row\"><div class=\"col-md-12\"><div id=\"tab__calendar\" class=\"tab-pane fade in\"><button id=\"content__calendar__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button><div id=\"content__calendar\"></div></div></div></div></div><div id=\"tab__tree\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-6\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><h3>Tree Search</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__search__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__search__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__search__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__search__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__search__labels\" disabled class=\"form-control\"></div></div><br></div><div class=\"col-md-6\"><h3>Tree Node</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__node__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__node__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__node__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__node__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__node__labels\" disabled class=\"form-control\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__add\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button><button id=\"content__list__delete\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div style=\"padding: 0;\" class=\"col-md-12\"><h3>List</h3></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-8\"><input id=\"content__list__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__list__responsive\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__list__import\" type=\"file\"></span></div></div></div><div id=\"tab__reports\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__reports__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div></div><br><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__report__date\" data-toggle=\"tab\">Notes by Date</a></li><li><a href=\"#tab__report__status\" data-toggle=\"tab\">Notes by Status</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__report__date\" class=\"tab-pane fade in active\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>Notes by Date</h3><input type=\"text\" placeholder=\"DD/MM/YYYY (Date)\" id=\"content__reports__date__date\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__date\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__date\" class=\"table-bordered table-condensed\"></table></div></div></div></div><div id=\"tab__report__status\" class=\"tab-pane fade in\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>Notes by Status</h3><input type=\"text\" placeholder=\"(Status)\" id=\"content__reports__status__status\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__status\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__status\" class=\"table-bordered table-condensed\"></table></div></div></div></div></div></div></div></div><div id=\"tab__output2\" class=\"tab-pane fade in undefined\"><div id=\"content__output2__iframe__holder\" class=\"tab-pane fade in undefined\"><iframe id=\"content__output2__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output2__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output2__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output2__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div></div></div></div></div></div></div></div></section>";
+	module.exports = " <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-file-text-o\"></i>&nbspNotes (Bible)<small>0.1.0</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-file-text-o\"></i>Notes</a></li><li><a href=\"#/\"><i class=\"fa fa-book\"></i>Bible</a></li></ol></section><section id=\"\" class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__editors__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__editors__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__editors__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-12 col-sm-3 col-md-6\"><span style=\"float: right;\">Alternative Layout&nbsp&nbsp<input id=\"content__layout__alt\" type=\"checkbox\" style=\"float: right;\"></span></div></div><br><div id=\"content__layout\" class=\"row\"><div class=\"col-sm-12\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__editors\" data-toggle=\"tab\">Editors</a></li><li><a href=\"#tab__main\" data-toggle=\"tab\">Main</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__editors\" class=\"tab-pane active\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__editors\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__notes\" href=\"#tab__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li style=\"\"><a id=\"tab__menu__editors__output1\" href=\"#tab__output1\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li></ul><div class=\"tab-content\"><div id=\"tab__notes\" class=\"tab-pane fade in active\"><textarea id=\"content__editors__notes\"></textarea><br><button type=\"button\" id=\"content__editors__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__notes__import\"></span>&nbsp&nbsp</div><div id=\"tab__output1\" class=\"tab-pane fade in undefined\"><div id=\"content__output1__iframe__holder\" class=\"tab-pane fade in undefined\"><iframe id=\"content__output1__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output1__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output1__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output1__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div></div></div></div><div id=\"tab__main\" class=\"tab-pane\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__main\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__tree\" href=\"#tab__tree\" data-toggle=\"tab\"><i class=\"fa fa-sitemap\"></i>&nbsp&nbsp Tree</a></li><li style=\"\"><a id=\"tab__menu__main__list\" href=\"#tab__list\" data-toggle=\"tab\"><i class=\"fa fa-list\"></i>&nbsp&nbsp List</a></li><li style=\"\"><a id=\"tab__menu__main__calendar\" href=\"#tab__calendar\" data-toggle=\"tab\"><i class=\"fa fa-calendar\"></i>&nbsp&nbsp Calendar</a></li><li style=\"\"><a id=\"tab__menu__main__reports\" href=\"#tab__reports\" data-toggle=\"tab\"><i class=\"fa fa-bar-chart\"></i>&nbsp&nbsp Report(s)</a></li><li style=\"\"><a id=\"tab__menu__editors__output2\" href=\"#tab__output2\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li></ul><div class=\"tab-content\"><div id=\"tab__tree\" class=\"tab-pane fade in active\"><div class=\"row\"><div class=\"col-md-6\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><h3>Tree Search</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__search__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__search__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__search__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__search__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__search__labels\" disabled class=\"form-control\"></div></div><br></div><div class=\"col-md-6\"><h3>Tree Node</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__node__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__node__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__node__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__node__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__node__labels\" disabled class=\"form-control\"></div></div></div></div><div class=\"row\"><div class=\"col-md-12\"><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__add\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button><button id=\"content__list__delete\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div style=\"padding: 0;\" class=\"col-md-12\"><h3>List</h3></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-8\"><input id=\"content__list__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__list__responsive\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__list__import\" type=\"file\"></span></div></div></div><div id=\"tab__calendar\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><div id=\"tab__calendar\" class=\"tab-pane fade in\"><button id=\"content__calendar__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button><div id=\"content__calendar\"></div></div></div></div></div><div id=\"tab__reports\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__reports__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div></div><br><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__report__date\" data-toggle=\"tab\">Notes by Date</a></li><li><a href=\"#tab__report__status\" data-toggle=\"tab\">Notes by Status</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__report__date\" class=\"tab-pane fade in active\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>Notes by Date</h3><input type=\"text\" placeholder=\"DD/MM/YYYY (Date)\" id=\"content__reports__date__date\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__date\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__date\" class=\"table-bordered table-condensed\"></table></div></div></div></div><div id=\"tab__report__status\" class=\"tab-pane fade in\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>Notes by Status</h3><input type=\"text\" placeholder=\"(Status)\" id=\"content__reports__status__status\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__status\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__status\" class=\"table-bordered table-condensed\"></table></div></div></div></div></div></div></div></div><div id=\"tab__output2\" class=\"tab-pane fade in undefined\"><div id=\"content__output2__iframe__holder\" class=\"tab-pane fade in undefined\"><iframe id=\"content__output2__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output2__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output2__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output2__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div></div></div></div></div></div></div></div></section>";
 
 /***/ },
 /* 7 */
