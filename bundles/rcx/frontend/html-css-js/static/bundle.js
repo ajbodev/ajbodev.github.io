@@ -46,10 +46,12 @@
 
 	var Datas, Component, props, tmpl, sources, examples, component;
 	Datas = {
-	  indexeddb: __webpack_require__(1)
+	  'static': __webpack_require__(1)
 	};
-	Component = __webpack_require__(2);
-	__webpack_require__(4);
+	Component = __webpack_require__(3);
+	window.db = {
+	  rcx: {}
+	};
 	props = __webpack_require__(5);
 	tmpl = {
 	  'default': __webpack_require__(6),
@@ -73,113 +75,180 @@
 	  component: component
 	};
 	$('#app').html(tmpl['default']);
-	component.init('indexeddb');
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\index\jquery+indexeddb\frontend\html-css-js\index.ls.map
+	component.init('static');
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\index\jquery+static\frontend\html-css-js\index.ls.map
 
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Data;
-	Data = function(o){
-	  this.db = o.db;
-	  this.table = o.table;
-	};
-	Data.prototype = {
-	  constructor: Data,
-	  create: function(attrs, cb){
-	    this.db[this.table].add(attrs).then(function(id){
-	      cb(id);
-	    });
-	  },
-	  createAll: function(data, cb){},
-	  find: function(id, cb){
-	    var idInt;
-	    idInt = parseInt(id);
-	    this.db[this.table].get(idInt, function(item){
-	      cb(item);
-	    });
-	  },
-	  findAll: function(cb){
-	    var list;
-	    list = [];
-	    this.db[this.table].each(function(item){
-	      list.push(item);
-	    }).then(function(){
-	      cb(list);
-	    });
-	  },
-	  update: function(id, attrs, cb){
-	    var idInt;
-	    idInt = parseInt(id);
-	    this.db[this.table].update(idInt, attrs).then(function(){
-	      cb(attrs);
-	    });
-	  },
-	  updateAll: function(data, cb){},
-	  destroy: function(id, cb){
-	    var idInt;
-	    idInt = parseInt(id);
-	    this.db[this.table]['delete'](idInt).then(function(){
-	      cb(idInt);
-	    });
-	  },
-	  destroyAll: function(ids, cb){},
-	  groupByKey: function(key, cb){
-	    var _this, _data;
-	    _this = this;
-	    _data = {};
-	    this.db[this.table].orderBy(key).uniqueKeys().then(function(keys){
-	      var i$, len$, results$ = [];
-	      _data[''] = {
-	        count: 0
-	      };
-	      for (i$ = 0, len$ = keys.length; i$ < len$; ++i$) {
-	        results$.push((fn$.call(this, i$, keys[i$])));
-	      }
-	      return results$;
-	      function fn$(index, key){
-	        return _data[key] = {
-	          count: 0
-	        };
-	      }
-	    }).then(function(){
-	      return _this.db[_this.table].each(function(item){
-	        _data[item[key] || ''].count++;
-	      });
-	    }).then(function(){
-	      cb(_data);
-	    });
-	  },
-	  'import': function(data, cb){
-	    var _this;
-	    _this = this;
-	    this.db.transaction('rw', this.table, function(){
-	      var i$, ref$, len$, i, el, results$ = [];
-	      for (i$ = 0, len$ = (ref$ = data).length; i$ < len$; ++i$) {
-	        i = i$;
-	        el = ref$[i$];
-	        results$.push(_this.db[_this.table].put(el));
-	      }
-	      return results$;
-	    }).then(function(){
-	      cb();
-	    });
+	var Data, o;
+	Data = __webpack_require__(2);
+	o = Data.prototype;
+	o.autoload = function(component, checked, onDataChange){
+	  if (component.id && checked) {
+	    onDataChange();
+	  } else {
+	    clearTimeout(component.delays.load);
 	  }
 	};
 	if (true) {
 	  module.exports = Data;
 	}
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\data\indexeddb\data.ls.map
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\data\static\data.ls.map
 
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var Data;
+	Data = function(){
+	  this.id = 0;
+	  this.list = [];
+	};
+	Data.prototype = {
+	  constructor: Data,
+	  create: function(attrs, cb){
+	    if (!attrs.id) {
+	      attrs.id = ++this.id;
+	    } else {
+	      attrs.id = parseInt(attrs.id);
+	    }
+	    this.list.push(attrs);
+	    if (cb) {
+	      cb(attrs);
+	    }
+	    return attrs;
+	  },
+	  createAll: function(data, cb){},
+	  find: function(id, cb){
+	    var item, idInt, i$, ref$, len$;
+	    item = {};
+	    idInt = parseInt(id);
+	    for (i$ = 0, len$ = (ref$ = this.list).length; i$ < len$; ++i$) {
+	      (fn$.call(this, ref$[i$]));
+	    }
+	    if (cb) {
+	      cb(item);
+	    }
+	    return item;
+	    function fn$(el){
+	      if (el.id === idInt) {
+	        item = el;
+	      }
+	    }
+	  },
+	  findAll: function(cb){
+	    if (cb) {
+	      cb(this.list);
+	    }
+	    return this.list;
+	  },
+	  update: function(id, attrs, cb){
+	    var item, idInt, i$, ref$, len$;
+	    item = {};
+	    idInt = parseInt(id);
+	    for (i$ = 0, len$ = (ref$ = this.list).length; i$ < len$; ++i$) {
+	      (fn$.call(this, i$, ref$[i$]));
+	    }
+	    if (cb) {
+	      cb(item);
+	    }
+	    return item;
+	    function fn$(i, el){
+	      var key;
+	      if (el.id === idInt) {
+	        for (key in attrs) {
+	          this.list[i][key] = attrs[key];
+	        }
+	        item = this.list[i];
+	      }
+	    }
+	  },
+	  updateAll: function(data, cb){},
+	  destroy: function(id, cb){
+	    var item, index, idInt, i$, ref$, len$;
+	    item = {};
+	    index = -1;
+	    idInt = parseInt(id);
+	    for (i$ = 0, len$ = (ref$ = this.list).length; i$ < len$; ++i$) {
+	      (fn$.call(this, i$, ref$[i$]));
+	    }
+	    if (index > -1) {
+	      this.list.splice(index, 1);
+	    }
+	    if (cb) {
+	      cb(item);
+	    }
+	    return item;
+	    function fn$(i, el){
+	      if (el.id === idInt) {
+	        index = i;
+	        item = el;
+	      }
+	    }
+	  },
+	  groupByKey: function(key, cb){
+	    var _this, _data, i$, ref$, len$;
+	    _this = this;
+	    _data = {};
+	    for (i$ = 0, len$ = (ref$ = _this.list).length; i$ < len$; ++i$) {
+	      (fn$.call(this, i$, ref$[i$]));
+	    }
+	    for (i$ in _data) {
+	      (fn1$.call(this, i$, _data[i$]));
+	    }
+	    cb(_data);
+	    function fn$(i, el){
+	      _data[el[key]] = {
+	        count: 0
+	      };
+	    }
+	    function fn1$(index, obj){
+	      var i$, ref$, len$;
+	      for (i$ = 0, len$ = (ref$ = _this.list).length; i$ < len$; ++i$) {
+	        (fn$.call(this, i$, ref$[i$]));
+	      }
+	      function fn$(i, el){
+	        if (el[key] === index) {
+	          _data[index].count++;
+	        }
+	      }
+	    }
+	  },
+	  'import': function(data, cb){
+	    var i$, len$, i, el;
+	    for (i$ = 0, len$ = data.length; i$ < len$; ++i$) {
+	      i = i$;
+	      el = data[i$];
+	      if (!el.id) {
+	        el.id = ++this.id;
+	      } else {
+	        ++this.id;
+	        el.id = parseInt(el.id);
+	      }
+	      this.list.push(el);
+	    }
+	    if (cb) {
+	      cb();
+	    }
+	  },
+	  destroyAll: function(ids, cb){}
+	};
+	if (true) {
+	  module.exports = Data;
+	}
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\data\lib\data.ls.map
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var Component, o;
-	Component = __webpack_require__(3);
+	Component = __webpack_require__(4);
 	o = Component.prototype;
 	o.outputRunCdm = function(){
 	  var _this, output_init, output;
@@ -263,7 +332,7 @@
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -1416,44 +1485,6 @@
 	  module.exports = Component;
 	}
 	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\component\jquery\lib\component.ls.map
-
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	window.db = {
-	  rcx: new Dexie('rcx'),
-	  _init: function(db){
-	    var version, ref$, schema;
-	    for (version in ref$ = window.db._schemas[db]) {
-	      schema = ref$[version];
-	      window.db[db].version(version).stores(schema);
-	    }
-	    window.db[db].open();
-	  },
-	  _schemas: {
-	    rcx: {}
-	  },
-	  _version: function(db, version, schema){
-	    window.db._schemas[db][version] = schema;
-	  },
-	  _table: {
-	    rcx: {
-	      1: '++id, title, tree, notes, date, labels, status, date_start, date_end',
-	      2: ''
-	    }
-	  }
-	};
-	window.db._version('rcx', 2, {
-	  frontend_html_css_js: db._table['rcx'][1],
-	  app: db._table['rcx'][1]
-	});
-	window.db._version('rcx', 1, {
-	  frontend_html_css_js: db._table['rcx'][1]
-	});
-	window.db._init('rcx');
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\data\indexeddb\db.ls.map
 
 
 /***/ },
