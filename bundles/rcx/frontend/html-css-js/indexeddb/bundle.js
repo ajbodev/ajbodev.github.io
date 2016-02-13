@@ -166,6 +166,22 @@
 	    }).then(function(){
 	      cb();
 	    });
+	  },
+	  autoload: function(component, checked){
+	    var onDataChange;
+	    onDataChange = function(){
+	      console.log('Autoload', component.id);
+	      clearTimeout(component.delays.load);
+	      component.editorLoadById();
+	      component.delays.load = setTimeout(function(){
+	        onDataChange();
+	      }, 1000);
+	    };
+	    if (component.id && checked) {
+	      onDataChange();
+	    } else {
+	      clearTimeout(component.delays.load);
+	    }
 	  }
 	};
 	if (true) {
@@ -239,7 +255,7 @@
 	    }
 	    console.log('Load', id);
 	  };
-	  _this.data.find(id, cb);
+	  _this.dataFind(id, cb);
 	};
 	o.editorSaveByIdCdm = function(){
 	  var _this, id, attrs, cb;
@@ -254,7 +270,7 @@
 	  cb = function(item){
 	    console.log('Save', item.id);
 	  };
-	  _this.data.update(id, attrs, cb);
+	  _this.dataUpdate(id, attrs, cb);
 	};
 	if (true) {
 	  module.exports = Component;
@@ -551,7 +567,7 @@
 	    }
 	  },
 	  initEditorsEventsJqyIcheck: function(){
-	    var _this, onEditorchange, i$, ref$, onDataChange;
+	    var _this, onEditorchange, i$, ref$;
 	    _this = this;
 	    onEditorchange = function(){
 	      var run, save;
@@ -574,18 +590,10 @@
 	    for (i$ in ref$ = this.editors) {
 	      (fn$.call(this, i$, ref$[i$]));
 	    }
-	    onDataChange = function(){
-	      console.log('Autoload', _this.id);
-	      clearTimeout(_this.delays.load);
-	      _this.editorLoadById();
-	      _this.delays.load = setTimeout(function(){
-	        onDataChange();
-	      }, 1000);
-	    };
 	    $('#content__editors__load__auto').on('ifChanged', function(){
 	      var checked;
 	      checked = $('#content__editors__load__auto').prop('checked');
-	      _this.data.autoload(_this, checked, onDataChange);
+	      _this.data.autoload(_this, checked);
 	    });
 	    function fn$(i, j){
 	      this.editors[i].on('change', onEditorchange);
@@ -880,7 +888,7 @@
 	        }
 	      }
 	    };
-	    this.data.findAll(cb);
+	    this.dataFindAll(cb);
 	  },
 	  initListContainerDtb: function(){
 	    var _this;
@@ -1037,7 +1045,7 @@
 	      };
 	      _this.lists[o.name] = $('#content__list').DataTable(table);
 	    };
-	    return this.data.findAll(cb);
+	    return this.dataFindAll(cb);
 	  },
 	  listMakeEditableDtb: function(){
 	    var _this;
@@ -1095,7 +1103,7 @@
 	      date = moment().format('MMM[]Do-h[]mm[]a');
 	      saveAs(blob, 'notes-' + _this.title + '-' + date + '.json');
 	    };
-	    this.data.findAll(cb);
+	    this.dataFindAll(cb);
 	  },
 	  initCalendarFulcal: function(){
 	    this.calendarRefresh();
@@ -1147,7 +1155,7 @@
 	        }
 	      });
 	    };
-	    this.data.findAll(cb);
+	    this.dataFindAll(cb);
 	    setTimeout(function(){
 	      $('button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right').click();
 	    }, 200);
@@ -1473,7 +1481,9 @@
 	      db: 'https://rcx-12345.firebaseio.com/',
 	      table: 'frontend_html_css_js'
 	    },
-	    ajax: {}
+	    ajax: {
+	      db: '/server-rcx-frontend-html-css-js'
+	    }
 	  },
 	  router: {
 	    id: {

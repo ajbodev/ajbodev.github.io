@@ -1405,7 +1405,9 @@
 	      db: 'https://rcx-12345.firebaseio.com/',
 	      table: 'frontend_html_css_js'
 	    },
-	    ajax: {}
+	    ajax: {
+	      db: '/server-rcx-frontend-html-css-js'
+	    }
 	  },
 	  router: {
 	    id: {
