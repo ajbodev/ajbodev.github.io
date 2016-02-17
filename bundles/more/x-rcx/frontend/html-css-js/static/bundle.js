@@ -46,10 +46,12 @@
 
 	var Datas, Component, props, tmpl, sources, examples, component;
 	Datas = {
-	  indexeddb: __webpack_require__(1)
+	  'static': __webpack_require__(1)
 	};
-	Component = __webpack_require__(2);
-	__webpack_require__(4);
+	Component = __webpack_require__(3);
+	window.db = {
+	  rcx: {}
+	};
 	props = __webpack_require__(5);
 	tmpl = {
 	  'default': __webpack_require__(6),
@@ -64,152 +66,267 @@
 	  primer_css: __webpack_require__(13)
 	};
 	examples = {
-	  html: __webpack_require__(14),
-	  css: __webpack_require__(15),
-	  js: __webpack_require__(16)
+	  notes: __webpack_require__(14),
+	  html: __webpack_require__(15),
+	  css: __webpack_require__(16),
+	  js: __webpack_require__(17)
 	};
 	component = new Component(props, Datas, tmpl, sources, examples);
 	window.app = {
 	  component: component
 	};
 	$('#app').html(tmpl['default']);
-	component.init('indexeddb');
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\index\jquery+indexeddb\frontend\html-css-js\index.ls.map
+	component.init('static');
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\more\x-rcx\index\jquery+static\frontend\html-css-js\index.ls.map
 
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Data;
-	Data = function(o){
-	  this.db = o.db;
-	  this.table = o.table;
-	};
-	Data.prototype = {
-	  constructor: Data,
-	  create: function(attrs, cb){
-	    this.db[this.table].add(attrs).then(function(id){
-	      cb(id);
-	    });
-	  },
-	  createAll: function(data, cb){},
-	  find: function(id, cb){
-	    var idInt;
-	    idInt = parseInt(id);
-	    this.db[this.table].get(idInt, function(item){
-	      cb(item);
-	    });
-	  },
-	  findAll: function(cb){
-	    var list;
-	    list = [];
-	    this.db[this.table].each(function(item){
-	      list.push(item);
-	    }).then(function(){
-	      cb(list);
-	    });
-	  },
-	  update: function(id, attrs, cb){
-	    var idInt;
-	    idInt = parseInt(id);
-	    attrs.id = idInt;
-	    this.db[this.table].update(idInt, attrs).then(function(){
-	      cb(attrs);
-	    });
-	  },
-	  updateAll: function(data, cb){},
-	  destroy: function(id, cb){
-	    var idInt;
-	    idInt = parseInt(id);
-	    this.db[this.table]['delete'](idInt).then(function(){
-	      cb(idInt);
-	    });
-	  },
-	  destroyAll: function(ids, cb){},
-	  groupByKey: function(key, cb){
-	    var _this, _data;
-	    _this = this;
-	    _data = {};
-	    this.db[this.table].orderBy(key).uniqueKeys().then(function(keys){
-	      var i$, len$, results$ = [];
-	      _data[''] = {
-	        count: 0
-	      };
-	      for (i$ = 0, len$ = keys.length; i$ < len$; ++i$) {
-	        results$.push((fn$.call(this, i$, keys[i$])));
-	      }
-	      return results$;
-	      function fn$(index, key){
-	        return _data[key] = {
-	          count: 0
-	        };
-	      }
-	    }).then(function(){
-	      return _this.db[_this.table].each(function(item){
-	        _data[item[key] || ''].count++;
-	      });
-	    }).then(function(){
-	      cb(_data);
-	    });
-	  },
-	  'import': function(data, cb){
-	    var _this;
-	    _this = this;
-	    this.db.transaction('rw', this.table, function(){
-	      var i$, ref$, len$, i, el, results$ = [];
-	      for (i$ = 0, len$ = (ref$ = data).length; i$ < len$; ++i$) {
-	        i = i$;
-	        el = ref$[i$];
-	        results$.push(_this.db[_this.table].put(el));
-	      }
-	      return results$;
-	    }).then(function(){
-	      cb();
-	    });
-	  },
-	  autoload: function(component, checked){
-	    var onDataChange;
-	    onDataChange = function(){
-	      console.log('Autoload', component.id);
-	      clearTimeout(component.delays.load);
-	      component.editorLoadById();
-	      component.delays.load = setTimeout(function(){
-	        onDataChange();
-	      }, 1000);
-	    };
-	    if (component.id && checked) {
+	var Data, o;
+	Data = __webpack_require__(2);
+	o = Data.prototype;
+	o.autoload = function(component, checked){
+	  var onDataChange;
+	  onDataChange = function(){
+	    console.log('Autoload', component.id);
+	    clearTimeout(component.delays.load);
+	    component.editorsLoadById();
+	    component.delays.load = setTimeout(function(){
 	      onDataChange();
-	    } else {
-	      clearTimeout(component.delays.load);
-	    }
+	    }, 1000);
+	  };
+	  if (component.id && checked) {
+	    onDataChange();
+	  } else {
+	    clearTimeout(component.delays.load);
 	  }
 	};
 	if (true) {
 	  module.exports = Data;
 	}
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\data\indexeddb\data.ls.map
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\more\x-rcx\data\static\data.ls.map
 
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var Data;
+	Data = function(){
+	  this.id = 0;
+	  this.list = [];
+	};
+	Data.prototype = {
+	  constructor: Data,
+	  create: function(attrs, cb){
+	    if (!attrs.id) {
+	      attrs.id = ++this.id;
+	    } else {
+	      attrs.id = parseInt(attrs.id);
+	    }
+	    this.list.push(attrs);
+	    if (cb) {
+	      cb(attrs);
+	    }
+	    return attrs;
+	  },
+	  createAll: function(data, cb){},
+	  find: function(id, cb){
+	    var item, idInt, i$, ref$, len$;
+	    item = {};
+	    idInt = parseInt(id);
+	    for (i$ = 0, len$ = (ref$ = this.list).length; i$ < len$; ++i$) {
+	      (fn$.call(this, ref$[i$]));
+	    }
+	    if (cb) {
+	      cb(item);
+	    }
+	    return item;
+	    function fn$(el){
+	      if (el.id === idInt) {
+	        item = el;
+	      }
+	    }
+	  },
+	  findAll: function(cb){
+	    if (cb) {
+	      cb(this.list);
+	    }
+	    return this.list;
+	  },
+	  update: function(id, attrs, cb){
+	    var item, idInt, i$, ref$, len$;
+	    item = {};
+	    idInt = parseInt(id);
+	    for (i$ = 0, len$ = (ref$ = this.list).length; i$ < len$; ++i$) {
+	      (fn$.call(this, i$, ref$[i$]));
+	    }
+	    if (cb) {
+	      cb(item);
+	    }
+	    return item;
+	    function fn$(i, el){
+	      var key;
+	      if (el.id === idInt) {
+	        for (key in attrs) {
+	          if (key === 'id') {
+	            this.list[i][key] = parseInt(attrs[key]);
+	          } else {
+	            this.list[i][key] = attrs[key];
+	          }
+	        }
+	        item = this.list[i];
+	      }
+	    }
+	  },
+	  updateAll: function(data, cb){},
+	  destroy: function(id, cb){
+	    var item, index, idInt, i$, ref$, len$;
+	    item = {};
+	    index = -1;
+	    idInt = parseInt(id);
+	    for (i$ = 0, len$ = (ref$ = this.list).length; i$ < len$; ++i$) {
+	      (fn$.call(this, i$, ref$[i$]));
+	    }
+	    if (index > -1) {
+	      this.list.splice(index, 1);
+	    }
+	    if (cb) {
+	      cb(item);
+	    }
+	    return item;
+	    function fn$(i, el){
+	      if (el.id === idInt) {
+	        index = i;
+	        item = el;
+	      }
+	    }
+	  },
+	  groupByKey: function(key, cb){
+	    var _this, _data, i$, ref$, len$;
+	    _this = this;
+	    _data = {};
+	    for (i$ = 0, len$ = (ref$ = _this.list).length; i$ < len$; ++i$) {
+	      (fn$.call(this, i$, ref$[i$]));
+	    }
+	    for (i$ in _data) {
+	      (fn1$.call(this, i$, _data[i$]));
+	    }
+	    cb(_data);
+	    function fn$(i, el){
+	      _data[el[key]] = {
+	        count: 0
+	      };
+	    }
+	    function fn1$(index, obj){
+	      var i$, ref$, len$;
+	      for (i$ = 0, len$ = (ref$ = _this.list).length; i$ < len$; ++i$) {
+	        (fn$.call(this, i$, ref$[i$]));
+	      }
+	      function fn$(i, el){
+	        if (el[key] === index) {
+	          _data[index].count++;
+	        }
+	      }
+	    }
+	  },
+	  'import': function(data, cb){
+	    var i$, len$, i, el;
+	    for (i$ = 0, len$ = data.length; i$ < len$; ++i$) {
+	      i = i$;
+	      el = data[i$];
+	      if (!el.id) {
+	        el.id = ++this.id;
+	      } else {
+	        ++this.id;
+	        el.id = parseInt(el.id);
+	      }
+	      this.list.push(el);
+	    }
+	    if (cb) {
+	      cb();
+	    }
+	  },
+	  destroyAll: function(ids, cb){}
+	};
+	if (true) {
+	  module.exports = Data;
+	}
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\data\lib\data.ls.map
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var Component, o;
-	Component = __webpack_require__(3);
+	Component = __webpack_require__(4);
 	o = Component.prototype;
 	o.outputRunCdm = function(){
-	  var _this, output_init, output;
+	  var _this, _js, _css, js, css, output_init, output, i$, len$;
 	  _this = this;
+	  _js = [];
+	  _css = [];
+	  js = '';
+	  css = '';
 	  $('#content__output__iframe').remove();
 	  $('<iframe id="content__output__iframe"></iframe>').appendTo('#content__output__iframe__holder');
 	  output_init = document.getElementById('content__output__iframe');
 	  output = output_init.contentDocument || output_init.contentWindow.document;
 	  output.open();
 	  output.write(_this.editors.html.getValue());
-	  output.write('<style>' + _this.editors.css.getValue() + '</style>');
-	  output.write('<' + 'script>' + _this.editors.js.getValue() + '</' + 'script>');
+	  $('#content__output__iframe').contents().find('style[data-include]').each(function(i, v){
+	    var name;
+	    name = $(this).data('include');
+	    _css.push(name);
+	  });
+	  for (i$ = 0, len$ = _css.length; i$ < len$; ++i$) {
+	    (fn$.call(this, i$, _css[i$]));
+	  }
+	  $('#content__output__iframe').contents().find('script[data-include]').each(function(i, v){
+	    var name;
+	    name = $(this).data('include');
+	    _js.push(name);
+	  });
+	  for (i$ = 0, len$ = _js.length; i$ < len$; ++i$) {
+	    (fn1$.call(this, i$, _js[i$]));
+	  }
+	  output.write(css + '\r\n' + js);
 	  output.close();
+	  function fn$(i, el){
+	    if (_this.selected === el) {
+	      css += '<style>' + _this.editors.css.getValue() + '</style>\r\n';
+	    } else {
+	      css += '<style>' + _this.selections.css[el] + '</style>\r\n';
+	    }
+	  }
+	  function fn1$(i, el){
+	    if (_this.selected === el) {
+	      js += '<' + 'script>' + _this.editors.js.getValue() + '</' + 'script>\r\n';
+	    } else {
+	      js += '<' + 'script>' + _this.selections.js[el] + '</' + 'script>\r\n';
+	    }
+	  }
+	};
+	o.outputRunNotes = function(){
+	  var _this, _html, _output_init, _output;
+	  _this = this;
+	  _html = function(_o){
+	    return '<!DOCTYPE html><html><head><style>' + _o.style + '</style></head><body>' + _o.content + '<script>' + _o.script + '</script>' + '</body></html>';
+	  };
+	  $('#content__output__iframe').remove();
+	  $('<iframe id="content__output__iframe"></iframe>').appendTo('#content__output__iframe__holder');
+	  _output_init = document.getElementById('content__output__iframe');
+	  _output = _output_init.contentDocument || _output_init.contentWindow.document;
+	  _output.open();
+	  _output.write(_html({
+	    style: _this.sources.primer_css + '\n' + 'body { font-size: 16px; }',
+	    content: marked(_this.editors.notes.getValue()),
+	    script: ''
+	  }));
+	  _output.close();
 	};
 	o.initEditorsContainerCdm = function(){
 	  var _this;
@@ -219,67 +336,342 @@
 	  _this.editors.js = _this.editorCreate(_this.props.editors.js);
 	  _this.editors.notes = _this.editorCreate(_this.props.editors.notes);
 	};
-	o.initEditorsLintIcheck = function(){
+	o.initEditorsSelectSeltiz = function(){
 	  var _this;
 	  _this = this;
-	  $('#content__editors__css__lint').on('ifChanged', function(){
-	    _this.editorToggleLint('css');
+	  this.selectors.js = this.editorSelectCreate('js');
+	  this.selectors.css = this.editorSelectCreate('css');
+	  this.selectors.html = this.editorSelectCreate('html');
+	  this.selectors.notes = this.editorSelectCreate('notes');
+	  this.editorsSelectDefaultReset();
+	  $('#content__editors__js__select__destroy').click(function(){
+	    _this.editorSelectDestroy('js');
 	  });
-	  $('#content__editors__js__lint').on('ifChanged', function(){
-	    _this.editorToggleLint('js');
+	  $('#content__editors__css__select__destroy').click(function(){
+	    _this.editorSelectDestroy('css');
 	  });
-	  $('#content__editors__css__lint').iCheck('check');
-	  $('#content__editors__js__lint').iCheck('check');
+	  $('#content__editors__html__select__destroy').click(function(){
+	    _this.editorSelectDestroy('html');
+	  });
+	  $('#content__editors__notes__select__destroy').click(function(){
+	    _this.editorSelectDestroy('notes');
+	  });
 	};
-	o.editorLoadByIdCdm = function(){
+	o.editorsExportZip = function(){
+	  var _this, zip, i$, ref$, date;
+	  _this = this;
+	  zip = new JSZip();
+	  for (i$ in ref$ = _this.selections.js) {
+	    (fn$.call(this, i$, ref$[i$]));
+	  }
+	  for (i$ in ref$ = _this.selections.css) {
+	    (fn1$.call(this, i$, ref$[i$]));
+	  }
+	  for (i$ in ref$ = _this.selections.html) {
+	    (fn2$.call(this, i$, ref$[i$]));
+	  }
+	  date = moment().format('MMM[]Do-h[]mm[]a');
+	  saveAs(zip.generate({
+	    type: 'blob'
+	  }), _this.props.title + '-editors-' + _this.id + '-' + date + '.zip');
+	  function fn$(i, el){
+	    if (i !== '') {
+	      zip.file(i + '.js', el);
+	    }
+	  }
+	  function fn1$(i, el){
+	    if (i !== '') {
+	      zip.file(i + '.css', el);
+	    }
+	  }
+	  function fn2$(i, el){
+	    if (i !== '') {
+	      zip.file(i + '.html', el);
+	    }
+	  }
+	};
+	o.editorsExportJson = function(){
+	  var _this, attrs, i$, ref$, blob, date;
+	  _this = this;
+	  attrs = {};
+	  for (i$ in ref$ = _this.selections) {
+	    (fn$.call(this, i$, ref$[i$]));
+	  }
+	  blob = new Blob([JSON.stringify(attrs, null, 2)], {
+	    type: 'application/json;charset=utf-8'
+	  });
+	  date = moment().format('MMM[]Do-h[]mm[]a');
+	  saveAs(blob, _this.props.title + '-editors-' + _this.id + '-' + date + '.json');
+	  function fn$(i, el){
+	    attrs[i] = el;
+	  }
+	};
+	o.editorsImportJson = function(o){
+	  var _this, reader;
+	  _this = this;
+	  reader = new FileReader();
+	  reader.readAsText(o.input);
+	  reader.onload = function(e){
+	    var _attrs, attrs;
+	    _attrs = {
+	      index: ''
+	    };
+	    attrs = JSON.parse(e.target.result);
+	    _this.editorsSelectDefaultReset();
+	    _this.editorSelectOptionsSet({
+	      editor: 'js',
+	      attr: attrs.js || _attr
+	    });
+	    _this.editorSelectOptionsSet({
+	      editor: 'css',
+	      attr: attrs.css || _attr
+	    });
+	    _this.editorSelectOptionsSet({
+	      editor: 'html',
+	      attr: attrs.html || _attr
+	    });
+	    _this.editorSelectOptionsSet({
+	      editor: 'notes',
+	      attr: attrs.notes || _attr
+	    });
+	    _this.editors['js'].setValue(_this.selections['js'][_this.selected['js']]);
+	    _this.editors['css'].setValue(_this.selections['css'][_this.selected['css']]);
+	    _this.editors['html'].setValue(_this.selections['html'][_this.selected['html']]);
+	    _this.editors['notes'].setValue(_this.selections['notes'][_this.selected['notes']]);
+	  };
+	};
+	o.editorSelectCreate = function(editor){
+	  return $('#content__editors__' + editor + '__select').selectize(this.editorSelectConfig(editor))[0].selectize;
+	};
+	o.editorSelectConfig = function(editor){
+	  var _this;
+	  _this = this;
+	  return {
+	    maxItems: 1,
+	    valueField: 'name',
+	    labelField: 'name',
+	    options: [{
+	      name: 'index'
+	    }],
+	    sortField: 'name',
+	    searchField: 'name',
+	    onChange: function(value){
+	      console.log('Select:Change:' + editor, value);
+	      _this.selected[editor] = value;
+	      _this.editors[editor].setValue(_this.selections[editor][value] + '');
+	    },
+	    create: function(value){
+	      console.log('Select:Create:' + editor, value);
+	      _this.selections[editor][value] = '';
+	      return {
+	        name: value,
+	        label: value
+	      };
+	    }
+	  };
+	};
+	o.editorSelectDestroy = function(editor){
+	  var _this, val;
+	  _this = this;
+	  val = _this.selectors[editor].getValue();
+	  if (val !== 'index') {
+	    console.log('Select:Destroy:' + editor, val);
+	    _this.editorSelectValueSet({
+	      editor: editor,
+	      selected: 'index'
+	    });
+	    _this.editors[editor].setValue(_this.selections[editor]['index'] + '');
+	    delete _this.selections[editor][val];
+	    console.log('Select:List:' + editor, _this.selections[editor]);
+	    _this.selectors[editor].removeOption(val);
+	  } else {
+	    console.log('index cannot be destroyed!');
+	  }
+	};
+	o.editorSelectValueSet = function(o){
+	  var _this;
+	  _this = this;
+	  this.selected[o.editor] = o.selected;
+	  this.selectors[o.editor].setValue(o.selected, function(){});
+	};
+	o.editorSelectOptionsSet = function(o){
+	  var i$, ref$;
+	  this.selections[o.editor] = o.attr;
+	  for (i$ in ref$ = this.selections[o.editor]) {
+	    (fn$.call(this, i$, ref$[i$]));
+	  }
+	  function fn$(i, el){
+	    this.selectors[o.editor].addOption({
+	      name: i,
+	      value: i
+	    });
+	  }
+	};
+	o.editorsSelectDefaultReset = function(o){
+	  var _this, i$, ref$;
+	  _this = this;
+	  for (i$ in ref$ = this.selectors) {
+	    (fn$.call(this, i$, ref$[i$]));
+	  }
+	  function fn$(i, el){
+	    this.selectors[i].clearOptions();
+	    this.selectors[i].addOption({
+	      name: 'index',
+	      value: 'index'
+	    });
+	    this.editorSelectValueSet({
+	      editor: i,
+	      selected: 'index'
+	    });
+	  }
+	};
+	o.editorsLoadByIdCdm = function(){
 	  var _this, id, cb;
 	  _this = this;
 	  id = _this.id;
 	  cb = function(item){
-	    var html, css, js, notes;
-	    html = _this.editors.html.getValue();
-	    css = _this.editors.css.getValue();
-	    js = _this.editors.js.getValue();
-	    notes = _this.editors.notes.getValue();
-	    if (html !== item.input_html) {
-	      _this.editors.html.setValue(item.input_html || '');
+	    var _attrs, selected, editors;
+	    _attrs = {
+	      index: ''
+	    };
+	    _this.editorSelectOptionsSet({
+	      editor: 'js',
+	      attr: JSON.parse(item.input_js) || _attrs
+	    });
+	    _this.editorSelectOptionsSet({
+	      editor: 'css',
+	      attr: JSON.parse(item.input_css) || _attrs
+	    });
+	    _this.editorSelectOptionsSet({
+	      editor: 'html',
+	      attr: JSON.parse(item.input_html) || _attrs
+	    });
+	    _this.editorSelectOptionsSet({
+	      editor: 'notes',
+	      attr: JSON.parse(item.input_notes) || _attrs
+	    });
+	    selected = {
+	      js: _this.selections.js[_this.selected.js],
+	      css: _this.selections.css[_this.selected.css],
+	      html: _this.selections.html[_this.selected.html],
+	      notes: _this.selections.notes[_this.selected.notes]
+	    };
+	    editors = {
+	      js: _this.editors.js.getValue(),
+	      css: _this.editors.css.getValue(),
+	      html: _this.editors.html.getValue(),
+	      notes: _this.editors.notes.getValue()
+	    };
+	    console.log('cmp:js', editors.js, selected.js);
+	    if (editors.js !== selected.js) {
+	      _this.editors.js.setValue(selected.js || '');
 	    }
-	    if (css !== item.input_css) {
-	      _this.editors.css.setValue(item.input_css || '');
+	    if (editors.css !== selected.css) {
+	      _this.editors.css.setValue(selected.css || '');
 	    }
-	    if (js !== item.input_js) {
-	      _this.editors.js.setValue(item.input_js || '');
+	    if (editors.html !== selected.html) {
+	      _this.editors.html.setValue(selected.html || '');
 	    }
-	    if (notes !== item.input_notes) {
-	      _this.editors.notes.setValue(item.input_notes || '');
+	    if (editors.notes !== selected.notes) {
+	      _this.editors.notes.setValue(selected.notes || '');
 	    }
 	    console.log('Load', item.id);
 	  };
 	  _this.dataFind(id, cb);
 	};
-	o.editorSaveByIdCdm = function(){
+	o.editorSelectSave = function(editor){
+	  delete this.selections[editor][''];
+	  this.selections[editor][this.selected[editor]] = this.editors[editor].getValue();
+	  console.log('Select:List:Save:' + [editor], this.selections[editor]);
+	};
+	o.editorsSaveByIdCdm = function(){
 	  var _this, id, attrs, cb;
 	  _this = this;
 	  id = _this.id;
+	  this.editorSelectSave('js');
+	  this.editorSelectSave('css');
+	  this.editorSelectSave('html');
+	  this.editorSelectSave('notes');
 	  attrs = {
-	    input_html: _this.editors.html.getValue(),
-	    input_css: _this.editors.css.getValue(),
-	    input_js: _this.editors.js.getValue(),
-	    input_notes: _this.editors.notes.getValue()
+	    input_html: JSON.stringify(_this.selections.html),
+	    input_css: JSON.stringify(_this.selections.css),
+	    input_js: JSON.stringify(_this.selections.js),
+	    input_notes: JSON.stringify(_this.selections.notes)
 	  };
 	  cb = function(item){
 	    console.log('Save', item.id);
 	  };
 	  _this.dataUpdate(id, attrs, cb);
 	};
+	o.initEditorsLintIcheck = function(){
+	  var _this;
+	  _this = this;
+	  $('#content__editors__css__lint').iCheck({
+	    checkboxClass: 'icheckbox_minimal'
+	  });
+	  $('#content__editors__js__lint').iCheck({
+	    checkboxClass: 'icheckbox_minimal'
+	  });
+	  $('#content__editors__css__lint').iCheck('check');
+	  $('#content__editors__js__lint').iCheck('check');
+	  $('#content__editors__css__lint').on('ifChanged', function(){
+	    _this.editorToggleLint('css');
+	  });
+	  $('#content__editors__js__lint').on('ifChanged', function(){
+	    _this.editorToggleLint('js');
+	  });
+	};
+	o.listExportZip = function(){
+	  var _this, cb;
+	  _this = this;
+	  cb = function(data){
+	    var zip, i$, len$, date;
+	    zip = new JSZip();
+	    for (i$ = 0, len$ = data.length; i$ < len$; ++i$) {
+	      (fn$.call(this, i$, data[i$]));
+	    }
+	    date = moment().format('MMM[]Do-h[]mm[]a');
+	    saveAs(zip.generate({
+	      type: 'blob'
+	    }), _this.props.title + '-' + date + '.zip');
+	    function fn$(id, attrs){
+	      var i$, ref$;
+	      for (i$ in ref$ = JSON.parse(attrs.input_js)) {
+	        (fn$.call(this, i$, ref$[i$]));
+	      }
+	      for (i$ in ref$ = JSON.parse(attrs.input_css)) {
+	        (fn1$.call(this, i$, ref$[i$]));
+	      }
+	      for (i$ in ref$ = JSON.parse(attrs.input_html)) {
+	        (fn2$.call(this, i$, ref$[i$]));
+	      }
+	      for (i$ in ref$ = JSON.parse(attrs.input_notes)) {
+	        (fn3$.call(this, i$, ref$[i$]));
+	      }
+	      function fn$(i, el){
+	        zip.file(id + '/' + i + '.js', el);
+	      }
+	      function fn1$(i, el){
+	        zip.file(id + '/' + i + '.css', el);
+	      }
+	      function fn2$(i, el){
+	        zip.file(id + '/' + i + '.html', el);
+	      }
+	      function fn3$(i, el){
+	        zip.file(id + '/' + i + '.md', el);
+	      }
+	    }
+	  };
+	  _this.dataFindAll(cb);
+	};
 	if (true) {
 	  module.exports = Component;
 	}
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\component\jquery\frontend\html-css-js\component.ls.map
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\more\x-rcx\component\jquery\frontend\html-css-js\component.ls.map
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -289,10 +681,28 @@
 	  this.tmpl = tmpl;
 	  this.sources = sources;
 	  this.examples = examples;
-	  this.editors = {};
 	  this.data = {};
 	  this.router = {};
 	  this.id = null;
+	  this.editors = {};
+	  this.selectors = {
+	    html: {},
+	    css: {},
+	    js: {},
+	    notes: {}
+	  };
+	  this.selections = {
+	    html: {},
+	    css: {},
+	    js: {},
+	    notes: {}
+	  };
+	  this.selected = {
+	    html: 'index',
+	    css: 'index',
+	    js: 'index',
+	    notes: 'index'
+	  };
 	  this.delays = {
 	    run: 0,
 	    save: 0,
@@ -310,6 +720,7 @@
 	  init: function(data){
 	    this._data = data || this._data;
 	    this.data = new this.Datas[this._data](this.props.datas[this._data]);
+	    this.initLayout();
 	    this.initEditors();
 	    this.initOutput();
 	    this.initData();
@@ -318,7 +729,6 @@
 	    this.initList();
 	    this.initCalendar();
 	    this.initReports();
-	    this.initLayout();
 	  },
 	  initEditors: function(){
 	    this.initEditorsContainer();
@@ -326,6 +736,7 @@
 	    this.initEditorsEvents();
 	    this.initEditorsCheckboxes();
 	    this.initEditorsLint();
+	    this.initEditorsSelect();
 	  },
 	  initEditorsContainer: function(){
 	    this.initEditorsContainerCdm();
@@ -341,6 +752,9 @@
 	  },
 	  initEditorsLint: function(){
 	    this.initEditorsLintIcheck();
+	  },
+	  initEditorsSelect: function(){
+	    this.initEditorsSelectSeltiz();
 	  },
 	  initOutput: function(){
 	    this.initOutputJqy();
@@ -431,11 +845,11 @@
 	  editorCreate: function(o){
 	    return this.editorCreateCdm(o);
 	  },
-	  editorLoadById: function(){
-	    this.editorLoadByIdCdm();
+	  editorsLoadById: function(){
+	    this.editorsLoadByIdCdm();
 	  },
-	  editorSaveById: function(){
-	    this.editorSaveByIdCdm();
+	  editorsSaveById: function(){
+	    this.editorsSaveByIdCdm();
 	  },
 	  editorExport: function(editor){
 	    this.editorExportCdmMmt(editor);
@@ -445,6 +859,12 @@
 	  },
 	  editorToggleLint: function(editor){
 	    this.editorToggleLintCdm(editor);
+	  },
+	  editorSetSelected: function(o){
+	    this.editorSetSelectedSeltiz(o);
+	  },
+	  editorSelectDefaultSet: function(){
+	    this.editorSelectDefaultSetSeltiz();
 	  },
 	  treeRefresh: function(){
 	    this.treeRefreshJstree();
@@ -530,7 +950,8 @@
 	    routes = {};
 	    routes['/id/:id'] = function(id){
 	      _this.id = id;
-	      _this.editorLoadById();
+	      _this.editorsSelectDefaultReset();
+	      _this.editorsLoadById();
 	    };
 	    this.router = Router(routes);
 	    this.router.init();
@@ -546,19 +967,33 @@
 	      _this.outputRun();
 	    });
 	    $('#content__editors__save').click(function(){
-	      _this.editorSaveById();
+	      _this.editorsSaveById();
 	    });
 	    $('#content__editors__load').click(function(){
-	      _this.editorLoadById();
+	      _this.editorsLoadById();
+	    });
+	    $('#content__editors__run__notes').click(function(){
+	      _this.outputRunNotes();
 	    });
 	    for (i$ in ref$ = this.props.editors) {
 	      (fn$.call(this, i$, ref$[i$]));
 	    }
-	    function fn$(el, i){
-	      $(el.id + '__export').click(function(){
+	    $('#content__editors__all__export__zip').click(function(){
+	      _this.editorsExportZip();
+	    });
+	    $('#content__editors__all__export__json').click(function(){
+	      _this.editorsExportJson();
+	    });
+	    $('#content__editors__all__import__json').change(function(){
+	      _this.editorsImportJson({
+	        input: this.files[0]
+	      });
+	    });
+	    function fn$(i, el){
+	      $('#content__editors__' + i + '__export').click(function(){
 	        _this.editorExport(i);
 	      });
-	      $(el.id + '__import').change(function(){
+	      $('#content__editors__' + i + '__import').change(function(){
 	        _this.editorImport({
 	          input: this.files[0],
 	          editor: i
@@ -582,10 +1017,9 @@
 	      }
 	      if (save && _this.id) {
 	        _this.delays.save = setTimeout(function(){
-	          _this.editorSaveById();
+	          _this.editorsSaveById();
 	        }, 300);
 	      }
-	      console.clear();
 	    };
 	    for (i$ in ref$ = this.editors) {
 	      (fn$.call(this, i$, ref$[i$]));
@@ -609,12 +1043,7 @@
 	    $('#content__editors__load__auto').iCheck({
 	      checkboxClass: 'icheckbox_minimal-orange'
 	    });
-	    $('#content__editors__css__lint').iCheck({
-	      checkboxClass: 'icheckbox_minimal'
-	    });
-	    $('#content__editors__js__lint').iCheck({
-	      checkboxClass: 'icheckbox_minimal'
-	    });
+	    $('#content__editors__save__auto').iCheck('check');
 	  },
 	  initEditorsLintIcheck: function(){},
 	  editorCreateCdm: function(o){
@@ -629,7 +1058,7 @@
 	      lint: o.lint || false
 	    });
 	  },
-	  editorLoadByIdCdm: function(){
+	  editorsLoadByIdCdm: function(){
 	    var _this, id, cb;
 	    _this = this;
 	    id = this.id;
@@ -645,7 +1074,7 @@
 	    };
 	    this.dataFind(id, cb);
 	  },
-	  editorSaveByIdCdm: function(){
+	  editorsSaveByIdCdm: function(){
 	    var _this, id, attrs, cb;
 	    _this = this;
 	    id = this.id;
@@ -670,7 +1099,7 @@
 	    date = moment().format('MMM[]Do-h[]mm[]a');
 	    saveAs(blob, this.props.editors[editor].ext + '-' + date + '.' + ext);
 	  },
-	  editorImportCdmFlr: function(o){
+	  editorImportCdmFilesv: function(o){
 	    var _this, reader;
 	    _this = this;
 	    reader = new FileReader();
@@ -935,6 +1364,9 @@
 	      };
 	      _this.dataFindAll(cb);
 	    });
+	    $('#content__list__export__zip').click(function(){
+	      _this.listExportZip();
+	    });
 	    $('#content__list__import').on('change', function(){
 	      var reader;
 	      reader = new FileReader();
@@ -1103,7 +1535,7 @@
 	        type: 'application/json;charset=utf-8'
 	      });
 	      date = moment().format('MMM[]Do-h[]mm[]a');
-	      saveAs(blob, 'notes-' + _this.title + '-' + date + '.json');
+	      saveAs(blob, _this.title + '-' + date + '.json');
 	    };
 	    this.dataFindAll(cb);
 	  },
@@ -1248,7 +1680,7 @@
 	            title: o.name,
 	            width: '20%'
 	          }, {
-	            title: 'Notes'
+	            title: 'RCX'
 	          }
 	        ],
 	        order: [[0, 'desc']]
@@ -1377,21 +1809,24 @@
 	    }
 	  },
 	  initOutputJqy: function(){
+	    var _this;
+	    _this = this;
 	    $('#content__output__iframe__export').click(function(){
 	      _this.outputExport();
 	    });
 	  },
 	  outputRunCdm: function(){},
 	  outputExportCdm: function(){
-	    var outputInit, output, input, blob, date;
-	    outputInit = document.getElementById('content__output' + id + '__iframe');
+	    var _this, outputInit, output, input, blob, date;
+	    _this = this;
+	    outputInit = document.getElementById('content__output__iframe');
 	    output = outputInit.contentDocument || outputInit.contentWindow.document;
 	    input = '<!DOCTYPE html>\n' + output.getElementsByTagName('html')[0].outerHTML;
 	    blob = new Blob([input], {
 	      type: 'text/html;charset=utf-8'
 	    });
 	    date = moment().format('MMM[]Do-h[]mm[]a');
-	    saveAs(blob, 'notes-' + date + '.html');
+	    saveAs(blob, _this.props.title + date + '.html');
 	  },
 	  initLayoutJqyIcheck: function(){
 	    var _this;
@@ -1425,45 +1860,7 @@
 	if (true) {
 	  module.exports = Component;
 	}
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\component\jquery\lib\component.ls.map
-
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	window.db = {
-	  rcx: new Dexie('rcx'),
-	  _init: function(db){
-	    var version, ref$, schema;
-	    for (version in ref$ = window.db._schemas[db]) {
-	      schema = ref$[version];
-	      window.db[db].version(version).stores(schema);
-	    }
-	    window.db[db].open();
-	  },
-	  _schemas: {
-	    rcx: {}
-	  },
-	  _version: function(db, version, schema){
-	    window.db._schemas[db][version] = schema;
-	  },
-	  _table: {
-	    rcx: {
-	      1: '++id, title, tree, notes, date, labels, status, date_start, date_end',
-	      2: ''
-	    }
-	  }
-	};
-	window.db._version('rcx', 2, {
-	  frontend_html_css_js: db._table['rcx'][1],
-	  app: db._table['rcx'][1]
-	});
-	window.db._version('rcx', 1, {
-	  frontend_html_css_js: db._table['rcx'][1]
-	});
-	window.db._init('rcx');
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\data\indexeddb\db.ls.map
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\more\x-rcx\component\jquery\lib\component.ls.map
 
 
 /***/ },
@@ -1529,20 +1926,20 @@
 	if (true) {
 	  module.exports = props;
 	}
-	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\lib\props\frontend\html-css-js\props.ls.map
+	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\more\x-rcx\lib\props\frontend\html-css-js\props.ls.map
 
 
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "      <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-codepen\"></i>&nbspHTML, CSS, JS<small>0.1.0</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>RCX</a></li><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>Frontend</a></li><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>HTML, CSS, JS</a></li></ol></section><section id=\"\" class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__editors__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__editors__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__editors__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-12 col-sm-3 col-md-6\"><span style=\"float: right;\">Alternative Layout&nbsp&nbsp<input id=\"content__layout__alt\" type=\"checkbox\" style=\"float: right;\"></span></div></div><br><div id=\"content__layout\" class=\"row\"><div style=\"padding-right: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__editors\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__editors__html\" href=\"#tab__html\" data-toggle=\"tab\"><i class=\"fa fa-html5\"></i>&nbsp&nbsp HTML</a></li><li style=\"\"><a id=\"tab__menu__editors__css\" href=\"#tab__css\" data-toggle=\"tab\"><i class=\"fa fa-css3\"></i>&nbsp&nbsp CSS</a></li><li style=\"\"><a id=\"tab__menu__editors__js\" href=\"#tab__js\" data-toggle=\"tab\"><i class=\"fa fa-jsfiddle\"></i>&nbsp&nbsp JS</a></li><li style=\"\"><a id=\"tab__menu__main__notes\" href=\"#tab__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li></ul><div class=\"tab-content\"><div id=\"tab__html\" class=\"tab-pane fade in active\"><textarea id=\"content__editors__html\"></textarea><br><button type=\"button\" id=\"content__editors__html__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__html__import\"></span>&nbsp&nbsp</div><div id=\"tab__css\" class=\"tab-pane fade in\"><textarea id=\"content__editors__css\"></textarea><br><button type=\"button\" id=\"content__editors__css__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__css__import\"></span>&nbsp&nbsp<input type=\"checkbox\" id=\"content__editors__css__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div id=\"tab__js\" class=\"tab-pane fade in\"><textarea id=\"content__editors__js\"></textarea><br><button type=\"button\" id=\"content__editors__js__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__js__import\"></span>&nbsp&nbsp<input type=\"checkbox\" id=\"content__editors__js__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div id=\"tab__notes\" class=\"tab-pane fade in\"><textarea id=\"content__editors__notes\"></textarea><br><button type=\"button\" id=\"content__undefined__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__undefined__notes__import\"></span>&nbsp&nbsp</div></div></div></div><div style=\"padding-left: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__main\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__output\" href=\"#tab__output\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li><li style=\"\"><a id=\"tab__menu__main__tree\" href=\"#tab__tree\" data-toggle=\"tab\"><i class=\"fa fa-sitemap\"></i>&nbsp&nbsp Tree</a></li><li style=\"\"><a id=\"tab__menu__main__list\" href=\"#tab__list\" data-toggle=\"tab\"><i class=\"fa fa-list\"></i>&nbsp&nbsp List</a></li><li style=\"\"><a id=\"tab__menu__main__calendar\" href=\"#tab__calendar\" data-toggle=\"tab\"><i class=\"fa fa-calendar\"></i>&nbsp&nbsp Calendar</a></li><li style=\"\"><a id=\"tab__menu__main__reports\" href=\"#tab__reports\" data-toggle=\"tab\"><i class=\"fa fa-bar-chart\"></i>&nbsp&nbsp Report(s)</a></li></ul><div class=\"tab-content\"><div id=\"tab__output\" class=\"tab-pane fade in active\"><div id=\"content__output__iframe__holder\"><iframe id=\"content__output__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div><div id=\"tab__tree\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-6\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><h3>Tree Search</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__search__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__search__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__search__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__search__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__search__labels\" disabled class=\"form-control\"></div></div><br><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div><div class=\"col-md-6\"><h3>Tree Node</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__node__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__node__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__node__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__node__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__node__labels\" disabled class=\"form-control\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__add\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button><button id=\"content__list__delete\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div style=\"padding: 0;\" class=\"col-md-12\"><h3>List</h3></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-8\"><input id=\"content__list__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__list__responsive\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__list__import\" type=\"file\"></span></div></div></div><div id=\"tab__calendar\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><div id=\"tab__calendar\" class=\"tab-pane fade in\"><button id=\"content__calendar__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button><div id=\"content__calendar\"></div></div></div></div></div><div id=\"tab__reports\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__reports__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div></div><br><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__report__date\" data-toggle=\"tab\">RCX by Date</a></li><li><a href=\"#tab__report__status\" data-toggle=\"tab\">RCX by Status</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__report__date\" class=\"tab-pane fade in active\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>RCX by Date</h3><input type=\"text\" placeholder=\"DD/MM/YYYY (Date)\" id=\"content__reports__date__date\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__date\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__date\" class=\"table-bordered table-condensed\"></table></div></div></div></div><div id=\"tab__report__status\" class=\"tab-pane fade in\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>RCX by Status</h3><input type=\"text\" placeholder=\"(Status)\" id=\"content__reports__status__status\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__status\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__status\" class=\"table-bordered table-condensed\"></table></div></div></div></div></div></div></div></div></div></div></div></div></section>";
+	module.exports = "         <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-codepen\"></i>&nbspHTML, CSS, JS<small>0.1.0</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>RCX</a></li><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>Frontend</a></li><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>HTML, CSS, JS</a></li></ol></section><section id=\"\" class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__editors__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__editors__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__editors__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-12 col-sm-3 col-md-6\"><span style=\"float: right;\">Alternative Layout&nbsp&nbsp<input id=\"content__layout__alt\" type=\"checkbox\" style=\"float: right;\"></span></div></div><br><div id=\"content__layout\" class=\"row\"><div style=\"padding-right: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__editors\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__editors__html\" href=\"#tab__html\" data-toggle=\"tab\"><i class=\"fa fa-html5\"></i>&nbsp&nbsp HTML</a></li><li style=\"\"><a id=\"tab__menu__editors__css\" href=\"#tab__css\" data-toggle=\"tab\"><i class=\"fa fa-css3\"></i>&nbsp&nbsp CSS</a></li><li style=\"\"><a id=\"tab__menu__editors__js\" href=\"#tab__js\" data-toggle=\"tab\"><i class=\"fa fa-jsfiddle\"></i>&nbsp&nbsp JS</a></li><li style=\"\"><a id=\"tab__menu__editors__notes\" href=\"#tab__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li style=\"\"><a id=\"tab__menu__editors__options\" href=\"#tab__options\" data-toggle=\"tab\"><i class=\"fa fa-list-alt\"></i>&nbsp&nbsp Options</a></li></ul><div class=\"tab-content\"><div id=\"tab__html\" class=\"tab-pane fade in active\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-11\"><select id=\"content__editors__html__select\"></select></div><div class=\"col-md-1\"><button id=\"content__editors__html__select__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12\"><textarea id=\"content__editors__html\"></textarea></div></div><br><div class=\"row\"><div class=\"col-md-6\"><button type=\"button\" id=\"content__editors__html__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__html__import\"></span>&nbsp&nbsp</div><div class=\"col-md-6\">\n</div></div></div><div id=\"tab__css\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-11\"><select id=\"content__editors__css__select\"></select></div><div class=\"col-md-1\"><button id=\"content__editors__css__select__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12\"><textarea id=\"content__editors__css\"></textarea></div></div><br><div class=\"row\"><div class=\"col-md-6\"><button type=\"button\" id=\"content__editors__css__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__css__import\"></span>&nbsp&nbsp<input type=\"checkbox\" id=\"content__editors__css__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-6\">\n</div></div></div><div id=\"tab__js\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-11\"><select id=\"content__editors__js__select\"></select></div><div class=\"col-md-1\"><button id=\"content__editors__js__select__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12\"><textarea id=\"content__editors__js\"></textarea></div></div><br><div class=\"row\"><div class=\"col-md-6\"><button type=\"button\" id=\"content__editors__js__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__js__import\"></span>&nbsp&nbsp<input type=\"checkbox\" id=\"content__editors__js__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-6\">\n</div></div></div><div id=\"tab__notes\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-1\"><button id=\"content__editors__run__notes\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button></div><div class=\"col-md-10\"><select id=\"content__editors__notes__select\"></select></div><div class=\"col-md-1\"><button id=\"content__editors__notes__select__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12\"><textarea id=\"content__editors__notes\"></textarea></div></div><br><div class=\"row\"><div class=\"col-md-6\"><button type=\"button\" id=\"content__editors__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__notes__import\"></span>&nbsp&nbsp</div><div class=\"col-md-6\">\n</div></div></div><div id=\"tab__options\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-sm-3\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__options__export-import\" data-toggle=\"tab\">Export / Import</a></li><li><a href=\"#tab__options__lint\" data-toggle=\"tab\">Lint</a></li></ul></div><div class=\"col-sm-9\"><div class=\"tab-content\"><div id=\"tab__options__export-import\" class=\"tab-pane fade in active\"><table class=\"table table-bordered\"><tbody><tr><th style=\"width: 10px;\"></th><th>Task</th><th>Description</th></tr><tr><td><button id=\"content__editors__all__export__zip\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button></td><td>Export editors (zip)</td><td>Downloads all editors' contents in one zip file </td></tr><tr><td><button id=\"content__editors__all__export__json\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button></td><td>Export editors (JSON)</td><td>Downloads all editors' contents in one JSON file</td></tr><tr><td><span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__editors__all__import__json\" type=\"file\"></span></td><td>Import editors (JSON)</td><td>Imports into all editors the matching contents of a JSON file</td></tr><tr><td><button id=\"content__list__export__zip\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button></td><td>Export data (zip)</td><td>Downloads all data contents in one zip file</td></tr></tbody></table></div><div id=\"tab__options__lint\" class=\"tab-pane fade in\">Lint</div></div></div></div></div></div></div></div><div style=\"padding-left: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__main\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__output\" href=\"#tab__output\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li><li style=\"\"><a id=\"tab__menu__main__tree\" href=\"#tab__tree\" data-toggle=\"tab\"><i class=\"fa fa-sitemap\"></i>&nbsp&nbsp Tree</a></li><li style=\"\"><a id=\"tab__menu__main__list\" href=\"#tab__list\" data-toggle=\"tab\"><i class=\"fa fa-list\"></i>&nbsp&nbsp List</a></li><li style=\"\"><a id=\"tab__menu__main__calendar\" href=\"#tab__calendar\" data-toggle=\"tab\"><i class=\"fa fa-calendar\"></i>&nbsp&nbsp Calendar</a></li><li style=\"\"><a id=\"tab__menu__main__reports\" href=\"#tab__reports\" data-toggle=\"tab\"><i class=\"fa fa-bar-chart\"></i>&nbsp&nbsp Report(s)</a></li></ul><div class=\"tab-content\"><div id=\"tab__output\" class=\"tab-pane fade in active\"><div id=\"content__output__iframe__holder\"><iframe id=\"content__output__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div><div id=\"tab__tree\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-6\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><h3>Tree Search</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__search__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__search__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__search__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__search__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__search__labels\" disabled class=\"form-control\"></div></div><br><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div><div class=\"col-md-6\"><h3>Tree Node</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__node__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__node__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__node__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__node__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__node__labels\" disabled class=\"form-control\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__add\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button><button id=\"content__list__delete\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div style=\"padding: 0;\" class=\"col-md-12\"><h3>List</h3></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-8\"><input id=\"content__list__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__list__responsive\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__list__import\" type=\"file\"></span></div></div></div><div id=\"tab__calendar\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><div id=\"tab__calendar\" class=\"tab-pane fade in\"><button id=\"content__calendar__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button><div id=\"content__calendar\"></div></div></div></div></div><div id=\"tab__reports\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__reports__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div></div><br><div class=\"row\"><div class=\"col-sm-3\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__report__date\" data-toggle=\"tab\">RCX by Date</a></li><li><a href=\"#tab__report__status\" data-toggle=\"tab\">RCX by Status</a></li></ul></div><div class=\"col-sm-9\"><div class=\"tab-content\"><div id=\"tab__report__date\" class=\"tab-pane fade in active\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>RCX by Date</h3><input type=\"text\" placeholder=\"DD/MM/YYYY (Date)\" id=\"content__reports__date__date\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__date\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__date\" class=\"table-bordered table-condensed\"></table></div></div></div></div><div id=\"tab__report__status\" class=\"tab-pane fade in\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>RCX by Status</h3><input type=\"text\" placeholder=\"(Status)\" id=\"content__reports__status__status\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__status\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__status\" class=\"table-bordered table-condensed\"></table></div></div></div></div></div></div></div></div></div></div></div></div></section>";
 
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = "      <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-codepen\"></i>&nbspHTML, CSS, JS<small>0.1.0</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>RCX</a></li><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>Frontend</a></li><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>HTML, CSS, JS</a></li></ol></section><section id=\"\" class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__editors__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__editors__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__editors__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-12 col-sm-3 col-md-6\"><span style=\"float: right;\">Alternative Layout&nbsp&nbsp<input id=\"content__layout__alt\" type=\"checkbox\" style=\"float: right;\"></span></div></div><br><div id=\"content__layout\" class=\"row\"><div class=\"col-sm-12\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__editors\" data-toggle=\"tab\">Editors</a></li><li><a href=\"#tab__main\" data-toggle=\"tab\">Main</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__editors\" class=\"tab-pane active\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__editors\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__editors__html\" href=\"#tab__html\" data-toggle=\"tab\"><i class=\"fa fa-html5\"></i>&nbsp&nbsp HTML</a></li><li style=\"\"><a id=\"tab__menu__editors__css\" href=\"#tab__css\" data-toggle=\"tab\"><i class=\"fa fa-css3\"></i>&nbsp&nbsp CSS</a></li><li style=\"\"><a id=\"tab__menu__editors__js\" href=\"#tab__js\" data-toggle=\"tab\"><i class=\"fa fa-jsfiddle\"></i>&nbsp&nbsp JS</a></li><li style=\"\"><a id=\"tab__menu__main__notes\" href=\"#tab__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li></ul><div class=\"tab-content\"><div id=\"tab__html\" class=\"tab-pane fade in active\"><textarea id=\"content__editors__html\"></textarea><br><button type=\"button\" id=\"content__editors__html__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__html__import\"></span>&nbsp&nbsp</div><div id=\"tab__css\" class=\"tab-pane fade in\"><textarea id=\"content__editors__css\"></textarea><br><button type=\"button\" id=\"content__editors__css__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__css__import\"></span>&nbsp&nbsp<input type=\"checkbox\" id=\"content__editors__css__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div id=\"tab__js\" class=\"tab-pane fade in\"><textarea id=\"content__editors__js\"></textarea><br><button type=\"button\" id=\"content__editors__js__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__js__import\"></span>&nbsp&nbsp<input type=\"checkbox\" id=\"content__editors__js__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div id=\"tab__notes\" class=\"tab-pane fade in\"><textarea id=\"content__editors__notes\"></textarea><br><button type=\"button\" id=\"content__undefined__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__undefined__notes__import\"></span>&nbsp&nbsp</div></div></div></div><div id=\"tab__main\" class=\"tab-pane\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__main\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__output\" href=\"#tab__output\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li><li style=\"\"><a id=\"tab__menu__main__tree\" href=\"#tab__tree\" data-toggle=\"tab\"><i class=\"fa fa-sitemap\"></i>&nbsp&nbsp Tree</a></li><li style=\"\"><a id=\"tab__menu__main__list\" href=\"#tab__list\" data-toggle=\"tab\"><i class=\"fa fa-list\"></i>&nbsp&nbsp List</a></li><li style=\"\"><a id=\"tab__menu__main__calendar\" href=\"#tab__calendar\" data-toggle=\"tab\"><i class=\"fa fa-calendar\"></i>&nbsp&nbsp Calendar</a></li><li style=\"\"><a id=\"tab__menu__main__reports\" href=\"#tab__reports\" data-toggle=\"tab\"><i class=\"fa fa-bar-chart\"></i>&nbsp&nbsp Report(s)</a></li></ul><div class=\"tab-content\"><div id=\"tab__output\" class=\"tab-pane fade in active\"><div id=\"content__output__iframe__holder\"><iframe id=\"content__output__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div><div id=\"tab__tree\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-6\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><h3>Tree Search</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__search__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__search__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__search__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__search__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__search__labels\" disabled class=\"form-control\"></div></div><br><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div><div class=\"col-md-6\"><h3>Tree Node</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__node__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__node__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__node__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__node__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__node__labels\" disabled class=\"form-control\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__add\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button><button id=\"content__list__delete\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div style=\"padding: 0;\" class=\"col-md-12\"><h3>List</h3></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-8\"><input id=\"content__list__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__list__responsive\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__list__import\" type=\"file\"></span></div></div></div><div id=\"tab__calendar\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><div id=\"tab__calendar\" class=\"tab-pane fade in\"><button id=\"content__calendar__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button><div id=\"content__calendar\"></div></div></div></div></div><div id=\"tab__reports\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__reports__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div></div><br><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__report__date\" data-toggle=\"tab\">RCX by Date</a></li><li><a href=\"#tab__report__status\" data-toggle=\"tab\">RCX by Status</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__report__date\" class=\"tab-pane fade in active\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>RCX by Date</h3><input type=\"text\" placeholder=\"DD/MM/YYYY (Date)\" id=\"content__reports__date__date\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__date\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__date\" class=\"table-bordered table-condensed\"></table></div></div></div></div><div id=\"tab__report__status\" class=\"tab-pane fade in\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>RCX by Status</h3><input type=\"text\" placeholder=\"(Status)\" id=\"content__reports__status__status\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__status\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__status\" class=\"table-bordered table-condensed\"></table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></section>";
+	module.exports = "      <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-codepen\"></i>&nbspHTML, CSS, JS<small>0.1.0</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>RCX</a></li><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>Frontend</a></li><li><a href=\"#/\"><i class=\"fa fa-codepen\"></i>HTML, CSS, JS</a></li></ol></section><section id=\"\" class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__editors__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__editors__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-4 col-sm-3 col-md-2\"><button id=\"content__editors__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__editors__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAuto</div><div class=\"col-xs-12 col-sm-3 col-md-6\"><span style=\"float: right;\">Alternative Layout&nbsp&nbsp<input id=\"content__layout__alt\" type=\"checkbox\" style=\"float: right;\"></span></div></div><br><div id=\"content__layout\" class=\"row\"><div class=\"col-sm-12\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__editors\" data-toggle=\"tab\">Editors</a></li><li><a href=\"#tab__main\" data-toggle=\"tab\">Main</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__editors\" class=\"tab-pane active\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__editors\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__editors__html\" href=\"#tab__html\" data-toggle=\"tab\"><i class=\"fa fa-html5\"></i>&nbsp&nbsp HTML</a></li><li style=\"\"><a id=\"tab__menu__editors__css\" href=\"#tab__css\" data-toggle=\"tab\"><i class=\"fa fa-css3\"></i>&nbsp&nbsp CSS</a></li><li style=\"\"><a id=\"tab__menu__editors__js\" href=\"#tab__js\" data-toggle=\"tab\"><i class=\"fa fa-jsfiddle\"></i>&nbsp&nbsp JS</a></li><li style=\"\"><a id=\"tab__menu__editors__notes\" href=\"#tab__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li style=\"\"><a id=\"tab__menu__editors__options\" href=\"#tab__options\" data-toggle=\"tab\"><i class=\"fa fa-list-alt\"></i>&nbsp&nbsp Options</a></li></ul><div class=\"tab-content\"><div id=\"tab__html\" class=\"tab-pane fade in active\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-11\"><select id=\"content__editors__html__select\"></select></div><div class=\"col-md-1\"><button id=\"content__editors__html__select__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12\"><textarea id=\"content__editors__html\"></textarea></div></div><br><div class=\"row\"><div class=\"col-md-6\"><button type=\"button\" id=\"content__editors__html__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__html__import\"></span>&nbsp&nbsp</div><div class=\"col-md-6\">\n</div></div></div><div id=\"tab__css\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-11\"><select id=\"content__editors__css__select\"></select></div><div class=\"col-md-1\"><button id=\"content__editors__css__select__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12\"><textarea id=\"content__editors__css\"></textarea></div></div><br><div class=\"row\"><div class=\"col-md-6\"><button type=\"button\" id=\"content__editors__css__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__css__import\"></span>&nbsp&nbsp<input type=\"checkbox\" id=\"content__editors__css__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-6\">\n</div></div></div><div id=\"tab__js\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-11\"><select id=\"content__editors__js__select\"></select></div><div class=\"col-md-1\"><button id=\"content__editors__js__select__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12\"><textarea id=\"content__editors__js\"></textarea></div></div><br><div class=\"row\"><div class=\"col-md-6\"><button type=\"button\" id=\"content__editors__js__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__js__import\"></span>&nbsp&nbsp<input type=\"checkbox\" id=\"content__editors__js__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-6\">\n</div></div></div><div id=\"tab__notes\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-1\"><button id=\"content__editors__run__notes\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button></div><div class=\"col-md-10\"><select id=\"content__editors__notes__select\"></select></div><div class=\"col-md-1\"><button id=\"content__editors__notes__select__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12\"><textarea id=\"content__editors__notes\"></textarea></div></div><br><div class=\"row\"><div class=\"col-md-6\"><button type=\"button\" id=\"content__editors__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__editors__notes__import\"></span>&nbsp&nbsp</div><div class=\"col-md-6\">\n</div></div></div><div id=\"tab__options\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-sm-3\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__options__export-import\" data-toggle=\"tab\">Export / Import</a></li><li><a href=\"#tab__options__lint\" data-toggle=\"tab\">Lint</a></li></ul></div><div class=\"col-sm-9\"><div class=\"tab-content\"><div id=\"tab__options__export-import\" class=\"tab-pane fade in active\"><table class=\"table table-bordered\"><tbody><tr><th style=\"width: 10px;\"></th><th>Task</th><th>Description</th></tr><tr><td><button id=\"content__editors__all__export__zip\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button></td><td>Export editors (zip)</td><td>Downloads all editors' contents in one zip file </td></tr><tr><td><button id=\"content__editors__all__export__json\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button></td><td>Export editors (JSON)</td><td>Downloads all editors' contents in one JSON file</td></tr><tr><td><span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__editors__all__import__json\" type=\"file\"></span></td><td>Import editors (JSON)</td><td>Imports into all editors the matching contents of a JSON file</td></tr><tr><td><button id=\"content__list__export__zip\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button></td><td>Export data (zip)</td><td>Downloads all data contents in one zip file</td></tr></tbody></table></div><div id=\"tab__options__lint\" class=\"tab-pane fade in\">Lint</div></div></div></div></div></div></div></div><div id=\"tab__main\" class=\"tab-pane\"><div class=\"nav-tabs-custom\"><ul id=\"tab__menu__main\" class=\"nav nav-tabs\"><li style=\"\" class=\"active\"><a id=\"tab__menu__main__output\" href=\"#tab__output\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li><li style=\"\"><a id=\"tab__menu__main__tree\" href=\"#tab__tree\" data-toggle=\"tab\"><i class=\"fa fa-sitemap\"></i>&nbsp&nbsp Tree</a></li><li style=\"\"><a id=\"tab__menu__main__list\" href=\"#tab__list\" data-toggle=\"tab\"><i class=\"fa fa-list\"></i>&nbsp&nbsp List</a></li><li style=\"\"><a id=\"tab__menu__main__calendar\" href=\"#tab__calendar\" data-toggle=\"tab\"><i class=\"fa fa-calendar\"></i>&nbsp&nbsp Calendar</a></li><li style=\"\"><a id=\"tab__menu__main__reports\" href=\"#tab__reports\" data-toggle=\"tab\"><i class=\"fa fa-bar-chart\"></i>&nbsp&nbsp Report(s)</a></li></ul><div class=\"tab-content\"><div id=\"tab__output\" class=\"tab-pane fade in active\"><div id=\"content__output__iframe__holder\"><iframe id=\"content__output__iframe\"></iframe></div><br><button type=\"button\" id=\"content__output__iframe__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<button type=\"button\" id=\"content__output__iframe__urlhash__button\" class=\"btn\"><i class=\"fa fa-hashtag\"></i></button>&nbsp&nbsp<input type=\"text\" id=\"content__output__iframe__urlhash__input\" style=\"display: inline-block; width: 80%; color: #333 !important; background-color: white !important;\" class=\"form-control\"></div><div id=\"tab__tree\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-6\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6\"></div></div><div class=\"row\"><div class=\"col-md-6\"><h3>Tree Search</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__search__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__search__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__search__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__search__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__search__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__search__labels\" disabled class=\"form-control\"></div></div><br><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div><div class=\"col-md-6\"><h3>Tree Node</h3><div class=\"row\"><div class=\"col-md-12\"><input type=\"text\" placeholder=\"Tree\" id=\"content__tree__node__tree\" style=\"width:100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input placeholder=\"Title\" style=\"width:100%;\" id=\"content__tree__node__title\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"ID (#)\" style=\"width:100%;\" id=\"content__tree__node__id\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_start\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Date End (DD/MM/YYYY)\" style=\"width:100%;\" id=\"content__tree__node__date_end\" disabled class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"Status\" style=\"width:100%;\" id=\"content__tree__node__status\" disabled class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-6\"><input placeholder=\"Labels\" style=\"width:100%;\" id=\"content__tree__node__labels\" disabled class=\"form-control\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__add\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button><button id=\"content__list__delete\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div style=\"padding: 0;\" class=\"col-md-12\"><h3>List</h3></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-12\"><input id=\"content__list__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-8\"><input id=\"content__list__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__list__responsive\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__list__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__list__import\" type=\"file\"></span></div></div></div><div id=\"tab__calendar\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><div id=\"tab__calendar\" class=\"tab-pane fade in\"><button id=\"content__calendar__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button><div id=\"content__calendar\"></div></div></div></div></div><div id=\"tab__reports\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-12\"><button id=\"content__reports__refresh\" type=\"button\" class=\"btn btn-primary\"><i class=\"fa fa-refresh\"></i></button></div></div><br><div class=\"row\"><div class=\"col-sm-3\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__report__date\" data-toggle=\"tab\">RCX by Date</a></li><li><a href=\"#tab__report__status\" data-toggle=\"tab\">RCX by Status</a></li></ul></div><div class=\"col-sm-9\"><div class=\"tab-content\"><div id=\"tab__report__date\" class=\"tab-pane fade in active\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>RCX by Date</h3><input type=\"text\" placeholder=\"DD/MM/YYYY (Date)\" id=\"content__reports__date__date\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__date\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__date\" class=\"table-bordered table-condensed\"></table></div></div></div></div><div id=\"tab__report__status\" class=\"tab-pane fade in\"><div class=\"row\"><div style=\"padding-bottom: 20px\" class=\"col-md-12\"><h3>RCX by Status</h3><input type=\"text\" placeholder=\"(Status)\" id=\"content__reports__status__status\" class=\"form-control\"></div><div class=\"col-md-12\"><div style=\"height: 300px;\" class=\"table-responsive\"><div id=\"content__charts__status\"></div></div><div style=\"padding-top: 10px\" class=\"table-responsive\"><table id=\"content__reports__status\" class=\"table-bordered table-condensed\"></table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></section>";
 
 /***/ },
 /* 8 */
@@ -1584,19 +1981,25 @@
 /* 14 */
 /***/ function(module, exports) {
 
-	module.exports = "<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <ul>\n      <li><a href=\"#/\">Home</a></li>\n      <li><a href=\"#/som\">Som</a></li>\n    </ul>\n    <div id=\"app\">\n    </div>\n  </body>\n</html>";
+	module.exports = "{\n  \"index\": \"\"\n}";
 
 /***/ },
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "#app {\n  background: red;\n  height: 50px;\n  width: 50px;\n}";
+	module.exports = "{\n  \"index\": \"<!DOCTYPE html>\\n<html>\\n  <head>\\n    <style data-include='index'></style>\\n    <style data-include='more'></style>\\n  </head>\\n  <body>\\n    <ul>\\n      <li><a href='#/'>Home</a></li>\\n      <li><a href='#/som'>Som</a></li>\\n    </ul>\\n    <div id='app'>\\n    </div>\\n    <script data-include='index'></script>\\n    <script data-include='next'></script>\\n  </body>\\n</html>\"\n}";
 
 /***/ },
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = "console.log('Example!');";
+	module.exports = "{\n  \"index\": \"#app {background: red; }\",\n  \"more\":  \"#app {height: 75px; width: 75px;}\"\n}";
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	module.exports = "{\n  \"index\": \"console.log(7);\",\n  \"next\": \"console.log(456);\"\n}";
 
 /***/ }
 /******/ ]);
