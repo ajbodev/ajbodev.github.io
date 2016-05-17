@@ -675,14 +675,19 @@ var Sass = {
       callback = _options;
       _options = null;
     }
-
+    // # ?
+    /*
     if (!callback) {
       throw new Error('Sass.compile() requires callback function as second (or third) parameter!');
     }
+    */
 
+    /*
     if (_options !== null && typeof _options !== 'object') {
       throw new Error('Sass.compile() requires second argument to be an object (options) or a function (callback)');
     }
+    */
+    // # ?
 
     var done = function done(result) {
       var _cleanup = function() {
@@ -742,7 +747,8 @@ var Sass = {
         // C function to call
         'sass_compile_emscripten',
         // return type
-        null,
+        //null,
+        'string',
         // parameter types
         [
           'string',
@@ -762,7 +768,8 @@ var Sass = {
           return Sass._options[option.key];
         })),
         // we're not expecting synchronous return value
-        { async: true }
+        //{ async: true }
+        { async: false }
       );
     } catch(e) {
       done({

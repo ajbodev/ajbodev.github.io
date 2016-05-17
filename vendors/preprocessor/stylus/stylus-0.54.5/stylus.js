@@ -37728,13 +37728,17 @@ Evaluator.prototype.visitImport = function(imported){
   }
 
   // Throw if import failed
-  if (!found) throw new Error('failed to locate @' + nodeName + ' file ' + path);
+  // # ?
+  //if (!found) throw new Error('failed to locate @' + nodeName + ' file ' + path);
   
   var block = new nodes.Block;
-
+  
+  /*
   for (var i = 0, len = found.length; i < len; ++i) {
     block.push(importFile.call(this, imported, found[i], literal));
   }
+  */
+  // # ?
 
   return block;
 };
