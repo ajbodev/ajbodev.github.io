@@ -46,7 +46,7 @@
 
 	var index, Component, component;
 	index = __webpack_require__(1);
-	Component = __webpack_require__(31);
+	Component = __webpack_require__(32);
 	component = new Component(index);
 	window.app = {
 	  component: component
@@ -196,6 +196,8 @@
 	        value: 'Layout - Split'
 	      }, {
 	        value: 'Layout - Split VTab'
+	      }, {
+	        value: 'Layout - Combined'
 	      }
 	    ]
 	  },
@@ -380,6 +382,8 @@
 	        id: 'content__input__notes__ext',
 	        options: [
 	          {
+	            value: 'txt'
+	          }, {
 	            value: 'html'
 	          }, {
 	            value: 'js'
@@ -443,6 +447,8 @@
 	        id: 'content__output__index__ext',
 	        options: [
 	          {
+	            value: 'txt'
+	          }, {
 	            value: 'html'
 	          }, {
 	            value: 'js'
@@ -621,6 +627,24 @@
 	          }
 	        ],
 	        onChange: 'outputOnModeChange'
+	      }
+	    }
+	  },
+	  lint: {
+	    inputs: {
+	      notes: {
+	        context: 'inputs',
+	        entity: 'notes',
+	        id: 'content__input__notes__lint',
+	        onChange: 'inputOnLintChange'
+	      }
+	    },
+	    outputs: {
+	      index: {
+	        context: 'outputs',
+	        entity: 'index',
+	        id: 'content__output__index__lint',
+	        onChange: 'outputOnLintChange'
 	      }
 	    }
 	  },
@@ -1468,15 +1492,16 @@
 	templates = {
 	  layout: {
 	    split: __webpack_require__(25),
-	    split_vtab: __webpack_require__(26)
+	    split_vtab: __webpack_require__(26),
+	    combined: __webpack_require__(27)
 	  },
 	  admin_inputs: {
-	    list_data: __webpack_require__(27),
-	    tree_data: __webpack_require__(28)
+	    list_data: __webpack_require__(28),
+	    tree_data: __webpack_require__(29)
 	  },
 	  app: {
-	    work_time: __webpack_require__(29),
-	    work_job: __webpack_require__(30)
+	    work_time: __webpack_require__(30),
+	    work_job: __webpack_require__(31)
 	  }
 	};
 	if (true) {
@@ -1489,40 +1514,46 @@
 /* 25 */
 /***/ function(module, exports) {
 
-	module.exports = " <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-code\"></i>&nbspX+1<small>0.57.0 (jQuery)</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-code\"></i><span id=\"undefined\">X+1</span></a></li><li><a href=\"#/\"><i class=\"fa fa-database\"></i><span id=\"header__data\">Static</span></a></li><li><a href=\"#/\"><i class=\"fa fa-table\"></i><span id=\"header__id\"></span></a></li><li><a href=\"#/\"><i class=\"fa fa-tree\"></i><span id=\"header__tree\"></span></a></li></ol></section><section class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutorun</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutosave</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutoload</div><div class=\"col-xs-4 col-sm-3 col-md-4\"></div><div class=\"col-xs-8 col-sm-3 col-md-2\"><select id=\"content__layout__select\"></select></div></div><br><div id=\"content__layout\" class=\"row\"><div style=\"padding-right: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#tab__input__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li><a href=\"#tab__app\" data-toggle=\"tab\"><i class=\"fa fa-laptop\"></i>&nbsp&nbsp App</a></li></ul><div class=\"tab-content\"><div id=\"tab__input__notes\" class=\"tab-pane fade in active\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-8 col-sm-8 col-xs-12\"><select id=\"content__input__notes__file\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__input__notes__ext\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-12\"><button id=\"content__input__notes__file__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><textarea id=\"content__input__notes__editor\"></textarea></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button type=\"button\" id=\"content__input__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__input__notes__import\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__input__notes__format\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input type=\"checkbox\" id=\"content__input__notes__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__input__notes__mode\"></select></div></div></div><div id=\"tab__app\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6 col-sm-10 col-xs-10\"><select id=\"content__app__value\"></select></div><div class=\"col-md-4 col-sm-10 col-xs-10\"><select id=\"content__app__front\"></select></div><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div id=\"content__app\"></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__app__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__app__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-2 col-sm-4 col-xs-6\"><select id=\"content__app__format\"></select></div><div class=\"col-md-8 col-sm-6 col-xs-12\"></div></div></div></div></div></div><div style=\"padding-left: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#tab__admin\" data-toggle=\"tab\"><i class=\"fa fa-university\"></i>&nbsp&nbsp Admin</a></li><li><a href=\"#tab__output\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li><li><a href=\"#tab__option\" data-toggle=\"tab\"><i class=\"fa fa-cogs\"></i>&nbsp&nbsp Options</a></li></ul><div class=\"tab-content\"><div id=\"tab__admin\" class=\"tab-pane fade in active\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-7 col-sm-7 col-xs-7\"><select id=\"content__value\"></select></div><div style=\"padding-left: 0\" class=\"col-md-3 col-sm-3 col-xs-3\"><select id=\"content__src\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2 col-sm-2 col-xs-12\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__tree\" data-toggle=\"tab\">Tree</a></li><li><a href=\"#tab__list\" data-toggle=\"tab\">List</a></li><li><a href=\"#tab__calendar\" data-toggle=\"tab\">Cal</a></li><li><a href=\"#tab__report\" data-toggle=\"tab\">Rep</a></li></ul></div><div class=\"col-sm-10 col-sm-10 col-xs-12\"><div class=\"tab-content\"><div id=\"tab__tree\" class=\"tab-pane fade in active\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__tree__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__tree__inputs\" aria-expanded=\"true\" aria-controls=\"content__tree__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__tree__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__tree\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row\"><div id=\"content__tree__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__list__inputs\" aria-expanded=\"true\" aria-controls=\"content__list__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__list__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__list\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div id=\"content__list__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__list__holder\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0\" class=\"col-md-3 col-sm-3 col-xs-6\"><button id=\"content__admin__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__admin__import\" type=\"file\"></span>&nbsp&nbsp</div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__admin__format\"></select></div><div class=\"col-md-2 col-sm-2 col-xs-3\"></div><div class=\"col-md-4 col-sm-4 col-xs-9\"><button id=\"content__list__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div></div><div id=\"tab__report\" class=\"tab-pane fade in\">Report</div><div id=\"tab__calendar\" class=\"tab-pane fade in\">Calendar</div></div></div></div></div><div id=\"tab__output\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div id=\"content__output__index__button__holder\" class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__output__index__urlhash__button\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-hashtag\"></i></button></div><div id=\"content__output__index__select__holder\" class=\"col-md-8 col-sm-8 col-xs-11\"><select id=\"content__output__index__urlhash\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__output__index__ext\"></select></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__output__index__holder\"><iframe id=\"content__output__index__frame\"></iframe></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__output__index__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__output__index__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__output__index__result\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input id=\"content__output__index__lint\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__output__index__mode\"></select></div></div></div><div id=\"tab__option\" class=\"tab-pane fade in\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-12\"><button id=\"content__option__save\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__option__store\" data-toggle=\"tab\">Store</a></li><li class=\"undefined\"><a href=\"#tab__option__run\" data-toggle=\"tab\">Run</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__option__store\" class=\"tab-pane fade in active\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th> </th><th style=\"min-width: 250px;\">Store</th><th style=\"min-width: 400px;\">DB / URL</th><th style=\"min-width: 200px;\">Table</th></tr><tr><td>Main (Data)</td><td><select id=\"content__option__store__data__main\"></select></td><td><input id=\"content__option__store__data__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>Main (Repo)</td><td><select id=\"content__option__store__repo__main\"></select></td><td><input id=\"content__option__store__repo__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__repo__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>App (Data)</td><td><select id=\"content__option__store__data__app\"></select></td><td><input id=\"content__option__store__data__app__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__app__table\" value=\"\" class=\"form-control\"></td></tr></tbody></table></div></div><div id=\"tab__option__run\" class=\"tab-pane fade in\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th style=\"width: 10px;\">Status</th><th>Vendor</th><th>Extension</th><th style=\"min-width: 600px;\">URL</th></tr><tr><td><input id=\"content__option__run__less\" type=\"checkbox\" class=\"content__icheck\"></td><td>Less</td><td id=\"content__option__run__less__ext\">less</td><td><input id=\"content__option__run__less__src\" value=\"../../vendors/preprocessor/less/less-2.7.1/less.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sass\" type=\"checkbox\" class=\"content__icheck\"></td><td>Sass</td><td id=\"content__option__run__sass__ext\">sass</td><td><input id=\"content__option__run__sass__src\" value=\"../../vendors/preprocessor/sass/sass-0.0.0-2015-03-22/sass.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__styl\" type=\"checkbox\" class=\"content__icheck\"></td><td>Stylus</td><td id=\"content__option__run__styl__ext\">styl</td><td><input id=\"content__option__run__styl__src\" value=\"../../vendors/preprocessor/stylus/stylus-0.54.5/stylus.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__babel\" type=\"checkbox\" class=\"content__icheck\"></td><td>Babel</td><td id=\"content__option__run__babel__ext\">babel.js</td><td><input id=\"content__option__run__babel__src\" value=\"../../vendors/transpiler/babel/babeljs.io-2016-03-01/babel.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ts\" type=\"checkbox\" class=\"content__icheck\"></td><td>TypeScript</td><td id=\"content__option__run__ts__ext\">ts</td><td><input id=\"content__option__run__ts__src\" value=\"../../vendors/transpiler/typescript/typescript-1.8.0/typescript.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__cs\" type=\"checkbox\" class=\"content__icheck\"></td><td>CoffeeScript</td><td id=\"content__option__run__cs__ext\">cs</td><td><input id=\"content__option__run__cs__src\" value=\"../../vendors/transpiler/coffeescript/coffeescript-1.10.0/coffee-script.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sql\" type=\"checkbox\" class=\"content__icheck\"></td><td>SQL</td><td id=\"content__option__run__sql__ext\">sql</td><td><input id=\"content__option__run__sql__src\" value=\"../../vendors/database/sql/sql-3.12.1/sql.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__mongo\" type=\"checkbox\" class=\"content__icheck\"></td><td>Mongo</td><td id=\"content__option__run__mongo__ext\">mongo.js</td><td><input id=\"content__option__run__mongo__src\" value=\"../../vendors/database/nedb/nedb-1.6.0/nedb.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__php\" type=\"checkbox\" class=\"content__icheck\"></td><td>PHP</td><td id=\"content__option__run__php__ext\">php</td><td><input id=\"content__option__run__php__src\" value=\"../../vendors/lang/php/uniter-2.8.1/uniter.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ruby\" type=\"checkbox\" class=\"content__icheck\"></td><td>Ruby</td><td id=\"content__option__run__ruby__ext\">ruby</td><td><input id=\"content__option__run__ruby__src\" value=\"../../vendors/lang/ruby/opal-0.8.1/opal.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__python\" type=\"checkbox\" class=\"content__icheck\"></td><td>Python</td><td id=\"content__option__run__python__ext\">python</td><td><input id=\"content__option__run__python__src\" value=\"../../vendors/lang/python/skulpt-0.10.1/skulpt.min+skulp-stdlib.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__abc\" type=\"checkbox\" class=\"content__icheck\"></td><td>ABC</td><td id=\"content__option__run__abc__ext\">abc</td><td><input id=\"content__option__run__abc__src\" value=\"../../vendors/music/abc/abc-2.1/abcjs_basic_2.1-min.js\" class=\"form-control\"></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div><br><br><br><br><br><br><br></section>";
+	module.exports = " <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-code\"></i>&nbspX+1<small>0.58.0 (jQuery)</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-code\"></i><span id=\"undefined\">X+1</span></a></li><li><a href=\"#/\"><i class=\"fa fa-database\"></i><span id=\"header__data\">Static</span></a></li><li><a href=\"#/\"><i class=\"fa fa-table\"></i><span id=\"header__id\"></span></a></li><li><a href=\"#/\"><i class=\"fa fa-tree\"></i><span id=\"header__tree\"></span></a></li></ol></section><section class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutorun</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutosave</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutoload</div><div class=\"col-xs-4 col-sm-3 col-md-4\"></div><div class=\"col-xs-8 col-sm-3 col-md-2\"><select id=\"content__layout__select\"></select></div></div><br><div id=\"content__layout\" class=\"row\"><div style=\"padding-right: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#tab__input__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li><a href=\"#tab__app\" data-toggle=\"tab\"><i class=\"fa fa-laptop\"></i>&nbsp&nbsp App</a></li></ul><div class=\"tab-content\"><div id=\"tab__input__notes\" class=\"tab-pane fade in active\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-8 col-sm-8 col-xs-12\"><select id=\"content__input__notes__file\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__input__notes__ext\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-12\"><button id=\"content__input__notes__file__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><textarea id=\"content__input__notes__editor\"></textarea></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button type=\"button\" id=\"content__input__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__input__notes__import\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__input__notes__format\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input type=\"checkbox\" id=\"content__input__notes__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__input__notes__mode\"></select></div></div></div><div id=\"tab__app\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6 col-sm-10 col-xs-10\"><select id=\"content__app__value\"></select></div><div class=\"col-md-4 col-sm-10 col-xs-10\"><select id=\"content__app__front\"></select></div><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div id=\"content__app\"></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__app__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__app__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-2 col-sm-4 col-xs-6\"><select id=\"content__app__format\"></select></div><div class=\"col-md-8 col-sm-6 col-xs-12\"></div></div></div></div></div></div><div style=\"padding-left: 7px\" class=\"col-md-6\"><div class=\"nav-tabs-custom\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#tab__admin\" data-toggle=\"tab\"><i class=\"fa fa-university\"></i>&nbsp&nbsp Admin</a></li><li><a href=\"#tab__output\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li><li><a href=\"#tab__option\" data-toggle=\"tab\"><i class=\"fa fa-cogs\"></i>&nbsp&nbsp Options</a></li></ul><div class=\"tab-content\"><div id=\"tab__admin\" class=\"tab-pane fade in active\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-7 col-sm-7 col-xs-7\"><select id=\"content__value\"></select></div><div style=\"padding-left: 0\" class=\"col-md-3 col-sm-3 col-xs-3\"><select id=\"content__src\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2 col-sm-2 col-xs-12\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__tree\" data-toggle=\"tab\">Tree</a></li><li><a href=\"#tab__list\" data-toggle=\"tab\">List</a></li><li><a href=\"#tab__calendar\" data-toggle=\"tab\">Cal</a></li><li><a href=\"#tab__report\" data-toggle=\"tab\">Rep</a></li></ul></div><div class=\"col-sm-10 col-sm-10 col-xs-12\"><div class=\"tab-content\"><div id=\"tab__tree\" class=\"tab-pane fade in active\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__tree__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__tree__inputs\" aria-expanded=\"true\" aria-controls=\"content__tree__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__tree__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__tree\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row\"><div id=\"content__tree__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__list__inputs\" aria-expanded=\"true\" aria-controls=\"content__list__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__list__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__list\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div id=\"content__list__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__list__holder\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0\" class=\"col-md-3 col-sm-3 col-xs-6\"><button id=\"content__admin__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__admin__import\" type=\"file\"></span>&nbsp&nbsp</div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__admin__format\"></select></div><div class=\"col-md-2 col-sm-2 col-xs-3\"></div><div class=\"col-md-4 col-sm-4 col-xs-9\"><button id=\"content__list__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div></div><div id=\"tab__report\" class=\"tab-pane fade in\">Report</div><div id=\"tab__calendar\" class=\"tab-pane fade in\">Calendar</div></div></div></div></div><div id=\"tab__output\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div id=\"content__output__index__button__holder\" class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__output__index__urlhash__button\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-hashtag\"></i></button></div><div id=\"content__output__index__select__holder\" class=\"col-md-8 col-sm-8 col-xs-11\"><select id=\"content__output__index__urlhash\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__output__index__ext\"></select></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__output__index__holder\"><iframe id=\"content__output__index__frame\"></iframe></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__output__index__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__output__index__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__output__index__result\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input id=\"content__output__index__lint\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__output__index__mode\"></select></div></div></div><div id=\"tab__option\" class=\"tab-pane fade in\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-12\"><button id=\"content__option__save\" type=\"button\" disabled class=\"btn btn-danger\"><i class=\"fa fa-refresh\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__option__store\" data-toggle=\"tab\">Store</a></li><li class=\"undefined\"><a href=\"#tab__option__run\" data-toggle=\"tab\">Run</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__option__store\" class=\"tab-pane fade in active\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th> </th><th style=\"min-width: 250px;\">Store</th><th style=\"min-width: 400px;\">DB / URL</th><th style=\"min-width: 200px;\">Table</th></tr><tr><td>Main (Data)</td><td><select id=\"content__option__store__data__main\"></select></td><td><input id=\"content__option__store__data__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>Main (Repo)</td><td><select id=\"content__option__store__repo__main\"></select></td><td><input id=\"content__option__store__repo__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__repo__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>App (Data)</td><td><select id=\"content__option__store__data__app\"></select></td><td><input id=\"content__option__store__data__app__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__app__table\" value=\"\" class=\"form-control\"></td></tr></tbody></table></div></div><div id=\"tab__option__run\" class=\"tab-pane fade in\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th style=\"width: 10px;\">Status</th><th>Vendor</th><th>Extension</th><th style=\"min-width: 600px;\">URL</th></tr><tr><td><input id=\"content__option__run__less\" type=\"checkbox\" class=\"content__icheck\"></td><td>Less</td><td id=\"content__option__run__less__ext\">less</td><td><input id=\"content__option__run__less__src\" value=\"../../vendors/preprocessor/less/less-2.7.1/less.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sass\" type=\"checkbox\" class=\"content__icheck\"></td><td>Sass</td><td id=\"content__option__run__sass__ext\">sass</td><td><input id=\"content__option__run__sass__src\" value=\"../../vendors/preprocessor/sass/sass-0.0.0-2015-03-22/sass.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__styl\" type=\"checkbox\" class=\"content__icheck\"></td><td>Stylus</td><td id=\"content__option__run__styl__ext\">styl</td><td><input id=\"content__option__run__styl__src\" value=\"../../vendors/preprocessor/stylus/stylus-0.54.5/stylus.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__babel\" type=\"checkbox\" class=\"content__icheck\"></td><td>Babel</td><td id=\"content__option__run__babel__ext\">babel.js</td><td><input id=\"content__option__run__babel__src\" value=\"../../vendors/transpiler/babel/babeljs.io-2016-03-01/babel.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ts\" type=\"checkbox\" class=\"content__icheck\"></td><td>TypeScript</td><td id=\"content__option__run__ts__ext\">ts</td><td><input id=\"content__option__run__ts__src\" value=\"../../vendors/transpiler/typescript/typescript-1.8.0/typescript.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__cs\" type=\"checkbox\" class=\"content__icheck\"></td><td>CoffeeScript</td><td id=\"content__option__run__cs__ext\">cs</td><td><input id=\"content__option__run__cs__src\" value=\"../../vendors/transpiler/coffeescript/coffeescript-1.10.0/coffee-script.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sql\" type=\"checkbox\" class=\"content__icheck\"></td><td>SQL</td><td id=\"content__option__run__sql__ext\">sql</td><td><input id=\"content__option__run__sql__src\" value=\"../../vendors/database/sql/sql-3.12.1/sql.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__mongo\" type=\"checkbox\" class=\"content__icheck\"></td><td>Mongo</td><td id=\"content__option__run__mongo__ext\">mongo.js</td><td><input id=\"content__option__run__mongo__src\" value=\"../../vendors/database/nedb/nedb-1.6.0/nedb.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__php\" type=\"checkbox\" class=\"content__icheck\"></td><td>PHP</td><td id=\"content__option__run__php__ext\">php</td><td><input id=\"content__option__run__php__src\" value=\"../../vendors/lang/php/uniter-2.8.1/uniter.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ruby\" type=\"checkbox\" class=\"content__icheck\"></td><td>Ruby</td><td id=\"content__option__run__ruby__ext\">ruby</td><td><input id=\"content__option__run__ruby__src\" value=\"../../vendors/lang/ruby/opal-0.8.1/opal.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__python\" type=\"checkbox\" class=\"content__icheck\"></td><td>Python</td><td id=\"content__option__run__python__ext\">python</td><td><input id=\"content__option__run__python__src\" value=\"../../vendors/lang/python/skulpt-0.10.1/skulpt.min+skulp-stdlib.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__abc\" type=\"checkbox\" class=\"content__icheck\"></td><td>ABC</td><td id=\"content__option__run__abc__ext\">abc</td><td><input id=\"content__option__run__abc__src\" value=\"../../vendors/music/abc/abc-2.1/abcjs_basic_2.1-min.js\" class=\"form-control\"></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div><br><br><br><br><br><br><br></section>";
 
 /***/ },
 /* 26 */
 /***/ function(module, exports) {
 
-	module.exports = " <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-code\"></i>&nbspX+1<small>0.57.0 (jQuery)</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-code\"></i><span id=\"undefined\">X+1</span></a></li><li><a href=\"#/\"><i class=\"fa fa-database\"></i><span id=\"header__data\">Static</span></a></li><li><a href=\"#/\"><i class=\"fa fa-table\"></i><span id=\"header__id\"></span></a></li><li><a href=\"#/\"><i class=\"fa fa-tree\"></i><span id=\"header__tree\"></span></a></li></ol></section><section class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutorun</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutosave</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutoload</div><div class=\"col-xs-4 col-sm-3 col-md-4\"></div><div class=\"col-xs-8 col-sm-3 col-md-2\"><select id=\"content__layout__select\"></select></div></div><br><div id=\"content__layout\" class=\"row\"><div class=\"col-sm-12\"><div style=\"padding-left:0;padding-right:0\" class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__input\" data-toggle=\"tab\">Input</a></li><li><a href=\"#tab__others\" data-toggle=\"tab\">Output + Others</a></li></ul></div><div style=\"padding-left:0;padding-right:0\" class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__input\" class=\"tab-pane active\"><div class=\"nav-tabs-custom\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#tab__input__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li><a href=\"#tab__app\" data-toggle=\"tab\"><i class=\"fa fa-laptop\"></i>&nbsp&nbsp App</a></li></ul><div class=\"tab-content\"><div id=\"tab__input__notes\" class=\"tab-pane fade in active\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-8 col-sm-8 col-xs-12\"><select id=\"content__input__notes__file\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__input__notes__ext\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-12\"><button id=\"content__input__notes__file__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><textarea id=\"content__input__notes__editor\"></textarea></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button type=\"button\" id=\"content__input__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__input__notes__import\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__input__notes__format\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input type=\"checkbox\" id=\"content__input__notes__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__input__notes__mode\"></select></div></div></div><div id=\"tab__app\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6 col-sm-10 col-xs-10\"><select id=\"content__app__value\"></select></div><div class=\"col-md-4 col-sm-10 col-xs-10\"><select id=\"content__app__front\"></select></div><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div id=\"content__app\"></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__app__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__app__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-2 col-sm-4 col-xs-6\"><select id=\"content__app__format\"></select></div><div class=\"col-md-8 col-sm-6 col-xs-12\"></div></div></div></div></div></div><div id=\"tab__others\" class=\"tab-pane\"><div class=\"nav-tabs-custom\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#tab__admin\" data-toggle=\"tab\"><i class=\"fa fa-university\"></i>&nbsp&nbsp Admin</a></li><li><a href=\"#tab__output\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li><li><a href=\"#tab__option\" data-toggle=\"tab\"><i class=\"fa fa-cogs\"></i>&nbsp&nbsp Options</a></li></ul><div class=\"tab-content\"><div id=\"tab__admin\" class=\"tab-pane fade in active\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-7 col-sm-7 col-xs-7\"><select id=\"content__value\"></select></div><div style=\"padding-left: 0\" class=\"col-md-3 col-sm-3 col-xs-3\"><select id=\"content__src\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2 col-sm-2 col-xs-12\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__tree\" data-toggle=\"tab\">Tree</a></li><li><a href=\"#tab__list\" data-toggle=\"tab\">List</a></li><li><a href=\"#tab__calendar\" data-toggle=\"tab\">Cal</a></li><li><a href=\"#tab__report\" data-toggle=\"tab\">Rep</a></li></ul></div><div class=\"col-sm-10 col-sm-10 col-xs-12\"><div class=\"tab-content\"><div id=\"tab__tree\" class=\"tab-pane fade in active\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__tree__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__tree__inputs\" aria-expanded=\"true\" aria-controls=\"content__tree__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__tree__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__tree\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row\"><div id=\"content__tree__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__list__inputs\" aria-expanded=\"true\" aria-controls=\"content__list__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__list__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__list\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div id=\"content__list__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__list__holder\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0\" class=\"col-md-3 col-sm-3 col-xs-6\"><button id=\"content__admin__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__admin__import\" type=\"file\"></span>&nbsp&nbsp</div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__admin__format\"></select></div><div class=\"col-md-2 col-sm-2 col-xs-3\"></div><div class=\"col-md-4 col-sm-4 col-xs-9\"><button id=\"content__list__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div></div><div id=\"tab__report\" class=\"tab-pane fade in\">Report</div><div id=\"tab__calendar\" class=\"tab-pane fade in\">Calendar</div></div></div></div></div><div id=\"tab__output\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div id=\"content__output__index__button__holder\" class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__output__index__urlhash__button\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-hashtag\"></i></button></div><div id=\"content__output__index__select__holder\" class=\"col-md-8 col-sm-8 col-xs-11\"><select id=\"content__output__index__urlhash\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__output__index__ext\"></select></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__output__index__holder\"><iframe id=\"content__output__index__frame\"></iframe></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__output__index__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__output__index__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__output__index__result\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input id=\"content__output__index__lint\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__output__index__mode\"></select></div></div></div><div id=\"tab__option\" class=\"tab-pane fade in\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-12\"><button id=\"content__option__save\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__option__store\" data-toggle=\"tab\">Store</a></li><li class=\"undefined\"><a href=\"#tab__option__run\" data-toggle=\"tab\">Run</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__option__store\" class=\"tab-pane fade in active\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th> </th><th style=\"min-width: 250px;\">Store</th><th style=\"min-width: 400px;\">DB / URL</th><th style=\"min-width: 200px;\">Table</th></tr><tr><td>Main (Data)</td><td><select id=\"content__option__store__data__main\"></select></td><td><input id=\"content__option__store__data__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>Main (Repo)</td><td><select id=\"content__option__store__repo__main\"></select></td><td><input id=\"content__option__store__repo__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__repo__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>App (Data)</td><td><select id=\"content__option__store__data__app\"></select></td><td><input id=\"content__option__store__data__app__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__app__table\" value=\"\" class=\"form-control\"></td></tr></tbody></table></div></div><div id=\"tab__option__run\" class=\"tab-pane fade in\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th style=\"width: 10px;\">Status</th><th>Vendor</th><th>Extension</th><th style=\"min-width: 600px;\">URL</th></tr><tr><td><input id=\"content__option__run__less\" type=\"checkbox\" class=\"content__icheck\"></td><td>Less</td><td id=\"content__option__run__less__ext\">less</td><td><input id=\"content__option__run__less__src\" value=\"../../vendors/preprocessor/less/less-2.7.1/less.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sass\" type=\"checkbox\" class=\"content__icheck\"></td><td>Sass</td><td id=\"content__option__run__sass__ext\">sass</td><td><input id=\"content__option__run__sass__src\" value=\"../../vendors/preprocessor/sass/sass-0.0.0-2015-03-22/sass.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__styl\" type=\"checkbox\" class=\"content__icheck\"></td><td>Stylus</td><td id=\"content__option__run__styl__ext\">styl</td><td><input id=\"content__option__run__styl__src\" value=\"../../vendors/preprocessor/stylus/stylus-0.54.5/stylus.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__babel\" type=\"checkbox\" class=\"content__icheck\"></td><td>Babel</td><td id=\"content__option__run__babel__ext\">babel.js</td><td><input id=\"content__option__run__babel__src\" value=\"../../vendors/transpiler/babel/babeljs.io-2016-03-01/babel.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ts\" type=\"checkbox\" class=\"content__icheck\"></td><td>TypeScript</td><td id=\"content__option__run__ts__ext\">ts</td><td><input id=\"content__option__run__ts__src\" value=\"../../vendors/transpiler/typescript/typescript-1.8.0/typescript.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__cs\" type=\"checkbox\" class=\"content__icheck\"></td><td>CoffeeScript</td><td id=\"content__option__run__cs__ext\">cs</td><td><input id=\"content__option__run__cs__src\" value=\"../../vendors/transpiler/coffeescript/coffeescript-1.10.0/coffee-script.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sql\" type=\"checkbox\" class=\"content__icheck\"></td><td>SQL</td><td id=\"content__option__run__sql__ext\">sql</td><td><input id=\"content__option__run__sql__src\" value=\"../../vendors/database/sql/sql-3.12.1/sql.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__mongo\" type=\"checkbox\" class=\"content__icheck\"></td><td>Mongo</td><td id=\"content__option__run__mongo__ext\">mongo.js</td><td><input id=\"content__option__run__mongo__src\" value=\"../../vendors/database/nedb/nedb-1.6.0/nedb.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__php\" type=\"checkbox\" class=\"content__icheck\"></td><td>PHP</td><td id=\"content__option__run__php__ext\">php</td><td><input id=\"content__option__run__php__src\" value=\"../../vendors/lang/php/uniter-2.8.1/uniter.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ruby\" type=\"checkbox\" class=\"content__icheck\"></td><td>Ruby</td><td id=\"content__option__run__ruby__ext\">ruby</td><td><input id=\"content__option__run__ruby__src\" value=\"../../vendors/lang/ruby/opal-0.8.1/opal.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__python\" type=\"checkbox\" class=\"content__icheck\"></td><td>Python</td><td id=\"content__option__run__python__ext\">python</td><td><input id=\"content__option__run__python__src\" value=\"../../vendors/lang/python/skulpt-0.10.1/skulpt.min+skulp-stdlib.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__abc\" type=\"checkbox\" class=\"content__icheck\"></td><td>ABC</td><td id=\"content__option__run__abc__ext\">abc</td><td><input id=\"content__option__run__abc__src\" value=\"../../vendors/music/abc/abc-2.1/abcjs_basic_2.1-min.js\" class=\"form-control\"></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div></div></div></div><br><br><br><br><br><br><br></section>";
+	module.exports = " <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-code\"></i>&nbspX+1<small>0.58.0 (jQuery)</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-code\"></i><span id=\"undefined\">X+1</span></a></li><li><a href=\"#/\"><i class=\"fa fa-database\"></i><span id=\"header__data\">Static</span></a></li><li><a href=\"#/\"><i class=\"fa fa-table\"></i><span id=\"header__id\"></span></a></li><li><a href=\"#/\"><i class=\"fa fa-tree\"></i><span id=\"header__tree\"></span></a></li></ol></section><section class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutorun</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutosave</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutoload</div><div class=\"col-xs-4 col-sm-3 col-md-4\"></div><div class=\"col-xs-8 col-sm-3 col-md-2\"><select id=\"content__layout__select\"></select></div></div><br><div id=\"content__layout\" class=\"row\"><div class=\"col-sm-12\"><div style=\"padding-left:0;padding-right:0\" class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__input\" data-toggle=\"tab\">Input</a></li><li><a href=\"#tab__others\" data-toggle=\"tab\">Output + Others</a></li></ul></div><div style=\"padding-left:0;padding-right:0\" class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__input\" class=\"tab-pane active\"><div class=\"nav-tabs-custom\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#tab__input__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li><a href=\"#tab__app\" data-toggle=\"tab\"><i class=\"fa fa-laptop\"></i>&nbsp&nbsp App</a></li></ul><div class=\"tab-content\"><div id=\"tab__input__notes\" class=\"tab-pane fade in active\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-8 col-sm-8 col-xs-12\"><select id=\"content__input__notes__file\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__input__notes__ext\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-12\"><button id=\"content__input__notes__file__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><textarea id=\"content__input__notes__editor\"></textarea></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button type=\"button\" id=\"content__input__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__input__notes__import\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__input__notes__format\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input type=\"checkbox\" id=\"content__input__notes__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__input__notes__mode\"></select></div></div></div><div id=\"tab__app\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6 col-sm-10 col-xs-10\"><select id=\"content__app__value\"></select></div><div class=\"col-md-4 col-sm-10 col-xs-10\"><select id=\"content__app__front\"></select></div><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div id=\"content__app\"></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__app__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__app__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-2 col-sm-4 col-xs-6\"><select id=\"content__app__format\"></select></div><div class=\"col-md-8 col-sm-6 col-xs-12\"></div></div></div></div></div></div><div id=\"tab__others\" class=\"tab-pane\"><div class=\"nav-tabs-custom\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#tab__admin\" data-toggle=\"tab\"><i class=\"fa fa-university\"></i>&nbsp&nbsp Admin</a></li><li><a href=\"#tab__output\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li><li><a href=\"#tab__option\" data-toggle=\"tab\"><i class=\"fa fa-cogs\"></i>&nbsp&nbsp Options</a></li></ul><div class=\"tab-content\"><div id=\"tab__admin\" class=\"tab-pane fade in active\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-7 col-sm-7 col-xs-7\"><select id=\"content__value\"></select></div><div style=\"padding-left: 0\" class=\"col-md-3 col-sm-3 col-xs-3\"><select id=\"content__src\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2 col-sm-2 col-xs-12\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__tree\" data-toggle=\"tab\">Tree</a></li><li><a href=\"#tab__list\" data-toggle=\"tab\">List</a></li><li><a href=\"#tab__calendar\" data-toggle=\"tab\">Cal</a></li><li><a href=\"#tab__report\" data-toggle=\"tab\">Rep</a></li></ul></div><div class=\"col-sm-10 col-sm-10 col-xs-12\"><div class=\"tab-content\"><div id=\"tab__tree\" class=\"tab-pane fade in active\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__tree__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__tree__inputs\" aria-expanded=\"true\" aria-controls=\"content__tree__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__tree__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__tree\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row\"><div id=\"content__tree__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__list__inputs\" aria-expanded=\"true\" aria-controls=\"content__list__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__list__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__list\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div id=\"content__list__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__list__holder\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0\" class=\"col-md-3 col-sm-3 col-xs-6\"><button id=\"content__admin__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__admin__import\" type=\"file\"></span>&nbsp&nbsp</div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__admin__format\"></select></div><div class=\"col-md-2 col-sm-2 col-xs-3\"></div><div class=\"col-md-4 col-sm-4 col-xs-9\"><button id=\"content__list__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div></div><div id=\"tab__report\" class=\"tab-pane fade in\">Report</div><div id=\"tab__calendar\" class=\"tab-pane fade in\">Calendar</div></div></div></div></div><div id=\"tab__output\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div id=\"content__output__index__button__holder\" class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__output__index__urlhash__button\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-hashtag\"></i></button></div><div id=\"content__output__index__select__holder\" class=\"col-md-8 col-sm-8 col-xs-11\"><select id=\"content__output__index__urlhash\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__output__index__ext\"></select></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__output__index__holder\"><iframe id=\"content__output__index__frame\"></iframe></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__output__index__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__output__index__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__output__index__result\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input id=\"content__output__index__lint\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__output__index__mode\"></select></div></div></div><div id=\"tab__option\" class=\"tab-pane fade in\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-12\"><button id=\"content__option__save\" type=\"button\" disabled class=\"btn btn-danger\"><i class=\"fa fa-refresh\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__option__store\" data-toggle=\"tab\">Store</a></li><li class=\"undefined\"><a href=\"#tab__option__run\" data-toggle=\"tab\">Run</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__option__store\" class=\"tab-pane fade in active\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th> </th><th style=\"min-width: 250px;\">Store</th><th style=\"min-width: 400px;\">DB / URL</th><th style=\"min-width: 200px;\">Table</th></tr><tr><td>Main (Data)</td><td><select id=\"content__option__store__data__main\"></select></td><td><input id=\"content__option__store__data__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>Main (Repo)</td><td><select id=\"content__option__store__repo__main\"></select></td><td><input id=\"content__option__store__repo__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__repo__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>App (Data)</td><td><select id=\"content__option__store__data__app\"></select></td><td><input id=\"content__option__store__data__app__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__app__table\" value=\"\" class=\"form-control\"></td></tr></tbody></table></div></div><div id=\"tab__option__run\" class=\"tab-pane fade in\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th style=\"width: 10px;\">Status</th><th>Vendor</th><th>Extension</th><th style=\"min-width: 600px;\">URL</th></tr><tr><td><input id=\"content__option__run__less\" type=\"checkbox\" class=\"content__icheck\"></td><td>Less</td><td id=\"content__option__run__less__ext\">less</td><td><input id=\"content__option__run__less__src\" value=\"../../vendors/preprocessor/less/less-2.7.1/less.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sass\" type=\"checkbox\" class=\"content__icheck\"></td><td>Sass</td><td id=\"content__option__run__sass__ext\">sass</td><td><input id=\"content__option__run__sass__src\" value=\"../../vendors/preprocessor/sass/sass-0.0.0-2015-03-22/sass.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__styl\" type=\"checkbox\" class=\"content__icheck\"></td><td>Stylus</td><td id=\"content__option__run__styl__ext\">styl</td><td><input id=\"content__option__run__styl__src\" value=\"../../vendors/preprocessor/stylus/stylus-0.54.5/stylus.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__babel\" type=\"checkbox\" class=\"content__icheck\"></td><td>Babel</td><td id=\"content__option__run__babel__ext\">babel.js</td><td><input id=\"content__option__run__babel__src\" value=\"../../vendors/transpiler/babel/babeljs.io-2016-03-01/babel.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ts\" type=\"checkbox\" class=\"content__icheck\"></td><td>TypeScript</td><td id=\"content__option__run__ts__ext\">ts</td><td><input id=\"content__option__run__ts__src\" value=\"../../vendors/transpiler/typescript/typescript-1.8.0/typescript.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__cs\" type=\"checkbox\" class=\"content__icheck\"></td><td>CoffeeScript</td><td id=\"content__option__run__cs__ext\">cs</td><td><input id=\"content__option__run__cs__src\" value=\"../../vendors/transpiler/coffeescript/coffeescript-1.10.0/coffee-script.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sql\" type=\"checkbox\" class=\"content__icheck\"></td><td>SQL</td><td id=\"content__option__run__sql__ext\">sql</td><td><input id=\"content__option__run__sql__src\" value=\"../../vendors/database/sql/sql-3.12.1/sql.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__mongo\" type=\"checkbox\" class=\"content__icheck\"></td><td>Mongo</td><td id=\"content__option__run__mongo__ext\">mongo.js</td><td><input id=\"content__option__run__mongo__src\" value=\"../../vendors/database/nedb/nedb-1.6.0/nedb.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__php\" type=\"checkbox\" class=\"content__icheck\"></td><td>PHP</td><td id=\"content__option__run__php__ext\">php</td><td><input id=\"content__option__run__php__src\" value=\"../../vendors/lang/php/uniter-2.8.1/uniter.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ruby\" type=\"checkbox\" class=\"content__icheck\"></td><td>Ruby</td><td id=\"content__option__run__ruby__ext\">ruby</td><td><input id=\"content__option__run__ruby__src\" value=\"../../vendors/lang/ruby/opal-0.8.1/opal.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__python\" type=\"checkbox\" class=\"content__icheck\"></td><td>Python</td><td id=\"content__option__run__python__ext\">python</td><td><input id=\"content__option__run__python__src\" value=\"../../vendors/lang/python/skulpt-0.10.1/skulpt.min+skulp-stdlib.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__abc\" type=\"checkbox\" class=\"content__icheck\"></td><td>ABC</td><td id=\"content__option__run__abc__ext\">abc</td><td><input id=\"content__option__run__abc__src\" value=\"../../vendors/music/abc/abc-2.1/abcjs_basic_2.1-min.js\" class=\"form-control\"></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div></div></div></div><br><br><br><br><br><br><br></section>";
 
 /***/ },
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = "         <div class=\"row\"><div class=\"col-md-12\"><input id=\"content__list__inputs__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input id=\"content__list__inputs__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-8\"><input id=\"content__list__inputs__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-4\"><input id=\"content__list__inputs__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-4\"><input id=\"content__list__inputs__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__inputs__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-4\"><input id=\"content__list__inputs__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div></div>";
+	module.exports = " <section class=\"content-header\"><h1>&nbsp<i class=\"fa fa-code\"></i>&nbspX+1<small>0.58.0 (jQuery)</small></h1><ol class=\"breadcrumb\"><li><a href=\"#/\"><i class=\"fa fa-code\"></i><span id=\"undefined\">X+1</span></a></li><li><a href=\"#/\"><i class=\"fa fa-database\"></i><span id=\"header__data\">Static</span></a></li><li><a href=\"#/\"><i class=\"fa fa-table\"></i><span id=\"header__id\"></span></a></li><li><a href=\"#/\"><i class=\"fa fa-tree\"></i><span id=\"header__tree\"></span></a></li></ol></section><section class=\"content\"><div class=\"row\"><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__run\" class=\"btn btn-primary\"><i class=\"fa fa-play\"></i></button>&nbsp&nbsp<input id=\"content__run__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutorun</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__save\" class=\"btn btn-success\"><i class=\"fa fa-save\"></i></button>&nbsp&nbsp<input id=\"content__save__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutosave</div><div class=\"col-xs-4 col-sm-2 col-md-2\"><button id=\"content__load\" class=\"btn btn-warning\"><i class=\"fa fa-repeat\"></i></button>&nbsp&nbsp<input id=\"content__load__auto\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspAutoload</div><div class=\"col-xs-4 col-sm-3 col-md-4\"></div><div class=\"col-xs-8 col-sm-3 col-md-2\"><select id=\"content__layout__select\"></select></div></div><br><div id=\"content__layout\" class=\"row\"><div class=\"col-md-12\"><div class=\"nav-tabs-custom\"><ul class=\"nav nav-tabs\"><li class=\"active\"><a href=\"#tab__input__notes\" data-toggle=\"tab\"><i class=\"fa fa-file-text\"></i>&nbsp&nbsp Notes</a></li><li><a href=\"#tab__output\" data-toggle=\"tab\"><i class=\"fa fa-desktop\"></i>&nbsp&nbsp Output</a></li><li><a href=\"#tab__admin\" data-toggle=\"tab\"><i class=\"fa fa-university\"></i>&nbsp&nbsp Admin</a></li><li><a href=\"#tab__app\" data-toggle=\"tab\"><i class=\"fa fa-laptop\"></i>&nbsp&nbsp App</a></li><li><a href=\"#tab__option\" data-toggle=\"tab\"><i class=\"fa fa-cogs\"></i>&nbsp&nbsp Options</a></li></ul><div class=\"tab-content\"><div id=\"tab__input__notes\" class=\"tab-pane fade in active\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-8 col-sm-8 col-xs-12\"><select id=\"content__input__notes__file\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__input__notes__ext\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-12\"><button id=\"content__input__notes__file__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><textarea id=\"content__input__notes__editor\"></textarea></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button type=\"button\" id=\"content__input__notes__export\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input type=\"file\" id=\"content__input__notes__import\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__input__notes__format\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input type=\"checkbox\" id=\"content__input__notes__lint\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__input__notes__mode\"></select></div></div></div><div id=\"tab__output\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div id=\"content__output__index__button__holder\" class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__output__index__urlhash__button\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-hashtag\"></i></button></div><div id=\"content__output__index__select__holder\" class=\"col-md-8 col-sm-8 col-xs-11\"><select id=\"content__output__index__urlhash\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-12\"><select id=\"content__output__index__ext\"></select></div></div><div class=\"row\"><div class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__output__index__holder\"><iframe id=\"content__output__index__frame\"></iframe></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__output__index__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__output__index__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__output__index__result\"></select></div><div class=\"col-md-3 col-sm-3 col-xs-3\"><input id=\"content__output__index__lint\" type=\"checkbox\" class=\"content__icheck\">&nbsp&nbspLint</div><div class=\"col-md-4 col-sm-4 col-xs-9\"><select id=\"content__output__index__mode\"></select></div></div></div><div id=\"tab__admin\" class=\"tab-pane fade in\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-7 col-sm-7 col-xs-7\"><select id=\"content__value\"></select></div><div style=\"padding-left: 0\" class=\"col-md-3 col-sm-3 col-xs-3\"><select id=\"content__src\"></select></div><div class=\"col-md-1 col-sm-1 col-xs-1\"><button id=\"content__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2 col-sm-2 col-xs-12\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__tree\" data-toggle=\"tab\">Tree</a></li><li><a href=\"#tab__list\" data-toggle=\"tab\">List</a></li><li><a href=\"#tab__calendar\" data-toggle=\"tab\">Cal</a></li><li><a href=\"#tab__report\" data-toggle=\"tab\">Rep</a></li></ul></div><div class=\"col-sm-10 col-sm-10 col-xs-12\"><div class=\"tab-content\"><div id=\"tab__tree\" class=\"tab-pane fade in active\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__tree__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__tree__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__tree__inputs\" aria-expanded=\"true\" aria-controls=\"content__tree__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__tree__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__tree\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row\"><div id=\"content__tree__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12\"><div id=\"content__tree__holder\"><div id=\"content__tree\"></div></div></div></div></div><div id=\"tab__list\" class=\"tab-pane fade in\"><div class=\"row\"><div class=\"col-md-4 col-sm-4 col-xs-4\"><button id=\"content__list__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button>&nbsp&nbsp<button id=\"content__list__inputs__toggle\" type=\"button\" data-toggle=\"collapse\" data-target=\"#content__list__inputs\" aria-expanded=\"true\" aria-controls=\"content__list__inputs\" class=\"btn btn\"><i class=\"fa fa-search\"></i></button>&nbsp&nbsp<button id=\"content__list__create\" type=\"button\" class=\"btn btn-success\"><i class=\"fa fa-plus\"></i></button></div><div class=\"col-md-8 col-sm-8 col-xs-8\"><select id=\"content__sample__list\"></select></div></div><div style=\"margin-left: 0; margin-right: 0\" class=\"row table-responsive\"><div id=\"content__list__inputs\" style=\"padding: 0;\" class=\"col-md-12 col-sm-12 col-xs-12 collapse in\"><br></div><div style=\"padding: 10px 0 0 0;\" class=\"col-md-12 col-sm-12 col-xs-12\"><div id=\"content__list__holder\"><table id=\"content__list\" class=\"table table-bordered table-hover\"></table></div></div></div><br><div class=\"row\"><div style=\"padding-right: 0\" class=\"col-md-3 col-sm-3 col-xs-6\"><button id=\"content__admin__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__admin__import\" type=\"file\"></span>&nbsp&nbsp</div><div style=\"padding-left: 0;\" class=\"col-md-3 col-sm-3 col-xs-6\"><select id=\"content__admin__format\"></select></div><div class=\"col-md-2 col-sm-2 col-xs-3\"></div><div class=\"col-md-4 col-sm-4 col-xs-9\"><button id=\"content__list__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div></div><div id=\"tab__report\" class=\"tab-pane fade in\">Report</div><div id=\"tab__calendar\" class=\"tab-pane fade in\">Calendar</div></div></div></div></div><div id=\"tab__app\" class=\"tab-pane fade in\"><div style=\"margin-bottom: 5px;\" class=\"row\"><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__refresh\" type=\"button\" class=\"btn btn-default\"><i class=\"fa fa-refresh\"></i></button></div><div class=\"col-md-6 col-sm-10 col-xs-10\"><select id=\"content__app__value\"></select></div><div class=\"col-md-4 col-sm-10 col-xs-10\"><select id=\"content__app__front\"></select></div><div class=\"col-md-1 col-sm-2 col-xs-2\"><button id=\"content__app__value__destroy\" type=\"button\" class=\"btn btn-danger pull-right\"><i class=\"fa fa-trash\"></i></button></div></div><div class=\"row\"><div id=\"content__app\"></div></div><br><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-2 col-sm-2 col-xs-6\"><button id=\"content__app__export\" type=\"button\" class=\"btn\"><i class=\"fa fa-download\"></i></button>&nbsp&nbsp<span class=\"btn btn-default btn-file\"><i class=\"fa fa-upload\"></i><input id=\"content__app__import\" type=\"file\"></span></div><div style=\"padding-left: 0;\" class=\"col-md-2 col-sm-4 col-xs-6\"><select id=\"content__app__format\"></select></div><div class=\"col-md-8 col-sm-6 col-xs-12\"></div></div></div><div id=\"tab__option\" class=\"tab-pane fade in\"><div style=\"padding-bottom: 5px;\" class=\"row\"><div class=\"col-md-12\"><button id=\"content__option__save\" type=\"button\" disabled class=\"btn btn-danger\"><i class=\"fa fa-refresh\"></i></button></div></div><div class=\"row\"><div class=\"col-sm-2\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__option__store\" data-toggle=\"tab\">Store</a></li><li class=\"undefined\"><a href=\"#tab__option__run\" data-toggle=\"tab\">Run</a></li></ul></div><div class=\"col-sm-10\"><div class=\"tab-content\"><div id=\"tab__option__store\" class=\"tab-pane fade in active\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th> </th><th style=\"min-width: 250px;\">Store</th><th style=\"min-width: 400px;\">DB / URL</th><th style=\"min-width: 200px;\">Table</th></tr><tr><td>Main (Data)</td><td><select id=\"content__option__store__data__main\"></select></td><td><input id=\"content__option__store__data__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>Main (Repo)</td><td><select id=\"content__option__store__repo__main\"></select></td><td><input id=\"content__option__store__repo__main__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__repo__main__table\" value=\"\" class=\"form-control\"></td></tr><tr><td>App (Data)</td><td><select id=\"content__option__store__data__app\"></select></td><td><input id=\"content__option__store__data__app__db_url\" value=\"\" class=\"form-control\"></td><td><input id=\"content__option__store__data__app__table\" value=\"\" class=\"form-control\"></td></tr></tbody></table></div></div><div id=\"tab__option__run\" class=\"tab-pane fade in\"><div class=\"table-responsive\"><table class=\"table table-bordered\"><tbody><tr><th style=\"width: 10px;\">Status</th><th>Vendor</th><th>Extension</th><th style=\"min-width: 600px;\">URL</th></tr><tr><td><input id=\"content__option__run__less\" type=\"checkbox\" class=\"content__icheck\"></td><td>Less</td><td id=\"content__option__run__less__ext\">less</td><td><input id=\"content__option__run__less__src\" value=\"../../vendors/preprocessor/less/less-2.7.1/less.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sass\" type=\"checkbox\" class=\"content__icheck\"></td><td>Sass</td><td id=\"content__option__run__sass__ext\">sass</td><td><input id=\"content__option__run__sass__src\" value=\"../../vendors/preprocessor/sass/sass-0.0.0-2015-03-22/sass.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__styl\" type=\"checkbox\" class=\"content__icheck\"></td><td>Stylus</td><td id=\"content__option__run__styl__ext\">styl</td><td><input id=\"content__option__run__styl__src\" value=\"../../vendors/preprocessor/stylus/stylus-0.54.5/stylus.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__babel\" type=\"checkbox\" class=\"content__icheck\"></td><td>Babel</td><td id=\"content__option__run__babel__ext\">babel.js</td><td><input id=\"content__option__run__babel__src\" value=\"../../vendors/transpiler/babel/babeljs.io-2016-03-01/babel.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ts\" type=\"checkbox\" class=\"content__icheck\"></td><td>TypeScript</td><td id=\"content__option__run__ts__ext\">ts</td><td><input id=\"content__option__run__ts__src\" value=\"../../vendors/transpiler/typescript/typescript-1.8.0/typescript.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__cs\" type=\"checkbox\" class=\"content__icheck\"></td><td>CoffeeScript</td><td id=\"content__option__run__cs__ext\">cs</td><td><input id=\"content__option__run__cs__src\" value=\"../../vendors/transpiler/coffeescript/coffeescript-1.10.0/coffee-script.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__sql\" type=\"checkbox\" class=\"content__icheck\"></td><td>SQL</td><td id=\"content__option__run__sql__ext\">sql</td><td><input id=\"content__option__run__sql__src\" value=\"../../vendors/database/sql/sql-3.12.1/sql.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__mongo\" type=\"checkbox\" class=\"content__icheck\"></td><td>Mongo</td><td id=\"content__option__run__mongo__ext\">mongo.js</td><td><input id=\"content__option__run__mongo__src\" value=\"../../vendors/database/nedb/nedb-1.6.0/nedb.min.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__php\" type=\"checkbox\" class=\"content__icheck\"></td><td>PHP</td><td id=\"content__option__run__php__ext\">php</td><td><input id=\"content__option__run__php__src\" value=\"../../vendors/lang/php/uniter-2.8.1/uniter.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__ruby\" type=\"checkbox\" class=\"content__icheck\"></td><td>Ruby</td><td id=\"content__option__run__ruby__ext\">ruby</td><td><input id=\"content__option__run__ruby__src\" value=\"../../vendors/lang/ruby/opal-0.8.1/opal.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__python\" type=\"checkbox\" class=\"content__icheck\"></td><td>Python</td><td id=\"content__option__run__python__ext\">python</td><td><input id=\"content__option__run__python__src\" value=\"../../vendors/lang/python/skulpt-0.10.1/skulpt.min+skulp-stdlib.js\" class=\"form-control\"></td></tr><tr><td><input id=\"content__option__run__abc\" type=\"checkbox\" class=\"content__icheck\"></td><td>ABC</td><td id=\"content__option__run__abc__ext\">abc</td><td><input id=\"content__option__run__abc__src\" value=\"../../vendors/music/abc/abc-2.1/abcjs_basic_2.1-min.js\" class=\"form-control\"></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div><br><br><br><br><br><br><br></section>";
 
 /***/ },
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = "";
+	module.exports = "         <div class=\"row\"><div class=\"col-md-12\"><input id=\"content__list__inputs__title\" type=\"text\" placeholder=\"Title\" style=\"width: 100%;\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-md-12\"><input id=\"content__list__inputs__tree\" type=\"text\" placeholder=\"Tree\" style=\"width: 100%;\" class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-8\"><input id=\"content__list__inputs__labels\" type=\"text\" placeholder=\"Labels\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-4\"><input id=\"content__list__inputs__status\" type=\"text\" placeholder=\"Status\" style=\"width: 100%;\" class=\"form-control\"></div></div><div class=\"row\"><div style=\"padding-right: 0;\" class=\"col-md-4\"><input id=\"content__list__inputs__date\" type=\"text\" placeholder=\"Date (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding: 0;\" class=\"col-md-4\"><input id=\"content__list__inputs__date_start\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div><div style=\"padding-left: 0;\" class=\"col-md-4\"><input id=\"content__list__inputs__date_end\" type=\"text\" placeholder=\"Date Start (DD/MM/YYYY)\" style=\"width: 100%;\" class=\"form-control\"></div></div>";
 
 /***/ },
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<p>Time</p>";
+	module.exports = "";
 
 /***/ },
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"col-sm-2 col-sm-2 col-xs-12\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__app__job__main\" data-toggle=\"tab\">Main</a></li><li><a href=\"#tab__app__job__more\" data-toggle=\"tab\">More</a></li></ul></div><div class=\"col-sm-10 col-sm-10 col-xs-12\"><div class=\"tab-content\"><div id=\"tab__app__job__main\" class=\"tab-pane fade in active\"><form id=\"form__app__job__main\" role=\"form\" class=\"form-horizontal\"><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label class=\"col-md-2 control-label\">ID</label><div class=\"col-md-10\"><input id=\"content__app__work_job__id\" disabled class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Name</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__name\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Title</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__title\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Dates</label><div class=\"col-md-10\"><div style=\"padding: 0;\" class=\"col-md-4\"><input placeholder=\"Posted\" type=\"text\" id=\"content__app__work_job__date_posted\" class=\"form-control\"></div><div style=\"padding-right: 0;\" class=\"col-md-4\"><input placeholder=\"Applied\" type=\"text\" id=\"content__app__work_job__date_applied\" class=\"form-control\"></div><div style=\"padding-right: 0;\" class=\"col-md-4\"><input placeholder=\"Responded\" type=\"text\" id=\"content__app__work_job__date_responded\" class=\"form-control\"></div></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">URL</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__url\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Company</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__company\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Location</label><div class=\"col-md-10\"><div style=\"padding: 0;\" class=\"col-md-6\"><input placeholder=\"City\" type=\"text\" id=\"content__app__work_job__city\" class=\"form-control\"></div><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"State\" type=\"text\" id=\"content__app__work_job__state\" class=\"form-control\"></div></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Map</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__map\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Description</label><div class=\"col-md-10\"><textarea rows=\"20\" id=\"content__app__work_job__description\" class=\"form-control\"></textarea></div></div></div></form></div><div id=\"tab__app__job__more\" class=\"tab-pane fade in\"><form id=\"form__app__job__more\" role=\"form\" class=\"form-horizontal\"><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Cover Letter</label><div class=\"col-md-10\"><textarea rows=\"20\" id=\"content__app__work_job__cover_letter\" class=\"form-control\"></textarea></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Notes</label><div class=\"col-md-10\"><textarea rows=\"20\" id=\"content__app__work_job__notes\" class=\"form-control\"></textarea></div></div></div></form></div></div></div>";
+	module.exports = "<p>Time</p>";
 
 /***/ },
 /* 31 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"col-sm-2 col-sm-2 col-xs-12\"><ul class=\"nav nav-tabs tabs-left\"><li class=\"active\"><a href=\"#tab__app__job__main\" data-toggle=\"tab\">Main</a></li><li><a href=\"#tab__app__job__more\" data-toggle=\"tab\">More</a></li></ul></div><div class=\"col-sm-10 col-sm-10 col-xs-12\"><div class=\"tab-content\"><div id=\"tab__app__job__main\" class=\"tab-pane fade in active\"><form id=\"form__app__job__main\" role=\"form\" class=\"form-horizontal\"><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label class=\"col-md-2 control-label\">ID</label><div class=\"col-md-10\"><input id=\"content__app__work_job__id\" disabled class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Name</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__name\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Title</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__title\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Dates</label><div class=\"col-md-10\"><div style=\"padding: 0;\" class=\"col-md-4\"><input placeholder=\"Posted\" type=\"text\" id=\"content__app__work_job__date_posted\" class=\"form-control\"></div><div style=\"padding-right: 0;\" class=\"col-md-4\"><input placeholder=\"Applied\" type=\"text\" id=\"content__app__work_job__date_applied\" class=\"form-control\"></div><div style=\"padding-right: 0;\" class=\"col-md-4\"><input placeholder=\"Responded\" type=\"text\" id=\"content__app__work_job__date_responded\" class=\"form-control\"></div></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">URL</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__url\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Company</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__company\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Location</label><div class=\"col-md-10\"><div style=\"padding: 0;\" class=\"col-md-6\"><input placeholder=\"City\" type=\"text\" id=\"content__app__work_job__city\" class=\"form-control\"></div><div style=\"padding-right: 0;\" class=\"col-md-6\"><input placeholder=\"State\" type=\"text\" id=\"content__app__work_job__state\" class=\"form-control\"></div></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Map</label><div class=\"col-md-10\"><input placeholder=\"\" type=\"text\" id=\"content__app__work_job__map\" class=\"form-control\"></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Description</label><div class=\"col-md-10\"><textarea rows=\"20\" id=\"content__app__work_job__description\" class=\"form-control\"></textarea></div></div></div></form></div><div id=\"tab__app__job__more\" class=\"tab-pane fade in\"><form id=\"form__app__job__more\" role=\"form\" class=\"form-horizontal\"><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Cover Letter</label><div class=\"col-md-10\"><textarea rows=\"20\" id=\"content__app__work_job__cover_letter\" class=\"form-control\"></textarea></div></div></div><div class=\"row\"><div style=\"margin-right: 0;\" class=\"form-group\"><label data-toggle=\"tooltip\" data-placement=\"top\" data-original-title=\"\" class=\"col-md-2 control-label\">Notes</label><div class=\"col-md-10\"><textarea rows=\"20\" id=\"content__app__work_job__notes\" class=\"form-control\"></textarea></div></div></div></form></div></div></div>";
+
+/***/ },
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -1540,13 +1571,13 @@
 	    if (this.debug) {
 	      console.log('Init!');
 	    }
-	    __webpack_require__(32)(Component);
-	    __webpack_require__(34)(Component);
-	    __webpack_require__(38)(Component);
-	    __webpack_require__(45)(Component);
-	    __webpack_require__(81)(Component);
-	    __webpack_require__(90)(Component);
-	    __webpack_require__(102)(Component);
+	    __webpack_require__(33)(Component);
+	    __webpack_require__(35)(Component);
+	    __webpack_require__(39)(Component);
+	    __webpack_require__(46)(Component);
+	    __webpack_require__(82)(Component);
+	    __webpack_require__(91)(Component);
+	    __webpack_require__(103)(Component);
 	    this.initLib();
 	    this.initStore();
 	    this.initBoot();
@@ -1564,7 +1595,7 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -1580,7 +1611,7 @@
 	    if (this.debug) {
 	      console.log('Lib!');
 	    }
-	    __webpack_require__(33)(Component);
+	    __webpack_require__(34)(Component);
 	    this.initConsole();
 	  };
 	};
@@ -1591,7 +1622,7 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -1622,7 +1653,7 @@
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -1638,9 +1669,9 @@
 	    this.consoleLog({
 	      text: 'Store!'
 	    });
-	    __webpack_require__(35)(Component);
 	    __webpack_require__(36)(Component);
 	    __webpack_require__(37)(Component);
+	    __webpack_require__(38)(Component);
 	    this.initSetting();
 	    this.initDataMain();
 	    this.initDataApp();
@@ -1653,7 +1684,7 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -1703,7 +1734,7 @@
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -1802,7 +1833,7 @@
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -1903,7 +1934,7 @@
 
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -1919,10 +1950,10 @@
 	    this.consoleLog({
 	      text: 'Boot!'
 	    });
-	    __webpack_require__(39)(Component);
 	    __webpack_require__(40)(Component);
 	    __webpack_require__(41)(Component);
 	    __webpack_require__(42)(Component);
+	    __webpack_require__(43)(Component);
 	    this.initDefault();
 	    this.initLayout();
 	    this.initConfig();
@@ -1936,7 +1967,7 @@
 
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -2261,7 +2292,7 @@
 
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -2343,7 +2374,8 @@
 	    }
 	    aliases = {
 	      'split': 'Layout - Split',
-	      'split_vtab': 'Layout - Split VTab'
+	      'split_vtab': 'Layout - Split VTab',
+	      'combined': 'Layout - Combined'
 	    };
 	    return aliases[o.alias];
 	  };
@@ -2354,7 +2386,8 @@
 	    }
 	    titles = {
 	      'Layout - Split': 'split',
-	      'Layout - Split VTab': 'split_vtab'
+	      'Layout - Split VTab': 'split_vtab',
+	      'Layout - Combined': 'combined'
 	    };
 	    return titles[o.title];
 	  };
@@ -2366,7 +2399,7 @@
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -2498,7 +2531,7 @@
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -2512,8 +2545,8 @@
 	    if (this.debug) {
 	      console.log('Option!');
 	    }
-	    __webpack_require__(43)(Component);
 	    __webpack_require__(44)(Component);
+	    __webpack_require__(45)(Component);
 	    this.initOptionStore();
 	    this.initOptionRun();
 	    this.optionStoreMake(this.props.boot.options.store_data_main);
@@ -2545,7 +2578,7 @@
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -2730,7 +2763,7 @@
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -2806,7 +2839,7 @@
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -2822,7 +2855,6 @@
 	    this.consoleLog({
 	      text: 'Main!'
 	    });
-	    __webpack_require__(46)(Component);
 	    __webpack_require__(47)(Component);
 	    __webpack_require__(48)(Component);
 	    __webpack_require__(49)(Component);
@@ -2833,9 +2865,10 @@
 	    __webpack_require__(54)(Component);
 	    __webpack_require__(55)(Component);
 	    __webpack_require__(56)(Component);
-	    __webpack_require__(78)(Component);
+	    __webpack_require__(57)(Component);
 	    __webpack_require__(79)(Component);
 	    __webpack_require__(80)(Component);
+	    __webpack_require__(81)(Component);
 	    this.initEditor();
 	    this.initFile();
 	    this.initExt();
@@ -2859,7 +2892,7 @@
 
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -2950,6 +2983,9 @@
 	  };
 	  o.editorSetModeCm = function(o){
 	    var modes, mode;
+	    if (this.debug) {
+	      console.log('Editor:Set:Mode');
+	    }
 	    modes = {
 	      'txt': 'text/plain',
 	      'html': 'text/html',
@@ -3009,7 +3045,7 @@
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -3046,12 +3082,38 @@
 	  o.fileReset = function(o){
 	    this.fileResetSz(o);
 	  };
+	  o.fileIsValid = function(o){
+	    return this.fileIsValidJs(o);
+	  };
+	  o.fileDisable = function(o){
+	    this.fileDisableSz(o);
+	  };
+	  o.fileEnable = function(o){
+	    this.fileEnableSz(o);
+	  };
 	  o.initFileJs = function(){
 	    var _this;
 	    if (this.debug) {
 	      console.log('File!');
 	    }
 	    _this = this;
+	  };
+	  o.fileIsValidJs = function(o){
+	    if (this.debug) {
+	      return console.log('File:Is:Valid');
+	    }
+	  };
+	  o.fileEnableSz = function(o){
+	    if (this.debug) {
+	      console.log('File:Enable');
+	    }
+	    this.files[o.context][o.entity].enable();
+	  };
+	  o.fileDisableSz = function(o){
+	    if (this.debug) {
+	      console.log('File:Disable');
+	    }
+	    this.files[o.context][o.entity].disable();
 	  };
 	  o.fileMakeContainerSz = function(o){
 	    var _this, config;
@@ -3174,7 +3236,7 @@
 
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -3279,7 +3341,7 @@
 
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -3414,7 +3476,7 @@
 
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -3474,7 +3536,7 @@
 
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -3544,7 +3606,7 @@
 
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -3614,7 +3676,7 @@
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -3622,10 +3684,10 @@
 	  var o;
 	  o = Component.prototype;
 	  o.initLint = function(){
-	    this.initLintJqIc();
+	    this.initLintJs();
 	  };
 	  o.lintMake = function(o){
-	    return this.lintMakeJs(o);
+	    return this.lintMakeJqIc(o);
 	  };
 	  o.lintSetValue = function(o){
 	    this.lintSetValueIc(o);
@@ -3633,25 +3695,37 @@
 	  o.lintGetValue = function(o){
 	    return this.lintGetValueIc(o);
 	  };
-	  o.initLintJqIc = function(){
+	  o.lintEnable = function(o){
+	    this.lintEnableIc(o);
+	  };
+	  o.lintDisable = function(o){
+	    this.lintDisableIc(o);
+	  };
+	  o.initLintJs = function(){
 	    var _this;
 	    if (this.debug) {
 	      console.log('Lint!');
 	    }
 	    _this = this;
-	    $('#content__input__notes__lint').iCheck({
+	    this.lintMake(this.props.main.lint.inputs.notes);
+	    this.lintMake(this.props.main.lint.outputs.index);
+	  };
+	  o.lintMakeJqIc = function(o){
+	    var _this;
+	    if (this.debug) {
+	      console.log('Lint:Make');
+	    }
+	    _this = this;
+	    $('#' + o.id).iCheck({
 	      checkboxClass: 'icheckbox_minimal'
 	    });
-	    $('#content__output__index__lint').iCheck({
-	      checkboxClass: 'icheckbox_minimal'
-	    });
-	    $('#content__input__notes__lint').on('ifChanged', function(){
+	    $('#' + o.id).on('ifChanged', function(){
 	      var checked;
-	      checked = $('#content__input__notes__lint').prop('checked');
-	      _this.editorToggleLint({
-	        context: 'inputs',
-	        entity: 'notes',
-	        state: checked
+	      checked = $('#' + o.id).prop('checked');
+	      _this[o.onChange]({
+	        context: o.context,
+	        entity: o.entity,
+	        value: checked
 	      });
 	    });
 	  };
@@ -3668,7 +3742,7 @@
 	    $('#content__' + ids[o.context] + '__' + o.entity + '__lint').iCheck(value);
 	  };
 	  o.lintGetValueIc = function(o){
-	    var ids, value;
+	    var ids;
 	    if (this.debug) {
 	      console.log('Lint:Get:Value');
 	    }
@@ -3676,8 +3750,29 @@
 	      'outputs': 'output',
 	      'inputs': 'input'
 	    };
-	    value = $('#content__' + ids[o.context] + '__' + o.entity + '__lint').prop('checked');
-	    return value;
+	    return $('#content__' + ids[o.context] + '__' + o.entity + '__lint').prop('checked');
+	  };
+	  o.lintEnableIc = function(o){
+	    var ids;
+	    if (this.debug) {
+	      console.log('Lint:Enable');
+	    }
+	    ids = {
+	      'outputs': 'output',
+	      'inputs': 'input'
+	    };
+	    $('#content__' + ids[o.context] + '__' + o.entity + '__lint').iCheck('enable');
+	  };
+	  o.lintDisableIc = function(o){
+	    var ids;
+	    if (this.debug) {
+	      console.log('Lint:Disable');
+	    }
+	    ids = {
+	      'outputs': 'output',
+	      'inputs': 'input'
+	    };
+	    $('#content__' + ids[o.context] + '__' + o.entity + '__lint').iCheck('disable');
 	  };
 	};
 	if (true) {
@@ -3687,7 +3782,7 @@
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -3742,6 +3837,9 @@
 	  o.inputOnEditorChange = function(o){
 	    this.inputOnEditorChangeJs(o);
 	  };
+	  o.inputOnLintChange = function(o){
+	    this.inputOnLintChangeJs(o);
+	  };
 	  o.inputSave = function(o){
 	    this.inputSaveJs(o);
 	  };
@@ -3775,117 +3873,15 @@
 	      entity: 'notes'
 	    });
 	  };
-	  o.inputLoadAutoJs = function(o){
-	    var i$, ref$;
+	  o.inputOnLintChangeJs = function(o){
 	    if (this.debug) {
-	      console.log('Input:Load:Auto');
+	      console.log('Input:On:Lint:Change');
 	    }
-	    for (i$ in ref$ = o.inputs) {
-	      (fn$.call(this, i$, ref$[i$]));
-	    }
-	    function fn$(entity, files){
-	      this.inputs[entity] = files;
-	      this.inputLoadFilesAuto({
-	        entity: entity,
-	        files: files
-	      });
-	      this.inputLoadOthersAuto({
-	        entity: entity
-	      });
-	    }
-	  };
-	  o.inputLoadFilesAutoJs = function(o){
-	    var filesGlobal, filesLocal, i$;
-	    if (this.debug) {
-	      console.log('Input:Load:Files:Auto');
-	    }
-	    filesGlobal = o.files;
-	    filesLocal = this.fileList({
+	    this.editorToggleLint({
 	      context: 'inputs',
-	      entity: o.entity
+	      entity: o.entity,
+	      state: o.value
 	    });
-	    for (i$ in filesGlobal) {
-	      (fn$.call(this, i$, filesGlobal[i$]));
-	    }
-	    for (i$ in filesLocal) {
-	      (fn1$.call(this, i$, filesLocal[i$]));
-	    }
-	    function fn$(file, props){
-	      this.fileCreate({
-	        context: 'inputs',
-	        entity: o.entity,
-	        value: file
-	      });
-	    }
-	    function fn1$(file, props){
-	      if (!filesGlobal.hasOwnProperty(file)) {
-	        this.fileDestroy({
-	          context: 'inputs',
-	          entity: o.entity,
-	          value: file
-	        });
-	        this.inputSelect({
-	          entity: o.entity,
-	          file: 'index'
-	        });
-	      }
-	    }
-	  };
-	  o.inputLoadOthersAutoJs = function(o){
-	    var i$, ref$;
-	    if (this.debug) {
-	      console.log('Input:Load:Editors:Auto');
-	    }
-	    for (i$ in ref$ = this.inputs) {
-	      (fn$.call(this, i$, ref$[i$]));
-	    }
-	    function fn$(entity, props){
-	      var input, input_src, input_ext, input_mode, editor_val, ext_val, mode_val;
-	      input = this.input[entity];
-	      input_src = this.inputs[entity][input].src;
-	      input_ext = this.inputs[entity][input].ext;
-	      input_mode = this.inputs[entity][input].mode;
-	      editor_val = this.editorGetValue({
-	        context: 'inputs',
-	        entity: entity
-	      });
-	      ext_val = this.extGetValue({
-	        context: 'inputs',
-	        entity: entity
-	      });
-	      mode_val = this.modeGetValue({
-	        context: 'inputs',
-	        entity: entity
-	      });
-	      if (input_src !== editor_val) {
-	        if (!this.debounces.inputs[o.entity]) {
-	          this.editorSetValue({
-	            context: 'inputs',
-	            entity: entity,
-	            value: input_src
-	          });
-	        }
-	      }
-	      if (input_ext !== ext_val) {
-	        this.extSetValue({
-	          context: 'inputs',
-	          entity: entity,
-	          value: input_ext
-	        });
-	        this.editorSetMode({
-	          context: 'inputs',
-	          entity: entity,
-	          ext: input_ext
-	        });
-	      }
-	      if (input_mode !== mode_val) {
-	        this.modeSetValue({
-	          context: 'inputs',
-	          entity: entity,
-	          value: input_mode
-	        });
-	      }
-	    }
 	  };
 	  o.inputGetJs = function(o){
 	    var input;
@@ -4120,7 +4116,7 @@
 	        ext: o.value
 	      });
 	    } else {
-	      o.value = 'md';
+	      o.value = '++.md';
 	    }
 	    return o.value;
 	  };
@@ -4234,6 +4230,118 @@
 	      }
 	    }
 	  };
+	  o.inputLoadAutoJs = function(o){
+	    var i$, ref$;
+	    if (this.debug) {
+	      console.log('Input:Load:Auto');
+	    }
+	    for (i$ in ref$ = o.inputs) {
+	      (fn$.call(this, i$, ref$[i$]));
+	    }
+	    function fn$(entity, files){
+	      this.inputs[entity] = files;
+	      this.inputLoadFilesAuto({
+	        entity: entity,
+	        files: files
+	      });
+	      this.inputLoadOthersAuto({
+	        entity: entity
+	      });
+	    }
+	  };
+	  o.inputLoadFilesAutoJs = function(o){
+	    var filesGlobal, filesLocal, i$;
+	    if (this.debug) {
+	      console.log('Input:Load:Files:Auto');
+	    }
+	    filesGlobal = o.files;
+	    filesLocal = this.fileList({
+	      context: 'inputs',
+	      entity: o.entity
+	    });
+	    for (i$ in filesGlobal) {
+	      (fn$.call(this, i$, filesGlobal[i$]));
+	    }
+	    for (i$ in filesLocal) {
+	      (fn1$.call(this, i$, filesLocal[i$]));
+	    }
+	    function fn$(file, props){
+	      this.fileCreate({
+	        context: 'inputs',
+	        entity: o.entity,
+	        value: file
+	      });
+	    }
+	    function fn1$(file, props){
+	      if (!filesGlobal.hasOwnProperty(file)) {
+	        this.fileDestroy({
+	          context: 'inputs',
+	          entity: o.entity,
+	          value: file
+	        });
+	        this.inputSelect({
+	          entity: o.entity,
+	          file: 'index'
+	        });
+	      }
+	    }
+	  };
+	  o.inputLoadOthersAutoJs = function(o){
+	    var i$, ref$;
+	    if (this.debug) {
+	      console.log('Input:Load:Editors:Auto');
+	    }
+	    for (i$ in ref$ = this.inputs) {
+	      (fn$.call(this, i$, ref$[i$]));
+	    }
+	    function fn$(entity, props){
+	      var input, input_src, input_ext, input_mode, editor_val, ext_val, mode_val;
+	      input = this.input[entity];
+	      input_src = this.inputs[entity][input].src;
+	      input_ext = this.inputs[entity][input].ext;
+	      input_mode = this.inputs[entity][input].mode;
+	      editor_val = this.editorGetValue({
+	        context: 'inputs',
+	        entity: entity
+	      });
+	      ext_val = this.extGetValue({
+	        context: 'inputs',
+	        entity: entity
+	      });
+	      mode_val = this.modeGetValue({
+	        context: 'inputs',
+	        entity: entity
+	      });
+	      if (input_src !== editor_val) {
+	        if (!this.debounces.inputs[o.entity]) {
+	          this.editorSetValue({
+	            context: 'inputs',
+	            entity: entity,
+	            value: input_src
+	          });
+	        }
+	      }
+	      if (input_ext !== ext_val) {
+	        this.extSetValue({
+	          context: 'inputs',
+	          entity: entity,
+	          value: input_ext
+	        });
+	        this.editorSetMode({
+	          context: 'inputs',
+	          entity: entity,
+	          ext: input_ext
+	        });
+	      }
+	      if (input_mode !== mode_val) {
+	        this.modeSetValue({
+	          context: 'inputs',
+	          entity: entity,
+	          value: input_mode
+	        });
+	      }
+	    }
+	  };
 	};
 	if (true) {
 	  module.exports = Component;
@@ -4242,7 +4350,7 @@
 
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -4288,6 +4396,9 @@
 	  o.outputOnModeChange = function(o){
 	    this.outputOnModeChangeJs(o);
 	  };
+	  o.outputOnLintChange = function(o){
+	    this.outputOnLintChangeJs(o);
+	  };
 	  o.initOutputJs = function(){
 	    var _this;
 	    if (this.debug) {
@@ -4313,6 +4424,16 @@
 	      value: 'text/html'
 	    });
 	    this.outputMakeContainerFrame();
+	  };
+	  o.outputOnLintChangeJs = function(o){
+	    if (this.debug) {
+	      console.log('Output:On:Lint:Change');
+	    }
+	    this.editorToggleLint({
+	      context: 'outputs',
+	      entity: o.entity,
+	      state: o.value
+	    });
 	  };
 	  o.outputRunJs = function(o){
 	    var _this, results;
@@ -4398,6 +4519,11 @@
 	      entity: 'index',
 	      value: o.src
 	    });
+	    this.extSetValue({
+	      context: 'outputs',
+	      entity: 'index',
+	      value: o.ext
+	    });
 	  };
 	  o.outputGetPropsJs = function(o){
 	    var props;
@@ -4417,6 +4543,9 @@
 	    return props;
 	  };
 	  o.outputResetJs = function(o){
+	    if (this.debug) {
+	      console.log('Output:Reset');
+	    }
 	    delete this.editors.outputs.index;
 	    delete this.files.outputs.index;
 	    delete this.frames.outputs.index;
@@ -4441,6 +4570,15 @@
 	      ext: 'html'
 	    });
 	    this.modeDisable({
+	      context: 'outputs',
+	      entity: 'index'
+	    });
+	    this.lintSetValue({
+	      context: 'outputs',
+	      entity: 'index',
+	      value: false
+	    });
+	    this.lintDisable({
 	      context: 'outputs',
 	      entity: 'index'
 	    });
@@ -4470,6 +4608,10 @@
 	      context: 'outputs',
 	      entity: 'index'
 	    });
+	    this.lintEnable({
+	      context: 'outputs',
+	      entity: 'index'
+	    });
 	    $('#content__output__index__button__holder').html('<button id="content__output__index__file__destroy" type="button" class="btn btn-danger disabled"><i class="fa fa-trash"></i></button>');
 	    $('#content__output__index__select__holder').html('<select id="content__output__index__file"></select>');
 	    $('#content__output__index__holder').html('<textarea id="content__output__index__editor"></textarea>');
@@ -4492,6 +4634,10 @@
 	      context: 'outputs',
 	      entity: 'index',
 	      value: 'index'
+	    });
+	    this.fileDisable({
+	      context: 'outputs',
+	      entity: 'index'
 	    });
 	  };
 	  o.outputOnResultChangeJs = function(o){
@@ -4538,6 +4684,11 @@
 	      entity: 'index',
 	      ext: o.value
 	    });
+	    this.editorSetMode({
+	      context: 'outputs',
+	      entity: 'index',
+	      ext: o.value
+	    });
 	    return o.value;
 	  };
 	  o.outputOnModeChangeJs = function(o){
@@ -4559,7 +4710,7 @@
 
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -4773,7 +4924,6 @@
 	    if (this.debug) {
 	      console.log('Run:Modules!');
 	    }
-	    __webpack_require__(57)(Component);
 	    __webpack_require__(58)(Component);
 	    __webpack_require__(59)(Component);
 	    __webpack_require__(60)(Component);
@@ -4794,6 +4944,7 @@
 	    __webpack_require__(75)(Component);
 	    __webpack_require__(76)(Component);
 	    __webpack_require__(77)(Component);
+	    __webpack_require__(78)(Component);
 	  };
 	  o.initRunDefaultsJs = function(o){
 	    var _this;
@@ -4932,7 +5083,7 @@
 
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -4999,7 +5150,7 @@
 
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5067,7 +5218,7 @@
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5135,7 +5286,7 @@
 
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5185,18 +5336,20 @@
 	      console.log('Run:Markdown:Marked:Editor');
 	    }
 	    o.src = this.runMarkdownMarkedCompile(o);
+	    o.ext = 'html';
 	    this.runDisplay(o);
 	  };
 	  o.runMarkdownMarkedCompileJs = function(o){
-	    var stringify, prepend, append, config, src;
+	    var src, stringify, prepend, append, config;
 	    if (this.debug) {
 	      console.log('Run:Markdown:Marked:Compile');
 	    }
+	    src = '';
 	    stringify = false;
 	    prepend = '';
 	    append = '';
-	    if (o.global.ext && o.global.ext.md) {
-	      config = o.global.ext.md;
+	    if (o.global.ext && (o.global.ext.md || o.global.ext['++.md'])) {
+	      config = o.global.ext.md || o.global.ext['++.md'];
 	      if (config.stringify) {
 	        stringify = true;
 	      }
@@ -5222,7 +5375,7 @@
 
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5279,13 +5432,36 @@
 	    o.src = this.runMarkdownMarkedppCompile({
 	      src: o.src
 	    });
+	    o.ext = 'html';
 	    this.runDisplay(o);
 	  };
 	  o.runMarkdownMarkedppCompileMd = function(o){
+	    var src, stringify, prepend, append, config;
 	    if (this.debug) {
 	      console.log('Run:Markdown:Markedpp:Compile');
 	    }
-	    return marked(o.src);
+	    src = '';
+	    stringify = false;
+	    prepend = '';
+	    append = '';
+	    if (o.global.ext && (o.global.ext.md || o.global.ext['++.md'])) {
+	      config = o.global.ext.md || o.global.ext['++.md'];
+	      if (config.stringify) {
+	        stringify = true;
+	      }
+	      if (config.prepend) {
+	        prepend = config.prepend;
+	      }
+	      if (config.append) {
+	        append = config.append;
+	      }
+	    }
+	    src = marked(o.src);
+	    if (stringify) {
+	      src = JSON.stringify(src);
+	    }
+	    src = prepend + '[\'' + o.name + '\'] = ' + src + append;
+	    return src;
 	  };
 	};
 	if (true) {
@@ -5295,7 +5471,7 @@
 
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5360,7 +5536,7 @@
 
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5423,7 +5599,7 @@
 
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5473,13 +5649,10 @@
 	    this.runDisplay(o);
 	  };
 	  o.runPreprocessorSassCompileSa = function(o){
-	    var src;
 	    if (this.debug) {
 	      console.log('Run:Preprocessor:Sass:Compile');
 	    }
-	    src = Sass.compile(o.src);
-	    console.log('A', src);
-	    return src;
+	    return Sass.compile(o.src);
 	  };
 	};
 	if (true) {
@@ -5489,7 +5662,7 @@
 
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5539,17 +5712,10 @@
 	    this.runDisplay(o);
 	  };
 	  o.runPreprocessorStylusCompileSy = function(o){
-	    var str;
 	    if (this.debug) {
 	      console.log('Run:Preprocessor:Stylus:Compile');
 	    }
-	    /*
-	    src = stylus.renderSync o.src
-	    console.log 'A', src
-	    src
-	    */
-	    str = stylus(o.src).render();
-	    return str;
+	    return stylus(o.src).render();
 	  };
 	};
 	if (true) {
@@ -5559,7 +5725,7 @@
 
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5628,7 +5794,7 @@
 
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5698,7 +5864,7 @@
 
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5768,7 +5934,7 @@
 
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5780,7 +5946,7 @@
 
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5792,7 +5958,7 @@
 
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5804,7 +5970,7 @@
 
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5816,7 +5982,7 @@
 
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5828,7 +5994,7 @@
 
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5840,7 +6006,7 @@
 
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5852,7 +6018,7 @@
 
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5864,7 +6030,7 @@
 
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5876,7 +6042,7 @@
 
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -5937,7 +6103,7 @@
 
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -6043,7 +6209,7 @@
 
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -6139,7 +6305,7 @@
 
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -6155,12 +6321,12 @@
 	    this.consoleLog({
 	      text: 'Admin!'
 	    });
-	    __webpack_require__(82)(Component);
 	    __webpack_require__(83)(Component);
 	    __webpack_require__(84)(Component);
 	    __webpack_require__(85)(Component);
 	    __webpack_require__(86)(Component);
-	    __webpack_require__(88)(Component);
+	    __webpack_require__(87)(Component);
+	    __webpack_require__(89)(Component);
 	    this.initValue();
 	    this.initRoute();
 	    this.initSrc();
@@ -6176,7 +6342,7 @@
 
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -6408,13 +6574,13 @@
 	  };
 	  o.valueRenderValueJs = function(o){
 	    if (this.debug) {
-	      console.log('Work:Job:Value:Render:Value');
+	      console.log('Value:Render:Value');
 	    }
 	    return '<div>' + '<span>' + (o.item.tree || '') + '</span> ' + '</div>';
 	  };
 	  o.valueRenderOptionJs = function(o){
 	    if (this.debug) {
-	      console.log('Work:Job:Value:Render:Option');
+	      console.log('Value:Render:Option');
 	    }
 	    return '<div>' + '<span>' + (o.item.tree || '') + '</span> ' + '</div>';
 	  };
@@ -6426,7 +6592,7 @@
 
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -6608,7 +6774,7 @@
 
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -6676,7 +6842,7 @@
 
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -6759,7 +6925,7 @@
 
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -6773,7 +6939,7 @@
 	    if (this.debug) {
 	      console.log('Tree!');
 	    }
-	    __webpack_require__(87)(Component);
+	    __webpack_require__(88)(Component);
 	    this.treeMainDataMakeContainer(this.props.admin.tree['default']);
 	  };
 	};
@@ -6784,7 +6950,7 @@
 
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -7072,7 +7238,7 @@
 
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -7086,7 +7252,7 @@
 	    if (this.debug) {
 	      console.log('List!');
 	    }
-	    __webpack_require__(89)(Component);
+	    __webpack_require__(90)(Component);
 	    this.listMainDataMakeContainer(this.props.admin.list['default']);
 	  };
 	};
@@ -7097,7 +7263,7 @@
 
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -7459,7 +7625,7 @@
 
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -7475,9 +7641,9 @@
 	    this.consoleLog({
 	      text: 'Util!'
 	    });
-	    __webpack_require__(91)(Component);
 	    __webpack_require__(92)(Component);
-	    __webpack_require__(97)(Component);
+	    __webpack_require__(93)(Component);
+	    __webpack_require__(98)(Component);
 	    this.initFormat();
 	    this.initExport();
 	    this.initImport();
@@ -7490,7 +7656,7 @@
 
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -7577,7 +7743,7 @@
 
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -7608,10 +7774,10 @@
 	      console.log('Export!');
 	    }
 	    _this = this;
-	    __webpack_require__(93)(Component);
 	    __webpack_require__(94)(Component);
 	    __webpack_require__(95)(Component);
 	    __webpack_require__(96)(Component);
+	    __webpack_require__(97)(Component);
 	    this.exportMakeMainInput({
 	      entity: 'notes'
 	    });
@@ -7748,7 +7914,7 @@
 
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -7822,7 +7988,7 @@
 
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -7897,7 +8063,7 @@
 
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -7977,7 +8143,7 @@
 
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -8031,7 +8197,7 @@
 
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -8062,10 +8228,10 @@
 	      console.log('Import!');
 	    }
 	    _this = this;
-	    __webpack_require__(98)(Component);
 	    __webpack_require__(99)(Component);
 	    __webpack_require__(100)(Component);
 	    __webpack_require__(101)(Component);
+	    __webpack_require__(102)(Component);
 	    this.importMakeMainInput({
 	      entity: 'notes'
 	    });
@@ -8233,7 +8399,7 @@
 
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -8266,7 +8432,7 @@
 
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -8356,7 +8522,7 @@
 
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -8411,7 +8577,7 @@
 
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -8460,7 +8626,7 @@
 
 
 /***/ },
-/* 102 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -8476,9 +8642,9 @@
 	    this.consoleLog({
 	      text: 'App!'
 	    });
-	    __webpack_require__(103)(Component);
 	    __webpack_require__(104)(Component);
 	    __webpack_require__(105)(Component);
+	    __webpack_require__(106)(Component);
 	    this.initAppWorkJob();
 	    this.initAppFront();
 	    this.initAppValue();
@@ -8491,7 +8657,7 @@
 
 
 /***/ },
-/* 103 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -8689,7 +8855,7 @@
 
 
 /***/ },
-/* 104 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
@@ -8759,7 +8925,7 @@
 
 
 /***/ },
-/* 105 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Component;
