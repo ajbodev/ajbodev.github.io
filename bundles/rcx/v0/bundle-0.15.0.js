@@ -758,7 +758,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<!DOCTYPE html>\r\n<html>\r\n  <head>\r\n    <style data-include='index'></style>\r\n  </head>\r\n  <body>\r\n    <div id='app'></div>\r\n    <script data-include='index'></\\script>\r\n  </body>\r\n</html>"
+	module.exports = "<!DOCTYPE html>\r\n<html>\r\n  <head>\r\n    <style data-include='index'></style>\r\n  </head>\r\n  <body>\r\n    <div id='app'></div>\r\n    <script data-include='index'></\script>\r\n  </body>\r\n</html>"
 
 /***/ },
 /* 9 */
