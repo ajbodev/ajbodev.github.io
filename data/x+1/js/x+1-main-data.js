@@ -1,2 +1,0 @@
-app.component._data([
-])
