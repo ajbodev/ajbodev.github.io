@@ -12,6 +12,16 @@
   }
 }
 
+.btn-default {
+  background-color: white !important;
+  border-color: #ccc !important;
+}
+
+.btn-btn {
+  background-color: #d2d6de !important;
+  border-color: #ccc !important;
+}
+
 /* ? */
 
 textarea {
@@ -63,7 +73,7 @@ textarea {
 #content__input__html__file__create__text, 
 #content__input__css__file__create__text,
 #content__input__js__file__create__text,
-#content__admin__data__create__text {
+#content__admin__select__create__text {
   background-color: #222 !important;
   color: #DDDDDD !important;
 }
@@ -293,7 +303,7 @@ iframe { width:  100%; height: 595px; border: 0px;  }
 }
 
 .content__admin__top__select__edit__mid, 
-.content__admin__top__select__clone__mid,
+.content__admin__top__select__clone__right,
 .content__admin__top__select__replace__right {
   display: table-cell;
   vertical-align: top;
@@ -308,6 +318,7 @@ iframe { width:  100%; height: 595px; border: 0px;  }
   padding-left: 14px;
 }
 
+.content__admin__top__select__clone__mid,
 .content__admin__top__select__replace__mid {
   display: table-cell;
   vertical-align: top;
