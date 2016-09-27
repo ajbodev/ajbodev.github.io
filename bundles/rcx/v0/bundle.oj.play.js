@@ -1220,12 +1220,12 @@
 /***/ function(module, exports) {
 
 	window.db_dexie = {
-	  rcx: new Dexie('rcx_oj_play'),
+	  rcx_oj_play: new Dexie('rcx_oj_play'),
 	  _schemas: {
-	    rcx: {}
+	    rcx_oj_play: {}
 	  },
 	  _table: {
-	    rcx: {}
+	    rcx_oj_play: {}
 	  },
 	  _version: function(db, version, schema){
 	    window.db_dexie._schemas[db][version] = schema;
@@ -1239,10 +1239,10 @@
 	    window.db_dexie[db].open();
 	  }
 	};
-	window.db_dexie._version('rcx', 1, {
+	window.db_dexie._version('rcx_oj_play', 1, {
 	  data: '++id, name'
 	});
-	window.db_dexie._init('rcx');
+	window.db_dexie._init('rcx_oj_play');
 	//# sourceMappingURL=e:\app\node_modules\livescript-loader\index.js!e:\app\src\rcx\v0\store\browser\indexeddb-dexie\store-db.ls.map
 
 
@@ -2318,7 +2318,7 @@
 	          others: '{}'
 	        },
 	        indexeddb: {
-	          db_url: 'rcx',
+	          db_url: 'rcx_oj_play',
 	          table: 'data',
 	          others: '{}'
 	        },
