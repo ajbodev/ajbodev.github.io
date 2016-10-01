@@ -1,81 +1,97 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us" ng-app="app"><head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Omar Job Abesamis · Full Stack Web Developer</title>
-    <link href="vendors/coat/hyde/hyde-2.0.0/poole.css" rel="stylesheet" />
-    <link href="vendors/coat/hyde/hyde-2.0.0/hyde.css" rel="stylesheet" />
-    <link href="vendors/coat/hyde/hyde-2.0.0/css.css" rel="stylesheet" />
-    <link href="vendors/animation/animate-css/animate-css-3.4.0/animate.min.css" rel="stylesheet" />
-    <style>
-      @media (max-width: 768px) {
-        .sidebar { 
-          height: 270px;
-          padding: 20px 0 0 0;
-        }
-        h1 { font-size: 2rem !important;}
-        .container { 
-          padding-top: 0;
-        }
-      }
-      @media (min-width: 608px) and (max-width: 768px) {
-        a.sidebar-nav-item {
-          font-size: 16px;
-        }
-        .sidebar { 
-          height: 300px;
-          padding: 20px 0 0 0;
-        }
-      }
-      img[alt='github'] { float: right; width: 50px; height: 25px;}
-      img[alt='github-left'] { float: left; height: 20px;}
-      img[alt='testimonial'] { height: 100px; }
-      
-      
-      
-    </style>
-  </head>
-  <body class="theme-base-08 layout-reverse">
-    <div class="sidebar">
-      <div class="container sidebar-sticky">
-        <div class="sidebar-about">
-          <h1><a href="#/">OJ Abesamis</a></h1>
-          <p>Full Stack Web Developer</p>
-        </div>
-        <nav class="sidebar-nav"><a href="#/home" class="sidebar-nav-item">Home</a><a href="#/projects" class="sidebar-nav-item">Projects</a><a href="#/blog" class="sidebar-nav-item">Blog</a><a href="#/resume" class="sidebar-nav-item">Resume</a><a href="#/about" class="sidebar-nav-item">About</a></nav>
-      </div>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head data-include="_head/pure">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css" rel="stylesheet" />
+<link href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css" rel="stylesheet" />
+<link href="http://purecss.io/combo/1.18.13?/css/layouts/blog.css" rel="stylesheet" />
+<link href="http://ajbodev.github.io/vendors/animation/animate-css/animate-css-3.4.0/animate.min.css" rel="stylesheet" />
+<link href="http://ajbodev.github.io/vendors/progress/nprogress/nprogress-0.2.0/nprogress.min.css" rel="stylesheet" />
+<style data-include="index">
+iframe {
+  width: 100%;
+  border: none;
+  height: 700px;
+}
+
+</style></head>
+  <body>
+    <div data-include="_body/pure">
+<div id="layout" class="pure-g">
+  <div class="sidebar pure-u-1 pure-u-md-1-4">
+    <div class="header">
+      <h1 class="brand-title">OJ Abesamis</h1>
+      <h2 class="brand-tagline">Fullstack Web Developer</h2>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#/home" class="pure-button">Home</a></li>
+          <li class="nav-item"><a href="#/about" class="pure-button">About</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="content container">
-      <div class="posts">
-        <div id="content" ui-view=""></div>
-      </div>
-    </div>
-    <script>window.data = {};</script>
-    <script data-include="content/home">window.data['content/home'] = "<h1 id=\"home\">Home</h1>\n<hr>\n<h2 id=\"-about-about-\"><a href=\"#/about\">About</a></h2>\n<p>I&#39;m <strong>Omar Job Abesamis</strong>, a Full Stack Web Developer <a href=\"#/about\">...</a></p>\n<hr>\n<h2 id=\"-projects-projects-\"><a href=\"#/projects\">Projects</a></h2>\n<hr>\n<h2 id=\"-blog-blog-\"><a href=\"#/blog\">Blog</a></h2>\n<hr>\n<h2 id=\"-resume-resume-\"><a href=\"#/resume\">Resume</a></h2>\n<p><strong>Full Stack Web Developer</strong> with over two years of \nexperience programming for the web <a href=\"#/resume\">...</a></p>\n<hr>\n";</script>
-    <script data-include="content/projects">window.data['content/projects'] = "<h1 id=\"projects\">Projects</h1>\n<p><strong><a href=\"https://github.com/ajbodev/bible-html/wiki\">Bible HTML</a></strong> <a href=\"https://github.com/ajbodev/bible-html\"><img src=\"media/github.png\" alt=\"github\"></a><br><em>Fast, minimalist Bible app built using the modern web</em></p>\n<hr>\n<p><strong><a href=\"https://github.com/ajbodev/rcx/wiki\">Rich Code eXperience</a></strong> <a href=\"https://github.com/ajbodev/rcx\"><img src=\"media/github.png\" alt=\"github\"></a><br><em>Code playground for several web-related languages, libraries, and frameworks</em> </p>\n<hr>\n<p><strong><a href=\"https://github.com/ajbodev/modern-hrm/wiki\">ModernHRM</a></strong> <a href=\"https://github.com/ajbodev/modern-hrm\"><img src=\"media/github.png\" alt=\"github\"></a><br><em>A port of OrangeHRM using modern web technologies</em></p>\n<hr>\n<p><strong><a href=\"https://github.com/ajbodev/rcx-social/wiki\">Rich Code eXperience Social</a></strong> <a href=\"https://github.com/ajbodev/rcx-social\"><img src=\"media/github.png\" alt=\"github\"></a><br><em>Social code playground for several web-related languages, libraries, and frameworks</em></p>\n<hr>\n<p><strong><a href=\"http://centraltruth.altervista.org/wordpress-4.3.1/\">Central Baptist Church</a></strong><br><em>Modernized, mobile-friendly church website made with WordPress</em></p>\n<hr>\n<p><strong><a href=\"http://ajbodev.github.io/hymns/\">Hymnal HTML</a></strong><br><em>Fast, minimalist Hymnal app built using the modern web</em></p>\n<hr>\n<p><strong><a href=\"https://github.com/ajbodev/xtt/wiki\">eXtensible Text Transformer</a></strong> <a href=\"https://github.com/ajbodev/xtt\"><img src=\"media/github.png\" alt=\"github\"></a><br><em>Extensible Text Transformer</em></p>\n<hr>\n<p><a href=\"#/testimonials\">Testimonials</a><br><a href=\"#/resume\">Resume</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/blog">window.data['content/blog'] = "<h1 id=\"blog\">Blog</h1>\n<p><strong><a href=\"#/blog/rich-coding-experience\">Rich Coding Experience</a></strong><br><em>Trying web technologies has never been so easy!</em> </p>\n<hr>\n<!--\n\n**[The Bible in HTML](#/blog/bible-in-html)**  \n*How the fastest Bible app in the world was built*\n\n---\n\n**[Modernizing OrangeHRM](#/blog/modernizing-orangehrm)**  \n*For developers wanting a more modernized version of the popular\nopen-source HR software*\n\n---\n\n-->\n<p><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/resume">window.data['content/resume'] = "<h1 id=\"resume\">Resume</h1>\n<h2 id=\"omar-job-abesamis\">OMAR JOB ABESAMIS</h2>\n<p>Mt Pleasant *, Michigan 48858<br>* <em>Willing to relocate; Authorized to work and reside in the US</em><br><strong>PHONE:</strong> (989) 545 7621<br><strong>EMAIL:</strong> aj.bo.dev@gmail.com<br><strong><a href=\"https://github.com/ajbodev\">GITHUB</a>,\n<a href=\"https://linkedin.com/in/ajbodev\">LINKEDIN</a>, \n<a href=\"http://ajbodev.github.io\">WEBSITE</a>, \n<a href=\"http://ajbodev.github.io/media/Omar-Job-Abesamis-resume.pdf\">PDF</a></strong>  </p>\n<hr>\n<p><strong>FULL STACK WEB DEVELOPER</strong> with over four years of experience programming for the web (backend and frontend). <em>Experienced</em> in building web apps that support organizational and personal needs. <em>Knowledgeable</em> in using available open source solutions that speed up development time. <em>Open</em> and <em>eager</em> to learn new technologies as they fit the problem. <em>Willing</em> to master general conventions and specific niches of technology according to the team’s needs. <em>Enjoys</em> technical challenges and <em>sharing</em> insights.</p>\n<hr>\n<p><strong>TECHNOLOGIES (PREFERRED):</strong>  </p>\n<ul>\n<li><strong><a href=\"#/technology/language\">LANGUAGES</a>:</strong> <a href=\"#/technology/language/javascript\">JavaScript</a>, <a href=\"#/technology/language/csharp\">C#</a>, <a href=\"#/technology/language/ruby\">Ruby</a>, <a href=\"#/technology/language/php\">PHP</a>, <a href=\"#/technology/language/java\">Java</a>, <a href=\"#/technology/language/python\">Python</a>, <a href=\"#/technology/language/sql\">SQL</a>, <a href=\"#/technology/language/html\">HTML</a>, <a href=\"#/technology/language/css\">CSS</a></li>\n<li><strong><a href=\"#/technology/framework\">FRONTEND FRAMEWORKS/LIBRARIES</a>:</strong> <a href=\"#/technology/framework/angular\">AngularJS</a>, <a href=\"#/technology/framework/react\">React.js</a>, <a href=\"#/technology/framework/ember\">Ember.js</a>, <a href=\"#/technology/framework/jquery\">jQuery</a>, <a href=\"#/technology/framework/bootstrap\">Bootstrap</a></li>\n<li><strong><a href=\"#/technology/framework\">SERVER FRAMEWORKS</a>:</strong> <a href=\"#/technology/framework/aspdotnet\">ASP.NET</a>, <a href=\"#/technology/framework/rails\">Ruby on Rails</a>, <a href=\"#/technology/framework/spring\">Spring</a>, <a href=\"#/technology/framework/laravel\">Laravel</a>, <a href=\"#/technology/framework/express\">Express</a>, <a href=\"#/technology/framework/django\">Django</a></li>\n<li><strong><a href=\"#/technology/cms\">CMS</a>:</strong> <a href=\"#/technology/cms/wordpress\">WordPress</a>, <a href=\"#/technology/cms/drupal\">Drupal</a></li>\n<li><strong><a href=\"#/technology/database\">DATABASES</a>:</strong> <a href=\"#/technology/database/mysql\">MySQL</a>, <a href=\"#/technology/database/sqlserver\">SQL Server</a>, <a href=\"#/technology/database/postgresql\">PostgreSQL</a>, <a href=\"#/technology/database/mongodb\">MongoDB</a></li>\n<li><strong><a href=\"#/technology/hosting\">HOSTING</a>:</strong> <a href=\"#/technology/hosting/openshift\">OpenShift</a>, <a href=\"#/technology/hosting/heroku\">Heroku</a></li>\n<li><strong><a href=\"#/technology/others\">OTHERS</a>:</strong> <a href=\"#/technology/others/apache\">Apache</a>, <a href=\"#/git\">Git</a>, <a href=\"#/technology/others/node\">Node</a>, <a href=\"#/technology/others/gulp\">Gulp</a>, <a href=\"#/technology/others/jade\">Jade</a>, <a href=\"#/technology/others/coffeescript-livescript-typescript\">CoffeeScript, LiveScript, TypeScript</a>, <a href=\"#/technology/others/stylus-less-sass\">Stylus/LESS/SASS</a>,  <a href=\"#/technology/others/excel\">Excel with PowerPivot DAX</a></li>\n</ul>\n<p><strong><a href=\"#/technology/paradigm\">PARADIGMS</a>:</strong> <a href=\"#/technology/paradigm/object-oriented-programming\">Object-Oriented Programming</a>, <a href=\"#/technology/paradigm/functional-programming\">Functional Programming</a>, <a href=\"#/technology/paradigm/test-driven-development\">Test-Driven Development</a>, <a href=\"#/technology/paradigm/relational\">Relational Database/Model</a>, <a href=\"#/technology/paradigm/agile\">Agile Software Development</a></p>\n<p><strong><a href=\"#/technology/discipline\">DISCIPLINES</a>:</strong> <a href=\"#/technology/discipline/software-engineering\">Software Engineering</a>, <a href=\"#/technology/discipline/user-experience\">User Experience</a>, <a href=\"#/technology/discipline/business-intelligence\">Business Intelligence</a></p>\n<hr>\n<h2 id=\"work-experience\">WORK EXPERIENCE</h2>\n<p><strong><a href=\"http://www.intellicare.com.ph/\">Intellicare</a></strong> 2012-2014<br><strong>WEB DEVELOPER</strong></p>\n<ul>\n<li>Migrated the organization’s HR system from Visual FoxPro to OrangeHRM (PHP and MySQL)</li>\n<li>Extended OrangeHRM with history and ACL capabilities (Symfony, jQuery)</li>\n<li>Developed the business intelligence stack of the new HR system (Excel with PowerPivot with DAX)</li>\n<li>Standardized the project’s documentation and communication (MediaWiki)</li>\n<li>Extended OrangeHRM with Payroll functionality (hours and basic salary computation) </li>\n<li>Interfaced OrangeHRM with the IT’s existing .NET based accounting system (C#, SQL Server) </li>\n<li>Trained the organization (main and provincial offices) on how to use OrangeHRM</li>\n</ul>\n<hr>\n<p><strong><a href=\"https://healthway.com.ph/\">Healthway Medical</a></strong> 2013<br><strong>BUSINESS INTELLIGENCE ANALYST</strong></p>\n<ul>\n<li>Performed advanced computation and filtering of sixty million records for financial audit by management and Deloitte auditors (MySQL, SQL Server, Excel with PowerPivot DAX)</li>\n<li>Scaled and benchmarked MySQL, SQL Server and Excel PowerPivot to be able to handle twenty million records per batch and compute under ten minutes of execution</li>\n<li>Standardized the project’s documentation and communication (MediaWiki)</li>\n</ul>\n<hr>\n<h2 id=\"personal-projects\">PERSONAL PROJECTS</h2>\n<p><strong><a href=\"https://github.com/ajbodev/bible-html\">Bible HTML</a></strong> 2015</p>\n<ul>\n<li>Fast, minimalist Bible app built using the modern web</li>\n</ul>\n<hr>\n<p><strong><a href=\"https://github.com/ajbodev/rcx\">RCX</a></strong> 2015-2016</p>\n<ul>\n<li>A Frontend Code Playground Done Right</li>\n</ul>\n<hr>\n<p><strong><a href=\"https://github.com/ajbodev/modern-hrm\">ModernHRM</a></strong> 2015-2016</p>\n<ul>\n<li>A Better OrangeHRM</li>\n</ul>\n<hr>\n<h2 id=\"education\">EDUCATION</h2>\n<p><a href=\"http://www.upb.edu.ph/\">University of the Philippines, Baguio</a><br>Earned 139 credits toward a BS Computer Science degree (2006-2010)<br><em><a href=\"http://ajbodev.github.io/media/Omar-Job-Abesamis-thesis.pdf\">Thesis: Isolated Tagalog Vowel Recognition using the Wall Street Journal Speech Corpus and Hidden Markov Models</a></em></p>\n<hr>\n<p><a href=\"#/projects\">Projects</a><br><a href=\"#/testimonials\">Testimonials</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/about">window.data['content/about'] = "<p><em>Helping organizations optimize their value proposition thru standard and innovative uses of web technology</em></p>\n<h1 id=\"about\">About</h1>\n<p><image \n  src='http://ajbodev.github.io/media/Omar-Job-Abesamis-picture.jpg' \n  style=' margin: 0px 20px 0px 0px'>\n</image><br></p>\n<p>I&#39;m Omar Job Abesamis, a Full Stack Web Developer.</p>\n<!--\nOn a production level, I have experience in PHP, MySQL and JavaScript,\nhaving developed the HR system of my former company \n([Intellicare](http://www.intellicare.com.ph/)), migrating it from \nlegacy Visual FoxPro to a modern open-source PHP-based solution (OrangeHRM). \nAs a web developer in that position, I worked hard and innovated heavily, \nlearning as needed the necessary PHP and JavaScript libraries and frameworks, \nand introducing the use of Excel PowerPivot as a scalable reporting solution. \nTo make the system in favor with the HR's access and permission policy, \nI customized the PHP code and the necessary MySQL tables. \nWe used a wiki software (MediaWiki) to document the entire system.\n\nOn a development level, I have experience with other languages and frameworks\nlike C# (ASP.NET), Ruby (Rails), Node (Express), Java (Spring), Python (Flask),\nPHP (Laravel and Symfony). I built ModernHRM and RCX Social, both built using \nthose mentioned technologies. You can read more about them in my blog.\n\nI wrote the [Bible HTML](#/bible-html), a fast and minimalist Bible software, \nbuilt with web technology (HTML, CSS, and JavaScript). It's written in five \ndifferent frameworks ([Mithril.js](#/mithril), [AngularJS](#/angular), \n[React.js](#/react), [Ember.js](#/ember), [jQuery](#/jquery)), and the entire \nprogram is just one HTML file and runs in almost every computer where there \nis a web browser. You can read more in my blog.\n\nI built [Rich Code eXperience](#/rcx), a set of easy to use code playgrounds.\n[One](http://ajbodev.github.io/rcx/app/) of them is a a simple but powerful code generator \nusing [Jade](#/jade). It uses Jade mixins as a form of metaprogramming to \ngenerate code in six different frameworks:\n\n* [C# with ASP.NET MVC and Entity Framework](#/aspdotnet)\n* [Ruby with Ruby on Rails](#/ror)\n* [PHP with Laravel](#/laravel)\n* [Node with Express and Mongo.js](#/express)\n* [Python with Flask](#/flask)\n* [Java with Spring Boot](#/spring)\n\nThere's no limit to how many frameworks it can generate code for. I believe I\nhave a high ceiling on web technology knowledge - so I can make this tool \ngenerate for all the most popular web frameworks.\n\nWith my knowledge and understanding of web technology, I am very interested \nin seeing organizations succeed with it, in both standard and \ninnovative ways.\n\nWhile I can handle the full stack (frontend and backend) of web development, \nI'm most passionate about pushing frontend technology, which I see as a \ngoldmine of interesting innovations (ES6, ES7, Service workers, ..).\n\nThis [personal website](http://ajbodev.github.org/) of mine that you are \nviewing expresses my desire for innovation in giving a better \n[user experience](#/user-experience). It uses animate.css, and like the \nBible HTML is available entirely in one HTML file. It uses Angular, \nbut is also available in \n[Mithril](http://ajbodev.bitbucket.org/mithril.html), and \n[React](http://ajbodev.bitbucket.org/react.html), and \n[Ember](http://ajbodev.bitbucket.org/ember.html). You can download it by saving \nit (CTRL-S), or clicking this \n<a href='http://ajbodev.bitbucket.org/index.html' \ndownload='http://ajbodev.bitbucket.org/index.html'>button.</a>\n\nI would very much like to work for an organization which gives me the best\nopportunity to grow as a web developer, and where I can contribute the most\nto others' growth as well. I can be contacted at (Home) **(989) 545 7621**\nand at (Email) **aj.bo.dev@gmail.com**.\n-->\n<hr>\n<p><a href=\"#/testimonials\">Testimonials</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/testimonials">window.data['content/testimonials'] = "<h1 id=\"testimonials\">Testimonials</h1>\n<p><img src=\"media/man.jpg\" alt=\"testimonial\"> </p>\n<p><em>.. <a href=\"http://ajbodev.github.io/rcx\">RCX</a></em><br><em>- Robby Emmert, Web Developer</em></p>\n<p><img src=\"media/man.jpg\" alt=\"testimonial\"></p>\n<p><em>.. <a href=\"http://ajbodev.github.io/rcx\">RCX</a></em><br><em>- Bernie Bennett</em></p>\n<hr>\n<p><a href=\"#/projects\">Projects</a><br><a href=\"#/resume\">Resume</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/technology/language">window.data['content/technology/language'] = "<h1 id=\"languages\">Languages</h1>\n<p><strong><a href=\"#/technology/language/javascript\">JavaScript</a></strong><br><em>JavaScript</em></p>\n<hr>\n<p><strong><a href=\"#/technology/language/csharp\">C#</a></strong><br><em>C#</em></p>\n<hr>\n<p><strong><a href=\"#/technology/language/ruby\">Ruby</a></strong><br><em>Ruby</em></p>\n<hr>\n<p><strong><a href=\"#/technology/language/php\">PHP</a></strong><br><em>PHP</em></p>\n<hr>\n<p><strong><a href=\"#/technology/language/java\">Java</a></strong><br><em>Java</em></p>\n<hr>\n<p><strong><a href=\"#/technology/language/python\">Python</a></strong><br><em>Python</em></p>\n<hr>\n<p><strong><a href=\"#/technology/language/sql\">SQL</a></strong><br><em>SQL</em></p>\n<hr>\n<p><strong><a href=\"#/technology/language/html\">HTML</a></strong><br><em>HTML</em></p>\n<hr>\n<p><strong><a href=\"#/technology/language/css\">CSS</a></strong><br><em>CSS</em></p>\n<hr>\n<p><a href=\"#/resume\">Resume</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/technology/framework">window.data['content/technology/framework'] = "<h1 id=\"frameworks\">Frameworks</h1>\n<h2 id=\"frontend\">Frontend</h2>\n<p><strong><a href=\"#/technology/framework/angular\">Angular</a></strong>\n<em>Angular</em></p>\n<hr>\n<p><strong><a href=\"#/technology/framework/react\">React</a></strong>\n<em>React</em></p>\n<hr>\n<p><strong><a href=\"#/technology/framework/ember\">Ember</a></strong>\n<em>Ember</em></p>\n<hr>\n<h3 id=\"libraries\">Libraries</h3>\n<p><strong><a href=\"#/technology/framework/jquery\">jQuery</a></strong>\n<em>jQuery</em></p>\n<hr>\n<p><strong><a href=\"#/technology/framework/bootstrap\">Bootstrap</a></strong>\n<em>Bootstrap</em></p>\n<hr>\n<h2 id=\"server\">Server</h2>\n<p><strong><a href=\"#/technology/framework/asp\">ASP.NET</a></strong>\n<em>ASP.NET</em></p>\n<hr>\n<p><strong><a href=\"#/technology/framework/spring\">Spring</a></strong>\n<em>Spring</em></p>\n<hr>\n<p><strong><a href=\"#/technology/framework/rails\">Rails</a></strong>\n<em>Rails</em></p>\n<hr>\n<p><strong><a href=\"#/technology/framework/laravel\">Laravel</a></strong>\n<em>Laravel</em></p>\n<hr>\n<p><strong><a href=\"#/technology/framework/express\">Express</a></strong>\n<em>Express</em></p>\n<hr>\n<p><strong><a href=\"#/technology/framework/django\">Django</a></strong>\n<em>Django</em></p>\n<hr>\n<p><a href=\"#/resume\">Resume</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/technology/cms">window.data['content/technology/cms'] = "<h1 id=\"cms\">CMS</h1>\n<p><strong><a href=\"#/technology/cms/wordpress\">WordPress</a></strong><br><em>(WordPress)</em></p>\n<hr>\n<p><strong><a href=\"#/technology/cms/drupal\">Drupal</a></strong><br><em>(Drupal)</em></p>\n<hr>\n<p><a href=\"#/resume\">Resume</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/technology/database">window.data['content/technology/database'] = "<h1 id=\"databases\">Databases</h1>\n<p><strong><a href=\"#/technology/database/mysql\">MySQL</a></strong><br><em>Widely used open-source SQL RBDMS, especially for client-server apps</em></p>\n<hr>\n<p><strong><a href=\"#/technology/database/sqlserver\">SQL Server</a></strong><br><em>Solid SQL RDBMS from Microsoft</em></p>\n<hr>\n<p><strong><a href=\"#/technology/database/postgresql\">PostgreSQL</a></strong><br><em>Sophisticated SQL ORDBMS with powerful features not found in other databases</em></p>\n<hr>\n<p><strong><a href=\"#/technology/database/mongodb\">MongoDB</a></strong><br><em>Most popular NoSQL document-oriented database</em></p>\n<hr>\n<p><a href=\"#/resume\">Resume</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/technology/others">window.data['content/technology/others'] = "<h1 id=\"other-technologies\">Other Technologies</h1>\n<p><strong><a href=\"#/technology/others/git\">Git</a></strong><br><em>Git</em></p>\n<hr>\n<p><strong><a href=\"#/technology/others/node\">Node</a></strong><br><em>Node</em></p>\n<hr>\n<p><strong><a href=\"#/technology/others/gulp\">Gulp</a></strong><br><em>Gulp</em></p>\n<hr>\n<p><strong><a href=\"#/technology/others/jade\">Jade</a></strong><br><em>Jade</em></p>\n<hr>\n<p><strong><a href=\"#/technology/others/coffeescript-livescript-typescript\">CoffeeScript, LiveScript, TypeScript</a></strong><br><em>CoffeeScript, LiveScript, TypeScript</em></p>\n<hr>\n<p><strong><a href=\"#/technology/others/stylus-less-sass\">Stylus, LESS, SASS</a></strong><br><em>Stylus, LESS, SASS</em></p>\n<hr>\n<p><strong><a href=\"#/technology/others/testing\">Testing</a></strong><br><em>Testing</em></p>\n<hr>\n<p><strong><a href=\"#/technology/others/excel\">Excel</a></strong><br><em>Excel</em></p>\n<hr>\n<p><a href=\"#/resume\">Resume</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/technology/paradigm">window.data['content/technology/paradigm'] = "<h1 id=\"paradigms\">Paradigms</h1>\n<p><strong><a href=\"#/technology/paradigm/object-oriented-programming\">Object Oriented Programming</a></strong><br><em>Object Oriented Programming</em></p>\n<hr>\n<p><strong><a href=\"#/technology/paradigm/functional-programming\">Functional Programming</a></strong><br><em>Functional Programming</em></p>\n<hr>\n<p><strong><a href=\"#/technology/paradigm/test-driven-development\">Test-driven Development</a></strong><br><em>Test-driven Development</em></p>\n<hr>\n<p><strong><a href=\"#/technology/paradigm/relational\">Relational Theory</a></strong><br><em>Relational Theory</em></p>\n<hr>\n<p><strong><a href=\"#/technology/paradigm/agile\">Agile</a></strong><br><em>Agile Software Development</em></p>\n<hr>\n<p><a href=\"#/resume\">Resume</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <script data-include="content/technology/discipline">window.data['content/technology/discipline'] = "<h1 id=\"disciplines\">Disciplines</h1>\n<p><strong><a href=\"#/technology/discipline/software-engineering\">Software Engineering</a></strong><br><em>Software Engineering</em></p>\n<hr>\n<p><strong><a href=\"#/technology/discipline/user-experience\">User Experience</a></strong><br><em>User Experience</em></p>\n<hr>\n<p><strong><a href=\"#/technology/discipline/business-intelligence\">Business Intelligence</a></strong><br><em>Business Intelligence</em></p>\n<hr>\n<p><a href=\"#/resume\">Resume</a><br><a href=\"#/home\">Return to Home</a>  </p>\n";</script>
-    <!--scriptinclude ../../__/_vendor/js/highlight.oj.js
-    -->
-    <script src="vendors/core/jquery/jquery-2.1.4/jquery.min.js"></script>
-    <script src="vendors/router/director/director-1.2.8/director.min.js"></script>
-    <script data-include="js/index">// Generated by LiveScript 1.4.0
-var App;
-App = function(o){};
-App.prototype = {
-  constructor: App,
-  init: function(){},
-  animateContent: function(){
-    var content;
+  </div>
+  <div class="content pure-u-1 pure-u-md-3-4">
+    <div id="content"></div>
+  </div>
+</div></div>
+    <div data-include="content">
+<script src="http://ajbodev.github.io/vendors/core/jquery/jquery-2.1.4/jquery.min.js"></script>
+<script src="http://ajbodev.github.io/vendors/router/director/director-1.2.8/director.min.js"></script>
+<script src="http://ajbodev.github.io/vendors/progress/nprogress/nprogress-0.2.0/nprogress.min.js"></script>
+<script>var app = {data: {_meta: {}, meta: {}, src: {}}, component: {}};</script>
+<script data-include="content/home" data-entity="html" data-stringify="app.data.src">app.data.src["content/home"] = "\n<p>Home sweet</p>";</script>
+<script data-include="content/about" data-entity="html" data-stringify="app.data.src">app.data.src["content/about"] = "\n<p>About!</p>";</script>
+<script data-include="content/blog/1" data-entity="html" data-stringify="app.data.src">app.data.src["content/blog/1"] = "\nSome blog !\n\r\n";</script>
+<script data-include="_content/meta" data-entity="html" data-stringify="app.data.src">app.data.src["_content/meta"] = "\n<div class=\"posts\">\n  <section class=\"post\">\n    <header class=\"post-header\">\n      <h2 id=\"content__title\" class=\"post-title\"></h2>\n      <p class=\"post-meta\">By <a id=\"content__author\" href=\"#\" class=\"post-author\"></a>&nbsp<a id=\"content__category\" href=\"#\" class=\"post-category post-category-design\"></a></p>\n    </header>\n    <div class=\"post-description\">\n      <p id=\"content__src\"></p>\n    </div>\n  </section>\n  <iframe id=\"content__comments\"></iframe>\n</div>";</script>
+<script data-include="component|meta|index">// Generated by LiveScript 1.4.0
+var Component;
+Component = function(o){};
+Component.prototype = {
+  constructor: Component,
+  init: function(){
+    var _this, routes, router;
+    _this = this;
+    routes = {
+      '/?((w|.)*)': function(content){
+        console.log(content);
+        _this.progressStart();
+        _this.animateContent();
+        _this.renderContent({
+          content: content
+        });
+        _this.progressEnd();
+      }
+    };
+    router = Router(routes);
+    router.init();
+  },
+  renderContent: function(o){
+    var _this, content, meta;
+    _this = this;
+    content = o.content;
+    console.log(app.data.meta['content/' + content]);
+    if (app.data.meta[content]) {
+      meta = app.data.meta[content];
+      $('#content').html(app.data.src['_content/meta']);
+      if (meta['title']) {
+        $('#content__title').html(meta['title']);
+      }
+      if (meta['author']) {
+        $('#content__author').html(meta['author']);
+      }
+      if (meta['category']) {
+        $('#content__category').html(meta['category']);
+      }
+      if (meta['comments']) {
+        $('#content__comments').attr('src', 'http://ajbodev.bitbucket.org/_disqus.html#/' + content);
+      }
+      $('#content__src').html(app.data.src['content/' + content]);
+    } else {
+      $('#content').html(app.data.src['content/' + content]);
+    }
+  },
+  animateContent: function(o){
+    var _this, content;
+    _this = this;
     content = document.getElementById('content');
     content.className = 'fadeIn animated';
     setTimeout(function(){
@@ -83,41 +99,26 @@ App.prototype = {
     }, 300);
     window.scrollTo(0, 0);
   },
-  highlightCode: function(){
-    setTimeout(function(){
-      var _code, i$, len$, j, i;
-      _code = document.getElementsByTagName('pre');
-      for (i$ = 0, len$ = _code.length; i$ < len$; ++i$) {
-        j = i$;
-        i = _code[i$];
-        hljs.highlightBlock(i);
-      }
-    }, 0);
+  progressStart: function(o){
+    var _this;
+    _this = this;
+    NProgress.start();
+  },
+  progressEnd: function(o){
+    var _this;
+    _this = this;
+    NProgress.done();
   }
 };
-if (typeof module === 'object') {
-  module.exports = App;
-}</script>
-    <script data-include="js/jquery">// Generated by LiveScript 1.4.0
-var app;
-app = new App();
-app.init = function(){
-  var _this, routes, router;
-  console.log('jQuery!');
-  _this = this;
-  routes = {
-    '/?((w|.)*)': function(content){
-      console.log(content);
-      $('#content').html(window.data['content/' + content]);
-      _this.animateContent();
-    }
-  };
-  router = Router(routes);
-  router.init();
-};</script>
-    <script>
-      app.init(); //app.highlightPreCode();
-      
-    </script>
+app.data.meta = {
+  'blog/1': {
+    title: 'Blog 1',
+    author: 'OJ',
+    category: 'stuff',
+    comments: true
+  }
+};
+app.component = new Component();</script>
+<script>app.component.init()</script></div>
   
 </body></html>
