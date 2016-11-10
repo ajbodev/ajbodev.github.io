@@ -6,6 +6,7 @@
 <link href="http://purecss.io/combo/1.18.13?/css/layouts/blog.css" rel="stylesheet" />
 <link href="http://ajbodev.github.io/vendors/animation/animate-css/animate-css-3.4.0/animate.min.css" rel="stylesheet" />
 <link href="http://ajbodev.github.io/vendors/progress/nprogress/nprogress-0.2.0/nprogress.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css" rel="stylesheet" />
 <style data-include="index">
 iframe {
   width: 100%;
@@ -29,7 +30,7 @@ a {
       <nav class="nav">
         <ul class="nav-list">
           <li class="nav-item"><a href="#/home" class="pure-button">Home</a></li>
-          <li class="nav-item"><a href="#/about" class="pure-button">About</a></li>
+          <li class="nav-item"><a href="#/content/about" class="pure-button">About</a></li>
         </ul>
       </nav>
     </div>
@@ -42,71 +43,152 @@ a {
 <script src="http://ajbodev.github.io/vendors/core/jquery/jquery-2.1.4/jquery.min.js"></script>
 <script src="http://ajbodev.github.io/vendors/router/director/director-1.2.8/director.min.js"></script>
 <script src="http://ajbodev.github.io/vendors/progress/nprogress/nprogress-0.2.0/nprogress.min.js"></script>
-<script>var app = {data: {_meta: {}, meta: {}, src: {}}, component: {}};</script>
-<script data-include="content/notes/infinite-richness" data-entity="html" data-stringify="app.data.src">app.data.src["content/notes/infinite-richness"] = "<p>The world is infinitely rich. The things we do have an infinite richness to them that we need to search for meaning. We need that childlike wonder rekindled</p>\n";</script>
-<script data-include="content/home" data-entity="html" data-stringify="app.data.src">app.data.src["content/home"] = "\n<p>Home sweet</p>";</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+<script>var app = {data: {_meta: {}, meta: {}, src: {}}, category: {meta:{}}, component: {}};</script>
+<script data-include="content/notes/infinite-richness" data-entity="html" data-stringify="app.data.src">app.data.src["content/notes/infinite-richness"] = "<p>The world is infinitely rich. The things we do have an infinite richness to them that we need to search for meaning. We need that childlike wonder rekindled</p>\n<pre><code class=\"lang-php\">class X {\n\n}\n</code></pre>\n";</script>
+<script data-include="content/home" data-entity="html" data-stringify="app.data.src">app.data.src["content/home"] = "\n<div class=\"posts\">\n  <h1 class=\"content-subhead\">Tech</h1>\n  <div id=\"content__tech__1\"></div>\n</div>\n<div class=\"posts\">\n  <h1 class=\"content-subhead\">Play</h1>\n  <div id=\"content__play__1\"></div>\n  <div id=\"content__play__2\"></div>\n  <div id=\"content__play__3\"></div>\n</div>";</script>
 <script data-include="content/about" data-entity="html" data-stringify="app.data.src">app.data.src["content/about"] = "<h1 id=\"about\">About</h1>\n<p>I&#39;m OJ Abesamis, a web developer capable of <a href=\"#/notes/fullstack\">fullstack</a> development (<a href=\"#/notes/frontend\">frontend</a> and <a href=\"#/notes/backend\">backend</a>). My core technologies are in <a href=\"#/notes/dotnet\">.NET</a> <a href=\"#/notes/java\">Java</a>, <a href=\"#/notes/php\">PHP</a>, and <a href=\"#/notes/javascript\">JavaScript</a> (browser and Node).</p>\n<p>I have a <a href=\"#/notes/working-knowledge\">working knowledge</a> of other technology stacks like <a href=\"#/notes/ruby\">Ruby</a> (Rails, Sinatra), <a href=\"#/notes/python\">Python</a> (Django, Flask), <a href=\"#/notes/go\">Go</a>, and some <a href=\"#/notes/rust\">Rust</a>. My preferred SQL <a href=\"#/notes/databases\">databases</a> are <a href=\"#/notes/mysql\">MySQL</a>, <a href=\"#/notes/postgres\">Postgres</a>, <a href=\"#/notes/sqlserver\">SQL Server</a>. Can also work with a Non-SQL database like <a href=\"#/notes/mongodb\">MongoDB</a> if required. I have <a href=\"#/notes/technologies/others\">other technologies</a> in my toolbelt.</p>\n<p>Key projects I&#39;m working on are <a href=\"#/notes/rcx\">Rich Code eXperience</a> (RCX, a powerful code playground), <a href=\"#/notes/modern-hrm\">ModernHRM</a> (an HR system built in the modern way), and <a href=\"#/notes/bible-html\">Bible HTML</a> (a web-based Bible software). A major theme in my projects has been pushing the potential of the <a href=\"#/notes/frontend\">frontend</a> (HTML, CSS, JS) to do what it normally can&#39;t.</p>\n<p>I am very willing to <a href=\"#/notes/learning-technologies\">learn</a> new technologies as they come. Developers (or anybody in general) should not be married to their positions, and should continually seek to reinvent themselves to further the value they provide to their <a href=\"#/notes/organizations\">organizations</a>. As Steve Jobs would say - <a href=\"#/notes/stay-hungry\">stay hungry</a>.</p>\n";</script>
-<script data-include="content/blog/1" data-entity="html" data-stringify="app.data.src">app.data.src["content/blog/1"] = "\nSome blog !\n\r\n";</script>
-<script data-include="_content/meta" data-entity="html" data-stringify="app.data.src">app.data.src["_content/meta"] = "\n<div class=\"posts\">\n  <section class=\"post\">\n    <header class=\"post-header\">\n      <h2 id=\"content__title\" class=\"post-title\"></h2>\n      <p class=\"post-meta\"> <a id=\"content__date\" href=\"#/\"></a>&nbsp<a id=\"content__category\" href=\"#\" class=\"post-category post-category-design\"></a></p>\n    </header>\n    <div class=\"post-description\">\n      <p id=\"content__src\"></p>\n    </div>\n  </section>\n  <iframe id=\"content__comments\"></iframe>\n</div>";</script>
+<script data-include="content/blog/1" data-entity="html" data-stringify="app.data.src">app.data.src["content/blog/1"] = "\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\r\n";</script>
+<script data-include="_content/meta" data-entity="html" data-stringify="app.data.src">app.data.src["_content/meta"] = "\n<section class=\"post\">\n  <header class=\"post-header\">\n    <h2 class=\"content__title post-title\"></h2>\n    <p class=\"post-meta\"> <a href=\"#/\" class=\"content__date\"></a>&nbsp<a href=\"#\" class=\"content__category post-category post-category-design\"></a></p>\n  </header>\n  <div class=\"post-description\">\n    <p class=\"content__src\"></p>\n  </div>\n</section>\n<div class=\"content__comments\"></div>";</script>
 <script data-include="component|meta|index">// Generated by LiveScript 1.4.0
 var Component;
-Component = function(o){};
+Component = function(o){
+  this.router = {};
+};
 Component.prototype = {
   constructor: Component,
   init: function(){
-    var _this, routes, router;
+    var _this, routes;
     _this = this;
     routes = {
-      '/?((w|.)*)': function(content){
-        console.log(content);
-        _this.progressStart();
-        _this.animateContent();
-        _this.renderContent({
-          content: content
+      '/content/?((w|.)*)': function(content){
+        _this._render({
+          cb: function(){
+            _this.renderContent({
+              content: content
+            });
+          }
         });
-        _this.progressEnd();
+      },
+      '/home': function(){
+        _this._render({
+          cb: function(){
+            _this.renderContent({
+              content: 'home'
+            });
+            _this.renderContent({
+              content: 'blog/1',
+              sel: '#content__tech__1'
+            });
+            _this.renderContent({
+              content: 'blog/1',
+              sel: '#content__play__1'
+            });
+            _this.renderContent({
+              content: 'blog/1',
+              sel: '#content__play__2'
+            });
+            _this.renderContent({
+              content: 'blog/1',
+              sel: '#content__play__3'
+            });
+          }
+        });
+        /*
+        _this._render cb: (!-> _this.renderContent content: 'home')
+        _this._render cb: (!-> _this.renderContent content: 'blog/1', sel: '#content__tech__1')
+        _this._render cb: (!-> _this.renderContent content: 'blog/1', sel: '#content__play__1')
+        _this._render cb: (!-> _this.renderContent content: 'blog/1', sel: '#content__play__2')
+        _this._render cb: (!-> _this.renderContent content: 'blog/1', sel: '#content__play__3')
+        */
+      },
+      '/category/?((w|.)*)': function(category){
+        _this._render({
+          cb: function(){
+            _this.renderCategory({
+              category: category
+            });
+          }
+        });
       }
     };
-    router = Router(routes);
-    router.init();
+    this.router = Router(routes);
+    this.router.init();
+    this.router.setRoute('home');
   },
-  renderContent: function(o){
-    var _this, content, meta;
+  _render: function(o){
+    $('#app').html('');
+    this.progressStart();
+    this.animateContent();
+    o.cb();
+    this.progressEnd();
+  },
+  renderCategory: function(o){
+    var _this, list, i$, ref$;
     _this = this;
-    content = o.content;
-    console.log(app.data.meta['content/' + content]);
-    if (app.data.meta[content]) {
-      meta = app.data.meta[content];
-      $('#content').html(app.data.src['_content/meta']);
-      if (meta['title']) {
-        $('#content__title').html(meta['title']);
+    list = '<h1>Category : ' + app.category.meta[o.category] + '</h1>';
+    for (i$ in ref$ = app.data.meta) {
+      (fn$.call(this, i$, ref$[i$]));
+    }
+    $('#content').html(list);
+    function fn$(i, el){
+      if (el.category === o.category) {
+        list += '<li><a href="#/content/' + i + '">' + el.title + '</a></li>';
       }
-      if (meta['date']) {
-        $('#content__date').html(meta['date']);
-      }
-      if (meta['date_href']) {
-        $('#content__date').attr('href', meta['date_href']);
-      }
-      if (meta['category']) {
-        $('#content__category').html(meta['category']);
-      }
-      if (meta['comments']) {
-        $('#content__comments').attr('src', 'http://ajbodev.bitbucket.org/_disqus.html#/' + content);
-      }
-      $('#content__src').html(app.data.src['content/' + content]);
-    } else {
-      $('#content').html(app.data.src['content/' + content]);
     }
   },
-  animateContent: function(o){
-    var _this, content;
+  renderContent: function(o){
+    var _this, content, sel, src, iframe, meta;
     _this = this;
-    content = document.getElementById('content');
-    content.className = 'fadeIn animated';
+    content = o.content;
+    sel = o.sel || '#content';
+    src = app.data.src['content/' + content];
+    iframe = 'http://ajbodev.github.io/_disqus.html#/' + content;
+    if (app.data.meta[content]) {
+      meta = app.data.meta[content];
+      $(sel).html(app.data.src['_content/meta']);
+      if (meta['title']) {
+        $(sel + ' .content__title').html(meta['title']);
+      }
+      if (meta['date']) {
+        $(sel + ' .content__date').html(meta['date']);
+      }
+      if (meta['category']) {
+        $(sel + ' .content__category').html(meta['category']);
+      }
+      if (meta['date_href']) {
+        $(sel + ' .content__category').attr('href', '#/category/' + meta.category);
+      }
+      if (meta['comments'] && !o.sel) {
+        $(sel + ' .content__comments').html('<iframe src="' + iframe + '"></iframe>');
+      }
+      src = o.sel ? src.substring(0, 200) + ' <a href="#/content/' + content + '">(more) ..</a>' : src;
+      $(sel + ' .content__src').html('<div class="posts">' + src);
+    } else {
+      $(sel).html(app.data.src['content/' + content]);
+    }
+    this.highlightContent();
+  },
+  animateContent: function(o){
+    var _this;
+    _this = this;
+    $('#content').addClass('fadeIn animated');
     setTimeout(function(){
-      content.className = '';
+      $('#content').removeClass('fadeIn animated');
     }, 300);
     window.scrollTo(0, 0);
+  },
+  highlightContent: function(o){
+    setTimeout(function(){
+      var codes, i$, len$;
+      codes = document.querySelectorAll('pre');
+      for (i$ = 0, len$ = codes.length; i$ < len$; ++i$) {
+        (fn$.call(this, i$, codes[i$]));
+      }
+      function fn$(i, el){
+        hljs.highlightBlock(el);
+      }
+    }, 0);
   },
   progressStart: function(o){
     var _this;
@@ -119,11 +201,19 @@ Component.prototype = {
     NProgress.done();
   }
 };
+app.category.meta = {
+  'stuff': 'Stuff'
+};
 app.data.meta = {
+  '_home': {
+    front: {},
+    play: {},
+    more: {}
+  },
+  '': {},
   'blog/1': {
     title: 'Blog 1',
     category: 'stuff',
-    comments: true,
     date: 'Oct 20, 2016',
     date_href: 'oct-2016'
   }
