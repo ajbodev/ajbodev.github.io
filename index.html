@@ -148,25 +148,7 @@ Component.prototype = {
       '/home': function(){
         _this._render({
           cb: function(){
-            _this.renderContent({
-              content: 'home'
-            });
-            _this.renderContent({
-              content: _this.home.tech_1,
-              sel: '#content__tech__1'
-            });
-            _this.renderContent({
-              content: _this.home.play_1,
-              sel: '#content__play__1'
-            });
-            _this.renderContent({
-              content: _this.home.play_2,
-              sel: '#content__play__2'
-            });
-            _this.renderContent({
-              content: _this.home.play_3,
-              sel: '#content__play__3'
-            });
+            _this.renderHome();
           }
         });
       },
@@ -180,9 +162,13 @@ Component.prototype = {
         });
       }
     };
+    this._render({
+      cb: function(){
+        _this.renderHome();
+      }
+    });
     this.router = Router(routes);
     this.router.init();
-    this.router.setRoute('home');
   },
   _render: function(o){
     $('#app').html('');
@@ -190,6 +176,29 @@ Component.prototype = {
     this.animateContent();
     o.cb();
     this.progressEnd();
+  },
+  renderHome: function(o){
+    var _this;
+    _this = this;
+    this.renderContent({
+      content: 'home'
+    });
+    this.renderContent({
+      content: _this.home.tech_1,
+      sel: '#content__tech__1'
+    });
+    this.renderContent({
+      content: _this.home.play_1,
+      sel: '#content__play__1'
+    });
+    this.renderContent({
+      content: _this.home.play_2,
+      sel: '#content__play__2'
+    });
+    this.renderContent({
+      content: _this.home.play_3,
+      sel: '#content__play__3'
+    });
   },
   renderCategory: function(o){
     var _this, list, i$, ref$;
