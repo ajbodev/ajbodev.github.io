@@ -1,6 +1,6 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>
     <meta charset="utf-8" />
-    <title>ModernHRM</title>
+    <title>Ronesi</title>
     <link href="slm/app/lib/vendors-0.1.0.css" rel="stylesheet" />
     <style data-include="index">
 .btn-file { position: relative; overflow: hidden; }
@@ -44,15 +44,15 @@ var _modules = modules || {1:[function(require,module,exports){},{}]};
 }
 _require();
 </script></head>
-  <body class="skin-red-light sidebar-mini">
+  <body class="skin-blue-light sidebar-mini">
     <div class="wrapper">
-      <header data-include="index/_header" class="main-header"><a href="#" class="logo"><span class="logo-mini"><b>MHR</b></span><span class="logo-lg"><b>ModernHRM</b></span></a>
+      <header data-include="index/_header" class="main-header"><a href="#" class="logo"><span class="logo-mini"><b>RNS</b></span><span class="logo-lg"><b>Ronesi</b></span></a>
 <nav role="navigation" class="navbar navbar-static-top"><a href="#" data-toggle="offcanvas" role="button" class="sidebar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
-      <li class="dropdown user user-menu"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><img src="media/Omar-Job-Abesamis-picture.jpg" alt="User Image" class="user-image" /><span class="hidden-xs">Alexander Pierce</span></a>
+      <li class="dropdown user user-menu"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><img src="media/user.png" alt="User Image" class="user-image" /><span id="component__header__user" class="hidden-xs">Admin</span></a>
         <ul class="dropdown-menu">
-          <li class="user-header"><img src="media/Omar-Job-Abesamis-picture.jpg" alt="User Image" class="img-circle" />
+          <li class="user-header"><img src="media/user.png" alt="User Image" class="img-circle" />
             <p>Admin - Admin<small>Member since Oct. 2015</small></p>
           </li>
           <li class="user-footer">
@@ -67,18 +67,52 @@ _require();
       <aside data-include="index/_sidebar" class="main-sidebar">
 <section style="height: auto;" class="sidebar">
   <div class="user-panel">
-    <div class="pull-left image"><img src="media/Omar-Job-Abesamis-picture.jpg" alt="User Image" class="img-circle" /></div>
+    <div class="pull-left image"><img src="media/user.png" alt="User Image" class="img-circle" /></div>
     <div class="pull-left info">
       <p>Admin</p><a href="#"><i id="component__connection__indicator" class="fa fa-circle text-success"></i><span id="component__connection__text">Online</span></a>
     </div>
   </div>
   <ul class="sidebar-menu">
-    <li><a href="#/district"><i class="fa fa-table"></i>Districts</a></li>
-    <li><a href="#/school"><i class="fa fa-table"></i>Schools</a></li>
-    <li><a href="#/coach"><i class="fa fa-table"></i>Coaches</a></li>
-    <li><a href="#/team"><i class="fa fa-table"></i>Teams</a></li>
-    <li><a href="#/schedule"><i class="fa fa-table"></i>Schedules</a></li>
-    <li><a href="#/standing"><i class="fa fa-table"></i>Standings</a></li>
+    <li class="treeview"><a href="#"><i class="fa fa-th"></i><span>Tables</span><i class="fa fa-angle-left pull-right"></i></a>
+      <ul class="treeview-menu">
+        <li><a href="#/table/organization"><i class="fa fa-table"></i>Organization</a></li>
+        <li><a href="#/table/referee"><i class="fa fa-table"></i>Referees</a></li>
+        <li><a href="#/table/games"><i class="fa fa-table"></i>Games</a></li>
+        <li><a href="#/table/parks"><i class="fa fa-table"></i>Parks</a></li>
+        <li><a href="#/table/fields"><i class="fa fa-table"></i>Fields</a></li>
+        <li><a href="#/table/rates"><i class="fa fa-table"></i>Rates</a></li>
+        <li><a href="#/table/events"><i class="fa fa-table"></i>Events</a></li>
+      </ul>
+    </li>
+    <li class="treeview"><a href="#"><i class="fa fa-th"></i><span>Process</span><i class="fa fa-angle-left pull-right"></i></a>
+      <ul class="treeview-menu">
+        <li><a href="#/process/assign-to-referee"><i class="fa fa-table"></i>Assign games to referee</a></li>
+        <li><a href="#/process/notify-referee-of-schedule"><i class="fa fa-table"></i>Notify referees of schedule</a></li>
+        <li><a href="#/process/notify-referee-of-schedule-changes"><i class="fa fa-table"></i>Notify referees of schedule changes</a></li>
+        <li><a href="#/process/calculate-referee-payment"><i class="fa fa-table"></i>Calculate referee payment</a></li>
+      </ul>
+    </li>
+    <li class="treeview"><a href="#"><i class="fa fa-th"></i><span>Reports</span><i class="fa fa-angle-left pull-right"></i></a>
+      <ul class="treeview-menu">
+        <li><a href="#/process/assign-to-referee"><i class="fa fa-table"></i>Game schedule by date, field, time</a></li>
+        <li><a href="#/process/notify-referee-of-schedule"><i class="fa fa-table"></i>Game schedule by date, time, field</a></li>
+        <li><a href="#/process/notify-referee-of-schedule-changes"><i class="fa fa-table"></i>Referee Games</a></li>
+        <li><a href="#/process/calculate-referee-payment"><i class="fa fa-table"></i>Compressed Referee Games</a></li>
+        <li><a href="#/process/calculate-referee-payment"><i class="fa fa-table"></i>Event referee game summary</a></li>
+        <li><a href="#/process/calculate-referee-payment"><i class="fa fa-table"></i>Event referee game details</a></li>
+        <li><a href="#/process/calculate-referee-payment"><i class="fa fa-table"></i>Game cards</a></li>
+        <li><a href="#/process/calculate-referee-payment"><i class="fa fa-table"></i>Game schedule by club, by gender, by age group</a></li>
+      </ul>
+    </li>
+    <li class="treeview"><a href="#"><i class="fa fa-th"></i><span>Available to referees</span><i class="fa fa-angle-left pull-right"></i></a>
+      <ul class="treeview-menu">
+        <li><a href="#/"><i class="fa fa-table"></i>Referee details entry</a></li>
+        <li><a href="#/"><i class="fa fa-table"></i>Referee availability</a></li>
+        <li><a href="#/"><i class="fa fa-table"></i>Referee games</a></li>
+        <li><a href="#/"><i class="fa fa-table"></i>Events</a></li>
+        <li><a href="#/"><i class="fa fa-table"></i>Available Games</a></li>
+      </ul>
+    </li>
   </ul>
 </section></aside>
       <div data-include="index/_content" style="min-height: 906px;" class="content-wrapper">
