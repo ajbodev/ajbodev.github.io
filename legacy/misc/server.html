@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Server AJAX</title>
+  </head>
+  <body>
+    <input id='id'/>
+    <input id='name'/>
+    <input id='list' type='button' value='list'/>
+    <input id='find' type='button' value='find'/>
+    <input id='create' type='button' value='create'/>
+    <input id='update' type='button' value='update'/>
+    <input id='destroy' type='button' value='destroy'/>
+    <script src='../vendors/core/jquery/jquery-2.1.4/jquery.min.js'></script>
+    <script>
+    var server  = '', /*'/server-rcx-frontend-html-css-js'*/
+        actions = {
+      'list': function() {
+        console.log('list');
+        $.get(server + '/list', function(data) {
+          console.log(data)
+        });
+      },
+      'find/:id': function() {
+        console.log('find/:id');
+        var attrs = {
+          id: $('#id').val()
+        }
+        $.get(server + '/find/' + attrs.id, function(item) {
+          console.log(item)
+        });
+      },
+      'create': function() {
+        console.log('create');
+        var attrs = {
+          name: $('#name').val()
+        }
+        $.post(server + '/create', attrs, function(item) {
+          console.log(item)
+        });
+      },
+      'update/:id': function() {
+        console.log('update/:id');
+        var attrs = {
+          id: $('#id').val(),
+          name: $('#name').val()
+        }
+        $.post(server + '/update/' + attrs.id, attrs, function(item) {
+          console.log(item)
+        });
+      },
+      'destroy/:id': function() {
+        console.log('destroy/:id');
+        var attrs = {
+          id: $('#id').val()
+        }
+        $.post(server + '/destroy/' + attrs.id, attrs, function(item) {
+          console.log(item)
+        });
+      },
+    }
+    $('#list').click(actions['list']);
+    $('#find').click(actions['find/:id']);
+    $('#create').click(actions['create']);
+    $('#update').click(actions['update/:id']);
+    $('#destroy').click(actions['destroy/:id']);
+    </script>
+  </body>
+</html>
