@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <style data-include="index">
+    iframe {
+      width: 100%;
+      border: none;
+      height: 400px;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app"><iframe id="disqus_iframe" ></iframe></div>
+    <script src="../vendors/all/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../vendors/all/director/1.2.8/director.min.js"></script>
+    <script>
+    var iframer = function(content) {
+      var src   = 'http://bosseove.disqus.com/embed.js';
+      var url   = 'http://ajbodev.github.io/' + content;
+      var title = content;
+      var str = "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n  <head>\n  </head>\n  <body>\n    <div id=\"disqus_thread\"></div>\n    <script>\n      var disqus_config, content = '" + content + "';\n      disqus_config = function(){\n        this.page.identifier = content;\n        this.page.url = '" + url + "';\n        this.page.title = '" + title + "';\n      };\n    (function(){\n      var d, s;\n      d = document;\n      s = d.createElement('script');\n      s.src = '" + src + "';\n      s.setAttribute('data-timestamp', +new Date());\n      d.body.appendChild(s);\n    })()\n    </\script>\n  </body>\n</html>"
+      return str;
+    }
+    var app = {};
+    app.init = function(){
+      var routes, router, _this = this;
+      routes = {
+        '/?((w|.)*)': function(content){
+          $('#app').html('');
+          $('#app').html('<iframe id="disqus_iframe"></iframe>');
+          var iframeInit = document.getElementById('disqus_iframe');
+          var iframe     = iframeInit.contentDocument || iframeInit.contentWindow.document;
+          iframe.open();
+          iframe.write(iframer(content));
+          iframe.close();
+        }
+      };
+      router = Router(routes);
+      router.init();
+    };
+    app.init();
+    </script>
+  </body>
+</html>
