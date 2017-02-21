@@ -5778,25 +5778,17 @@
 	      var attrs, name, ext, content, root, _export;
 	      attrs = el.attributes;
 	      name = attrs['data-require'].nodeValue;
-	      ext = attrs['data-ext'] ? attrs['data-ext'].nodeValue : null;
-	      entity = attrs['data-entity'] ? attrs['data-entity'].nodeValue : o.entity; //?
+	      ext = attrs['data-ext'] ? attrs['data-ext'].nodeValue : null;z
 	      content = '';
 	      root = attrs['data-root'] ? attrs['data-root'].nodeValue : '';
 	      _export = attrs['data-export'] ? attrs['data-export'].nodeValue : '';
-	      stringify = attrs['data-stringify'] ? attrs['data-stringify'].nodeValue : false;
 	      if (name !== '' && _export === '') {
 	        content = this.incrementGet({
-	          /*entity: o.entity,*/
-	          entity: entity,
+	          entity: o.entity,
 	          name: name,
 	          ext: ext
 	        });
-          //
-          if (stringify) {
-            content = 'module.exports = ' + JSON.stringify(content) + ';';
-          }
 	        content = '_require({"' + root + name + '": [function(require, module, exports) {\n\n' + content + '\n\n},{}]})';
-          //
 	      } else if (name !== '' && _export !== '') {
 	        content = 'module.exports = "' + _export + '";';
 	        content = '_require({"' + root + name + '": [function(require, module, exports) {\n\n' + content + '\n\n},{}]})';
