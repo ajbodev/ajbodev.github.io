@@ -1,0 +1,314 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head data-include="templates/lib/head|index/head">
+<link href="admin/lib/vendors.css" rel="stylesheet" />
+<style data-include="styles/pure">
+.btn-file { position: relative; overflow: hidden; }
+.btn-file input[type=file] {
+  position: absolute; top: 0; right: 0; min-width: 100%; min-height: 100%; 
+  font-size: 100px; text-align: right; filter: alpha(opacity=0); opacity: 0; 
+  outline: none; background: white; cursor: inherit; display: block; 
+}
+
+.component__reports__top {
+  display: table;
+  width: 100%;
+}
+
+.component__reports__top__refresh, .component__reports__top__select {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.component__reports__top__refresh {
+  width: 50px;
+}
+
+.component__reports__top__select {
+  float: left;
+  width: 100%;
+}
+
+/* chartist */
+
+.ct-label {
+  font-size: 15px !important;
+}
+
+/**/
+
+#component__util__copy {
+    background-color: white !important;
+    border-color: #ccc !important;
+}
+
+</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /><script>
+var _require = function(modules) { /* {} of {}* */
+var _modules = modules || {1:[function(require,module,exports){},{}]};
+/* browserify-13.1.0 */ require = (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})(_modules,{},[]);
+}
+_require();
+</script></head>
+  <body data-include="templates/lib/body|index/body" class="hold-transition skin-red-light sidebar-mini">
+<!-- @params  o:{ skin:S }-->
+<div class="wrapper">
+  <header class="main-header"><a href="#" class="logo"><span class="logo-mini"><b>TT</b></span><span class="logo-lg"><b>Total TEAMS</b></span></a>
+    <nav role="navigation" class="navbar navbar-static-top"><a href="#" data-toggle="offcanvas" role="button" class="sidebar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><img src="legacy/media/user.png" alt="User Image" class="user-image" /><span id="component__header__user" class="hidden-xs">Admin</span></a>
+            <ul class="dropdown-menu">
+              <li class="user-header"><img src="legacy/media/user.png" alt="User Image" class="img-circle" />
+                <p>Admin - Admin<small>Member since Oct. 2015</small></p>
+              </li>
+              <li class="user-footer">
+                <div class="pull-left"><a href="#" class="btn btn-default btn-flat">Profile</a></div>
+                <div class="pull-right"><a id="component__header__user__signout" href="#" class="btn btn-default btn-flat">Sign out</a></div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <aside class="main-sidebar">
+    <section style="height: auto;" class="sidebar">
+      <div class="user-panel">
+        <div class="pull-left image"><img src="legacy/media/user.png" alt="User Image" class="img-circle" /></div>
+        <div class="pull-left info">
+          <p>Admin</p><a href="#"><i id="component__connection__indicator" class="fa fa-circle text-success"></i><span id="component__connection__text">Online</span></a>
+        </div>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#/masterfiles/approving-authority"><i class="fa fa-table"></i>Dashboard</a></li>
+        <li class="treeview"><a href="#"><i class="fa fa-th"></i><span>Masterfiles</span><i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="#/masterfiles/approving-authority"><i class="fa fa-table"></i>MF - 01 - Approving Authority</a></li>
+            <li><a href="#/masterfiles/budget-categories"><i class="fa fa-table"></i>MF - 02 - Budget Categories</a></li>
+            <li><a href="#/masterfiles/engineers-name"><i class="fa fa-table"></i>MF - 03 - Engineers Name</a></li>
+            <li><a href="#/masterfiles/initiation-file-category"><i class="fa fa-table"></i>MF - 06 - Initiation File Category</a></li>
+            <li><a href="#/masterfiles/initiation-task-types"><i class="fa fa-table"></i>MF - 07 - Initiation Task Types</a></li>
+            <li><a href="#/masterfiles/inventory"><i class="fa fa-table"></i>MF - 08 - Inventory</a></li>
+            <li><a href="#/masterfiles/inventory-category"><i class="fa fa-table"></i>MF - 09 - Inventory Category</a></li>
+            <li><a href="#/masterfiles/item-categories"><i class="fa fa-table"></i>MF - 10 - Item Categories</a></li>
+            <li><a href="#/masterfiles/location"><i class="fa fa-table"></i>MF - 11 - Location</a></li>
+            <li><a href="#/masterfiles/project-status"><i class="fa fa-table"></i>MF - 12 - Project Status</a></li>
+            <li><a href="#/masterfiles/station-categories"><i class="fa fa-table"></i>MF - 13 - Station Categories</a></li>
+            <li><a href="#/masterfiles/station-name"><i class="fa fa-table"></i>MF - 14 - Station Name</a></li>
+            <li><a href="#/masterfiles/terms-of-payment"><i class="fa fa-table"></i>MF - 15 - Terms of Payment</a></li>
+            <li><a href="#/masterfiles/unit-of-measure"><i class="fa fa-table"></i>MF - 16 - Unit of Measure</a></li>
+            <li><a href="#/masterfiles/vendor"><i class="fa fa-table"></i>MF - 17 - Vendor</a></li>
+            <li><a href="#/masterfiles/warehouse"><i class="fa fa-table"></i>MF - 18 - Warehouse</a></li>
+            <li><a href="#/masterfiles/inventory-at-warehouse"><i class="fa fa-table"></i>MF - 19 - Inventory At <br />Warehouse</a></li>
+            <li><a href="#/masterfiles/bill-of-materials"><i class="fa fa-table"></i>MF - 20 - Bill of Materials</a></li>
+          </ul>
+        </li>
+        <li class="treeview"><a href="#"><i class="fa fa-th"></i><span>Transactions</span><i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="#/transactions/budget-estimates"><i class="fa fa-table"></i>TX - 01 - Create Budget <br />Estimates</a></li>
+            <li><a href="#/transactions/initiation-file"><i class="fa fa-table"></i>TX - 02 - Create Initiation File</a></li>
+            <li><a href="#/transactions/investment-order"><i class="fa fa-table"></i>TX - 03 - Create Investment <br />Order</a></li>
+            <li><a href="#/transactions/create-pr-data"><i class="fa fa-table"></i>TX - 04 - Create Initial PR Data</a></li>
+            <li><a href="#/transactions/update-pr-date"><i class="fa fa-table"></i>TX - 05 - Update PR Data</a></li>
+            <li><a href="#/transactions/create-po-data"><i class="fa fa-table"></i>TX - 06 - Create Initial PO Data</a></li>
+            <li><a href="#/transactions/update-po-data"><i class="fa fa-table"></i>TX - 07 - Update PO Data</a></li>
+            <li><a href="#/transactions/inventory-receipt"><i class="fa fa-table"></i>TX - 08 - Inventory Transaction <br />Receipt</a></li>
+            <li><a href="#/transactions/inventory-issuance"><i class="fa fa-table"></i>TX - 09 - Inventory Transaction <br />Issuance</a></li>
+            <li><a href="#/transactions/inventory-transfer"><i class="fa fa-table"></i>TX - 10 - Inventory Transaction <br />Transfer</a></li>
+            <li><a href="#/transactions/po-receipt"><i class="fa fa-table"></i>TX - 11 - Purchase Order Receipt</a></li>
+          </ul>
+        </li>
+        <li class="treeview"><a href="#"><i class="fa fa-th"></i><span>Reports</span><i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="#/reports/report-1"><i class="fa fa-table"></i>Report 1</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </aside>
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1 id="component__title">Component<small> </small></h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-th"></i><span id="component__breadcrumb__first">Group</span></a></li>
+        <li><a href="#"><i class="fa fa-table"></i><span id="component__breadcrumb__second">Component</span></a></li>
+      </ol>
+    </section>
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="app"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div id="component__modal__user" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true" data-keyboard="false" data-backdrop="static" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+            <form>
+              <div class="form-group has-feedback">
+                <input id="component__modal__user__user" type="email" placeholder="Email" class="form-control" /><span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+              </div>
+              <div class="form-group has-feedback">
+                <input id="component__modal__user__password" type="password" placeholder="Password" class="form-control" /><span class="glyphicon glyphicon-lock form-control-feedback"></span>
+              </div>
+              <div class="row">
+                <div class="col-xs-8"></div>
+                <div class="col-xs-4">
+                  <button id="component__modal__user__signin" type="button" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="admin/lib/vendors.js"></script>
+<script data-require="app" data-root="src/">_require({"src/app": [function(require, module, exports) {
+
+// Generated by LiveScript 1.4.0
+var config, app;
+config = require('src/config');
+app = {
+  components: {},
+  templates: {},
+  contents: {},
+  config: config,
+  router: {},
+  debug: false,
+  init: function(){
+    var _this;
+    _this = this;
+    this.action({
+      type: 'INIT'
+    });
+    this.renderLayout();
+    this.makeRoutes();
+  },
+  makeRoutes: function(){
+    var _this, routes;
+    _this = this;
+    this.action({
+      type: 'MAKE_ROUTES'
+    });
+    routes = {
+      '/?((w|.)*)': function(context){
+        _this.render({
+          cb: function(){
+            _this.animateContent();
+            _this.renderTemplate({
+              template: context
+            });
+            _this.mountComponent({
+              component: context
+            });
+          }
+        });
+      }
+    };
+    this.router = Router(routes);
+    this.router.init();
+  },
+  render: function(o){
+    var _this;
+    _this = this;
+    this.action({
+      type: 'RENDER'
+    });
+    this.progressStart();
+    this.animateContent();
+    if (o.cb) {
+      o.cb();
+    }
+    this.progressEnd();
+  },
+  renderLayout: function(o){
+    var _this;
+    _this = this;
+    this.action({
+      type: 'RENDER_LAYOUT'
+    });
+  },
+  renderTemplate: function(o){
+    var _this;
+    _this = this;
+    this.action({
+      type: 'RENDER_TEMPLATE'
+    });
+    $('#app').html(this.templates['templates/' + o.template]);
+  },
+  mountComponent: function(o){
+    var _this, e;
+    _this = this;
+    this.action({
+      type: 'MOUNT_COMPONENT'
+    });
+    try {
+      require('src/' + o.component).init();
+    } catch (e$) {
+      e = e$;
+    }
+  },
+  animateContent: function(o){
+    var _this;
+    _this = this;
+    this.action({
+      type: 'ANIMATE_CONTENT'
+    });
+    $('#app').addClass('fadeIn animated');
+    setTimeout(function(){
+      $('#app').removeClass('fadeIn animated');
+    }, 300);
+    window.scrollTo(0, 0);
+  },
+  progressStart: function(o){
+    var _this;
+    _this = this;
+    this.action({
+      type: 'PROGRESS_START'
+    });
+    NProgress.start();
+  },
+  progressEnd: function(o){
+    var _this;
+    _this = this;
+    this.action({
+      type: 'PROGRESS_END'
+    });
+    NProgress.done();
+  },
+  action: function(o){
+    var _this;
+    _this = this;
+    if (this.debug) {
+      console.log(o.type);
+    }
+  },
+  '@action': function(o){
+    var _this;
+    _this = this;
+    this.action({
+      type: '@ACTION'
+    });
+  }
+};
+module.exports = app;
+
+},{}]})</script>
+<script data-require="config" data-root="src/">_require({"src/config": [function(require, module, exports) {
+
+
+config = {}
+
+module.exports = {}
+
+
+},{}]})</script>
+<script data-include="index">// Generated by LiveScript 1.4.0
+window.app = require('src/app');</script>
+<script>window.app.init()</script></body></html>
