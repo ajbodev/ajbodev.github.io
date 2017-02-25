@@ -1,8 +1,24 @@
 {
   "scripts": {
     "vendors-admin": "npm run vendors-admin-js && npm run vendors-admin-css",
-    "vendors-admin-js": "pug -O \"{type:'js'}\" -E js -o admin/lib src/admin/vendors.pug",
-    "vendors-admin-css": "pug -O \"{type:'css'}\" -E css -o admin/lib src/admin/vendors.pug",
+    "vendors-admin-js": "pug -O \"{type:'js'}\" -E js -o projects/admin/lib build/admin/src/vendors.pug",
+    "vendors-admin-css": "pug -O \"{type:'css'}\" -E css -o projects/admin/lib build/admin/src/vendors.pug",
     "start": "cls"
+  },
+  "devDependencies": {
+    "app-module-path": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-shell": "^0.5.2",
+    "json-loader": "^0.5.4",
+    "livescript": "^1.5.0",
+    "livescript-loader": "^0.1.6",
+    "node-sass": "^4.3.0",
+    "pug": "^2.0.0-beta8",
+    "pug-html-loader": "^1.1.0",
+    "webpack": "^2.2.1"
   }
 }
