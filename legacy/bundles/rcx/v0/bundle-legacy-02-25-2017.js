@@ -5678,8 +5678,7 @@
 	    dom = new DOMParser().parseFromString(o.content, 'text/html');
 	    tag = o.tag || '';
 	    tag_end = o.tag_end || '';
-	    //includes = dom.querySelectorAll(tag + '[data-include]:not([data-id],[data-require])' + tag_end);
-	    includes = dom.querySelectorAll(tag + '[data-include]:not([data-require])' + tag_end);
+	    includes = dom.querySelectorAll(tag + '[data-include]:not([data-id])' + tag_end);
 	    for (i$ = 0, len$ = includes.length; i$ < len$; ++i$) {
 	      (fn$.call(this, i$, includes[i$]));
 	    }
@@ -5688,7 +5687,7 @@
 	    function fn$(i, el){
 	      var attrs, name, names, ext, entity, stringify, append, prepend, last, content;
 	      attrs = el.attributes;
-	      name = attrs['data-name'] ? attrs['data-name'].nodeValue : attrs['data-include'].nodeValue;
+	      name = attrs['data-include'].nodeValue;
 	      names = attrs['data-include'].nodeValue.split('|');
 	      ext = attrs['data-ext'] ? attrs['data-ext'].nodeValue : null;
 	      entity = attrs['data-entity']
@@ -5769,58 +5768,34 @@
 	      text: 'Require'
 	    });
 	    dom = new DOMParser().parseFromString(o.content, 'text/html');
-	    //includes = dom.querySelectorAll(o.tag + '[data-require]:not([data-id])');
-	    includes = dom.querySelectorAll(o.tag + '[data-require]');
+	    includes = dom.querySelectorAll(o.tag + '[data-require]:not([data-id])');
 	    for (i$ = 0, len$ = includes.length; i$ < len$; ++i$) {
 	      (fn$.call(this, i$, includes[i$]));
 	    }
 	    content = entities.decodeHTML(new XMLSerializer().serializeToString(dom));
 	    return content;
 	    function fn$(i, el){
-	      var attrs, file, name, names, ext, entity, stringify, append, prepend, last, content;
+	      var attrs, name, ext, content, root, _export;
 	      attrs = el.attributes;
-        file = attrs['data-require'].nodeValue
-	      name = attrs['data-name'] ? attrs['data-name'].nodeValue : attrs['data-require'].nodeValue;
-        //
-	      names = attrs['data-include'] ? attrs['data-include'].nodeValue.split('|') : false;
-	      stringify = attrs['data-stringify'] ? attrs['data-stringify'].nodeValue : false;
-	      append = attrs['data-append'] ? attrs['data-append'].nodeValue : '';
-	      prepend = attrs['data-prepend'] ? attrs['data-prepend'].nodeValue : '';
-        //
+	      name = attrs['data-require'].nodeValue;
 	      ext = attrs['data-ext'] ? attrs['data-ext'].nodeValue : null;
 	      entity = attrs['data-entity'] ? attrs['data-entity'].nodeValue : o.entity; //?
-        //
-        //
 	      content = '';
 	      root = attrs['data-root'] ? attrs['data-root'].nodeValue : '';
 	      _export = attrs['data-export'] ? attrs['data-export'].nodeValue : '';
+	      stringify = attrs['data-stringify'] ? attrs['data-stringify'].nodeValue : false;
 	      if (name !== '' && _export === '') {
-          if (names) {
-            names.push(file);
-            content = this.runConcatFiles({
-              entity: entity,
-              /*files: names*/
-              files: names
-            });
-            content = this.incrementGet({
-              content: content,
-              entity: entity,
-              name: name,
-              file: file,
-              ext: ext
-            });
-          } else {
-            content = this.incrementGet({
-              entity: entity,
-              name: file,
-              ext: ext
-            });
-          }
+	        content = this.incrementGet({
+	          /*entity: o.entity,*/
+	          entity: entity,
+	          name: name,
+	          ext: ext
+	        });
           //
           if (stringify) {
             content = 'module.exports = ' + JSON.stringify(content) + ';';
           }
-	        content = '_require({"' + root + name + '": [function(require, module, exports) {\n\n' + prepend + content + append + '\n\n},{}]})';
+	        content = '_require({"' + root + name + '": [function(require, module, exports) {\n\n' + content + '\n\n},{}]})';
           //
 	      } else if (name !== '' && _export !== '') {
 	        content = 'module.exports = "' + _export + '";';
