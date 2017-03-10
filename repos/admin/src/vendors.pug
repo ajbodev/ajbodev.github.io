@@ -1,6 +1,6 @@
 
 - console.log(locals)
-//- Start Scripts
+//- START SCRIPTS
 - if (locals.type === 'js') {
 //- Core
 //- @global  $, jQuery
@@ -23,17 +23,17 @@ include ../../../vendors/all/moment/2.17.1/moment.min.js
 = '\r\n;'
 include ../../../vendors/all/pikaday/1.5.1/pikaday.min.js
 = '\r\n;'
-//- Calendar
+//- Calendar $().fullcalendar
 include ../../../vendors/all/fullcalendar/3.1.0/fullcalendar.min.js
-//- Store
-//- @global  
 = '\r\n;'
+//- Store
+//- @global  localforage
 include ../../../vendors/all/localforage/1.4.3/localforage.min.js
-//- @global  
+//- @global  Dexie
 = '\r\n;'
 include ../../../vendors/all/dexie/1.5.1/dexie.min.js
-//-= '\r\n;'
-//-include ../../../vendors/all/store/firebase/3.6.2/firebase.js
+//-= '\r\n;' firebase
+include ../../../vendors/all/store/firebase/3.7.0/firebase.js
 = '\r\n;'
 //- Admin
 //- @global  
@@ -98,7 +98,8 @@ include ../../../vendors/all/leaflet/1.0.3/leaflet.js
 include ../../../vendors/all/browserify/13.1.0/@_require.js
 //-= '\r\n'
 //-include ../../../vendors/all/vendor/0.0.0/file.js
-//- End Scripts, Start Styles
+//- END SCRIPTS
+//- START STYLES
 - } else if (locals.type === 'css') {
 = '\r\n'
 //- Core
@@ -141,4 +142,4 @@ include ../../../vendors/all/leaflet/1.0.3/leaflet.css
 //-= '\r\n'
 //-include ../../../vendors/all/vendor/0.0.0/file.css
 - }
-//- End Styles
+//- END STYLES
