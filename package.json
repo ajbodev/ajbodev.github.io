@@ -1,8 +1,8 @@
 {
   "scripts": {
     "vendors:admin": "npm run vendors:admin:js && npm run vendors:admin:css",
-    "vendors:admin:js": "pug -O \"{type:'js'}\" -E js -o projects/admin/lib repos/admin/src/vendors.pug",
-    "vendors:admin:css": "pug -O \"{type:'css'}\" -E css -o projects/admin/lib repos/admin/src/vendors.pug",
+    "vendors:admin:js": "pug -O \"{type:'js'}\" -E js -o projects/admin/lib vendors/app/admin/vendors.pug",
+    "vendors:admin:css": "pug -O \"{type:'css'}\" -E css -o projects/admin/lib vendors/app/admin/vendors.pug",
     "git": "git push -u --all bit && git push -u --all gih",
     "start": "cls"
   },

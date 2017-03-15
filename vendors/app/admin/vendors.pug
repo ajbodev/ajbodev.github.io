@@ -1,0 +1,133 @@
+
+//- @global  jquery:       $, jQuery
+//-          selectize:    $().selectize
+//-          nprogress:    Nprogress
+//-          moment:       moment
+//-          pikaday:      Pikaday
+//-          fullcalendar: $().fullcalendar
+//-          localforage:  localforage
+//-          dexie:        Dexie
+//-          firebase:     firebase
+//-          director:     Router
+//-          datatables:   $().DataTable
+//-          icheck:       $().iCheck
+//-          filesaver:    saveAs
+//-          parsley:      Parsley
+//-          validator:    validator
+//-          pivottable:   $().pivot
+//-          leaflet:      L
+//-          browserify:   require, _require
+//-          [vendor]      [window]
+//-          
+//- @start   js
+- if (locals.type === 'js') {
+//- Core
+= '\r\n;'
+include ../../all/jquery/2.2.4/jquery.min.js
+= '\r\n;'
+include ../../all/bootstrap/3.3.7/bootstrap.min.js
+//- Select
+= '\r\n;'
+include ../../all/selectize/0.12.4/selectize.standalone.min.js
+//- Progress
+= '\r\n;'
+include ../../all/nprogress/0.2.0/nprogress.min.js
+//- Date
+= '\r\n;'
+include ../../all/moment/2.17.1/moment.min.js
+= '\r\n;'
+include ../../all/pikaday/1.5.1/pikaday.min.js
+//- Calendar 
+= '\r\n;'
+include ../../all/fullcalendar/3.1.0/fullcalendar.min.js
+//- Store
+= '\r\n;'
+include ../../all/localforage/1.4.3/localforage.min.js
+= '\r\n;'
+include ../../all/dexie/1.5.1/dexie.min.js
+= '\r\n;' 
+include ../../all/firebase/3.7.0/firebase.js
+//- Admin
+= '\r\n;'
+include ../../all/adminlte/2.3.11/app.min.js
+= '\r\n;'
+include ../../all/adminlte/2.3.11/fastclick.min.js
+= '\r\n;'
+include ../../all/adminlte/2.3.11/jquery.slimscroll.min.js
+//- Router
+= '\r\n;'
+include ../../all/director/1.2.8/director.min.js
+//- Table
+= '\r\n;'
+include ../../all/datatables/1.10.13/jquery.dataTables.min.js
+= '\r\n;'
+include ../../all/datatables/1.10.13/dataTables.bootstrap.min.js
+//- Editable
+= '\r\n;'
+include ../../all/bootstrap-editable/1.5.1/bootstrap-editable.min.js
+//- Check
+= '\r\n;'
+include ../../all/icheck/1.0.2/icheck.min.js
+//- File
+= '\r\n;'
+include ../../all/filesaver/1.3.2/FileSaver.min.js
+//- Notify
+= '\r\n;'
+include ../../all/notifyjs/0.4.2/notify.js
+//- Validation
+= '\r\n;'
+include ../../all/parsley/2.6.2/parsley.min.js
+= '\r\n;'
+include ../../all/validator/6.2.1/validator.min.js
+//- Pivot
+= '\r\n;'
+include ../../all/pivottable/2.7.0/pivot.min.js
+//- Map
+= '\r\n;'
+include ../../all/leaflet/1.0.3/leaflet.js
+//- Module
+= '\r\n;'
+include ../../all/browserify/13.1.0/@_require.js
+//- @end     js
+//- @start   css
+- } else if (locals.type === 'css') {
+//- Core
+= '\r\n'
+include ../../all/bootstrap/3.3.7/bootstrap.min.css
+= '\r\n'
+include ../../all/bootstrap-vertical-tabs/1.2.2/bootstrap.vertical-tabs.min.css
+//- Progress
+= '\r\n;'
+include ../../all/nprogress/0.2.0/nprogress.min.css
+//- Date
+= '\r\n;'
+include ../../all/pikaday/1.5.1/pikaday.min.css
+//- Calendar
+= '\r\n;'
+include ../../all/fullcalendar/3.1.0/fullcalendar.min.css
+= '\r\n'
+include ../../all/adminlte/2.3.11/AdminLTE.standalone.min.css
+= '\r\n'
+include ../../all/adminlte/2.3.11/_all-skins.min.css
+//- Table
+= '\r\n'
+include ../../all/datatables/1.10.13/jquery.dataTables.min.css
+= '\r\n'
+include ../../all/datatables/1.10.13/dataTables.bootstrap.min.css
+//- Checkbox
+= '\r\n'
+include ../../all/icheck/1.0.2/all.img.css
+//- Pivot
+= '\r\n'
+include ../../all/pivottable/2.7.0/pivot.min.css
+//- Icon
+= '\r\n'
+include ../../all/font-awesome/4.7.0/font-awesome.standalone.min.css
+//- Icon
+= '\r\n'
+include ../../all/ionicons/2.0.1/ionicons.min.css
+//- Map
+= '\r\n'
+include ../../all/leaflet/1.0.3/leaflet.css
+- }
+//- @end     css
