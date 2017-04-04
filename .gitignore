@@ -1,3 +1,6 @@
 
 /__
-/node_modules
+/cmd
+/data
+#/repos
+/system
