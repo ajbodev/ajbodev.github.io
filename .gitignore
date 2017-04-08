@@ -1,5 +1,6 @@
 
 /__
+#/cli, /core, /custom, ..
 /cmd
 /data
 #/repos
