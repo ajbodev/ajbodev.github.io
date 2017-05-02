@@ -1,7 +1,6 @@
 
 /__
-#/cli, /core, /custom, ..
-/cmd
+
+/custom
 /data
-#/repos
 /system
