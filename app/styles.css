@@ -1,0 +1,38 @@
+
+* {
+  font-family: arial; 
+}
+
+.post-meta {
+  margin-bottom: 10px; 
+}
+
+iframe {
+  width: 100%;
+  border: none;
+  height: 700px;
+}
+
+a {
+  text-decoration: none;
+  color: #0000EE;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+
+/*
+#sidebar {
+  width: 340px; 
+}
+
+#sidebar__header {
+  margin-top: 230px;  
+}
+*/
