@@ -174,6 +174,7 @@ var Base64Binary = {
     var tune = new Tune();
     // Load a 12 tone just intonation scale
     tune.loadScale('ji_12');
+    //tune.loadScale('tetraphonic_31');
     // Set the output mode to 'MIDI' 
     tune.mode.output = 'MIDI';
 
@@ -196,7 +197,7 @@ var Base64Binary = {
        
           var midi = 69 + 12*Math.log(freq/440)/Math.log(2)
 
-          //console.log(note, freq)
+          console.log(midi)
           if (midi) {
   
             piano.triggerAttack("C4");
@@ -229,16 +230,33 @@ var Base64Binary = {
       var _this = this;
       var lock = false;
       var seq = [
-        ['D4', 200],
-        ['D4', 800],
-        ['C4', 800],
+        ['C5', 300],
+        ['C5', 200],
+        ['D5', 500],
+        ['C5', 500],
+        ['F5', 500],
+        ['E5', 1000],
+        //
+        ['C5', 300],
+        ['C5', 200],
+        ['D5', 500],
+        ['C5', 500],
+        ['G5', 500],
+        ['F5', 400],
+        //[['C5', 'D5'], 400],
       ];
       var i = 0;
       (function loopsiloop(){
         //
         setTimeout(function() {
           if (i < seq.length) {
-            _piano._play(seq[i][0]);
+            if ((seq[i][0]) instanceof Array) {
+              for (var j=0; j<seq[i][0].length; j++) {
+                _piano._play(seq[i][0][j]);
+              }
+            } else {
+              _piano._play(seq[i][0]);
+            }
             loopsiloop()
           }
           i++;
@@ -257,7 +275,7 @@ var Base64Binary = {
       }
       return _play;
     },
-    _play: function(note, time) {
+    _play: function(note, midi) {
       var _freq = {
         'C4': '261.6255653005986',
         'D4': '293.6647679174076',
@@ -287,8 +305,8 @@ var Base64Binary = {
       };
       piano.triggerAttack('C4');
       // Detune each piano sample 
-      var midi = 69 + 12*Math.log(_freq[note]/440)/Math.log(2)
-      piano.pitch = tune.note(midi-tune.scale.length)-tune.key;
+      var _midi = (69 + 12*Math.log(_freq[note]/440)/Math.log(2)) || midi;
+      piano.pitch = tune.note(_midi-tune.scale.length)-tune.key;
       /*
       return new Promise(function(resolve, reject) {
         setTimeout(function(){
@@ -310,7 +328,8 @@ var Base64Binary = {
   }
   // ?
   setTimeout(function() {
-    _piano.run();
+    //_piano.run();
+    console.clear();
   }, 500);
   // ?
   </script>
