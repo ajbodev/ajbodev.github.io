@@ -113,6 +113,7 @@ var Base64Binary = {
       <script src="js/tune.js"></script>
       <script src="js/nexusUI.js"></script>
       <script src="js/qwerty-hancock2.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>
       
   /*
@@ -195,12 +196,13 @@ var Base64Binary = {
        
           var midi = 69 + 12*Math.log(freq/440)/Math.log(2)
 
+           console.log(note, freq)
           if (midi) {
   
             piano.triggerAttack("C4");
-            
             // Detune each piano sample 
             piano.pitch = tune.note(midi-tune.scale.length)-tune.key; 
+            
    
           }
   
@@ -219,5 +221,61 @@ var Base64Binary = {
     }
 
    
+  </script>
+  
+  <script>
+  var _piano = {
+    run: function() {
+      var _this = this;
+      var p = this.play;
+      this._play('C4', '1500')
+      .then(p('C4', '1500'));
+    },
+    play: function(note, time) {
+      var _this = this;
+      var _play = function() {
+        _piano._play(note, time);
+      }
+      return _play;
+    },
+    _play: function(note, time) {
+      var _freq = {
+        'C4': '261.6255653005986',
+        'D4': '293.6647679174076',
+        'E4': '329.6275569128699',
+        'F4': '349.2282314330039',
+        'G4': '391.99543598174927',
+        'A4': '440',
+        'B4': '493.8833012561241',
+        'C5': '523.2511306011972',
+        'D5': '587.3295358348151',
+        'E5': '659.2551138257398',
+        'F5': '698.4564628660078',
+        'G5': '783.9908719634985',
+        'A5': '880',
+        'B5': '987.7666025122483',
+        //
+        'C#4': '277.1826309768721',
+        'D#4': '311.1269837220809',
+        'F#4': '369.9944227116344',
+        'G#4': '415.3046975799451',
+        'A#4': '466.1637615180899',
+        'C#5': '554.3652619537442',
+        'D#5': '622.2539674441618',
+        'F#5': '739.9888454232688',
+        'G#5': '830.6093951598903',
+        'A#5': '932.3275230361799',
+      };
+      piano.triggerAttack('C4');
+      // Detune each piano sample 
+      var midi = 69 + 12*Math.log(_freq[note]/440)/Math.log(2)
+      piano.pitch = tune.note(midi-tune.scale.length)-tune.key;
+      return new Promise(function(resolve, reject) {
+        setTimeout(function(){
+          resolve("Success!"); // Yay! Everything went well!
+        }, time);
+      });
+    },
+  }
   </script>
 </html>
