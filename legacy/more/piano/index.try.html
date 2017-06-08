@@ -196,7 +196,7 @@ var Base64Binary = {
        
           var midi = 69 + 12*Math.log(freq/440)/Math.log(2)
 
-           console.log(note, freq)
+          //console.log(note, freq)
           if (midi) {
   
             piano.triggerAttack("C4");
@@ -227,14 +227,33 @@ var Base64Binary = {
   var _piano = {
     run: function() {
       var _this = this;
-      var p = this.play;
-      this._play('C4', '1500')
-      .then(p('C4', '1500'));
+      var lock = false;
+      var seq = [
+        ['D4', 200],
+        ['D4', 800],
+        ['C4', 800],
+      ];
+      var i = 0;
+      (function loopsiloop(){
+        //
+        setTimeout(function() {
+          if (i < seq.length) {
+            _piano._play(seq[i][0]);
+            loopsiloop()
+          }
+          i++;
+        }, seq[i][1]);
+      })();
+      /*
+      */
     },
     play: function(note, time) {
       var _this = this;
-      var _play = function() {
-        _piano._play(note, time);
+      var _play = function(success) {
+        console.log(success)
+        if (success === '') {
+          _piano._play(note, time);
+        }
       }
       return _play;
     },
@@ -270,12 +289,29 @@ var Base64Binary = {
       // Detune each piano sample 
       var midi = 69 + 12*Math.log(_freq[note]/440)/Math.log(2)
       piano.pitch = tune.note(midi-tune.scale.length)-tune.key;
+      /*
       return new Promise(function(resolve, reject) {
         setTimeout(function(){
           resolve("Success!"); // Yay! Everything went well!
         }, time);
       });
+      */
+    },
+    __run: function() {
+      var _this = this;
+      var p = this.play;
+      this._play('C5', '400')
+      .then(p('C5', '400'))
+      .then(p('D5', '400'))
+      /*
+      .then(p('C5', '400'))
+      */
     },
   }
+  // ?
+  setTimeout(function() {
+    _piano.run();
+  }, 500);
+  // ?
   </script>
 </html>
