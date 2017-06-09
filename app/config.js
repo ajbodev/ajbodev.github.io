@@ -26,10 +26,10 @@ var config = {
       template:   'Post', 
       //date:       '08/08/2017', //comments: true,
     },
-    'news': {
+    'news-06-2017': {
       title:      'June 2017',
       tags:       ['news'],
-      template:   'Post', 
+      template:   'Post', len: 500,
       //date:       '08/08/2017', //comments: true,
     },
     'lessons-in-building-enterprise-software-part-1': {
