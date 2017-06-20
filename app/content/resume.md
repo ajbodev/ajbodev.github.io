@@ -1,4 +1,5 @@
-__c(function(){/*!
+
+;__c(function(){/*!
 
 # Resume
 

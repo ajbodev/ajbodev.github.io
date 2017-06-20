@@ -1,4 +1,5 @@
-__c(function(){/*!
+
+;__c(function(){/*!
 
 # About
 
@@ -7,6 +8,12 @@ function() {
   alert(2323)
 }
 ```
+
+<pre><code>
+function() {
+  alert(2323)
+}
+</code></pre>
 
 $$
 f(x) = 77

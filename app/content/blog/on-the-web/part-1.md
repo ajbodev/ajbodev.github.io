@@ -1,4 +1,4 @@
-__c(function(){/*!
+;__c(function(){/*!
 
 # On The Web
 

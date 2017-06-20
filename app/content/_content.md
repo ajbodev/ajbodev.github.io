@@ -1,9 +1,10 @@
-__c(function(){/*!
+
+;__c(function(){/*!
 
 # Content
 
 
 
-[//]: # (@~`[content]`~@)
+[//]: # (@~^[content]^~@)
 
 */});

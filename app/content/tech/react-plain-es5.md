@@ -1,4 +1,4 @@
-__c(function(){/*!
+;__c(function(){/*!
 
 # React.js in Plain ES5
 

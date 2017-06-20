@@ -1,4 +1,4 @@
-__c(function(){/*!
+;__c(function(){/*!
 
 # Is Web Development Fun? (Part 2)
 
