@@ -4,9 +4,9 @@ __require('app', function(require, module, exports) {
 var H       = require('app/lib/h/react');
 var config  = require('app/config');
 var content = require('app/content');
+
 var h       = new H();
 
-/** #e51e */
 var App = function() {
   var _this = this;
   this.config  = config;
@@ -130,7 +130,7 @@ var prototype = {
       if (len) {
         start  = start || 0
         text   = text.substring(start, len);
-        text  += ' <a href="#/content/' + content + '">.. (more)</a>'
+        text  += ' <a href="#/content/' + content + '">.. (read more)</a>'
       }
       $(sel).html(text);
     }
@@ -144,7 +144,7 @@ var prototype = {
     if (len) {
       start     = start || 0;
       text      = text.substring(start, len);
-      text     += ' <a href="#/content/' + content + '">.. (more)</a>';
+      text     += ' <a href="#/content/' + content + '">.. (read more)</a>';
     }
     var tags    = function() {
       var template  = h('div', {'class': 'content__tags'});
