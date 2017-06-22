@@ -1,12 +1,13 @@
+
 ;__c(function(){/*!
 
 # React.js in Plain ES5
 
 It ever since the 1500s, when an unknown printer took a galley of type a  ls simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type e printin
 
-<iframe src="https://ghbtns.com/github-btn.html?user=facebook&repo=react&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-
 <!--
+
+<iframe src="https://ghbtns.com/github-btn.html?user=facebook&repo=react&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
 * [Top] React.js is now the top javascript framework for webapp
    * sitting at 68K stars
    * people who are using it https://github.com/facebook/react/wiki/sites-using-react
@@ -26,6 +27,6 @@ It ever since the 1500s, when an unknown printer took a galley of type a  ls sim
     whatever file editor the joomla has.
 -->
 
-[//]: # (@~`react-plain-es5`~@)
+[//]: # (@~|react-plain-es5|~@)
 
 */});

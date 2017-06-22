@@ -1,3 +1,4 @@
+
 ;__c(function(){/*!
 
 # PHP Arrays as Pseudo Classes
@@ -40,6 +41,6 @@ Just because a tool is powerful, flexible and simple doesn't preclude it from ab
 
 -->
 
-[//]: # (@~`php-arrays-as-pseudo-classes`~@)
+[//]: # (@~|php-arrays-as-pseudo-classes|~@)
 
 */});

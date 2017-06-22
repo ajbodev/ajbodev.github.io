@@ -1,9 +1,10 @@
-__c(function(){/*!
+
+;__c(function(){/*!
 
 # File
 
 Some files to include!!!
 
-[//]: # (@~`file`~@)
+[//]: # (@~|file|~@)
 
 */});

@@ -2,7 +2,7 @@
 /**
  * Dependencies
  * 
- * @version ~06/19/17
+ * @version ~06/21/17
  * @since   ~04/30/17
  * @author  Omar Job Abesamis <ojawebdev@gmail.com>
  * @see     Browserify (13.1.0)
@@ -21,27 +21,31 @@ var __require = function(name, func) {
 }
 _require();
 
-var __c = function(f, o) {
+var __c = function(f, o, texts) {
   var text = f.toString()
     .replace(/^[^\/]+\/\*!?/, '')
     .replace(/\*\/[^\/]+$/, '');
+  texts    = texts || true;
     
-  if (o) text = __c.supplant(text, o);
-  __c.text(text);
+  if (o)     text = __c.supplant(text, o);
+  if (texts) __c.text(text);
 
   return text;
 }
 __c.texts = {};
-__c.delimiter = {start: '(@~`', end: '`~@)'}
-__c.text = function(text, start, end) {
+__c.delimiter = {start: '(@~|', end: '|~@)'}
+__c.text = function(text, start, end, texts) {
   start = start || __c.delimiter.start;
   end   = end   || __c.delimiter.end;
+  texts = texts || true;
   var index_start   = text.indexOf(start);
   var index_end     = text.indexOf(end);
   if ((index_start>-1) && (index_end>-1)) {
     var name        = text.substring(index_start+4, index_end);
-    __c.texts[name] = text;
+    if (texts) __c.texts[name] = text;
+    return name;
   }
+  return null;
 }
 __c.supplant = function (text, o) {
   return text.replace(/{([^{}]*)}/g,
@@ -50,4 +54,16 @@ __c.supplant = function (text, o) {
       return typeof r === 'string' || typeof r === 'number' ? r : a;
     }
   );
+};
+__c.t = function(t) {
+  var text = t[0];
+  
+  var f = function(texts) {
+    texts = texts !== false ? true : false;
+    if (texts) __c.text(text);
+    return text;
+  }
+  f.text = text;
+
+  return f;
 };

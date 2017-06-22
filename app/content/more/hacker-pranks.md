@@ -1,9 +1,10 @@
+
 ;__c(function(){/*!
 
 # Content
 
 
 
-[//]: # (@~`hacker-pranks`~@)
+[//]: # (@~|hacker-pranks|~@)
 
 */});

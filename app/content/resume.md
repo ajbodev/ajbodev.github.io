@@ -89,6 +89,6 @@ Earned 139 credits toward a BS Computer Science degree (2006-2010)
 [Return to Home](#/home)  
 
 
-[//]: # (@~`resume`~@)
+[//]: # (@~|resume|~@)
 
 */});
