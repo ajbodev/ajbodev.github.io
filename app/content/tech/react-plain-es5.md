@@ -3,34 +3,89 @@
 
 # React.js in Plain ES5
 
-If you're a web developer, and you've been living under the sun this past few years, you most certainly have heard of [React.js](https://facebook.github.io/react/), a javascript framework from Facebook. Sitting at roughly ~70k stars (<iframe class='github' src='https://ghbtns.com/github-btn.html?user=facebook&repo=react&type=star&count=true' frameborder='0' scrolling='0'></iframe>), it is currently the [fourth](https://github.com/search?q=stars:%3E1&s=stars&type=Repositories) most starred project in all of Github, and certainly looks to be the most popular javascript framework right now. [Google trends](https://trends.google.com/trends/explore?q=react%20js) have "react js" as a search term increasing over time, and with [hundreds of companies](https://github.com/facebook/react/wiki/sites-using-react) using it in production, job searches have increasingly been looking for React.js as an experience. Competing javascript frameworks, Vue.js in particular, have a lot of catch-up to do before dethroning React. It's safe to say that for now, all signs point to React.js as the top dog of javascript frameworks, taking the throne in a somewhat like manner as jQuery did almost a decade ago.
+If you're a web developer, and you've been living under the sun these past few years, you most certainly have heard of [React.js](https://facebook.github.io/react/), a javascript framework from Facebook. Sitting at roughly ~70k stars (<iframe class='github' src='https://ghbtns.com/github-btn.html?user=facebook&repo=react&type=star&count=true' frameborder='0' scrolling='0'></iframe>), it is currently the [fourth](https://github.com/search?q=stars:%3E1&s=stars&type=Repositories) most starred project in all of Github, and certainly looks to be the most popular javascript framework right now. [Google trends](https://trends.google.com/trends/explore?q=react%20js) have "react js" as a search term increasing over time, and with [hundreds of companies](https://github.com/facebook/react/wiki/sites-using-react) using it in production, job searches have increasingly been looking for React.js as an experience. Competing javascript frameworks, Vue.js in particular, have a lot of catch-up to do before dethroning React. It's safe to say that for now, all signs point to React.js as the top dog of javascript frameworks, taking the throne in a somewhat like manner as jQuery did almost a decade ago.
 
-Why you would want React.js, or any javascript framework, to build your website or webapp on - that's an interesting blog on its own. Right now, assuming you want to build using React, we're interested in what the blog's title says: ***React.js in Plain ES5***. We all know *pedantically* that React runs in ES5 because Babel does ES6, JSX, etc to ES5, and most react tutorials use Babel to convert ES6 + JSX. *Pedantics*. The interesting part for me is still ***React.js in Plain ES5*** - without any 'need' for Babel, ES6, JSX (which is just sugar anyways for React.createElement). Pedantically, you can look at the generated source from Babel (which by default is ES5), and manipulate it and say you're doing *React.js in Plain ES5*. You should be able to tell that that experience should be less than pleasant, and not the one we're interested in.
+Why you would want React.js, or any javascript framework, to build your website or webapp on - that's an interesting topic on its own. Right now, assuming you want to build using React, we're interested in what the blog's title says: ***React.js in Plain ES5***. We all know *pedantically* that React runs in ES5 because Babel does ES6, JSX, etc to ES5, and most react tutorials use Babel to convert ES6 + JSX. *Pedantics*. The interesting part for me is still ***React.js in Plain ES5*** - without any 'need' for Babel, ES6, JSX, or any build step whatsoever. Pedantically, you can look at the generated source from Babel (by default its ES5), and manipulate it and say you're doing *React.js in Plain ES5*. You should be able to tell that that experience is unpleasant, and not the one we're interested in.
 
-Why do I find 'React in plain ES5' interesting, and not just stick to React's default ES6+JSX approach? Several reasons:
+Webdevs, don't get me wrong - React should almost always be done with the widely regarded conventions - ES6, JSX, build tools (webpack), some Redux. So why bother? I find 'React in plain ES5' interesting still for the following reasons:
 
-**1) It greatly lowers the barrier to starting with React by eliminating build**
-
-..
-
-**2) It shows an understanding of how JavaScript fundamentally works**
+**1) It lowers the barrier of entry to React by eliminating the build step**
 
 ..
 
-**3) Allows you to use React in non-standard scenarios**
+**2) It shows an understanding of how JavaScript fundamentally works, in and beyond the context of React**
 
 ..
+
+**3) It allows you to use React in non-standard scenarios**
+
+..
+
+---
 
 Good reasons. Now where's the code?
 
-Let's start with the official Facebook React getting started guide
+Let's start with the official Facebook React getting started guide, and convert it to ES5.
 
-<!--
-* reasons
-  * lower barrier
-  * increase fundamental understanding of javascript
-  * allows you to use React in non-standard scenarios
--->
+https://facebook.github.io/react/docs/hello-world.html
+
+```
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('root')
+);
+```
+
+This is pretty simple enough ..
+
+..
+
+---
+
+Where it gets interesting is in the components ..
+
+https://facebook.github.io/react/docs/components-and-props.html
+
+```
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
+
+```
 
 <!--
 
