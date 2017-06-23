@@ -3,7 +3,39 @@
 
 # PHP Arrays as Pseudo Classes
 
-Ah, PHP arrays .. the paragon of flexibility
+Ah, PHP arrays .. the paragon of data structure flexibility
+
+<!--
+
+* Ah, PHP arrays
+  * tongue in cheek
+    * paragon of data structure flexibility
+    * poster child of 'worse is better', 'least power'
+  * what people have said
+* 
+
+-->
+
+```php
+return $_Module = function($params=[], $deps=[]) { 
+$_this = [
+    #'module' => $deps['module']('app/module'),
+    #'prop'   => @$params[0] ?: 'default',
+    'boot' => function() use (&$_this, $params, $deps) {
+        #
+    },
+    'init' => function() use (&$_this) {
+        #
+    },
+    'action' => function($param) use (&$_this) {
+        return $param;
+    },
+];
+$_this['boot']();
+return $_this;
+};
+
+```
 
 <!--
 
@@ -15,6 +47,21 @@ Ah, PHP arrays .. the paragon of flexibility
 * $_this
 
 ---
+
+https://www.reddit.com/r/IAmA/comments/1nl9at/i_am_a_member_of_facebooks_hhvm_team_a_c_and_d/
+
+What's the first thing you'd do if you were put in charge of creating PHP 7.0?
+
+Better arrays.
+
+PHP arrays are very quirky and okay for a lot of things but best at none. They are used as straight contiguous vectors, tuples, singleton sets, maps, ..., you name it. To accommodate all these semantics PHP arrays have very complicated and non-obvious semantics. I think everybody would be happier if PHP had better-defined and more specialized types.
+
+Thank you very much for replying.
+I guess this is where I realise I'll never be a proper computer scientist. For me PHP arrays do everything I need them to do, in a way that I find clear, easy to understand, and with a performance level that is more than adequate for the problems I have to solve.
+
+!!!
+The beauty of it all is we may both be right!
+!!!
 
 https://www.reddit.com/r/PHP/comments/129u20/a_closer_look_into_php_arrays_what_you_dont_see/
 

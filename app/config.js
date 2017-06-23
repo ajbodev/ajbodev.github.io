@@ -24,6 +24,7 @@ var config = {
       title:      'PHP Arrays as Pseudo Classes',
       tags:       ['php'],
       template:   'Post', 
+      len:        120,
       //date:       '08/08/2017', //comments: true,
     },
     'news-06-2017': {
