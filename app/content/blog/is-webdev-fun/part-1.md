@@ -4,6 +4,6 @@
 
 
 
-[//]: # (@~`is-webdev-fun-part-1`~@)
+[//]: # (@~|is-webdev-fun-part-1|~@)
 
 */});

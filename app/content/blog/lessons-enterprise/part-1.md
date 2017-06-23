@@ -4,6 +4,6 @@
 
 
 
-[//]: # (@~`lessons-in-building-enterprise-software-part-1`~@)
+[//]: # (@~|lessons-in-building-enterprise-software-part-1|~@)
 
 */});

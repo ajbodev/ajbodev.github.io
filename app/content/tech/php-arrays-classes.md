@@ -7,12 +7,14 @@ Ah, PHP arrays .. the paragon of data structure flexibility
 
 <!--
 
-* Ah, PHP arrays
+* [] Ah, PHP arrays
   * tongue in cheek
     * paragon of data structure flexibility
     * poster child of 'worse is better', 'least power'
   * what people have said
-* 
+* [] We're going to take it a step further, and make PHP arrays act like PHP classes
+  * or 'PHP Arrays as Pseudo Classes'
+  * as if PHP is not abominable enough, we're just going to frankenstein ..
 
 -->
 
