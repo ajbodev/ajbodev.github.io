@@ -29,6 +29,6 @@ Oh, is any of these relevant to my work as a web developer building another Reac
   * I'm going to argue likewise and say that 
 -->
 
-[//]: # (@~|on-the-web-part-1|~@)
+[//]: # (@~|blog_on-the-web_part-1|~@)
 
 */});

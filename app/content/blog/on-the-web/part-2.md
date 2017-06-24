@@ -5,6 +5,6 @@
 
 
 
-[//]: # (@~|on-the-web-part-2|~@)
+[//]: # (@~|blog_on-the-web_part-2|~@)
 
 */});

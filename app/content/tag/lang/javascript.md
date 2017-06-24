@@ -3,8 +3,8 @@
 
 # JavaScript
 
-more js to come
+Tag for JavaScript
 
-[//]: # (@~|tag/javascript|~@)
+[//]: # (@~|tag_javascript|~@)
 
 */});

@@ -104,7 +104,10 @@ var prototype = {
       h('div', {'class': 'posts'},
         h('h1', {'class': 'content-subhead'}, 'More'),
         h('div', {'id': 'content__more_1'}),
-        h('div', {'id': 'content__more_2'})
+        h('div', {'id': 'content__more_2'}),
+        h('div', {'id': 'content__more_3'}),
+        h('div', {'id': 'content__more_4'}),
+        h('div', {'id': 'content__more_5'})
       ),
     )
     h.render(template, document.getElementById('content'));

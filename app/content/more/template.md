@@ -5,6 +5,6 @@
 
 Hi I'm more templates!!!!
 
-[//]: # (@~|more/template|~@)
+[//]: # (@~|more_template|~@)
 
 `)();

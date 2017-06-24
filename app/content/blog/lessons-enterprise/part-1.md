@@ -3,8 +3,8 @@
 
 # Lessons in Building Enterprise Software
 
+Lots ..
 
-
-[//]: # (@~|lessons-in-building-enterprise-software-part-1|~@)
+[//]: # (@~|blog_lessons-in-building-enterprise-software_part-1|~@)
 
 */});

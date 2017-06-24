@@ -156,6 +156,6 @@ ReactDOM.render(h(_module), document.getElementById('content'))
 
 ```
 
-[//]: # (@~|react-plain-es5|~@)
+[//]: # (@~|tech_react-plain-es5|~@)
 
 */});

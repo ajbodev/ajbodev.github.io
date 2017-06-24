@@ -73,9 +73,9 @@ Earned 139 credits toward a BS Computer Science degree (2006-2010)
   * *Fast, minimalist Bible app in HTML, CSS, JS*
 * [Rich Code eXperience (RCX)](https://github.com/ajbodev/rcx) 2015-2016
   * *An HTML, CSS, JS code playground with powerful intentions*
-* [Ronesi (Work In Progress)](https://github.com/ajbodev/ronesi) 2016
+* [Ronesi](https://github.com/ajbodev/ronesi) 2016
   * *Modernized referee league management*
-* [Ronesi Servers (Work In Progress)](https://github.com/ajbodev/ronesi-servers) 2016
+* [Ronesi Servers](https://github.com/ajbodev/ronesi-servers) 2016
   * *Servers (C#, Java, PHP, Node, Ruby, Python) for ronesi*
 
 ---
@@ -87,7 +87,6 @@ Earned 139 credits toward a BS Computer Science degree (2006-2010)
 <!--[Projects](#/content/tech/projects)  
 [Referrals](#/content/referrals)  -->
 [Return to Home](#/home)  
-
 
 [//]: # (@~|resume|~@)
 
