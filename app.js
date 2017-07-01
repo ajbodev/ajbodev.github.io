@@ -28,16 +28,16 @@ var prototype = {
     var _this = this;
     var routes = {
       '/content/?((\w|.)*)': function(content) {
-        _this._render(function() { _this.renderContent(content); })
+        _this._render(function() { _this.renderContent(content); });
       },
       '/home': function() {
-        _this._render(function() { _this.renderHome(); })
+        _this._render(function() { _this.renderHome(); });
       },
       '/tag/?((\w|.)*)': function(tag) {
-        _this._render(function() { _this.renderTag(tag); })
+        _this._render(function() { _this.renderTag(tag); });
       },
       '/date/?((\w|.)*)': function(date) {
-        _this._render(function() { _this.renderDate(date); })
+        _this._render(function() { _this.renderDate(date); });
       },
     }
     this.router = Router(routes);
@@ -122,20 +122,34 @@ var prototype = {
       )
     }
   },
+  loadContent: function(content) {
+    var _this = this;
+    var script = document.createElement('script');
+    script.onload = function() {
+      _this.content[content] = marked(__c.texts[content]);
+      _this.renderContent(content);
+    };
+    script.src = 'app/content/' + content + '.md';
+    document.getElementsByTagName('head')[0].appendChild(script);
+  },
   renderContent: function(content, sel, len, start) {
     var _this = this;
-    var text   = this.content[content] || '';
-    var config = this.config.content[content] || {};
-    sel        = sel || '#content';
-    if (config.template) {
-      this['renderTemplate' + config.template](content, sel, len, start);
-    } else {
-      if (len) {
-        start  = start || 0
-        text   = text.substring(start, len);
-        text  += ' <a href="#/content/' + content + '">.. (read more)</a>'
+    if (this.content[content]) {
+      var text   = this.content[content] || '';
+      var config = this.config.content[content] || {};
+      sel        = sel || '#content';
+      if (config.template) {
+        this['renderTemplate' + config.template](content, sel, len, start);
+      } else {
+        if (len) {
+          start  = start || 0
+          text   = text.substring(start, len);
+          text  += ' <a href="#/content/' + content + '">.. (read more)</a>'
+        }
+        $(sel).html(text);
       }
-      $(sel).html(text);
+    } else {
+      this.loadContent(content);
     }
   },
   renderTemplatePost: function(content, sel, len, start) {
