@@ -2,7 +2,7 @@
 /**
  * Dependencies
  * 
- * @version ~06/21/17
+ * @version ~07/05/17
  * @since   ~04/30/17
  * @author  Omar Job Abesamis <ojawebdev@gmail.com>
  * @see     Browserify (13.1.0)
@@ -41,7 +41,7 @@ __c.text = function(text, start, end, texts) {
   var index_start   = text.indexOf(start);
   var index_end     = text.indexOf(end);
   if ((index_start>-1) && (index_end>-1)) {
-    var name        = text.substring(index_start+4, index_end);
+    var name        = text.substring(index_start+start.length, index_end);
     if (texts) __c.texts[name] = text;
     return name;
   }
@@ -66,4 +66,22 @@ __c.t = function(t) {
   f.text = text;
 
   return f;
+};
+
+var __script = function(script) {
+  if (!__script.scripts[script]) {  
+    document.write(
+      '<script src="' + script + 
+      '" onload="__script.onload(\'' + script + '\') ' + 
+      '" onerror="__script.onerror(\'' + script + '\') ' + 
+      '"></' + 'script>'
+    );
+  }
+}
+__script.scripts = {};
+__script.onerror = function(script) {
+  __script.scripts[script] = false;
+};
+__script.onload = function(script) {
+  __script.scripts[script] = true;
 };
