@@ -2,7 +2,7 @@
 /**
  * Dependencies
  * 
- * @version ~07/05/17
+ * @version ~07/10/17
  * @since   ~04/30/17
  * @author  Omar Job Abesamis <ojawebdev@gmail.com>
  * @see     Browserify (13.1.0)
@@ -13,12 +13,12 @@
 var _require = function(modules) {
   var _modules = modules || {1:[function(require,module,exports){},{}]};
   require = (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})(_modules,{},[]);
-}
+};
 var __require = function(name, func) {
-  var o = {}
+  var o = {};
   o[name] = [func, {}];
   _require(o);
-}
+};
 _require();
 
 var __c = function(f, o, texts) {
@@ -31,9 +31,9 @@ var __c = function(f, o, texts) {
   if (texts) __c.text(text);
 
   return text;
-}
+};
 __c.texts = {};
-__c.delimiter = {start: '(@~|', end: '|~@)'}
+__c.delimiter = {start: '(@~|', end: '|~@)'};
 __c.text = function(text, start, end, texts) {
   start = start || __c.delimiter.start;
   end   = end   || __c.delimiter.end;
@@ -46,7 +46,7 @@ __c.text = function(text, start, end, texts) {
     return name;
   }
   return null;
-}
+};
 __c.supplant = function (text, o) {
   return text.replace(/{([^{}]*)}/g,
     function (a, b) {
@@ -77,7 +77,7 @@ var __script = function(script) {
       '"></' + 'script>'
     );
   }
-}
+};
 __script.scripts = {};
 __script.onerror = function(script) {
   __script.scripts[script] = false;
