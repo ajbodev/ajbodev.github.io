@@ -5,6 +5,6 @@
 
 
 
-[//]: # (@~|blog_is-webdev-fun_part-2|~@)
+[//]: # (@~|blog/is-webdev-fun/part-2|~@)
 
 */});

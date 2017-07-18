@@ -90,6 +90,6 @@ Just because a tool is powerful, flexible and simple doesn't preclude it from ab
 
 -->
 
-[//]: # (@~|tech_php-arrays-as-pseudo-classes|~@)
+[//]: # (@~|tech/php-arrays-classes|~@)
 
 */});

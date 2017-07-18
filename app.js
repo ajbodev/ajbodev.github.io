@@ -3,14 +3,13 @@ __require('app', function(require, module, exports) {
 
 var H       = require('app/lib/h/react');
 var config  = require('app/config');
-var content = require('app/content');
 
 var h       = new H();
 
 var App = function() {
   var _this = this;
   this.config  = config;
-  this.content = content;
+  this.content = {};
   this.router  = {};
   this.boot();
 };
@@ -20,9 +19,10 @@ var prototype = {
   },
   init: function() {
     var _this = this;
+    this.makeContent();
     this.renderLayout();
-    this._render(function() { _this.renderHome(); })
     this.makeRoutes();
+    if (!window.location.hash) window.location.hash = '#/home';
   },
   makeRoutes: function() {
     var _this = this;
@@ -42,6 +42,13 @@ var prototype = {
     }
     this.router = Router(routes);
     this.router.init();
+  },
+  makeContent: function() {
+    var _this = this;
+    for (var i in __c.texts) {
+      // replace ";__c(function(){/*!", "*/});" to ""
+      this.content[i] = marked(__c.texts[i]);
+    }
   },
   route: function(route) {
     var _this = this;
@@ -93,7 +100,8 @@ var prototype = {
       h('div', {'class': 'posts'},
         h('h1', {'class': 'content-subhead'}, 'Tech'),
         h('div', {'id': 'content__tech_1'}),
-        h('div', {'id': 'content__tech_2'})
+        h('div', {'id': 'content__tech_2'}),
+        h('div', {'id': 'content__tech_3'})
       ),
       h('br'),
       h('div', {'class': 'posts'},
@@ -122,22 +130,22 @@ var prototype = {
       )
     }
   },
-  loadContent: function(content) {
+  loadContent: function(content, sel, len, start) {
     var _this = this;
     var script = document.createElement('script');
     script.onload = function() {
       _this.content[content] = marked(__c.texts[content]);
-      _this.renderContent(content);
+      _this.renderContent(content, sel, len, start);
     };
     script.src = 'app/content/' + content + '.md';
     document.getElementsByTagName('head')[0].appendChild(script);
   },
   renderContent: function(content, sel, len, start) {
     var _this = this;
+    sel = sel || '#content';
     if (this.content[content]) {
       var text   = this.content[content] || '';
       var config = this.config.content[content] || {};
-      sel        = sel || '#content';
       if (config.template) {
         this['renderTemplate' + config.template](content, sel, len, start);
       } else {
@@ -149,7 +157,7 @@ var prototype = {
         $(sel).html(text);
       }
     } else {
-      this.loadContent(content);
+      this.loadContent(content, sel, len, start);
     }
   },
   renderTemplatePost: function(content, sel, len, start) {
@@ -224,38 +232,39 @@ var prototype = {
         h('li', {}, 
           h('a', {'href': '#/content/' + contents[i]}, config[contents[i]].title)
         );
-        var _summary = h('div', {'id': 'content__tag__' + contents[i]});
+        var id = ('content__tag__' + contents[i]).replace(/\//g, '_');
+        var _summary = h('div', {'id': id});
         _contents.index.push(_index);
         _contents.summary.push(_summary);
       }
       var title = this.config.tag[tag] ? (this.config.tag[tag].title) : tag;
-      var text  = '';
-      if (this.config.tag[tag] && this.config.tag[tag].content) {
-        var name = this.config.tag[tag].content;
-        title    = '';
-        text     = this.content[name]
-      }
       template = 
       h('div', {},
         h('h1', {'class': 'content-subhead'}, 'TAG - ' + tag),
-        h('h1', {}, title),
-        h('div', {html: true}, text),
+        h('h1', {id: 'content__tag__title'}, title),
+        h('div', {id: 'content__tag__content'}),
         h('a', {
           'class': 'post-category post-category-design',
           'href': '#/tag/' + tag,
         }, tag),
         h('ul', {}, _contents.index),
         _contents.summary,
-      )
+      );
       h.render(template, document.getElementById('content'));
       for (var i=0; i<contents.length; i++) {
+        var id = ('#content__tag__' + contents[i]).replace(/\//g, '_');
         this.renderContent(
           contents[i],
-          '#content__tag__' + contents[i],
+          id,
           config[contents[i]].len   || 300,
           config[contents[i]].start || 0
         );
-        $('#content__tag__' + contents[i]).prepend('<h1 class="content-subhead"></h1>');
+        $(id).prepend('<h1 class="content-subhead"></h1>');
+      }
+      if (this.config.tag[tag] && this.config.tag[tag].content) {
+        var name = this.config.tag[tag].content;
+        this.renderContent(name, '#content__tag__content');
+        $('#content__tag__title').html('');
       }
     } else {
       var tags = function() {

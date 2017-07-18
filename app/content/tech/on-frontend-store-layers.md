@@ -5,6 +5,6 @@
 
 
 
-[//]: # (@~|tech_on-frontend-store-layers|~@)
+[//]: # (@~|tech/on-frontend-store-layers|~@)
 
 */});

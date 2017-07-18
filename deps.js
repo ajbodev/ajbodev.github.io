@@ -62,7 +62,7 @@ __c.t = function(t) {
     texts = texts !== false ? true : false;
     if (texts) __c.text(text);
     return text;
-  }
+  };
   f.text = text;
 
   return f;

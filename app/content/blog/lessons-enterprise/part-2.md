@@ -5,6 +5,6 @@
 
 
 
-[//]: # (@~|blog_lessons-in-building-enterprise-software_part-2|~@)
+[//]: # (@~|blog/lessons-enterprise/part-2|~@)
 
 */});

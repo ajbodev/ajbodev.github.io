@@ -5,6 +5,6 @@
 
 
 
-[//]: # (@~|more_javascript-auto-piano|~@)
+[//]: # (@~|more/javascript-auto-piano|~@)
 
 */});

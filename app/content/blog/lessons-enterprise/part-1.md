@@ -5,6 +5,6 @@
 
 Lots ..
 
-[//]: # (@~|blog_lessons-in-building-enterprise-software_part-1|~@)
+[//]: # (@~|blog/lessons-enterprise/part-1|~@)
 
 */});

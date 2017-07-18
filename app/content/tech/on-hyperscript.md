@@ -5,6 +5,6 @@
 
 
 
-[//]: # (@~|tech_on-hyperscript|~@)
+[//]: # (@~|tech/on-hyperscript|~@)
 
 */});

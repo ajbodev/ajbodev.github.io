@@ -3,49 +3,53 @@ __require('app/config', function(require, module, exports) {
 
 var config = {
   home: {
-    tech_1:       { content: 'tech_react-plain-es5' },
-    tech_2:       { content: 'tech_php-arrays-as-pseudo-classes' },
-    news:         { content: 'news_2017_06' },
-    more_1:       { content: 'blog_lessons-in-building-enterprise-software_part-1' },
-    more_2:       { content: 'blog_on-the-web_part-1' },
-    more_3:       { content: 'more_javascript-auto-piano' },
-    more_4:       { content: 'more_europe' },
-    more_4:       { content: 'cs_2017_06_24' },
+    tech_1:       { content: 'tech/react-plain-es5' },
+    tech_2:       { content: 'tech/php-arrays-classes' },
+    tech_3:       { content: 'tech/engineering-mid-level' },
+    news:         { content: 'news/2017/06' },
+    more_1:       { content: 'blog/lessons-enterprise/part-1' },
+    more_2:       { content: 'blog/on-the-web/part-1' },
+    more_3:       { content: 'more/javascript-auto-piano' },
   },
   tag: {
-    'javascript': { title: 'JavaScript', content: 'tag_javascript' },
+    'javascript': { title: 'JavaScript', content: 'tag/lang/javascript' },
     'php':        { title: 'PHP',        content: false },
   },
   content: {
-    'tech_react-plain-es5': {
+    // Technology
+    'tech/react-plain-es5': {
       title: 'React.js in Plain ES5',
       tags:  ['javascript', 'react'], template: 'Post', 
     },
-    'tech_php-arrays-as-pseudo-classes': {
+    'tech/php-arrays-classes': {
       title: 'PHP Arrays as Pseudo Classes',
       tags:  ['php'], template: 'Post', len: 120,
     },
-    'news_2017_06': {
+    // News
+    'news/2017/06': {
       title: 'News', // June 2017
       tags:  ['news'], template: 'Post', len: 500,
     },
-    'blog_lessons-in-building-enterprise-software_part-1': {
+    // Blog
+    'blog/lessons-enterprise/part-1': {
       title: 'Lessons in Building Enterprise Software',
       tags:  ['web'], template: 'Post', 
     },
-    'blog_on-the-web_part-1': { 
+    'blog/on-the-web/part-1': { 
       title: 'On The Web', 
       tags:  ['web'], template: 'Post' 
     },
-    'more_europe': { 
+    // More
+    'more/europe': { 
       title: 'Travelling Europe', 
       tags:  ['misc'], template: 'Post',
     },
-    'more_javascript-auto-piano': { 
+    'more/javascript-auto-piano': { 
       title: 'JavaScript Auto Piano', 
       tags:  ['javascript'], template: 'Post',
     },
-    'cs_2017_06_24': { 
+    // CS
+    'cs/2017/06/24': { 
       title: 'Algorithms', 
       tags:  ['javascript'], template: 'Post',
     },

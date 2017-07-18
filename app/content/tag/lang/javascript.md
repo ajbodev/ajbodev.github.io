@@ -3,8 +3,8 @@
 
 # JavaScript
 
-Tag for JavaScript
+Tag for JavaScript!
 
-[//]: # (@~|tag_javascript|~@)
+[//]: # (@~|tag/lang/javascript|~@)
 
 */});
