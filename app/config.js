@@ -7,9 +7,11 @@ var config = {
     tech_2:       { content: 'tech/php-arrays-classes' },
     tech_3:       { content: 'tech/engineering-mid-level' },
     news:         { content: 'news/2017/06' },
+    /*
     more_1:       { content: 'blog/lessons-enterprise/part-1' },
     more_2:       { content: 'blog/on-the-web/part-1' },
     more_3:       { content: 'more/javascript-auto-piano' },
+    */
   },
   tag: {
     'javascript': { title: 'JavaScript', content: 'tag/lang/javascript' },
