@@ -138,6 +138,8 @@ var prototype = {
     script.onload = function() {
       _this.content[content] = marked(__c.texts[content]);
       _this.renderContent(content, sel, len, start);
+      _this.renderCode();
+      _this.renderMath();
     };
     script.src = 'app/content/' + content + '.md';
     document.getElementsByTagName('head')[0].appendChild(script);
