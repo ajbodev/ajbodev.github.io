@@ -17,9 +17,9 @@ So in a sense, React IS already in ES5 with the help of tooling. But the source 
 
 Note that you can look at the generated source from Babel (by default ES5), and manipulate it and say you're doing *React.js in Plain ES5*. Manipulating generated code is unpleasant, and not the one we're interested in.
 
-**Important**: to developers who are reading this and want to use React, please don't get the wrong idea - I strongly believe React should almost always be done the 'standard way' - ES6, JSX, build tools like webpack, state management like Redux. 
+**Important**: to developers who are reading this and want to use React, please don't get the wrong idea - I strongly believe React should almost always be done the 'standard way' - ES6, JSX, build tools like webpack, state management like Redux. So why bother with all of these ES5 nonsense? 
 
-So why bother with all of these ES5 nonsense? I find ***React in plain ES5*** interesting for the following reasons:
+I find ***React.js in plain ES5*** interesting for the following reasons:
 
 **1) It lowers the barrier of entry to React by eliminating the build step**
 
@@ -49,6 +49,7 @@ Let's start with the official Facebook React getting started guide, the 'Hello W
 
 https://facebook.github.io/react/docs/hello-world.html
 
+**Code 1**
 ```
 ReactDOM.render(
   <h1>Hello, world!</h1>,
@@ -56,9 +57,45 @@ ReactDOM.render(
 );
 ```
 
+You obviously can't run this natively in your browser because of the JSX, so we transpile it (e.g. [Babel repl](https://babeljs.io/repl/)):
 
+**Code 2**
+```
+ReactDOM.render(React.createElement(
+  'h1',
+  null,
+  'Hello, world!'
+), document.getElementById('root'));
+```
 
-..
+We can point [React.createElement](https://facebook.github.io/react/docs/react-api.html#createelement) to a more ergonomic variable, say 'h' (for html, or [hyperscript](https://github.com/hyperhype/hyperscript)), and safely replace the null in the middle with an empty object {} (this stands for attributes). The variable 'h', being so fundamental to the entire application templating, is fine being global (just like how window and document are).
+
+**Code 3**
+```
+h = React.createElement;
+ReactDOM.render(
+  h('h1', {},'Hello, world!'), 
+  document.getElementById('root')
+);
+```
+
+Assuming you have a dom element with id 'root', Code 1, 2, and 3 should work all the same. 
+
+Code 1 and 3 aren't so far different looking.
+
+```
+// Code 1
+<h1>Hello, world!</h1>
+
+// Code 2
+h('h1', {}, 'Hello, world!')
+```
+
+One can argue that the empty object in Code 2 feels unnecessary, but a counterpoint is that its blankness is a marker for the element not having any HTML attributes.
+
+---
+
+Real application templating involves arbitrary nesting, just like with regular HTML.
 
 ---
 
