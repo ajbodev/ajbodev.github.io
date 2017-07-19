@@ -1,7 +1,7 @@
 
 ;__c(function(){/*!
 
-# PHP Arrays as Pseudo Classes
+# PHP Arrays as Classes
 
 Ah, PHP arrays .. the paragon of data structure flexibility
 

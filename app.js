@@ -279,6 +279,7 @@ var prototype = {
             'class': 'post-category post-category-design',
             'href': '#/tag/' + _tags[i],
           }, _tags[i])
+          if (i%7 === 0) template.push([h('br'), h('br')]);
           template.push(_tag);
         }
         return template;

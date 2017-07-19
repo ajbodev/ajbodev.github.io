@@ -33,9 +33,9 @@ So this 'blog' is just that - ***React.js in Plain ES5*** - without any Babel, E
 
 ---
 
-Good reasons. Now where's the code?
+Good reasons. Enough rambling, we need some code!
 
-Let's start with the official Facebook React getting started guide, and convert it to ES5.
+Let's start with the official Facebook React getting started guide, the 'Hello World', and convert it to ES5.
 
 https://facebook.github.io/react/docs/hello-world.html
 
@@ -46,7 +46,7 @@ ReactDOM.render(
 );
 ```
 
-This is pretty simple enough ..
+
 
 ..
 

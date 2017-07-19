@@ -24,13 +24,32 @@ var config = {
       tags:  ['javascript', 'react'], 
     },
     'tech/php-arrays-classes': {
-      title: 'PHP Arrays as Pseudo Classes', template: 'Post', len: 120,
+      title: 'PHP Arrays as Classes', template: 'Post', len: 120,
       tags:  ['php'], 
     },
     'tech/engineering-mid-level': {
       title: 'Engineering Mid Level', template: 'Post', len: 120,
-      tags:  [
-        'flask', 'laravel', 'rails', 'express', 'aspnet-core', 'spring-boot'
+      tags:  [ 'server', 'frontend', 'store' ], 
+    },
+    'tech/engineering-mid-level/frontend': {
+      title: 'Engineering Mid Level - The Frontend Layer', template: 'Post',
+      tags:  [ 
+        'frontend', 'javascript',
+        'knockout', 'react', 'vue', 'angular', 'jquery', 'ember',
+        'angularx', 'riot', 'mithril'
+      ], 
+    },
+    'tech/engineering-mid-level/servers': {
+      title: 'Engineering Mid Level - The Server Layer', template: 'Post',
+      tags:  [ 
+        'server', 
+        'flask', 'rails', 'laravel', 'express', 'aspnet-core', 'spring-boot'
+      ], 
+    },
+    'tech/engineering-mid-level/store': {
+      title: 'Engineering Mid Level - The Store Layer', template: 'Post',
+      tags:  [ 
+        'store', 'indexeddb', 'http', 'firebase'
       ], 
     },
     // News
@@ -38,6 +57,7 @@ var config = {
       title: 'News', template: 'Post', len: 500,
       tags:  ['news'], 
     },
+    /*
     // Blog
     'blog/lessons-enterprise/part-1': {
       title: 'Lessons in Building Enterprise Software', template: 'Post', 
@@ -61,6 +81,7 @@ var config = {
       title: 'Algorithms', template: 'Post',
       tags:  ['javascript'], 
     },
+    */
     /*
     'template': { 
       title: 'Template', 
