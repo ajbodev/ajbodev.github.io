@@ -18,40 +18,46 @@ var config = {
   content: {
     // Technology
     'tech/react-plain-es5': {
-      title: 'React.js in Plain ES5',
-      tags:  ['javascript', 'react'], template: 'Post', 
+      title: 'React.js in Plain ES5', template: 'Post', 
+      tags:  ['javascript', 'react'], 
     },
     'tech/php-arrays-classes': {
-      title: 'PHP Arrays as Pseudo Classes',
-      tags:  ['php'], template: 'Post', len: 120,
+      title: 'PHP Arrays as Pseudo Classes', template: 'Post', len: 120,
+      tags:  ['php'], 
+    },
+    'tech/engineering-mid-level': {
+      title: 'Engineering Mid Level', template: 'Post', len: 120,
+      tags:  [
+        'flask', 'laravel', 'rails', 'express', 'aspnet-core', 'spring-boot'
+      ], 
     },
     // News
     'news/2017/06': {
-      title: 'News', // June 2017
-      tags:  ['news'], template: 'Post', len: 500,
+      title: 'News', template: 'Post', len: 500,
+      tags:  ['news'], 
     },
     // Blog
     'blog/lessons-enterprise/part-1': {
-      title: 'Lessons in Building Enterprise Software',
-      tags:  ['web'], template: 'Post', 
+      title: 'Lessons in Building Enterprise Software', template: 'Post', 
+      tags:  ['web'], 
     },
     'blog/on-the-web/part-1': { 
-      title: 'On The Web', 
-      tags:  ['web'], template: 'Post' 
+      title: 'On The Web', template: 'Post' ,
+      tags:  ['web'], 
     },
     // More
     'more/europe': { 
-      title: 'Travelling Europe', 
-      tags:  ['misc'], template: 'Post',
+      title: 'Travelling Europe', template: 'Post',
+      tags:  ['misc'], 
     },
     'more/javascript-auto-piano': { 
-      title: 'JavaScript Auto Piano', 
-      tags:  ['javascript'], template: 'Post',
+      title: 'JavaScript Auto Piano', template: 'Post',
+      tags:  ['javascript'], 
     },
     // CS
     'cs/2017/06/24': { 
-      title: 'Algorithms', 
-      tags:  ['javascript'], template: 'Post',
+      title: 'Algorithms', template: 'Post',
+      tags:  ['javascript'], 
     },
     /*
     'template': { 
