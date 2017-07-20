@@ -9,7 +9,7 @@ Competing javascript frameworks, [Vue](https://vuejs.org/) in particular, have a
 
 Why you might want to use React or any js framework to build your website or webapp - the reasons for doing that is a topic on its own. Assuming you want to do so, we're interested in whether we can do it in plain old JavaScript [ES5](https://es5.github.io/), and what reasons would you have for doing this.
 
-React, like most modern JavaScript codebases, uses latest JavaScript standard features beyond ES5 - in particular ES6, including the native import/export-based module system. Thanks to [Babel](https://babeljs.io/) and friends (webpack, gulp, polyfills), we dont have to wait for browsers to implement the the latest standard - we can run them right now via a combination of transpilation, bundling, polyfilling. The generated output code is usually targeted to ES5, which most browsers run, including all the way to IE8 (with polyfills).
+React, like most modern JavaScript codebases, uses the latest JavaScript standard features beyond ES5 - in particular ES6, including the native import/export-based module system. Thanks to [Babel](https://babeljs.io/) and friends (webpack, gulp, polyfills), we dont have to wait for browsers to implement the the latest standard - we can run them right now via a combination of transpilation, bundling, polyfilling. The generated output code is usually targeted to ES5, which most browsers run, including all the way to IE8 (with polyfills).
 
 In a sense, React IS already ES5, with the help of tooling. But the source language, which uses classes and JSX, is NOT plain ES5, as we also see in most of the examples and tutorials online. And since most browsers do not natively support some important parts of ES6 and other syntax (like JSX, which wont be native anytime soon if ever, as well as the hotly debated import/export module system), we need to use this heavy tooling of transpilers, bundlers, and whatnot BEFORE we can even say 'Hello World'!
 
@@ -31,7 +31,7 @@ We don't go back to the past, but it is still possible to develop without any bu
 
 **2) It shows an understanding of how JavaScript fundamentally works, in and beyond the context of React**
 
-Understanding well the fundamentals of your technology - that's always good. With React, having a good understanding of JavaScript concepts (how to use 'call'; what 'new' does; scope vs context; inheritance via prototypes) will allow you to break out of the React (or [insert framework here]) blackbox.
+Understanding well the fundamentals of your technology - that's always good. With React, having a good understanding of JavaScript concepts (how to use 'call'; what 'new' does; what is 'this'; scope vs context; inheritance via prototypes) will allow you to break out of the React (or [insert framework here]) blackbox.
 
 React is here to stay, and so is JavaScript. If React ever fades in importance, like with jQuery, another JavaScript framework will take it's place, and your understanding of fundamental JS concepts will carry over.
 
@@ -269,119 +269,111 @@ ReactDOM.render(<template/>, document.getElementById('root'));
 ReactDOM.render(h(template), document.getElementById('root'));
 ```
 
-Our template now becomes like a native HTML element itself! We know it's composed of several HTML elements. These are rudimentary ideas on how to extend HTML using a 'component-like' mechanism. 
+Our template now becomes like a native HTML element itself! We know it's composed of several HTML elements. Also, using the JSX/HTML syntax of <[element]></[element]> is merely equivalent to h([element]). These are rudimentary ideas on how to extend HTML using a 'component-like' mechanism.
 
-The proposed standard approach for doing this natively (without JavaScript) is called Web Components. And yes, like JSX and some ES6 niceties, Web Components will take years, if not decades, to be fully implemented by every browser. React takes the approach that bringing Web Components now is doable inside JavaScript itself. Others take a more HTML-centric approach - Angular (1, 2, 4, ..), Vue, Knockout, Polymer.
+The proposed standard approach for doing this natively (without JavaScript) is called Web Components. And yes, like JSX and some ES6 niceties, Web Components will take years, if not decades, to be fully implemented by every browser. React takes the approach that bringing Web Components now is doable inside JavaScript itself. Others take a more HTML-centric approach when it comes to the templating part of Web Components - Angular (1, 2, 4, ..), Vue, Knockout, Polymer.
 
-What we did above is a rudimentary form of web components - let's call them functional (React) components because they use functions. React is mostly done though using class-based components. Using classes for React components is a good exercise in JavaScript fundamental concepts.
+What we did above is a rudimentary form of web components - let's call them functional (React) components because they use functions. React though is mostly done using class-based components. Doing classes for React components using ES5 is a good exercise in JavaScript fundamental concepts.
 
 ---
 
-https://facebook.github.io/react/docs/components-and-props.html
+Converting the example above to ES6 + JSX:
 
+**Code 8**
 ```
-class Clock extends React.Component {
+class template extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date()};
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
   }
 
   render() {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-      </div>
-    );
+    return <div>
+      <form>
+        <input type='text'/>
+      </form>
+      <ul>
+        {[1, 2, 3].map(function(el, i){
+          return <li key={i}>{el}</li>;
+        })}
+      </ul>
+    </div>;
   }
 }
-
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
-
+ReactDOM.render(<template/>, document.getElementById('root'));
 ```
 
-<!--
+You can try and convert this using the [Babel REPL online](https://babeljs.io/repl/) - you won't like what you see. Thankfully, computers running that code dont care so long as it's correct. But for humans who want to use React class-based components by using only ES5, there is a better way, via the fundamental JS concepts of .call, new, this, and prototypes.
 
-<iframe src='https://ghbtns.com/github-btn.html?user=facebook&repo=react&type=star&count=true' 
-  frameborder='0' scrolling='0' width='170px' height='20px'></iframe>
-* [Top] React.js is now the top javascript framework for webapp
-   * sitting at 68K stars
-   * people who are using it https://github.com/facebook/react/wiki/sites-using-react
-* [Start] Starting with react .. jsx, es6 classes, ..
-* [Plain] Contrary to top google searches on react, you can simply start just by 
-  grabbing the cdn of react and react dom, then using plain es5 onwards - no jsx, no classes.
-  This requires an understanding of how javascript (and react work)
-  * Start with
-    * react component -> call and prototype
-    * jsx -> h = React.createElement;
-* [Why] why might you want to do this?
-  * Some use cases might be contrived, but in my last major project, I was in charge
-    of a joomla website that needed lots of custom coding. Contrary to some popular belief,
-    cmss still can need a lot of help when dealing with highly granulazed requirements.
-  * I decided to use react for templating and binding certain actions to data, but I can't have
-    a very good workflow in the absence of an ftp - I was not given this privilege - merely using 
-    whatever file editor the joomla has.
--->
+ES6 classes are just syntactic sugar for JavaScript prototypes. The perceived value of this 'sugar' is obviously high enough to be standardized.
 
-```javascript
+So a class:
 
-h = React.createElement;
+```
+class template {
+  render() {
 
-var _module = function(name) {
-  React.Component.call(this, name);
-  this.state = {input: ''};
-  this.boot();
+  }
 }
-var prototype = {
-  boot: function() {
-  },
-  render: function() {
-    var _this = this;
-    var template = h('div', {}, 'HAHA',
-      h('ul', {},
-        h('li', {}, 'More')
-      ),
-      h('form', {},
-        h('input', {onChange: function(e){_this.handleChange(e)}, value: this.state.input }),
-        h('button', {onClick: function(e){_this.handleClear(e)}, type: 'button'}, 'Clear')
-      )
-    )
-    return template;
-  },
-  handleChange: function(e) {
-    this.setState({ input: e.target.value})
-  },
-  handleClear: function() {
-    console.log(this.state)
-    this.setState({ input: '' })
-  },
-};
-for (var i in prototype)                 _module.prototype[i] = prototype[i];
-for (var i in React.Component.prototype) _module.prototype[i] = React.Component.prototype[i];
+new template();
+```
 
-ReactDOM.render(h(_module), document.getElementById('content'))
+is just equivalent to the standard JavaScript prototypal OO:
 
 ```
+function template() {
+
+}
+template.prototype.render = function() {}
+new template();
+```
+
+Let's add inheritance, and call the parent's constructor:
+
+```
+// ES6
+class template extends templateParent {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+
+  }
+}
+new template();
+
+// ES5
+function template(props) {
+  templateParent.call(this, props);
+}
+template.prototype.render = function() {}
+new template();
+```
+
+Applying the above patterns for React:
+
+**Code 9**
+```
+h = React.createElement;
+function template(props) {
+  React.Component.call(this, props);
+}
+template.prototype.render = function() {
+  return h('div', {},
+    h('form', {},
+      h('input', {type: 'text'})
+    ),
+    h('ul', {},
+      [1, 2, 3].map(function(el, i){
+        return h('li', {key: i}, el);
+      })
+    )
+  );
+}
+ReactDOM.render(h(template), document.getElementById('root'));
+```
+
+Code 8 and 9 are equivalent, and thus we've completely used React in E55!
+
 
 [//]: # (@~|tech/react-plain-es5|~@)
 

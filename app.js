@@ -185,6 +185,7 @@ var prototype = {
             'class': 'post-category post-category-design', 
             'href': '#/tag/' + _tags[i],
           }, _tags[i]);
+          if ((i >= 7) && (i%7 === 0)) tags_list.push([h('br'), h('br')]);
           tags_list.push(tag);
         }
         template  = h('div', {'class': 'content__tags'}, tags_list);
@@ -279,7 +280,7 @@ var prototype = {
             'class': 'post-category post-category-design',
             'href': '#/tag/' + _tags[i],
           }, _tags[i])
-          if (i%7 === 0) template.push([h('br'), h('br')]);
+          if ((i >= 7) && (i%7 === 0)) template.push([h('br'), h('br')]);
           template.push(_tag);
         }
         return template;
