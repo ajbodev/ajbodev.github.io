@@ -5,6 +5,22 @@
 
 
 
+## Static
+
+
+
+## HTTP (Axios)
+
+
+
+## Firebase
+
+
+
+## IndexedDB (Dexie)
+
+
+
 [//]: # (@~|tech/engineering-mid-level/store|~@)
 
 */});
