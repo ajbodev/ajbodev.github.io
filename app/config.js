@@ -4,7 +4,7 @@ __require('app/config', function(require, module, exports) {
 var config = {
   home: {
     tech_1:       { content: 'tech/react-plain-es5' },
-    tech_2:       { content: 'tech/php-arrays-classes' },
+    //tech_2:       { content: 'tech/php-arrays-classes' },
     tech_3:       { content: 'tech/engineering-mid-level' },
     news:         { content: 'news/2017/06' },
     /*
@@ -23,10 +23,12 @@ var config = {
       title: 'React.js in Plain ES5', template: 'Post', 
       tags:  ['javascript', 'react'], 
     },
+    /*
     'tech/php-arrays-classes': {
       title: 'PHP Arrays as Classes', template: 'Post', len: 120,
       tags:  ['php'], 
     },
+    */
     'tech/engineering-mid-level': {
       title: 'Engineering Mid Level', template: 'Post', len: 120,
       tags:  [ 'server', 'frontend', 'store' ], 
