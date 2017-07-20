@@ -9,13 +9,13 @@ Competing javascript frameworks, [Vue](https://vuejs.org/) in particular, have a
 
 Why you might want to use React or any js framework to build your website or webapp - the reasons for doing that is a topic on its own. Assuming you want to do so, we're interested in whether we can do it in plain old JavaScript [ES5](https://es5.github.io/), and what reasons would you have for doing this.
 
-As you probably know, most modern JavaScript codebases, like React, are increasingly using the latest JavaScript standard  beyond ES5 - in particular ES6, including the native import/export-based module system. Thanks to [Babel](https://babeljs.io/) and friends (webpack, gulp, polyfills), we dont have to wait for browsers to implement the the latest standard - we can run them right now via a combination of transpilation, bundling, polyfilling. The generated output code is usually targeted to ES5, which most browsers run, including all the way to IE8 (with polyfills).
+React, like most modern JavaScript codebases, uses latest JavaScript standard features beyond ES5 - in particular ES6, including the native import/export-based module system. Thanks to [Babel](https://babeljs.io/) and friends (webpack, gulp, polyfills), we dont have to wait for browsers to implement the the latest standard - we can run them right now via a combination of transpilation, bundling, polyfilling. The generated output code is usually targeted to ES5, which most browsers run, including all the way to IE8 (with polyfills).
 
-So in a sense, React IS already in ES5 with the help of tooling. But the source language is NOT in plain ES5, as we also see in most of the examples and tutorials online. And since most browsers do not natively support some important parts of ES6 and other syntax (like JSX, which wont be native anytime soon if ever, as well as the hotly debated import/export module system), we need to use this heavy tooling of transpilers, bundlers, and whatnot BEFORE we can even say 'Hello World'!
+In a sense, React IS already ES5, with the help of tooling. But the source language, which uses classes and JSX, is NOT plain ES5, as we also see in most of the examples and tutorials online. And since most browsers do not natively support some important parts of ES6 and other syntax (like JSX, which wont be native anytime soon if ever, as well as the hotly debated import/export module system), we need to use this heavy tooling of transpilers, bundlers, and whatnot BEFORE we can even say 'Hello World'!
 
-***React.js in Plain ES5*** - without any Babel, ES6, JSX, any build step whatsoever - that's what we want.
+***React.js in Plain ES5*** - without any Babel, ES6, JSX, any build step whatsoever - that's what we're interested in.
 
-Note that you can look at the generated source from Babel (by default ES5), and manipulate it and say you're doing *React.js in Plain ES5*. Manipulating generated code is unpleasant, and not the one we're interested in.
+**Note**: you can look at the generated source from Babel (by default ES5), and manipulate it and say you're doing *React.js in Plain ES5*. Manipulating generated code is unpleasant, and not the one we're interested in.
 
 **Important**: to developers who are reading this and want to use React, please don't get the wrong idea - I strongly believe React should almost always be done the 'standard way' - ES6, JSX, build tools like webpack, state management like Redux. So why bother with all of these ES5 nonsense? 
 
@@ -33,7 +33,7 @@ We don't go back to the past, but it is still possible to develop without any bu
 
 Understanding well the fundamentals of your technology - that's always good. With React, having a good understanding of JavaScript concepts (how to use 'call'; what 'new' does; scope vs context; inheritance via prototypes) will allow you to break out of the React (or [insert framework here]) blackbox.
 
-React is here to stay, and so is JavaScript. If React ever fades in importance (like jQuery?), another JavaScript framework (or web assembly?) will take it's place, and your understanding of fundamental JS concepts will carry over.
+React is here to stay, and so is JavaScript. If React ever fades in importance, like with jQuery, another JavaScript framework will take it's place, and your understanding of fundamental JS concepts will carry over.
 
 **3) It allows you to use React in non-standard scenarios**
 
@@ -48,6 +48,7 @@ Good reasons. Enough rambling, we need some code!
 Let's start with the official Facebook React getting started guide, the 'Hello World', and convert it to ES5.
 
 https://facebook.github.io/react/docs/hello-world.html
+
 
 **Code 1**
 ```
@@ -68,20 +69,37 @@ ReactDOM.render(React.createElement(
 ), document.getElementById('root'));
 ```
 
-We can point [React.createElement](https://facebook.github.io/react/docs/react-api.html#createelement) to a more ergonomic variable, say 'h' (for html, or [hyperscript](https://github.com/hyperhype/hyperscript)), and safely replace the null in the middle with an empty object {} (this stands for attributes). The variable 'h', being so fundamental to the entire application templating, is fine being global (just like how window and document are).
+We can point [React.createElement](https://facebook.github.io/react/docs/react-api.html#createelement) to a more ergonomic variable, say 'h' (for html, or [hyperscript](https://github.com/hyperhype/hyperscript)), and safely replace the null in the middle with an empty object {} (this stands for attributes). The variable 'h', being so fundamental to the entire application templating, is fine being global (just like how 'window' and 'document' are).
 
 **Code 3**
 ```
 h = React.createElement;
 ReactDOM.render(
-  h('h1', {},'Hello, world!'), 
+  h('h1', {}, 'Hello, world!'), 
   document.getElementById('root')
 );
 ```
 
 Assuming you have a dom element with id 'root', Code 1, 2, and 3 should work all the same. 
 
-Code 1 and 3 aren't so far different looking.
+Note: the variables 'React' and 'ReactDOM' are available in context via a build system (webpack, browserify) or via a cdn (cdnjs, unpkg)
+
+```
+// via Build system inside your JavaScript
+var React = require('react');
+var ReactDOM = require('react-dom');
+```
+
+or
+
+```
+<!-- via CDN inside your HTML -->
+<!-- Exposes global 'React' and 'ReactDOM' -->
+<script src='https://unpkg.com/react@latest/dist/react.min.js'></script>
+<script src='https://unpkg.com/react-dom@latest/dist/react-dom.min.js'></script>
+```
+
+Continuing, we see that Code 1 and 3 aren't so far different looking.
 
 ```
 // Code 1
@@ -95,11 +113,169 @@ One can argue that the empty object in Code 2 feels unnecessary, but a counterpo
 
 ---
 
-Real application templating involves arbitrary nesting, just like with regular HTML.
+Real application templating involves *arbitrary nesting*, just like with regular HTML. Let's continue with a more real example:
+
+**Code 4**
+```
+ReactDOM.render(
+  <div>
+    <form>
+      <input type='text'>
+    </form>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+  </div>,
+  document.getElementById('root')
+);
+```
+
+The equivalent for plain ES5 using 'h':
+
+**Code 5**
+```
+h = React.createElement;
+ReactDOM.render(
+  h('div', {},
+    h('form', {},
+      h('input', {type: 'text'})
+    ),
+    h('ul', {},
+      h('li', {}, 'Item 1'),
+      h('li', {}, 'Item 2'),
+      h('li', {}, 'Item 3')
+    )
+  ),
+  document.getElementById('root')
+);
+```
+
+The 'ul' list can be looped:
+
+**Code 6**
+```
+ReactDOM.render(
+  <div>
+    <form>
+      <input type='text'/>
+    </form>
+    <ul>
+      {[1, 2, 3].map(function(el, i){
+        return <li key={i}>{el}</li>;
+      })}
+    </ul>
+  </div>,
+  document.getElementById('root')
+);
+```
+
+**Code 7**
+```
+h = React.createElement;
+ReactDOM.render(
+  h('div', {},
+    h('form', {},
+      h('input', {type: 'text'})
+    ),
+    h('ul', {},
+      [1, 2, 3].map(function(el, i){
+        return h('li', {key: i}, el);
+      })
+    )
+  ),
+  document.getElementById('root')
+);
+```
+
+Note that in Code 7, we went from passing 3 argument parameters for h('ul', {}, ...) in Code 5, to passing 1 parameter (an array with 3 values). This is perfectly valid.
+
+We can transform both Code 6 and 7 to hold the entire template inside variables.
+
+```
+// JSX
+var template = 
+  <div>
+    <form>
+      <input type='text'/>
+    </form>
+    <ul>
+      {[1, 2, 3].map(function(el, i){
+        return <li key={i}>{el}</li>;
+      })}
+    </ul>
+  </div>
+ReactDOM.render(template, document.getElementById('root'));
+
+// ES5 via h
+h = React.createElement;
+var template = 
+  h('div', {},
+    h('form', {},
+      h('input', {type: 'text'})
+    ),
+    h('ul', {},
+      [1, 2, 3].map(function(el, i){
+        return h('li', {key: i}, el);
+      })
+    )
+  );
+ReactDOM.render(template, document.getElementById('root'));
+```
+
+The potential downside to this approach is that the 'template' is immediately evaluated (but not necessarily 'mounted'). The obvious solution is to store it in a function. React has a twist on this:
+
+```
+// JSX
+var template = function(props) {
+  return <div>
+    <form>
+      <input type='text'/>
+    </form>
+    <ul>
+      {[1, 2, 3].map(function(el, i){
+        return <li key={i}>{el}</li>;
+      })}
+    </ul>
+  </div>;
+}
+ReactDOM.render(<template/>, document.getElementById('root'));
+
+// ES5 via h
+h = React.createElement;
+var template = function(props) {
+  return h('div', {},
+    h('form', {},
+      h('input', {type: 'text'})
+    ),
+    h('ul', {},
+      [1, 2, 3].map(function(el, i){
+        return h('li', {key: i}, el);
+      })
+    )
+  );
+}
+ReactDOM.render(h(template), document.getElementById('root'));
+```
+
+Notice these two:
+
+```
+// JSX
+ReactDOM.render(<template/>, document.getElementById('root'));
+
+// ES5 via h
+ReactDOM.render(h(template), document.getElementById('root'));
+```
+
+Our template now becomes like a native HTML element itself! We know it's composed of several HTML elements. These are rudimentary ideas on how to extend HTML using a 'component-like' mechanism. 
+
+The proposed standard approach for doing this natively (without JavaScript) is called Web Components. And yes, like JSX and some ES6 niceties, Web Components will take years, if not decades, to be fully implemented by every browser. React takes the approach that bringing Web Components now is doable inside JavaScript itself. Others take a more HTML-centric approach - Angular (1, 2, 4, ..), Vue, Knockout, Polymer.
+
+What we did above is a rudimentary form of web components - let's call them functional (React) components because they use functions. React is mostly done though using class-based components. Using classes for React components is a good exercise in JavaScript fundamental concepts.
 
 ---
-
-Where it gets interesting is in the components ..
 
 https://facebook.github.io/react/docs/components-and-props.html
 
