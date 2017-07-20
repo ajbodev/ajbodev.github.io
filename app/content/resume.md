@@ -5,11 +5,11 @@
 
 ## OMAR JOB ABESAMIS
 
-Glen Ellyn\*, Illinois 60137  
-**PHONE:** (630) 790 9394  
-**EMAIL:** abesamisoj@gmail.com  
+Mt Pleasant\*, Michigan 48858  
+**PHONE:** (989) 941 4534 | (415) 910 6385  
+**EMAIL:** ojwebdev@gmail.com  
 **[GITHUB](https://github.com/ajbodev),
-[LINKEDIN](https://linkedin.com/in/abesamisojdev), 
+[LINKEDIN](https://linkedin.com/in/ojwebdev), 
 [WEBSITE](https://ajbodev.github.io), 
 [PDF](https://ajbodev.github.io/media/Omar-Job-Abesamis-resume.pdf)**  
 
@@ -21,12 +21,11 @@ Glen Ellyn\*, Illinois 60137
 
 **TECHNOLOGIES (PREFERRED):**  
 
-* **LANGUAGES:** [JavaScript](#/content/tech/javascript), [HTML](#/content/tech/html), [CSS](#/content/tech/css), [PHP](#/content/tech/php)
-* **FRONTEND:** [React.js](#/content/tech/react), [jQuery](#/content/tech/jquery), [Bootstrap](#/content/tech/bootstrap)
-* **SERVERS:** [Laravel](#/content/tech/laravel), [Express](#/content/tech/express)
-* **CMS:** [WordPress](#/content/tech/wordpress), [Joomla](#/content/tech/joomla)
-* **DATABASES:** [MySQL](#/content/tech/mysql)
-* **OTHERS:** [Git](#/content/tech/git), [Node](#/content/tech/node), [Webpack](#/content/tech/gulp)
+* **LANGUAGES:** [JavaScript](#/tag/javascript), [HTML](#/tag/html), [CSS](#/tag/css), [PHP](#/tag/php)
+* **FRONTEND:** [React.js](#/tag/react), [jQuery](#/tag/jquery), [Bootstrap](#/tag/bootstrap)
+* **SERVERS:** [Laravel](#/tag/laravel), [Express](#/tag/express)
+* **DATABASES:** [MySQL](#/tag/mysql)
+* **OTHERS:** [Git](#/tag/git), [Node](#/tag/node), [Webpack](#/tag/gulp)
 
 ---
 
@@ -57,6 +56,10 @@ Glen Ellyn\*, Illinois 60137
 **[Total Oil](https://healthway.com.ph/)** 2016-2017 (Remote)  
 **WEB DEVELOPER**
 
+* Built a Financial Asset Management System using PHP, JavaScript (React, jQuery), and MySQL
+* Developed the BI stack of the new system using Microsoft PowerBI and PHP REST-based API
+* Standardized project documentation using Github private wikis
+
 ---
 
 ## EDUCATION
@@ -67,24 +70,11 @@ Earned 139 credits toward a BS Computer Science degree (2006-2010)
 
 ---
 
-## PROJECTS
-
-* [Bible HTML](https://github.com/ajbodev/bible-html) 2015
-  * *Fast, minimalist Bible app in HTML, CSS, JS*
-* [Rich Code eXperience (RCX)](https://github.com/ajbodev/rcx) 2015-2016
-  * *An HTML, CSS, JS code playground with powerful intentions*
-* [Ronesi](https://github.com/ajbodev/ronesi) 2016
-  * *Modernized referee league management*
-* [Ronesi Servers](https://github.com/ajbodev/ronesi-servers) 2016
-  * *Servers (C#, Java, PHP, Node, Ruby, Python) for ronesi*
-
----
-
 \* *Willing to relocate; Authorized to work and reside in the US*  
 
 ---
 
-<!--[Projects](#/content/tech/projects)  
+<!--[Projects](#/tag/projects)  
 [Referrals](#/content/referrals)  -->
 [Return to Home](#/home)  
 

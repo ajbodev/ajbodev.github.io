@@ -16,6 +16,9 @@ var App = function() {
 var prototype = {
   boot: function() {
     var _this = this;
+    // ?
+    window.__r = '../../../';
+    // ?
   },
   init: function() {
     var _this = this;
@@ -38,6 +41,9 @@ var prototype = {
       },
       '/date/?((\w|.)*)': function(date) {
         _this._render(function() { _this.renderDate(date); });
+      },
+      '/words/?((\w|.)*)': function(words) {
+        _this._render(function() { _this.loadContent('../../../words/'+words); });
       },
     }
     this.router = Router(routes);
