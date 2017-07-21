@@ -689,8 +689,6 @@ var AppPrototype = {
           ]),
         ]),
       ]),
-      /*
-      */
     ]);
     return template;
   },

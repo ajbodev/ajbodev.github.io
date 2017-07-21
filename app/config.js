@@ -27,7 +27,7 @@ var config = {
     */
     'tech/engineering-mid-level': {
       title: 'Engineering Mid Level', template: 'Post', len: 120,
-      tags:  [ 'server', 'frontend', 'store' ], 
+      tags:  [ 'server', 'frontend', 'data' ], 
     },
     'tech/engineering-mid-level/frontend': {
       title: 'Engineering Mid Level - The Frontend Layer', template: 'Post',
@@ -44,10 +44,10 @@ var config = {
         'flask', 'rails', 'laravel', 'express', 'aspnet-core', 'spring-boot'
       ], 
     },
-    'tech/engineering-mid-level/store': {
-      title: 'Engineering Mid Level - The Store Layer', template: 'Post',
+    'tech/engineering-mid-level/data': {
+      title: 'Engineering Mid Level - The Data Layer', template: 'Post',
       tags:  [ 
-        'store', 'indexeddb', 'http', 'firebase'
+        'data', 'indexeddb', 'http', 'firebase'
       ], 
     },
     // News
