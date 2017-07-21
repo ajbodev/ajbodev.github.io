@@ -21,17 +21,18 @@ Mt Pleasant\*, Michigan 48858
 
 **TECHNOLOGIES (PREFERRED):**  
 
-* **LANGUAGES:** [JavaScript](#/tag/javascript), [HTML](#/tag/html), [CSS](#/tag/css), [PHP](#/tag/php)
+* **LANGUAGES:** [JavaScript](#/tag/javascript), [HTML](#/tag/html), [CSS](#/tag/css), [PHP](#/tag/php), [C#](#/tag/php)
 * **FRONTEND:** [React.js](#/tag/react), [jQuery](#/tag/jquery), [Bootstrap](#/tag/bootstrap)
-* **SERVERS:** [Laravel](#/tag/laravel), [Express](#/tag/express)
+* **SERVERS:** [Laravel](#/tag/laravel), [Express](#/tag/express), [ASP.NET](#/aspnet)
 * **DATABASES:** [MySQL](#/tag/mysql)
-* **OTHERS:** [Git](#/tag/git), [Node](#/tag/node), [Webpack](#/tag/gulp)
+* **TOOLS:** [Git](#/tag/git), [Node](#/tag/node), [Webpack](#/tag/gulp)
+* **OTHERS:** [Python](#/tag/python), [Ruby](#/tag/ruby), [Java](#/tag/java), [Spring Boot](#/tag/spring-boot), [Flask](#/tag/flask), [Rails](#/tag/rails)
 
 ---
 
 ## WORK EXPERIENCE
 
-**[Intellicare](http://www.intellicare.com.ph/)** 2012-2014  
+**[Intellicare](https://www.intellicare.com.ph/)** 2012-2014  
 **WEB DEVELOPER**
 
 * Migrated the organization’s HR system from Visual FoxPro to OrangeHRM (PHP and MySQL)
@@ -49,14 +50,13 @@ Mt Pleasant\*, Michigan 48858
 
 * Performed advanced computation and filtering of sixty million records for financial audit by management and Deloitte auditors (MySQL, SQL Server, Excel with PowerPivot DAX)
 * Scaled and benchmarked MySQL, SQL Server and Excel PowerPivot to be able to handle twenty million records per batch and compute under ten minutes of execution
-* Standardized the project’s documentation and communication (MediaWiki)
 
 ---
 
-**[Total Oil](https://healthway.com.ph/)** 2016-2017 (Remote)  
+**[Total Oil](http://www.total.com/en)** 2016-2017 (Remote)  
 **WEB DEVELOPER**
 
-* Built a Financial Asset Management System using PHP, JavaScript (React, jQuery), and MySQL
+* Built an Asset Management System using PHP, JavaScript (React, jQuery), and MySQL
 * Developed the BI stack of the new system using Microsoft PowerBI and PHP REST-based API
 * Standardized project documentation using Github private wikis
 

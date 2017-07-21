@@ -88,8 +88,32 @@ var config = {
     */
   },
   tag: {
-    'javascript': { title: 'JavaScript', content: 'tag/lang/javascript' },
-    'php':        { title: 'PHP',        content: false },
+    // Lang
+    'javascript':  { content: 'tag/lang/javascript', title: 'JavaScript' },
+    'php':         { content: 'tag/lang/php',        title: 'PHP',       },
+    'csharp':      { content: 'tag/lang/csharp',     title: 'C#',        },
+    'python':      { content: 'tag/lang/python',     title: 'Python',    },
+    'ruby':        { content: 'tag/lang/ruby',       title: 'Ruby',      },
+    'java':        { content: 'tag/lang/java',       title: 'Java',      },
+    // Frontend
+    'knockout':    { content: 'tag/frontend/knockout' },
+    'react':       { content: 'tag/frontend/react' },
+    'vue':         { content: 'tag/frontend/vue' },
+    'angular-1':   { content: 'tag/frontend/angular-1' },
+    'ember':       { content: 'tag/frontend/ember' },
+    'angular-4':   { content: 'tag/frontend/angular-4' },
+    'riot':        { content: 'tag/frontend/riot' },
+    'mithril':     { content: 'tag/frontend/mithril' },
+    'jquery':      { content: 'tag/frontend/jquery' },
+    // Servers
+    'flask':       { content: 'tag/servers/flask' },
+    'rails':       { content: 'tag/servers/rails' },
+    'laravel':     { content: 'tag/servers/laravel' },
+    'aspnet-core': { content: 'tag/servers/aspnet-core' },
+    'express':     { content: 'tag/servers/express' },
+    'spring-boot': { content: 'tag/servers/spring-boot' },
+    // Database
+    // Others
   },
 }
 
