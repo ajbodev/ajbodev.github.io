@@ -1,0 +1,35 @@
+
+@media (min-width: 768px) {
+  #page-wrapper { 
+    margin: 0 0 0 0; 
+  }
+}
+#page-wrapper {
+  padding: 0 15px;
+  border-left: 0;
+  margin: 0 auto;
+  max-width: 900px;
+}
+@media (min-width: 768px) {
+  .modal.modal-wide .modal-dialog {
+    width: 90%;
+  }
+  .modal-wide .modal-body {
+    overflow-y: auto;
+  }
+  .modal.modal-medium .modal-dialog {
+    width: 70%;
+  }
+  .modal-medium .modal-body {
+    overflow-y: auto;
+  }
+}
+
+#app__header {
+  padding-bottom: 7px;
+}
+
+.btn-custom-white {
+  background-color: white !important;
+  border-color: #ccc !important;
+}

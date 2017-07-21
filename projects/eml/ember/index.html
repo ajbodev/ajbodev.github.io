@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Feature Request App</title>
+    <meta charset='utf-8'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css', rel='stylesheet'>
+    <link href='https://blackrockdigital.github.io/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css', rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet'>
+    <link href='../lib/styles.css', rel='stylesheet'>
+  </head>
+  <body>
+    <script id='app' type='text/x-handlebars'>{{outlet}}</script>
+    <script type='text/x-handlebars' data-template-name='index'>{{app-index}}</script>
+    <script type='text/x-handlebars' data-template-name='components/app-index'>
+      <div id='page-wrapper'>
+        <div class='row'><div class='col-lg-12'>
+          <div class='page-header'>
+            <h1>Feature Request App</h1>
+          </div>
+        </div></div>
+        <div class='row' id='app__header'><div class='col-lg-12'>
+          <form>
+            <button type='button' class='btn btn-primary' data-toggle='modal' 
+              data-target='#app__create__modal' title='Add Feature'>
+              <i class='fa fa-plus'></i>
+              New
+            </button>
+          </form>
+        </div></div>
+        <div class='row'><div class='col-lg-12'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Client</th>
+                <th>Client Priority</th>
+                <th>Target Date</th>
+                <th>Product Area</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each props.list.items as |item|}}
+              <tr>
+                <td>
+                  <button class='btn btn-custom-white' {{action "find" item.id}}>
+                    {{ item.id }}
+                  </button>
+                </td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.client }}</td>
+                <td>{{ item.client_priority }}</td>
+                <td>{{ item.target_date }}</td>
+                <td>{{ item.product_area }}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div></div>
+
+        <!-- Create -->
+        <div class='modal modal-medium fade' id='app__create__modal' tabindex='-1' role='dialog'>
+          <div class='modal-dialog' role='document'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <div class='col-sm-2'>
+                  <button {{action "create"}} class='btn btn-success pull-right'>
+                    <i class='fa fa-plus'></i>
+                  </button>
+                </div>
+                <div class='col-sm-10'>
+                  <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                  </button>
+                  <h4 class='modal-title'>Add Feature</h4>
+                </div>
+              </div>
+              <div class='modal-body'>
+                <form class='form-horizontal'>
+                  <!-- Title -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Title</label>
+                    <div class='col-sm-10'>
+                      {{input type='text' placeholder='Title' class='form-control' value=props.create.title}}
+                    </div>
+                  </div>
+                  <!-- Description -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Description</label>
+                    <div class='col-sm-10'>
+                      {{textarea value=props.create.description class='form-control' rows='10' }}
+                    </div>
+                  </div>
+                  <!-- Client -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Client</label>
+                    <div class='col-sm-10'>
+                      <select id='app__create__client' class='form-control' onchange={{action (mut props.create.client) value="target.value"}}>
+                        <option value='Client A'>Client A</option>
+                        <option value='Client B'>Client B</option>
+                        <option value='Client C'>Client C</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Client Priority -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Client Priority</label>
+                    <div class='col-sm-10'>
+                      {{input type='text' value=props.create.client_priority placeholder='1, 2, 3, ..' class='form-control'}}
+                    </div>
+                  </div>
+                  <!-- Client Priority -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Target Date</label>
+                    <div class='col-sm-10'>
+                      {{input type='text' value=props.create.target_date placeholder='MM/DD/YYYY' class='form-control'}}
+                    </div>
+                  </div>
+                  <!-- Product Area -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Product Area</label>
+                    <div class='col-sm-10'>
+                      <select id='app__create__product_area' onchange={{action (mut props.create.product_area) value="target.value"}} class='form-control'>
+                        <option value='Policies'>Policies</option>
+                        <option value='Billing'>Billing</option>
+                        <option value='Claims'>Claims</option>
+                        <option value='Reports'>Reports</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Update -->
+        <div class='modal modal-medium fade' id='app__update__modal' tabindex='-1' role='dialog'>
+          <div class='modal-dialog' role='document'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <div class='col-sm-2'>
+                  <button {{action "update"}} class='btn btn-success pull-right' id='app__update'>
+                    <i class='fa fa-save'></i>
+                  </button>
+                </div>
+                <div class='col-sm-10'>
+                  <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                  </button>
+                  <h4 class='modal-title'>Update Feature</h4>
+                </div>
+              </div>
+              <div class='modal-body'>
+                <form class='form-horizontal'>
+                  <!-- ID -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>ID</label>
+                    <div class='col-sm-10'>
+                      {{input type='text' value=props.update.id placeholder='ID' class='form-control' disabled='disabled'}}
+                    </div>
+                  </div>
+                  <!-- Title -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Title</label>
+                    <div class='col-sm-10'>
+                      {{input type='text' placeholder='Title' class='form-control' value=props.update.title}}
+                    </div>
+                  </div>
+                  <!-- Description -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Description</label>
+                    <div class='col-sm-10'>
+                      {{textarea value=props.update.description class='form-control' rows='10' }}
+                    </div>
+                  </div>
+                  <!-- Client -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Client</label>
+                    <div class='col-sm-10'>
+                      <select id='app__update__client' class='form-control' onchange={{action (mut props.update.client) value="target.value"}}>
+                        <option value='Client A'>Client A</option>
+                        <option value='Client B'>Client B</option>
+                        <option value='Client C'>Client C</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Client Priority -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Client Priority</label>
+                    <div class='col-sm-10'>
+                      {{input type='text' value=props.update.client_priority placeholder='1, 2, 3, ..' class='form-control'}}
+                    </div>
+                  </div>
+                  <!-- Client Priority -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Target Date</label>
+                    <div class='col-sm-10'>
+                      {{input type='text' value=props.update.target_date placeholder='MM/DD/YYYY' class='form-control'}}
+                    </div>
+                  </div>
+                  <!-- Product Area -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Product Area</label>
+                    <div class='col-sm-10'>
+                      <select id='app__update__product_area' onchange={{action (mut props.update.product_area) value="target.value"}} class='form-control'>
+                        <option value='Policies'>Policies</option>
+                        <option value='Billing'>Billing</option>
+                        <option value='Claims'>Claims</option>
+                        <option value='Reports'>Reports</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Destroy -->
+                  <div class='form-group'>
+                    <label class='col-sm-2 control-label'>Destroy</label>
+                    <div class='col-sm-10'>
+                      <button {{action "destroy"}} type='button' class='btn btn-danger'>
+                        <i class='fa fa-trash'></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/ember.js/2.14.0/ember.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/ember.js/2.14.0/ember-template-compiler.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js'></script>
+    <script src='../lib/store/static.js'></script>
+    <script src='../lib/model.js'></script>
+    <script>var app = Ember.Application.create();</script>
+    <script src='app.js'></script>
+    <script src='index.js'></script>
+  </body>
+</html>
