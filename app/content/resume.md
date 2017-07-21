@@ -21,12 +21,12 @@ Mt Pleasant\*, Michigan 48858
 
 **TECHNOLOGIES (PREFERRED):**  
 
-* **LANGUAGES:** [JavaScript](#/tag/javascript), [HTML](#/tag/html), [CSS](#/tag/css), [PHP](#/tag/php), [C#](#/tag/php)
+* **LANGUAGES:** [JavaScript](#/tag/javascript), [HTML](#/tag/html), [CSS](#/tag/css), [PHP](#/tag/php), [C#](#/tag/csharp)
 * **FRONTEND:** [React](#/tag/react), [Angular](#/tag/angular), [jQuery](#/tag/jquery), [Bootstrap](#/tag/bootstrap)
 * **SERVERS:** [Laravel](#/tag/laravel), [Express](#/tag/express), [ASP.NET](#/aspnet)
 * **DATABASES:** [MySQL](#/tag/mysql)
-* **TOOLS:** [Git](#/tag/git), [Node](#/tag/node), [Webpack](#/tag/gulp)
-* **OTHERS:** [Python](#/tag/python), [Ruby](#/tag/ruby), [Java](#/tag/java), [Spring Boot](#/tag/spring-boot), [Flask](#/tag/flask), [Rails](#/tag/rails), [Vue](#/tag/vue), [Ember](#/tag/ember)
+* **TOOLS:** [Git](#/tag/git), [Node](#/tag/node), [Webpack](#/tag/webpack)
+* **OTHERS:** [Python](#/tag/python), [Ruby](#/tag/ruby), [Java](#/tag/java), [Spring](#/tag/spring), [Flask](#/tag/flask), [Rails](#/tag/rails), [Vue](#/tag/vue), [Ember](#/tag/ember), [Postgres](#/tag/postgres)
 
 ---
 
@@ -36,12 +36,10 @@ Mt Pleasant\*, Michigan 48858
 **WEB DEVELOPER**
 
 * Migrated the organization’s HR system from Visual FoxPro to OrangeHRM (PHP and MySQL)
-* Extended OrangeHRM with history and ACL capabilities (Symfony, jQuery)
-* Developed the business intelligence stack of the new HR system (Excel with PowerPivot with DAX)
+* Extended OrangeHRM with history and ACL capabilities, and Payroll functionality (Symfony, jQuery)
+* Developed the business intelligence stack of the new HR system (Excel PowerPivot with DAX)
 * Standardized the project’s documentation and communication (MediaWiki)
-* Extended OrangeHRM with Payroll functionality (hours and basic salary computation) 
 * Interfaced OrangeHRM with the IT’s existing .NET based accounting system (C#, SQL Server) 
-* Trained the organization (main and provincial offices) on how to use OrangeHRM
 
 ---
 

@@ -5,6 +5,6 @@
 
 
 
-[//]: # (@~|tag/databases/mysql|~@)
+[//]: # (@~|tag/db/mysql|~@)
 
 */});
