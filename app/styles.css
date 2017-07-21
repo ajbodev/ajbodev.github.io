@@ -38,6 +38,14 @@ a {
   width: 0;
 }
 
+#content h2 {
+  color: #222 !important;
+}
+
+.hljs {
+  font-size: 20px;
+}
+
 /*
 #sidebar {
   width: 340px; 

@@ -33,8 +33,8 @@ var config = {
       title: 'Engineering Mid Level - The Frontend Layer', template: 'Post',
       tags:  [ 
         'frontend', 'javascript',
-        'knockout', 'react', 'vue', 'angular', 'jquery', 'ember',
-        'angularx', 'riot', 'mithril'
+        'knockout', 'react', 'vue', 'angular-1', 'jquery', 'ember',
+        'angular-4', 'riot', 'mithril'
       ], 
     },
     'tech/engineering-mid-level/servers': {
