@@ -22,11 +22,11 @@ Mt Pleasant\*, Michigan 48858
 **TECHNOLOGIES (PREFERRED):**  
 
 * **LANGUAGES:** [JavaScript](#/tag/javascript), [HTML](#/tag/html), [CSS](#/tag/css), [PHP](#/tag/php), [C#](#/tag/php)
-* **FRONTEND:** [React.js](#/tag/react), [jQuery](#/tag/jquery), [Bootstrap](#/tag/bootstrap)
+* **FRONTEND:** [React](#/tag/react), [Angular](#/tag/angular), [jQuery](#/tag/jquery), [Bootstrap](#/tag/bootstrap)
 * **SERVERS:** [Laravel](#/tag/laravel), [Express](#/tag/express), [ASP.NET](#/aspnet)
 * **DATABASES:** [MySQL](#/tag/mysql)
 * **TOOLS:** [Git](#/tag/git), [Node](#/tag/node), [Webpack](#/tag/gulp)
-* **OTHERS:** [Python](#/tag/python), [Ruby](#/tag/ruby), [Java](#/tag/java), [Spring Boot](#/tag/spring-boot), [Flask](#/tag/flask), [Rails](#/tag/rails)
+* **OTHERS:** [Python](#/tag/python), [Ruby](#/tag/ruby), [Java](#/tag/java), [Spring Boot](#/tag/spring-boot), [Flask](#/tag/flask), [Rails](#/tag/rails), [Vue](#/tag/vue), [Ember](#/tag/ember)
 
 ---
 

@@ -8,7 +8,7 @@
 }
 
 #content {
-  font-size: 25px;
+  font-size: 21px;
 }
 
 iframe.disqus {
@@ -43,7 +43,8 @@ a {
 }
 
 .hljs {
-  font-size: 20px;
+  font-size: 15px;
+  line-height: 25px;
 }
 
 /*

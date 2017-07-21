@@ -271,7 +271,7 @@ ReactDOM.render(h(template), document.getElementById('root'));
 
 Our template now becomes like a native HTML element itself! We know it's composed of several HTML elements. Also, using the JSX/HTML syntax of <[element]></[element]> is merely equivalent to h([element]). These are rudimentary ideas on how to extend HTML using a 'component-like' mechanism.
 
-The proposed standard approach for doing this natively (without JavaScript) is called Web Components. And yes, like JSX and some ES6 niceties, Web Components will take years, if not decades, to be fully implemented by every browser. React takes the approach that bringing Web Components now is doable inside JavaScript itself. Others take a more HTML-centric approach when it comes to the templating part of Web Components - Angular (1, 2, 4, ..), Vue, Knockout, Polymer.
+The proposed standard approach for doing this natively (without JavaScript) is called [Web Components](https://www.webcomponents.org/). And yes, like JSX and some ES6 niceties, Web Components will take years, if not decades, to be fully implemented by every browser. React takes the approach that bringing Web Components now is doable inside JavaScript itself. Others take a more HTML-centric approach when it comes to the templating part of Web Components - Angular 1, Angular 4, Vue, Knockout, Polymer.
 
 What we did above is a rudimentary form of web components - let's call them functional (React) components because they use functions. React though is mostly done using class-based components. Doing classes for React components using ES5 is a good exercise in JavaScript fundamental concepts.
 
@@ -372,7 +372,7 @@ template.prototype.render = function() {
 ReactDOM.render(h(template), document.getElementById('root'));
 ```
 
-Code 8 and 9 are equivalent, and thus we've completely used React in E55!
+Code 8 and 9 are equivalent, and thus we've completely used React in ES5!
 
 
 [//]: # (@~|tech/react-plain-es5|~@)

@@ -52,7 +52,7 @@ var config = {
     },
     // News
     'news/2017': {
-      title: 'News (2017)', template: 'Post', len: 500,
+      title: 'News (2017)', template: 'Post', len: 1000,
       tags:  ['news'], 
     },
     /*
