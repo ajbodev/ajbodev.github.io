@@ -26,7 +26,7 @@ var config = {
     },
     */
     'tech/engineering-mid-level': {
-      title: 'Engineering Mid Level', template: 'Post', len: 120,
+      title: 'Engineering Mid Level', template: 'Post', len: 250,
       tags:  [ 'server', 'frontend', 'data' ], 
     },
     'tech/engineering-mid-level/frontend': {
