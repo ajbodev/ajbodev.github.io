@@ -38,8 +38,8 @@ Mt Pleasant\*, Michigan 48858
 * Migrated the organization’s HR system from Visual FoxPro to OrangeHRM (PHP and MySQL)
 * Extended OrangeHRM with history and ACL capabilities, and Payroll functionality (Symfony, jQuery)
 * Developed the business intelligence stack of the new HR system (Excel PowerPivot with DAX)
+* Interfaced OrangeHRM with the IT’s existing .NET based accounting system (C#, SQL Server)
 * Standardized the project’s documentation and communication (MediaWiki)
-* Interfaced OrangeHRM with the IT’s existing .NET based accounting system (C#, SQL Server) 
 
 ---
 
