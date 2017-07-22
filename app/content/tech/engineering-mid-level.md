@@ -3,9 +3,11 @@
 
 # Engineering Mid Level
 
-Perusing thru available jobs in StackOverflow, I came across this [gem](https://stackoverflow.com/jobs/109401/full-stack-software-engineer-britecore). What's so special about it? There are lots and lots of fullstack software engineering job postings out there - this is the only I've come across so far that gave you a 'guaranteed interview' if you complete a [special project](https://github.com/IntuitiveWebSolutions/EngineeringMidLevel) from them. I'm not really sure if it's guaranteed (I guess I'll have to find out), but the idea of having candidates prove themselves with a project - I think that's meritocracy at it's finest. And that's a good thing, because merit should be the most important basis in doing software right. Add to that, a good challenge like this reminds of my CS college days, when MEs (machine exercises) were regularly given after a lecture, and finishing them was such a reward in itself. Sometimes there's competition who can finish them the fastest, or the least amount of code. And sometimes they were too hard and we didn't finish them, and that was alright - take em home, pound your head on the problem, then submit them the next day. 
+Looking at jobs available via StackOverflow, I came across this [gem](https://stackoverflow.com/jobs/109401/full-stack-software-engineer-britecore). What's so special about it? There are lots and lots of fullstack software engineering job postings out there - but this is the only I've come across so far that gave you a 'guaranteed interview' if you complete a [special project](https://github.com/IntuitiveWebSolutions/EngineeringMidLevel) from them. I'm not really sure if it's guaranteed, but the idea of having candidates prove themselves with a project - I think that's meritocracy at it's finest. And that's a good thing, because merit should be the most important basis in doing software right.
 
-Now, [this](https://github.com/IntuitiveWebSolutions/EngineeringMidLevel) particular problem, [this](https://github.com/IntuitiveWebSolutions/EngineeringMidLevel) gem - it's an ME alright, an Enterprise-style ME.
+A good challenge like this reminds of my CS college days, when MEs (machine exercises) were regularly given after a lecture, and solving them felt great. Sometimes we compete on who can solve the fastest, or in the least amount of code. And sometimes they were too hard and had to be taken home. We had to bang our head on the problem, eureka'd, then submit the next day. 
+
+[This gem, this problem](https://github.com/IntuitiveWebSolutions/EngineeringMidLevel) - it's an ME alright, an Enterprise-style ME.
 
 
 <!--
