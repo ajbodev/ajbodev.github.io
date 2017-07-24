@@ -189,7 +189,7 @@ ReactDOM.render(
 );
 ```
 
-Note that in Code 7, we went from passing 3 argument parameters for h('ul', {}, ...) in Code 5, to passing 1 parameter (an array with 3 values). This is perfectly valid.
+Note that in Code 7, we went from passing 5 parameters for h('ul', {}, ...) in Code 5, to passing 3 parameters (3rd parameter being an array with 3 values). This is perfectly valid.
 
 We can transform both Code 6 and 7 to hold the entire template inside variables.
 
