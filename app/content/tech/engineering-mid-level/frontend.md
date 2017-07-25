@@ -1,7 +1,7 @@
 
 ;__c(function(){/*!
 
-# Engineering Mid Level - The Frontend Layer
+# Engineering Mid Level - Frontend
 
 **index.html**
 ```html

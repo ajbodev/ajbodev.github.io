@@ -33,24 +33,6 @@ Fifth, 'Usable, Responsive Interface' ..
 
 Lastly, 'MVVM Frontend' ..
 
-<!--
-* According to [them](https://github.com/IntuitiveWebSolutions/EngineeringMidLevel), they use this project for 'hiring mid-level Engineers', to test 'potential team members on their technical skills'
--->
-
-<!--
-* Difficulties of Job Hunting and Job Hiring
-* Britecore & EML Innovation
-* My Solution to Britecore's EML
-* Enjoy: [Servers](#/content/tech/engineering-mid-level/servers), [Frontend](#/content/tech/engineering-mid-level/frontend), [Data](#/content/tech/engineering-mid-level/data)
-
----
-
-I've been job hunting the past few weeks, having just completed a big project with an oil company - all remote. I like remote - I feel my productivity is maximized compared to my non-remote former jobs (no commute, very quiet home office environment). Your mileage may vary, of course. If I have to relocate though to maximize my value (rather than productivity) with the company, I should be fine with that too, as I've done both.
-
-By now most job hunting developers should know that their favorite Question and Answer website, StackOverflow, is also a job posting website, and a legitimate one at that. It's one of those organic, peripheral things that happen when developers congregate, and people realize that the resulting attention sphere is good for job hunters and job recruiters alike. Unlike traditional job hunting from indeed, StackOverflow feels like
-
--->
-
 [//]: # (@~|tech/engineering-mid-level|~@)
 
 */});
