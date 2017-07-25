@@ -23,7 +23,7 @@ The guidelines then mention hosting your project, dealing with ambiguities 'in y
 
 Finally, issues on technology are given remarks.
 
-**First, a preference for 'Open Source'.** To say that open source is good is almost tautological nowadays. But it wasn't that long ago that open source had connotations of being of poor quality and difficult to sustain. Behemoths like Microsoft, SAP, Oracle were the kings of this era. Then, several things happened - the rise of the web, the creation of git, and then the centralization of git repos using github. Github gamified software quality (stars, forks, watches, pull requests, bug fixes, tags, ..), turning open source into a superior software quality model. Yup, open source won.
+**First, a preference for 'Open Source'.** To say that open source is good is almost tautological nowadays. But it wasn't that long ago that open source had connotations of being of poor quality and difficult to sustain. Behemoths like Microsoft, SAP, Oracle were the kings of this era. Then, several things happened - the rise of the web, the creation of git, and then the centralization of git repos using github. Github gamified software quality (stars, forks, watches, pull requests, bug fixes, tags, followers, ..), turning open source into a superior software quality model. Open source won.
 
 Second, a 'Decoupled Backend' ..
 

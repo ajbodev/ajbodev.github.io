@@ -105,3 +105,5 @@ var ModelPrototype = {
   },
 };
 for (var i in ModelPrototype) Model.prototype[i] = ModelPrototype[i];
+
+if (typeof module === 'object') module.exports = Model;

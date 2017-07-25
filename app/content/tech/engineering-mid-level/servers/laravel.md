@@ -87,7 +87,6 @@ Route::get('features/find/{id}',     'FeaturesController@find');
 Route::post('features/create',       'FeaturesController@create');
 Route::post('features/update/{id}',  'FeaturesController@update');
 Route::post('features/destroy/{id}', 'FeaturesController@destroy');
-
 ```
 
 **app/Models/Features.php**

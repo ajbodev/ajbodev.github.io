@@ -24,6 +24,10 @@ var config = {
       title: 'PHP Arrays as Classes', template: 'Post', len: 120,
       tags:  ['php'], 
     },
+    'tech/hyperscript-standard': {
+      title: 'Towards a HyperScript Standard', template: 'Post', len: 120,
+      tags:  ['frontend', 'javascript', 'html'], 
+    },
     */
     'tech/engineering-mid-level': {
       title: 'Engineering Mid Level', template: 'Post', len: 250,
@@ -42,12 +46,6 @@ var config = {
       tags:  [ 
         'server', 
         'flask', 'rails', 'laravel', 'express', 'aspnet-core', 'spring-boot'
-      ], 
-    },
-    'tech/engineering-mid-level/data': {
-      title: 'Engineering Mid Level - The Data Layer', template: 'Post',
-      tags:  [ 
-        'data', 'indexeddb', 'http', 'firebase'
       ], 
     },
     // News

@@ -96,3 +96,5 @@ var StorePrototype = {
   },
 };
 for (var i in StorePrototype) Store.prototype[i] = StorePrototype[i];
+
+if (typeof module === 'object') module.exports = Store;
