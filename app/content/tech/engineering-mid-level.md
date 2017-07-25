@@ -19,9 +19,11 @@ The tech stack requirement is then mentioned: Ubuntu, Python (2.7/3.5), Flask, S
 
 The guidelines then mention hosting your project, dealing with ambiguities 'in your own creative way', and that since there is 'no perfect project', interpretations matter. I agree, especially on the necessity of interpretations. While the MEs I've dealt in college have a cookie cutter nature, I'm hardpressed to find any of my professional work (both job and play) where I didn't have to search or innovate in some way to deal with problems. You can say our entire schtick as webdevs is really just completing clients' ambiguous wishlists with actual working, *living* code.
 
+---
+
 Finally, issues on technology are given remarks.
 
-First, a preference for 'Open Source' ..
+**First, a preference for 'Open Source'.** To say that open source is good is almost tautological nowadays. But it wasn't that long ago that open source had connotations of being of poor quality and difficult to sustain. Behemoths like Microsoft, SAP, Oracle were the kings of this era. Then, several things happened - the rise of the web, the creation of git, and then the centralization of git repos using github. Github gamified software quality (stars, forks, watches, pull requests, bug fixes, tags, ..), turning open source into a superior software quality model. Yup, open source won.
 
 Second, a 'Decoupled Backend' ..
 
