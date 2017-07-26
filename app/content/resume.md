@@ -32,6 +32,23 @@ Mt Pleasant\*, Michigan 48858
 
 ## WORK EXPERIENCE
 
+**[Total Oil](http://www.total.com/en)** 2016-2017 (Remote)  
+**WEB DEVELOPER**
+
+* Built an Asset Management System using PHP, JavaScript (React, jQuery), and MySQL
+* Developed the BI stack of the new system using Microsoft PowerBI and PHP REST-based API
+* Standardized project documentation using Github private wikis
+
+---
+
+**[Healthway Medical](https://healthway.com.ph/)** 2013  
+**BUSINESS INTELLIGENCE ANALYST**
+
+* Performed advanced computation and filtering of sixty million records for financial audit by management and Deloitte auditors (MySQL, SQL Server, Excel with PowerPivot DAX)
+* Scaled and benchmarked MySQL, SQL Server and Excel PowerPivot to be able to handle twenty million records per batch and compute under ten minutes of execution
+
+---
+
 **[Intellicare](https://www.intellicare.com.ph/)** 2012-2014  
 **WEB DEVELOPER**
 
@@ -43,27 +60,10 @@ Mt Pleasant\*, Michigan 48858
 
 ---
 
-**[Healthway Medical](https://healthway.com.ph/)** 2013  
-**BUSINESS INTELLIGENCE CONSULTANT**
-
-* Performed advanced computation and filtering of sixty million records for financial audit by management and Deloitte auditors (MySQL, SQL Server, Excel with PowerPivot DAX)
-* Scaled and benchmarked MySQL, SQL Server and Excel PowerPivot to be able to handle twenty million records per batch and compute under ten minutes of execution
-
----
-
-**[Total Oil](http://www.total.com/en)** 2016-2017 (Remote)  
-**WEB DEVELOPER**
-
-* Built an Asset Management System using PHP, JavaScript (React, jQuery), and MySQL
-* Developed the BI stack of the new system using Microsoft PowerBI and PHP REST-based API
-* Standardized project documentation using Github private wikis
-
----
-
 ## EDUCATION
 
 [University of the Philippines, Baguio](http://www.upb.edu.ph/)  
-Earned 139 credits toward a BS Computer Science degree (2006-2010)  
+Computer Science (2006-2010)  
 *[Thesis: Isolated Tagalog Vowel Recognition using the Wall Street Journal Speech Corpus and Hidden Markov Models](https://ajbodev.github.io/media/Omar-Job-Abesamis-thesis.pdf)*
 
 ---

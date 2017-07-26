@@ -3,7 +3,6 @@
 
 # Engineering Mid Level - The Server Layer
 
-
 ## Flask
 
 [Code](#/content/tech/engineering-mid-level/servers/flask)

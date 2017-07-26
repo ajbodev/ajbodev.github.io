@@ -33,11 +33,15 @@ Finally, issues on technology are given remarks.
 
 **Fifth, 'Usable, Responsive Interface'**. With lots of open source UI frameworks available (Bootstrap, Foundation), there is no excuse anymore for having a bad UI. And it should also 'work' well on different devices - this is also handled by those UI frameworks. Being primarily a developer, these UI frameworks (Bootstrap and AdminLTE in particular) have been of massive help in my professional and personal projects.
 
-**Lastly, 'MVVM Frontend'**. More power, more responsibility. The frontend became more complex as a result of people making greater use of its increased capability. This increase in complexity necessitated better patterns for application organization. Thus came to the web patterns like MVC, MVVM, Flux, web componentization. Some prioritize different values more than others (traditional splitting of responsibilities in MVC; unidirectional data flow for flux; single file components for web componentization), but core to all of them is a principled separation of concerns (not necessarily of technology). It's entirely possible to build apps without explicit patterns, but you run the risk of accidental complexity emerging from that choice. Patterns generally pay off, especially as the app grows and scales. It comes at the cost of some upfront complexity, but the tradeoff is usually worth it.
+**Lastly, 'MVVM Frontend'**. More power, more responsibility. The frontend became more complex as a result of people making greater use of its increased capability. This increase in complexity necessitated better patterns for application organization. Thus came to the web patterns like MVC, MVVM, Flux, web componentization. Some prioritize different values more than others (traditional splitting of responsibilities in MVC; unidirectional data flow for flux; single file components for web componentization), but core to all of them is a principled separation of concerns (not necessarily of technology). It's entirely possible to build apps without explicit patterns, but you run the risk of accidental complexity. Patterns generally pay off, especially as the app grows and scales. It comes at the cost of some upfront complexity, but the tradeoff is mostly worth it.
 
 ---
 
+* [Frontend](#/content/tech/engineering-mid-level/frontend)
+* [Servers](#/content/tech/engineering-mid-level/servers)
+
 <!--
+* Am I going to code or not ..
 * My solution ..
   * Different servers.
 -->
