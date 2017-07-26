@@ -23,18 +23,27 @@ The guidelines then mention hosting your project, dealing with ambiguities 'in y
 
 Finally, issues on technology are given remarks.
 
-**First, a preference for 'Open Source'.** To say that open source is good is almost tautological nowadays. But it wasn't that long ago that open source had connotations of being of poor quality and difficult to sustain. Behemoths like Microsoft, SAP, Oracle were the kings of this era. Then, several things happened - the rise of the web, the creation of git, and then the centralization of git repos using github. Github gamified software quality (stars, forks, watches, pull requests, bug fixes, tags, followers, ..), turning open source into a superior software quality model. Open source won.
+**First, a preference for 'Open Source'.** To say that open source is good is almost tautological nowadays. But it wasn't that long ago that open source had connotations of being of poor quality and difficult to sustain. Behemoths like Microsoft, SAP, Oracle were the kings of this era. Then, several things happened - the rise of the web, the creation and spread of git beyond Linux, and then Github providing a centralization of git repositories. From this emerged a gamification of software quality (stars, forks, watches, pull requests, bug fixes, tags, followers, ..), turning open source into a superior model. Open source won.
 
-Second, a 'Decoupled Backend' ..
+**Second, a 'Decoupled Backend'.** Decoupling in general is a powerful programming practice. In the web, visiting a database-driven website usually results in the server dynamically generating a page. Every 'visit' to another page reloads the browser. While this is the default experience, many perceive this non-reactivity to be subpar. Thus, market forces resulted in browser evolution. Now, every standards browser can make additional 'visits' to a server without reloading the page. This lead to single-page apps. 'Visiting' or 'requesting' became less a role of the backend, and more a responsibility of the frontend, via JavaScript and browser APIs. The backend got abstracted, or 'decoupled'.
 
-Third, 'Test Suites with Continuous Integration' ..
+**Third, 'Test Suites with Continuous Integration'**. Having built large JavaScript apps, I can say that modularization is fundamental to making the entire thing understandable. Having an intuitive sense for modularization is important. Even better if you can provably demonstrate that your modules or units accomplish what they are. This is where automated testing comes in, particularly unit tests. In addition to verifying correctness, unit tests expose the software design, illuminating the structure and architecture in a more formal manner than intuition alone. Add this to the practice of continuous integration, by having every commit result in tests being run automatically, and you have a tight feedback loop. With this, issues should be more quickly pinpointed, resulting in higher quality software.
 
-Fourth, 'Automated Deployment' ..
+**Fourth, 'Automated Deployment'**. Continuous integration (CI) is almost always practiced with automated testing. Once all the tests pass, the new system can be automatically made live (deployed). The CI software that does all this can be self-hosted in your own machine or network (Jenkins), or a third party (Travis). The CI software is given high privilege access (usually SSH) to deploy to the application hosting. There can be many details to this, like the CI doing a rebuild of the dependencies, configuring based on environment, maybe even a redundant rerun of tests in the live server. Having containerization helps remove some concerns from environment mismatches. I admit these arent the most exciting parts of software development, but they're absolutely necessary for the product and its interface with the client, especially as you scale.
 
-Fifth, 'Usable, Responsive Interface' ..
+**Fifth, 'Usable, Responsive Interface'**.
 
-Lastly, 'MVVM Frontend' ..
+**Lastly, 'MVVM Frontend'**.
+
+---
+
+<!--
+* My solution ..
+  * Different servers.
+-->
 
 [//]: # (@~|tech/engineering-mid-level|~@)
 
+
 */});
+
