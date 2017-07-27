@@ -25,7 +25,7 @@ Mt Pleasant\*, Michigan 48858
 * **FRONTEND:** [React](#/tag/react), [Angular](#/tag/angular), [jQuery](#/tag/jquery), [Bootstrap](#/tag/bootstrap)
 * **SERVERS:** [Laravel](#/tag/laravel), [Express](#/tag/express), [ASP.NET](#/aspnet)
 * **DATABASES:** [MySQL](#/tag/mysql)
-* **TOOLS:** [Git](#/tag/git), [Node](#/tag/node), [Webpack](#/tag/webpack), [AWS](#/tag/aws)
+* **TOOLS:** [Git](#/tag/git), [Node](#/tag/node), [Webpack](#/tag/webpack)
 * **OTHERS:** [Python](#/tag/python), [Ruby](#/tag/ruby), [Java](#/tag/java), [Spring](#/tag/spring), [Flask](#/tag/flask), [Rails](#/tag/rails), [Vue](#/tag/vue), [Ember](#/tag/ember), [Postgres](#/tag/postgres)
 
 ---

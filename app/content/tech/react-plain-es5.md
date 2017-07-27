@@ -345,6 +345,9 @@ new template();
 function template(props) {
   templateParent.call(this, props);
 }
+for (var i in templateParent.prototype) {
+  template.prototype[i] = templateParent.prototype[i];
+}
 template.prototype.render = function() {}
 new template();
 ```
@@ -356,6 +359,9 @@ Applying the above patterns for React:
 h = React.createElement;
 function template(props) {
   React.Component.call(this, props);
+}
+for (var i in React.Component.prototype) {
+  template.prototype[i] = React.Component.prototype[i];
 }
 template.prototype.render = function() {
   return h('div', {},

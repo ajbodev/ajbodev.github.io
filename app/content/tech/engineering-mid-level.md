@@ -5,7 +5,7 @@
 
 Looking at jobs available via StackOverflow, I came across this [gem](https://stackoverflow.com/jobs/109401/full-stack-software-engineer-britecore). What's special about it? There are lots of 'fullstack software engineering' job postings everywhere - but this is the only I've come across so far that gave you a 'guaranteed interview' if you complete a [special project](https://github.com/IntuitiveWebSolutions/EngineeringMidLevel). I'm not really sure if it's guaranteed, but the idea of having candidates prove themselves with a project - I think that's a fine example of hands-on meritocracy. And that's a good thing, because merit is the most important consideration in doing software right. 
 
-The way this problem wants merit to show - hands-on dirty coding - this reminds of my CS college days, when MEs (machine exercises) were regularly given after a lecture, and they had to be solved. Sometimes we compete on who can solve the fastest, or in the least amount of code. And sometimes they were too hard and had to be taken home - we had to bang our head on the problem until we eureka'd, then submit the next day. 
+The way this problem wants merit to show - hands-on dirty coding - this reminds of my CS college days, when MEs (machine exercises) were regularly given after a lecture, and they had to be solved. Sometimes we compete on who can solve the fastest, or in the least amount of code. And sometimes they were too hard and had to be taken home - we had to bang our head on the problem until we got it, then submit the next day. 
 
 [This particular problem](https://github.com/IntuitiveWebSolutions/EngineeringMidLevel) - it's an ME alright, an Enterprise-style ME.
 
@@ -31,22 +31,17 @@ Finally, issues on technology are given remarks.
 
 **Fourth, 'Automated Deployment'**. Continuous integration (CI) is almost always practiced with automated testing. Once all the tests pass, the new system can be automatically made live (deployed). The CI software that does all this can be self-hosted in your own machine or network (Jenkins), or a third party (Travis). The CI software is given high privilege access (usually SSH) to deploy to the application hosting. There can be many details to this, like the CI doing a rebuild of the dependencies, configuring based on environment, maybe even a redundant rerun of tests in the live server. Having containerization helps remove some concerns from environment mismatches. I admit these arent the most exciting parts of software development, but they're absolutely necessary for the product and the resulting experience of the users, especially in scale.
 
-**Fifth, 'Usable, Responsive Interface'**. With lots of open source UI frameworks available (Bootstrap, Foundation), there is no excuse anymore for having a bad UI. And it should also 'work' well on different devices - this is also handled by those UI frameworks. Being primarily a developer, these UI frameworks (Bootstrap and AdminLTE in particular) have been of massive help in my professional and personal projects.
+**Fifth, 'Usable, Responsive Interface'**. With lots of open source UI frameworks available (Bootstrap, Foundation), there is no excuse anymore for having a bad UI. And it should also 'work' well on different devices - this is also handled by those UI frameworks. Being primarily a developer, I've been massively helped in my professional and personal projects by using these ready-made UI solutions (Bootstrap and AdminLTE in particular).
 
-**Lastly, 'MVVM Frontend'**. More power, more responsibility. The frontend became more complex as a result of people making greater use of its increased capability. This increase in complexity necessitated better patterns for application organization. Thus came to the web patterns like MVC, MVVM, Flux, web componentization. Some prioritize different values more than others (traditional splitting of responsibilities in MVC; unidirectional data flow for flux; single file components for web componentization), but core to all of them is a principled separation of concerns (not necessarily of technology). It's entirely possible to build apps without explicit patterns - but we know this can quickly become a mess. Patterns generally pay off, controlling the mess of the app as it grows and scales. The cost is upfront complexity, but this tradeoff is mostly worth it.
+**Lastly, 'MVVM Frontend'**. With greater capability, the frontend became more complex. This increased complexity necessitated better patterns for application organization. Patterns like MVC, MVVM, Flux, componentization soon came to the web. Some prioritize different values more than others (traditional splitting of responsibilities in MVC; unidirectional data flow for flux; single file components for web componentization), but core to all of them is a principled separation of concerns. It's entirely possible to build apps without explicit patterns - but this can quickly become a mess. Patterns generally pay off, controlling the mess of the app as it grows and scales. The cost is upfront complexity of the pattern/framework itself, but this tradeoff is mostly worth it.
 
 ---
 
-That's enough describing. I decided to solve the problem. You can visit the solution(s) [here](https://github.com/ajbodev/engineering-mid-level): <iframe class='github__eml' src='https://ghbtns.com/github-btn.html?user=ajbodev&repo=engineering-mid-level&type=watch&count=true&v=2' frameborder='0' scrolling='0'></iframe>.
+With that, I decided to solve the problem. You can visit the solution(s) [here](https://github.com/ajbodev/engineering-mid-level): <iframe class='github__eml' src='https://ghbtns.com/github-btn.html?user=ajbodev&repo=engineering-mid-level&type=watch&count=true&v=2' frameborder='0' scrolling='0'></iframe>.
 
 <!--
 * [Frontend](#/content/tech/engineering-mid-level/frontend)
 * [Servers](#/content/tech/engineering-mid-level/servers)
--->
-<!--
-* Am I going to code or not ..
-* My solution ..
-  * Different servers.
 -->
 
 [//]: # (@~|tech/engineering-mid-level|~@)
