@@ -18,14 +18,11 @@ Ah, PHP arrays .. the paragon of data structure flexibility
 
 -->
 
+**basic**
 ```php
-return $_Module = function($params=[], $deps=[]) { 
+// array
+$Module = function() { 
 $_this = [
-    #'module' => $deps['module']('app/module'),
-    #'prop'   => @$params[0] ?: 'default',
-    'boot' => function() use (&$_this, $params, $deps) {
-        #
-    },
     'init' => function() use (&$_this) {
         #
     },
@@ -33,10 +30,60 @@ $_this = [
         return $param;
     },
 ];
-$_this['boot']();
+return $_this;
+};
+$module = $Module();
+
+// class
+class Module {
+    function init() {
+        #
+    }
+    function action($param) {
+        return $param;
+    }
+}
+$module = new Module;
+```
+
+**inheritance**
+```php
+// array
+$ParentModule = function() { 
+$_this = [
+    'extend' => function() use (&$_this) {
+        #
+    },
+];
 return $_this;
 };
 
+$Module = function() {
+$_this = array_merge($ParentModule, [
+    'init' => function() use (&$_this) {
+        #
+    },
+    'action' => function($param) use (&$_this) {
+        return $param;
+    },
+]);
+return $_this;
+};
+$module = $Module();
+
+// class
+class ParentModule {
+
+}
+class Module {
+    function init() {
+        #
+    }
+    function action($param) {
+        return $param;
+    }
+}
+$module = new Module;
 ```
 
 <!--
