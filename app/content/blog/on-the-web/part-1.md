@@ -15,7 +15,7 @@ The World Wide Web, which nowadays we simply call the 'Web', is a recent inventi
 
 ..
 
-Oh, is any of these relevant to my work as a web developer building another React Redux app, built with Webpack, styled with SASS + BEM + CSS Modules, and the code linted with ESLint, tested via Jasmine, deployed and version controlled with Git, all automated by NPM scripts (or Yarn), don't forget left-pad? I'm not sure. It's cool to think about, though.
+Oh, is any of these relevant to my work as a web developer building another React Redux app, bundled with Webpack, styled with SASS + BEM + CSS Modules, code linted with ESLint, tested via Jasmine, deployed and version controlled with Git, all automated by NPM scripts (or Yarn), don't forget left-pad? I'm not sure. It's cool to think about, though.
 
 <!--
 * I recently had a chat with some people in their older years about the web, the internet, and all these 'new stuff' that comes out of it ..
