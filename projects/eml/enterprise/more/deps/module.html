@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <link href='' rel='stylesheet'>
+  </head>
+  <body>
+    <div id='app'>
+      <div id='content'></div>
+    </div>
+    <script src=''></script>
+    <script>
+      /** #e51e */
+      var _Module = function(prop) {
+        var _this = this;
+        this.prop = prop || '';
+        this.boot();
+      };
+      var prototype = {
+        boot: function() {
+          var _this = this;
+        },
+        init: function() {
+          var _this = this;
+        },
+        action: function(param) {
+          var _this = this;
+          return param;
+        },
+      };
+      for (var i in prototype) _Module.prototype[i] = prototype[i];
+    </script>
+  </body>
+</html>
