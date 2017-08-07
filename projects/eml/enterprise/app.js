@@ -26,7 +26,7 @@ var prototype = {
     this.makeRoutes();
   },
   renderLayout: function() {
-    var img    = root.replace('/index.php', '') + '/../custwebmod/media/person.png';
+    var img    = 'http://ajbodev.github.io/projects/eml/enterprise/media/person.png';
     var header = 
       h('header', {'class': 'main-header'}, 
         h('a', {'class': 'logo'}, 
