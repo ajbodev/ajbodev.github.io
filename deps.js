@@ -2,7 +2,7 @@
 /**
  * Dependencies
  * 
- * @version ~07/10/17
+ * @version ~12/14/17
  * @since   ~04/30/17
  * @author  Omar Job Abesamis <ojawebdev@gmail.com>
  * @see     Browserify (13.1.0)
@@ -62,7 +62,7 @@ __c.t = function(t) {
     texts = texts !== false ? true : false;
     if (texts) __c.text(text);
     return text;
-  };
+  }
   f.text = text;
 
   return f;
@@ -79,9 +79,10 @@ var __script = function(script) {
   }
 };
 __script.scripts = {};
+__script.root    = '';
 __script.onerror = function(script) {
-  __script.scripts[script] = false;
+  __script.scripts[__script.root + script] = false;
 };
 __script.onload = function(script) {
-  __script.scripts[script] = true;
+  __script.scripts[__script.root + script] = true;
 };

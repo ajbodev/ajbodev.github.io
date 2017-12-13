@@ -1,5 +1,5 @@
 
-__require('app/config', function(require, module, exports) {
+__require('~/config', function(require, module, exports) {
 
 var config = {
   home: {

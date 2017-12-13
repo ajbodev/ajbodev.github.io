@@ -1,8 +1,8 @@
 
-__require('app', function(require, module, exports) {
+__require('~/app', function(require, module, exports) {
 
-var H       = require('app/lib/h/react');
-var config  = require('app/config');
+var H       = require('~/lib/h/react');
+var config  = require('~/config');
 
 var h       = new H();
 
@@ -147,7 +147,7 @@ var prototype = {
       _this.renderCode();
       _this.renderMath();
     };
-    script.src = 'app/content/' + content + '.md';
+    script.src = 'content/' + content + '.md';
     document.getElementsByTagName('head')[0].appendChild(script);
   },
   renderContent: function(content, sel, len, start) {
