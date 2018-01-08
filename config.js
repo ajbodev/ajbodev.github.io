@@ -5,7 +5,7 @@ var config = {
   home: {
     tech_1:       { content: 'tech/react-plain-es5' },
     //tech_2:       { content: 'tech/php-arrays-classes' },
-    tech_3:       { content: 'tech/engineering-mid-level' },
+    //tech_3:       { content: 'tech/engineering-mid-level' },
     news:         { content: 'news/2017' },
     /*
     more_1:       { content: 'blog/lessons-enterprise/part-1' },
