@@ -7,6 +7,8 @@ I will most certainly reorganize ajbodev - modernized
 
 New details incoming!
 
+People to support
+
 [//]: # (@~|[content]|~@)
 
 */});
