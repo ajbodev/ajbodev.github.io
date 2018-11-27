@@ -11,6 +11,8 @@ People to support
 
 Calendar-ing!
 
+Beginning TypeScript ..
+
 [//]: # (@~|[content]|~@)
 
 */});
