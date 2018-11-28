@@ -13,6 +13,8 @@ Calendar-ing!
 
 Beginning TypeScript ..
 
+Tomorrow begins refactor of ajbodev!
+
 [//]: # (@~|[content]|~@)
 
 */});
