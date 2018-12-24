@@ -1,0 +1,655 @@
+<!DOCTYPE html><html><head><title>App</title><meta charset='utf-8'><script>
+
+//__root = './'; __cache=false;
+
+__main = function() {
+  var App = require('@/app');
+  app     = new App();
+  app.init();
+};
+
+__$require=function(r){require=function t(o,f,c){function _(n,r){if(!f[n]){if(!o[n]){var e="function"==typeof require&&require;if(!r&&e)return e(n,!0);if(q)return q(n,!0);var u=new Error("Cannot find module '"+n+"'");throw u.code="MODULE_NOT_FOUND",u}var i=f[n]={exports:{}};o[n][0].call(i.exports,function(r){var e=o[n][1][r];return _(e||r)},i,i.exports,t,o,f,c)}return f[n].exports}for(var q="function"==typeof require&&require,r=0;r<c.length;r++)_(c[r]);return _}(r||{1:[function(r,e,n){},{}]},{},[])},__require=function(r,e){var n={};n[r]=[e,{}],__$require(n)},__$require();
+
+
+__require('@/config', function(require, module, exports) {
+
+var config = {
+  home: {
+    //tech_1:       { content: 'tech/react-plain-es5' },
+    //tech_2:       { content: 'tech/php-arrays-classes' },
+    //tech_3:       { content: 'tech/engineering-mid-level' },
+    //news:         { content: 'news/2017' },
+    /*
+    more_1:       { content: 'blog/lessons-enterprise/part-1' },
+    more_2:       { content: 'blog/on-the-web/part-1' },
+    more_3:       { content: 'more/javascript-auto-piano' },
+    */
+  },
+  content: {
+    /*
+    // Technology
+    'tech/react-plain-es5': {
+      title: 'React.js in Plain ES5', template: 'Post', 
+      tags:  ['javascript', 'react', 'frontend'], 
+    },
+    'tech/php-arrays-classes': {
+      title: 'PHP Arrays as Classes', template: 'Post', len: 120,
+      tags:  ['php'], 
+    },
+    'tech/hyperscript-standard': {
+      title: 'Towards a HyperScript Standard', template: 'Post', len: 120,
+      tags:  ['frontend', 'javascript', 'html'], 
+    },
+    'tech/engineering-mid-level': {
+      title: 'Engineering Mid Level', template: 'Post', len: 250,
+      tags:  [ 'server', 'frontend', 'data' ], 
+    },
+    'tech/engineering-mid-level/frontend': {
+      title: 'Engineering Mid Level - The Frontend Layer', template: 'Post',
+      tags:  [ 
+        'frontend', 'javascript',
+        'knockout', 'react', 'vue', 'angular-1', 'jquery', 'ember',
+        'angular-4', 'riot', 'mithril'
+      ], 
+    },
+    'tech/engineering-mid-level/servers': {
+      title: 'Engineering Mid Level - The Server Layer', template: 'Post',
+      tags:  [ 
+        'server', 
+        'flask', 'rails', 'laravel', 'express', 'aspnet-core', 'spring-boot'
+      ], 
+    },
+    // News
+    'news/2017': {
+      title: 'News (2017)', template: 'Post', len: 1000,
+      tags:  ['news'], 
+    },
+    */
+    /*
+    // Blog
+    'blog/lessons-enterprise/part-1': {
+      title: 'Lessons in Building Enterprise Software', template: 'Post', 
+      tags:  ['web'], 
+    },
+    'blog/on-the-web/part-1': { 
+      title: 'On The Web', template: 'Post' ,
+      tags:  ['web'], 
+    },
+    // More
+    'more/europe': { 
+      title: 'Travelling Europe', template: 'Post',
+      tags:  ['misc'], 
+    },
+    'more/javascript-auto-piano': { 
+      title: 'JavaScript Auto Piano', template: 'Post',
+      tags:  ['javascript'], 
+    },
+    // CS
+    'cs/2017/06/24': { 
+      title: 'Algorithms', template: 'Post',
+      tags:  ['javascript'], 
+    },
+    */
+    /*
+    'template': { 
+      title: 'Template', 
+      tags:  ['web'], template: 'Post', //date: '31/01/2017', comments: true,
+    },
+    */
+  },
+  tag: {
+    // Lang
+    /*
+    'javascript':  { content: 'tag/lang/javascript', title: 'JavaScript' },
+    'php':         { content: 'tag/lang/php' },
+    'csharp':      { content: 'tag/lang/csharp' },
+    'python':      { content: 'tag/lang/python' },
+    'ruby':        { content: 'tag/lang/ruby' },
+    'java':        { content: 'tag/lang/java' },
+    // Frontend
+    'frontend':    { content: 'tag/frontend/frontend' },
+    'knockout':    { content: 'tag/frontend/knockout' },
+    'react':       { content: 'tag/frontend/react' },
+    'vue':         { content: 'tag/frontend/vue' },
+    'angular-1':   { content: 'tag/frontend/angular-1' },
+    'ember':       { content: 'tag/frontend/ember' },
+    'angular-4':   { content: 'tag/frontend/angular-4' },
+    'angular':     { content: 'tag/frontend/angular-1' },
+    'riot':        { content: 'tag/frontend/riot' },
+    'mithril':     { content: 'tag/frontend/mithril' },
+    'jquery':      { content: 'tag/frontend/jquery' },
+    // Servers
+    'servers':     { content: 'tag/servers/servers' },
+    'flask':       { content: 'tag/servers/flask' },
+    'rails':       { content: 'tag/servers/rails' },
+    'laravel':     { content: 'tag/servers/laravel' },
+    'aspnet-core': { content: 'tag/servers/aspnet-core' },
+    'aspnet':      { content: 'tag/servers/aspnet-core' },
+    'express':     { content: 'tag/servers/express' },
+    'spring-boot': { content: 'tag/servers/spring-boot' },
+    'spring':      { content: 'tag/servers/spring-boot' },
+    // Database
+    'database':    { content: 'tag/db/db' },
+    'mysql':       { content: 'tag/db/mysql' },
+    'postgres':    { content: 'tag/db/postgres' },
+    'mongodb':     { content: 'tag/db/mongodb' },
+    'sqlite':      { content: 'tag/db/sqlite' },
+    */
+    // Others
+  },
+};
+
+module.exports = config;
+
+});
+
+__require('@/app', function(require, module, exports) {
+
+var H       = require('@/lib/h/react');
+var config  = require('@/config');
+
+var h       = new H();
+
+var App = function() {
+  var _this = this;
+  this.config  = config;
+  this.content = {};
+  this.router  = {};
+  this.boot();
+};
+var prototype = {
+  boot: function() {
+    var _this = this;
+    // ?
+    window.__r = '../../../';
+    // ?
+  },
+  init: function() {
+    var _this = this;
+    this.makeContent();
+    this.renderLayout();
+    this.makeRoutes();
+    if (!window.location.hash) window.location.hash = '#/home';
+  },
+  makeRoutes: function() {
+    var _this = this;
+    var routes = {
+      '/content/?((\w|.)*)': function(content) {
+        _this._render(function() { _this.renderContent(content); });
+      },
+      '/home': function() {
+        _this._render(function() { _this.renderHome(); });
+      },
+      '/tag/?((\w|.)*)': function(tag) {
+        _this._render(function() { _this.renderTag(tag); });
+      },
+      '/date/?((\w|.)*)': function(date) {
+        _this._render(function() { _this.renderDate(date); });
+      },
+      '/words/?((\w|.)*)': function(words) {
+        _this._render(function() { _this.loadContent('../../../words/'+words); });
+      },
+    }
+    this.router = Router(routes);
+    this.router.init();
+  },
+  makeContent: function() {
+    var _this = this;
+    for (var i in __c.texts) {
+      // replace ";__c(function(){/*!", "*/});" to ""
+      this.content[i] = marked(__c.texts[i]);
+    }
+  },
+  route: function(route) {
+    var _this = this;
+    this.router.setRoute(route);
+  },
+  _render: function(cb) {
+    var _this = this;
+    $('#content').html('');
+    this.progressStart();
+    this.animateContent();
+    if (cb) cb();
+    this.renderCode();
+    this.renderMath();
+    this.progressEnd();
+  },
+  renderLayout: function() {
+    var _this = this;
+    var tag = function(title, href) {
+      var template = 
+      h('ul', {'class': 'nav-list'},
+        h('li', {'class': 'nav-item'},
+          h('a', {'class': 'pure-button', 'href': href}, title)
+        )
+      )
+      return template;
+    }
+    var template = 
+    h('div', {'id': 'layout', 'class': 'pure-g'},
+      h('div', {'id': 'sidebar', 'class': 'sidebar pure-u-1 pure-u-md-1-4'},
+        h('div', {'id': 'sidebar__header', 'class': 'header'},
+          h('h1', {'class': 'brand-title'}, 'OJ Abesamis'),
+          h('h2', {'class': 'brand-tagline'}, 'Web Developer'),
+          h('nav', {'class': 'nav'},
+            tag('Home',  '#/home'),
+            tag('Tags',  '#/tag'),
+            tag('About', '#/content/about')
+          ),
+        )
+      ),
+      h('div', {'id': 'content', 'class': 'content pure-u-1 pure-u-md-3-4'})
+    );
+    h.render(template, document.getElementById('app'))
+  },
+  renderHome: function() {
+    var _this = this;
+    var config   = this.config.home || {};
+    var template = 
+    h('div', {},
+      h('div', {'class': 'posts'},
+        h('h1', {'class': 'content-subhead'}, 'Tech'),
+        h('div', {'id': 'content__tech_1'}),
+        h('div', {'id': 'content__tech_2'}),
+        h('div', {'id': 'content__tech_3'})
+      ),
+      h('br'),
+      h('div', {'class': 'posts'},
+        h('h1', {'class': 'content-subhead'}, 'News'),
+        h('div', {'id': 'content__news'}),
+      ),
+      h('br'),
+      /*
+      h('div', {'class': 'posts'},
+        h('h1', {'class': 'content-subhead'}, 'More'),
+        h('div', {'id': 'content__more_1'}),
+        h('div', {'id': 'content__more_2'}),
+        h('div', {'id': 'content__more_3'}),
+        h('div', {'id': 'content__more_4'}),
+        h('div', {'id': 'content__more_5'})
+      ),
+      */
+    )
+    h.render(template, document.getElementById('content'));
+    //
+    for (var i in config) {
+      var _config = this.config.content[config[i].content] || {}
+      this.renderContent(
+        config[i].content, 
+        '#content__' + i,
+        _config.len   || 300,
+        _config.start || 0
+      )
+    }
+  },
+  loadContent: function(content, sel, len, start) {
+    var _this = this;
+    var script = document.createElement('script');
+    script.onload = function() {
+      _this.content[content] = marked(__c.texts[content]);
+      _this.renderContent(content, sel, len, start);
+      _this.renderCode();
+      _this.renderMath();
+    };
+    script.src = 'content/' + content + '.md.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
+  },
+  renderContent: function(content, sel, len, start) {
+    var _this = this;
+    sel = sel || '#content';
+    if (this.content[content]) {
+      var text   = this.content[content] || '';
+      var config = this.config.content[content] || {};
+      if (config.template) {
+        this['renderTemplate' + config.template](content, sel, len, start);
+      } else {
+        if (len) {
+          start  = start || 0
+          text   = text.substring(start, len);
+          text  += ' <a href="#/content/' + content + '">.. (read more)</a>'
+        }
+        $(sel).html(text);
+      }
+    } else {
+      this.loadContent(content, sel, len, start);
+    }
+  },
+  renderTemplatePost: function(content, sel, len, start) {
+    var _this = this;
+    var text    = this.content[content] || '';
+    var config  = this.config.content[content] || {};
+    var title   = config.title || content;
+    sel         = sel   || '#content';
+    if (len) {
+      start     = start || 0;
+      text      = text.substring(start, len);
+      text     += ' <a href="#/content/' + content + '">.. (read more)</a>';
+    }
+    var tags    = function() {
+      var template  = h('div', {'class': 'content__tags'});
+      var tags_list = [];
+      if (config.tags) {
+        var _tags = config.tags;
+        for (var i=0; i<_tags.length; i++) {
+          var tag = h('a', {
+            'class': 'post-category post-category-design', 
+            'href': '#/tag/' + _tags[i],
+          }, _tags[i]);
+          if ((i >= 7) && (i%7 === 0)) tags_list.push([h('br'), h('br')]);
+          tags_list.push(tag);
+        }
+        template  = h('div', {'class': 'content__tags'}, tags_list);
+      }
+      return template;
+    };
+    var date    = function() {
+      var template = h('a', {'class': 'content__date'});
+      if (config.date) {
+        var _date  = config.date;
+        var day    = _date.substring(0,2);
+        var month  = moment(_date.substring(3,5), 'MM').format('MMMM');
+        var year   = _date.substring(6,10);
+        var format = month.substring(0,3) + ' ' + day + ', ' + year
+        template   = h('a', {'class': 'content__date', 'href': '#/date/' + _date}, format);
+      }
+      return template;
+    };
+    var template = 
+    h('div', {},
+      h('section', {'class': 'post'},
+        h('header', {'class': 'post-header'},
+          h('h2', {'class': 'content__title post-title'}, title),
+          h('p', {'class': 'post-meta'},
+            date(),
+            h('span', {html: true}, '&nbsp;'),
+          ),
+          tags()
+        ),
+        h('div', {'class': 'post-description'},
+          h('p', {'class': 'content__src', html: true}, text)
+        ),
+      ),
+      h('div', {'class': 'content__comments'})
+    );
+    h.render(template, document.querySelector(sel));
+    //
+    if (title) $('.content__src h1').remove();
+  },
+  renderTag: function(tag) {
+    var _this = this;
+    var config = this.config.content;
+    var template = h('div', {});
+    if (tag) {
+      var contents  = _.keys(_.pickBy(config, function(v, k) { return (v.tags.indexOf(tag) > -1)}));
+      var _contents = { index:[], summary:[], };
+      for (var i=0; i<contents.length; i++) {
+        var _index = 
+        h('li', {}, 
+          h('a', {'href': '#/content/' + contents[i]}, config[contents[i]].title)
+        );
+        var id = ('content__tag__' + contents[i]).replace(/\//g, '_');
+        var _summary = h('div', {'id': id});
+        _contents.index.push(_index);
+        _contents.summary.push(_summary);
+      }
+      var title = this.config.tag[tag] ? (this.config.tag[tag].title) : tag;
+      template = 
+      h('div', {},
+        h('h1', {'class': 'content-subhead'}, 'TAG - ' + tag),
+        h('h1', {id: 'content__tag__title'}, title),
+        h('div', {id: 'content__tag__content'}),
+        h('a', {
+          'class': 'post-category post-category-design',
+          'href': '#/tag/' + tag,
+        }, tag),
+        h('ul', {}, _contents.index),
+        _contents.summary,
+      );
+      h.render(template, document.getElementById('content'));
+      for (var i=0; i<contents.length; i++) {
+        var id = ('#content__tag__' + contents[i]).replace(/\//g, '_');
+        this.renderContent(
+          contents[i],
+          id,
+          config[contents[i]].len   || 300,
+          config[contents[i]].start || 0
+        );
+        $(id).prepend('<h1 class="content-subhead"></h1>');
+      }
+      if (this.config.tag[tag] && this.config.tag[tag].content) {
+        var name = this.config.tag[tag].content;
+        this.renderContent(name, '#content__tag__content');
+        $('#content__tag__title').html('');
+      }
+    } else {
+      var tags = function() {
+        var _tags  = _.uniq(_.flatten(_.map(config, 'tags'))).sort();
+        var template = [];
+        for (var i=0; i<_tags.length; i++) {
+          var _tag = h('a', {
+            'class': 'post-category post-category-design',
+            'href': '#/tag/' + _tags[i],
+          }, _tags[i])
+          if ((i >= 7) && (i%7 === 0)) template.push([h('br'), h('br')]);
+          template.push(_tag);
+        }
+        return template;
+      }
+      template = 
+      h('div', {},
+        h('h1', {'class': 'content-subhead'}, 'TAGS'),
+        h('h1', {}, 'Tags'),
+        tags()
+      )
+      h.render(template, document.getElementById('content'));
+    }
+  },
+  renderDate: function(date) {
+    var _this = this;
+  },
+  renderCode: function() {
+    var _this = this;
+    setTimeout(function() {
+      var codes = document.querySelectorAll('pre')
+      for (var i=0; i<codes.length; i++) {
+        hljs.highlightBlock(codes[i])
+      }
+    }, 0)
+  },
+  renderMath: function() {
+    var _this = this;
+    renderMathInElement(document.body);
+  },
+  animateContent: function() {
+    var _this = this;
+    $('#content').addClass('fadeIn animated');
+    setTimeout(function() {
+      $('#content').removeClass('fadeIn animated');
+    }, 300)
+    window.scrollTo(0, 0);
+  },
+  progressStart: function() {
+    var _this = this;
+    NProgress.start();
+  },
+  progressEnd: function() {
+    var _this = this;
+    NProgress.done();
+  },
+  action: function(param) {
+    var _this = this;
+    return param;
+  },
+};
+for (var i in prototype) App.prototype[i] = prototype[i];
+
+module.exports = App;
+
+});
+
+__require('@/lib/h/react', function(require, module, exports) {
+
+var H = function() {
+var _this = this;
+var h    = this.h;
+h.render = this.render;
+return h;
+};
+var prototype = {
+h: function(element, props, content) {
+  var _this = this;
+  var h = React.createElement;
+  for (var prop in props) {
+    var matcher = {
+      '_this': false,
+      'k':     false,
+      'class': 'className',
+      'for':   'htmlFor',
+      'html':  'dangerouslySetInnerHTML',
+    }
+    if (prop in matcher) {
+      if (matcher[prop]) {
+        if (prop === 'html') {
+          props['dangerouslySetInnerHTML'] = {__html: content};
+          return h.apply(h, [element, props]);
+        } else {
+          props[matcher[prop]] = props[prop];
+        }
+        delete props[prop];
+      }
+    } 
+  }
+  return h.apply(h, arguments);
+},
+render: function(element, node) {
+  var _this = this;
+  var h = React.createElement;
+  ReactDOM.render(h(function(){return element}), node)
+},
+};
+for (var i in prototype)     H.prototype[i] = prototype[i];
+
+module.exports = H;
+
+});
+__require('@/[module]', function(require, module, exports) {
+
+var _Module = function(o) {
+  var _this = this;
+  this.boot();
+};
+var prototype = {
+  boot: function() {
+    var _this = this;
+    console.log('Boot!');
+  },
+  init: function() {
+    var _this = this;
+    console.log('Init');
+    this.make();
+  },
+  make: function() {
+    var _this = this;
+    console.log('Make!');
+  },
+  _action: function() {
+    var _this = this;
+  },
+};
+for (var i in prototype) _Module.prototype[i] = prototype[i];
+
+module.exports = _Module;
+
+});
+
+__c=function(t,e,n){var r=t.toString().replace(/^[^\/]+\/\*!?/,"").replace(/\*\/[^\/]+$/,"");return n=n||!0,e&&(r=__c.supplant(r,e)),n&&__c.text(r),r},__c.texts={},__c.delimiter={start:"(@~|",end:"|~@)"},__c.text=function(t,e,n,r){e=e||__c.delimiter.start,n=n||__c.delimiter.end,r=r||!0;var _=t.indexOf(e),c=t.indexOf(n);if(_>-1&&c>-1){var i=t.substring(_+e.length,c);return r&&(__c.texts[i]=t),i}return null},__c.supplant=function(t,e){return t.replace(/{([^{}]*)}/g,function(t,n){var r=e[n];return"string"==typeof r||"number"==typeof r?r:t})},__c.t=function(t){var e=t[0],n=function(t){return(t=!1!==t)&&__c.text(e),e};return n.text=e,n};
+
+__script=function(r,t){t=t||{};var c="";"http://"!==r.substring(0,7)&&"https://"!==r.substring(0,8)&&(c=t.root||__root||__script.root);var _=t.cache||__cache||__script.cache?"":"?"+Math.random();__script.scripts[r]||document.write('<script src="'+c+r+_+'" onload="__script.onload(\''+c+r+"') \" onerror=\"__script.onerror('"+c+r+"') \"><\/script>")},__script.scripts={},__script.root="",__script.cache=!0,__script.onerror=function(r){__script.scripts[r]=!1},__script.onload=function(r){__script.scripts[r]=!0},__root=null,__cache=null;
+
+__scripts = function(options) {
+  // vendor
+  __script('https://ajbodev.github.io/more/index-legacy/deps/vendor.js');
+  // app
+  //__script('app.js');
+  //__script('config.js');
+  //__script('lib/h/react.js');
+};
+
+__style=function(_,t){t=t||{};var e="";"http://"!==_.substring(0,7)&&"https://"!==_.substring(0,8)&&(e=t.root||__root||__style.root);var l=t.cache||__cache||__style.cache?"":"?"+Math.random();__style.styles[_]||document.write('<link href="'+e+_+l+'" onload="__style.onload(\''+e+_+"') \" onerror=\"__style.onerror('"+e+_+'\') " rel="stylesheet">')},__style.styles={},__style.root="",__style.cache=!0,__style.onerror=function(_){__style.styles[_]=!1},__style.onload=function(_){__style.styles[_]=!0},__link=__style,__root=null,__cache=null;
+
+__styles = function(options) {
+  // vendor
+  __style('https://ajbodev.github.io/more/index-legacy/deps/vendor.css');
+  // app
+  //__style('styles.css');
+};
+
+</script><style>
+
+* {
+  font-family: arial; 
+}
+
+.post-meta {
+  margin-bottom: 10px; 
+}
+
+#content {
+  font-size: 21px;
+}
+
+iframe.disqus {
+  width: 100%;
+  border: none;
+  height: 700px;
+}
+
+iframe.github {
+  position: relative;
+  top: 4px;
+  height: 20px;
+  width: 100px;
+}
+
+iframe.github__eml {
+  position: relative;
+  top: 4px;
+  height: 20px;
+  width: 65px;
+}
+
+a {
+  text-decoration: none;
+  color: #0000EE;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+
+#content h2 {
+  color: #222 !important;
+}
+
+.hljs {
+  font-size: 15px;
+  line-height: 25px;
+}
+
+/*
+#sidebar {
+  width: 340px; 
+}
+
+#sidebar__header {
+  margin-top: 230px;  
+}
+*/
+
+
+</style><script>__styles();</script></head><body><div id='app'></div><script>__scripts();</script><script>__main();</script></body></html>
