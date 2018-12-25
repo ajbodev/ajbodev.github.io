@@ -291,6 +291,20 @@ var prototype = {
       _this.renderCode();
       _this.renderMath();
     };
+    script.onerror = function() {
+      // ? index
+      console.log('Trying ' + content + '/index.md.js');
+      var _script = document.createElement('script');
+      _script.onload = function() {
+        _this.content[content + '/index'] = marked(__c.texts[content + '/index']);
+        _this.renderContent(content + '/index', sel, len, start);
+        _this.renderCode();
+        _this.renderMath();
+      };
+      _script.src = 'content/' + content + '/index' + '.md.js';
+      document.getElementsByTagName('head')[0].appendChild(_script);
+      // ? 
+    };
     script.src = 'content/' + content + '.md.js';
     document.getElementsByTagName('head')[0].appendChild(script);
   },
