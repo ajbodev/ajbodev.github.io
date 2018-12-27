@@ -297,7 +297,7 @@ var prototype = {
       console.log('Trying ' + content + '/index.md.js');
       var _script = document.createElement('script');
       _script.onload = function() {
-        // __c.texts[content] = __c.texts[content + '/index'];
+        __c.texts[content] = __c.texts[content + '/index']; // ?
         _this.content[content + '/index'] = marked(__c.texts[content + '/index']);
         _this.renderContent(content + '/index', sel, len, start);
         _this.renderCode();
