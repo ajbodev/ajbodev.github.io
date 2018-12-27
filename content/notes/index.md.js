@@ -7,6 +7,6 @@
 
 Beginning of notes!
 
-[//]: # (@~|notes|~@)
+[//]: # (@~|notes/index|~@)
 
 */});

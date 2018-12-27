@@ -6,6 +6,7 @@
 ## Dec 23 - 29
 
 * [ ] Fullstack TypeScript
+* [ ] Frontend Big 4
 
 ## Dec 16 - 22
 
