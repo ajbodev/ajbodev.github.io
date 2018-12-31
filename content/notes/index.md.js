@@ -3,9 +3,7 @@
 
 # Notes
 
-## 2018-12-26
-
-Beginning of notes!
+<!-- stream of consciousness -->
 
 [//]: # (@~|notes/index|~@)
 
