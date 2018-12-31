@@ -3,10 +3,13 @@
 
 # Problems
 
-## Dec 24 - Dec 29
+## Dec 31 - Jan 5
 
 * [ ] Fullstack TypeScript
-* [ ] Frontend Big 4
+
+## Dec 24 - Dec 29
+
+* [x] Content Planning (not much problem solving ..)
 
 ## Dec 17 - Dec 22
 
@@ -18,22 +21,17 @@
 
 <!--
 
-## Dec 31 - Jan 5
-
-* [ ] Data Manipulation
-* [ ] Machine Learning
-
 ## Jan 5 - Jan 12
 
-* [ ] //
+* [ ] Frontend Big 4
 
 ## Jan 14 - Jan 19
 
-* [ ] //
+* [ ] Data Manipulation
 
 ## Jan 21 - Jan 26
 
-* [ ] //
+* [ ] Machine Learning
 
 ## Jan 28 - Feb 2
 
