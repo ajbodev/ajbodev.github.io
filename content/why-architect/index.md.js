@@ -5,6 +5,6 @@
 
 
 
-[//]: # (@~|why-architect|~@)
+[//]: # (@~|why-architect/index|~@)
 
 */});

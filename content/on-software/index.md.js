@@ -5,6 +5,6 @@
 
 
 
-[//]: # (@~|on-software|~@)
+[//]: # (@~|on-software/index|~@)
 
 */});
