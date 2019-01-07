@@ -13,6 +13,7 @@ news
 
 * [HTTPS for localhost](https://old.reddit.com/r/programming/comments/adfa79/mkcert_valid_https_certificates_for_localhost/)
 * [On Developer Happiness](https://old.reddit.com/r/programming/comments/ad6lxp/on_developer_happiness/)
+* [NO to Venn Diagrams for SQL Joins](https://old.reddit.com/r/programming/comments/ad1bo5/say_no_to_venn_diagrams_when_explaining_joins/)
 
 ## Jan 4
 
