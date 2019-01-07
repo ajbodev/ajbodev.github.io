@@ -11,6 +11,7 @@ news
 
 ## Jan 7
 
+* [Github unlimited private repos](https://old.reddit.com/r/programming/comments/adjw6g/github_now_gives_free_users_unlimited_private/)
 * [HTTPS for localhost](https://old.reddit.com/r/programming/comments/adfa79/mkcert_valid_https_certificates_for_localhost/)
 * [On Developer Happiness](https://old.reddit.com/r/programming/comments/ad6lxp/on_developer_happiness/)
 * [NO to Venn Diagrams for SQL Joins](https://old.reddit.com/r/programming/comments/ad1bo5/say_no_to_venn_diagrams_when_explaining_joins/)
