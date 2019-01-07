@@ -9,6 +9,11 @@ news
 * [title](link)
 -->
 
+## Jan 7
+
+* [HTTPS for localhost](https://old.reddit.com/r/programming/comments/adfa79/mkcert_valid_https_certificates_for_localhost/)
+* [On Developer Happiness](https://old.reddit.com/r/programming/comments/ad6lxp/on_developer_happiness/)
+
 ## Jan 4
 
 * [big ol’ ball o’ javascript](https://old.reddit.com/r/programming/comments/acfwwk/big_ol_ball_o_javascript/)
