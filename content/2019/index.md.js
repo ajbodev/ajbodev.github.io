@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Jan 8
+
+* [Biggest regret as a programmer](https://old.reddit.com/r/programming/comments/adrd8j/my_biggest_regret_as_a_programmer/)
+
 ## Jan 7
 
 * [Github unlimited private repos](https://old.reddit.com/r/programming/comments/adjw6g/github_now_gives_free_users_unlimited_private/)
