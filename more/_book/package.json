@@ -1,0 +1,15 @@
+{
+  "name": "gitbook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-smart-nav-collapse": "^0.1.2"
+  }
+}

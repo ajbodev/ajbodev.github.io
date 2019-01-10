@@ -1,0 +1,15 @@
+
+#*
+/__
+*.DS_Store
+*.DS_store
+
+/.vscode
+
+*.pyc
+__pycache__/
+
+/node_modules
+/venv
+/git
+/tmp
