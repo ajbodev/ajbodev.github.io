@@ -9,6 +9,13 @@ news
 * [title](link)
 -->
 
+## Jan 10
+
+* [NPM has a new CEO](https://old.reddit.com/r/programming/comments/aebna4/npm_inc_has_a_new_ceo_bryan_bogensberger/)
+  * [NPM blog](https://blog.npmjs.org/)
+
+* [REST is the new SOAP](https://old.reddit.com/r/programming/comments/aehlpd/rest_is_the_new_soap_freecodecamporg/)
+
 ## Jan 8
 
 * [Biggest regret as a programmer](https://old.reddit.com/r/programming/comments/adrd8j/my_biggest_regret_as_a_programmer/)
