@@ -11,6 +11,10 @@ news
 
 ## Jan 10
 
+* [F* - A Higher-Order Effectful Language Designed for Program Verification](https://old.reddit.com/r/programming/comments/aehbjl/f_a_higherorder_effectful_language_designed_for/)
+
+* [Why review code](https://old.reddit.com/r/programming/comments/aen1g6/why_review_code/)
+
 * [NPM has a new CEO](https://old.reddit.com/r/programming/comments/aebna4/npm_inc_has_a_new_ceo_bryan_bogensberger/)
   * [NPM blog](https://blog.npmjs.org/)
 
