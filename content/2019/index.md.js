@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Jan 11
+
+* [Dive into Deep Learning](https://old.reddit.com/r/programming/comments/af6fb1/dive_into_deep_learning_an_interactive_deep/)
+
 ## Jan 10
 
 * [F* - A Higher-Order Effectful Language Designed for Program Verification](https://old.reddit.com/r/programming/comments/aehbjl/f_a_higherorder_effectful_language_designed_for/)
