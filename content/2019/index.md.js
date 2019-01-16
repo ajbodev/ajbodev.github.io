@@ -9,6 +9,16 @@ news
 * [title](link)
 -->
 
+## Jan 16
+
+* [How to teach Git](https://old.reddit.com/r/programming/comments/agko6r/how_to_teach_git/)
+
+  * [Git challenges](https://www.slideshare.net/raquelmorenocarmena/git-challenges)
+
+* [Evolution of a Rust programmer](https://old.reddit.com/r/programming/comments/agh8dh/the_evolution_of_a_rust_programmer/)
+
+* [Porting 30k LOC from Flow to TypeScript](https://old.reddit.com/r/programming/comments/ag84z1/porting_30k_lines_of_code_from_flow_to_typescript/)
+
 ## Jan 11
 
 * [Dive into Deep Learning](https://old.reddit.com/r/programming/comments/af6fb1/dive_into_deep_learning_an_interactive_deep/)
