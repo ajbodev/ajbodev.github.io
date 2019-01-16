@@ -11,6 +11,10 @@ news
 
 ## Jan 16
 
+* [Trouble hiring senior engineers](https://old.reddit.com/r/programming/comments/agajxv/trouble_hiring_senior_engineers_its_probably_you/)
+
+* [Detecting agile .. from US DOD](https://old.reddit.com/r/programming/comments/ag7vh4/detecting_agile_bullshit_from_the_us_department/)
+
 * [How to teach Git](https://old.reddit.com/r/programming/comments/agko6r/how_to_teach_git/)
 
   * [Git challenges](https://www.slideshare.net/raquelmorenocarmena/git-challenges)
