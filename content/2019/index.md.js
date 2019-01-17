@@ -9,6 +9,24 @@ news
 * [title](link)
 -->
 
+## Jan 17
+
+* [What makes a great software engineer](https://old.reddit.com/r/programming/comments/agw0pv/what_makes_a_great_software_engineer/)
+
+  * [title](https://www.romenrg.com/blog/2018/12/29/what-makes-a-great-software-engineer/)
+  * [title](https://github.com/romenrg/evergreen-skills-developers)
+  * [title](https://twitter.com/sama/status/981690839280771073?lang=en)
+  * [title](link)
+  * [title](link)
+
+* [How will we solve consistency for the internet](https://old.reddit.com/r/programming/comments/agwhbv/how_will_we_solve_consistency_when_the_internet/)
+
+* [The creeping IT apocalypse](https://forrestbrazeal.com/2019/01/16/cloud-irregular-the-creeping-it-apocalypse/)
+
+  * [(Reddit)](https://old.reddit.com/r/devops/comments/agyo82/the_creeping_it_apocalypse_what_are_your_thoughts/)
+
+* [title](link)
+
 ## Jan 16
 
 * [Trouble hiring senior engineers](https://old.reddit.com/r/programming/comments/agajxv/trouble_hiring_senior_engineers_its_probably_you/)
