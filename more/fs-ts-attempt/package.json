@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "gitc": "git add -A && git commit -m more && clear",
+    "gits": "git add -A && git commit -m more && cls",
+    "gitw": "git add -A && git commit -m more && git push -u --all bit && cls",
+    "gitm": "git add -A && git commit -m more && git push -u --all bit && clear",
+    "start": "echo hi"
+  },
+  "devDependencies": {
+    "gitbook-cli": "^2.3.2"
+  }
+}
