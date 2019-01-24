@@ -9,23 +9,41 @@ news
 * [title](link)
 -->
 
+## Jan 24
+
+* [Yarn's future](https://old.reddit.com/r/programming/comments/aje5v3/yarns_future_v2_and_beyond_yarn_will_be_rewritten/)
+
+  * [Jest in TS](https://github.com/facebook/jest/pull/7554#issuecomment-454358729)
+
+* [Good React info](https://medium.freecodecamp.org/the-react-handbook-b71c27b0a795)
+
+* [Chris Coiyer on Frontend](https://old.reddit.com/r/programming/comments/ajcgoo/article_the_great_divide_what_is_a_front_end/)
+
+  * [Blog](https://css-tricks.com/the-great-divide/)
+
+* [Messy DevOps](https://old.reddit.com/r/devops/comments/aj40qy/everything_is_just_so_messy_rant/)
+
+* [JavaScript 2019](https://old.reddit.com/r/javascript/comments/airjg4/whats_new_in_javascript_for_2019/)
+
+* [TypeScript at PayPal](https://old.reddit.com/r/programming/comments/aie7aj/why_every_new_web_app_at_paypal_starts_with/)
+
+* [TypeScript ESLint](https://eslint.org/blog/2019/01/future-typescript-eslint)
+
+  * [Linting TypeScript](https://pawelgrzybek.com/linting-typescript/)
+
 ## Jan 17
 
 * [What makes a great software engineer](https://old.reddit.com/r/programming/comments/agw0pv/what_makes_a_great_software_engineer/)
 
-  * [title](https://www.romenrg.com/blog/2018/12/29/what-makes-a-great-software-engineer/)
-  * [title](https://github.com/romenrg/evergreen-skills-developers)
-  * [title](https://twitter.com/sama/status/981690839280771073?lang=en)
-  * [title](link)
-  * [title](link)
+  * [romenrg-blog](https://www.romenrg.com/blog/2018/12/29/what-makes-a-great-software-engineer/)
+  * [romenrg-skills](https://github.com/romenrg/evergreen-skills-developers)
+  * [Tweet](https://twitter.com/sama/status/981690839280771073?lang=en)
 
 * [How will we solve consistency for the internet](https://old.reddit.com/r/programming/comments/agwhbv/how_will_we_solve_consistency_when_the_internet/)
 
 * [The creeping IT apocalypse](https://forrestbrazeal.com/2019/01/16/cloud-irregular-the-creeping-it-apocalypse/)
 
   * [(Reddit)](https://old.reddit.com/r/devops/comments/agyo82/the_creeping_it_apocalypse_what_are_your_thoughts/)
-
-* [title](link)
 
 ## Jan 16
 
