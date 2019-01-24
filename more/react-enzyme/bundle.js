@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("\r\n//window.hyperx = require('hyperx');\r\n//window.jsx_transform = require('jsx-transform');\r\nwindow.enzyme = __webpack_require__(/*! enzyme */ \"./node_modules/enzyme/build/index.js\");\r\nwindow.enzyme_adapter_react_16 = __webpack_require__(/*! enzyme-adapter-react-16 */ \"./node_modules/enzyme-adapter-react-16/build/index.js\");\r\nwindow.React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nwindow.ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\r\n\n\n//# sourceURL=webpack:///./index.js?");
+eval("\r\n//window.hyperx = require('hyperx');\r\n//window.jsx_transform = require('jsx-transform');\r\n\r\nwindow.enzyme = __webpack_require__(/*! enzyme */ \"./node_modules/enzyme/build/index.js\");\r\nwindow.enzyme_adapter_react_16 = __webpack_require__(/*! enzyme-adapter-react-16 */ \"./node_modules/enzyme-adapter-react-16/build/index.js\");\r\n//window.React = require('react');\r\n//window.ReactDOM = require('react-dom');\r\n\r\n//window.vue_styled_components = require('vue-styled-components');\r\n//window.vue_test_utils = require('@vue/test-utils');\r\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
