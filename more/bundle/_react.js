@@ -16,4 +16,6 @@ __scripts_react = function() {
   __script('https://cdnjs.cloudflare.com/ajax/libs/react-redux/6.0.0/react-redux.js');
   __script('https://cdnjs.cloudflare.com/ajax/libs/reselect/4.0.0/reselect.min.js');
   __script('https://unpkg.com/react@0.13.3/dist/JSXTransformer.js');
-}
+};
+
+__scripts = __scripts_react;
