@@ -12,6 +12,8 @@ __$require();
 
 __script = function(script, options) {
   options = options || {};
+  if (typeof __root === 'undefined')  __root  = undefined;
+  if (typeof __cache === 'undefined') __cache = undefined;
 
   var _root   = '';
   if ((script.substring(0,7) !== 'http://') && (script.substring(0,8) !== 'https://')) {
@@ -41,6 +43,8 @@ __script.onload  = function(script) {
 
 __style = function(style, options) {
   options = options || {};
+  if (typeof __root === 'undefined')  __root  = undefined;
+  if (typeof __cache === 'undefined') __cache = undefined;
 
   var _root   = '';
   if ((style.substring(0,7) !== 'http://') && (style.substring(0,8) !== 'https://')) {
