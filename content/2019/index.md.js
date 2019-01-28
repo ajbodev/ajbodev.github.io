@@ -9,6 +9,12 @@ news
 * [title](link)
 -->
 
+## Jan 28
+
+* [Future of JavaScript](https://old.reddit.com/r/javascript/comments/akezmi/future_javascript_what_is_still_missing/)
+
+* [First look at Deno](https://old.reddit.com/r/javascript/comments/akggy6/first_look_at_deno_the_javascripttypescript/)
+
 ## Jan 24
 
 * [Yarn's future](https://old.reddit.com/r/programming/comments/aje5v3/yarns_future_v2_and_beyond_yarn_will_be_rewritten/)
