@@ -15,6 +15,8 @@ news
 
 * [First look at Deno](https://old.reddit.com/r/javascript/comments/akggy6/first_look_at_deno_the_javascripttypescript/)
 
+* [PHP 8 ..](https://old.reddit.com/r/PHP/comments/akmmva/development_of_php_80_has_started/)
+
 ## Jan 24
 
 * [Yarn's future](https://old.reddit.com/r/programming/comments/aje5v3/yarns_future_v2_and_beyond_yarn_will_be_rewritten/)
