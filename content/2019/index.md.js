@@ -11,6 +11,8 @@ news
 
 ## Jan 28
 
+* [Future of Flow](https://old.reddit.com/r/programming/comments/akt2mw/what_the_flow_team_has_been_up_to/)
+
 * [Future of JavaScript](https://old.reddit.com/r/javascript/comments/akezmi/future_javascript_what_is_still_missing/)
 
 * [First look at Deno](https://old.reddit.com/r/javascript/comments/akggy6/first_look_at_deno_the_javascripttypescript/)
