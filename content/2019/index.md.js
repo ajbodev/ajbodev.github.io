@@ -41,6 +41,8 @@ news
 
   * [Linting TypeScript](https://pawelgrzybek.com/linting-typescript/)
 
+* [Why I've banned default exports](https://www.reddit.com/r/javascript/comments/ah9bnt/why_ive_stopped_exporting_defaults_from_my/)
+
 ## Jan 17
 
 * [What makes a great software engineer](https://old.reddit.com/r/programming/comments/agw0pv/what_makes_a_great_software_engineer/)
