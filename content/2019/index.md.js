@@ -9,6 +9,18 @@ news
 * [title](link)
 -->
 
+## Jan 31
+
+* [TypeScript 3.3](https://old.reddit.com/r/programming/comments/altwbv/announcing_typescript_33/)
+
+* [PHP JIT](https://old.reddit.com/r/programming/comments/alpdvs/php_rfc_jit/)
+
+* [WebAssembly ~ stack machine](https://old.reddit.com/r/programming/comments/alo5d2/webassembly_is_not_a_stack_machine/)
+
+* [HTML, CSS ..](https://old.reddit.com/r/programming/comments/alozg0/html_css_and_our_vanishing_industry_entry_points/)
+
+* [Python 3.6 - Data Classes](https://old.reddit.com/r/programming/comments/alhee1/data_classes_in_python_36_and_beyond_by_alexander/)
+
 ## Jan 28
 
 * [Future of Flow](https://old.reddit.com/r/programming/comments/akt2mw/what_the_flow_team_has_been_up_to/)
