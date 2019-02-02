@@ -9,6 +9,12 @@ news
 * [title](link)
 -->
 
+## Feb 1
+
+* [Write tests, mostly integration](https://old.reddit.com/r/programming/comments/am27u5/write_tests_not_too_many_mostly_integration/)
+
+* [k8s horror stories](https://old.reddit.com/r/programming/comments/am0nne/compilation_of_public_failurehorror_stories/)
+
 ## Jan 31
 
 * [TypeScript 3.3](https://old.reddit.com/r/programming/comments/altwbv/announcing_typescript_33/)
