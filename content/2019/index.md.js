@@ -13,6 +13,11 @@ news
 
 * [React Hooks](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html)
 
+  * https://unpkg.com/react@16.8.0/umd/react.production.min.js
+  * https://unpkg.com/react@16.8.0/umd/react.development.js
+  * https://unpkg.com/react-dom@16.8.0/umd/react-dom.production.min.js
+  * https://unpkg.com/react-dom@16.8.0/umd/react-dom.development.js
+
 ## Feb 1
 
 * [Write tests, mostly integration](https://old.reddit.com/r/programming/comments/am27u5/write_tests_not_too_many_mostly_integration/)
