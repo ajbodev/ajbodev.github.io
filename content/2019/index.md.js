@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Feb 6
+
+* [React Hooks](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html)
+
 ## Feb 1
 
 * [Write tests, mostly integration](https://old.reddit.com/r/programming/comments/am27u5/write_tests_not_too_many_mostly_integration/)
