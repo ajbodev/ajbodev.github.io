@@ -9,14 +9,13 @@ news
 * [title](link)
 -->
 
+## Feb 8
+
+* [Business software books](https://www.zeroequalsfalse.press/2019/02/09/business-software-books/)
+
 ## Feb 6
 
 * [React Hooks](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html)
-
-  * https://unpkg.com/react@16.8.0/umd/react.production.min.js
-  * https://unpkg.com/react@16.8.0/umd/react.development.js
-  * https://unpkg.com/react-dom@16.8.0/umd/react-dom.production.min.js
-  * https://unpkg.com/react-dom@16.8.0/umd/react-dom.development.js
 
 ## Feb 1
 
