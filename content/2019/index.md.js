@@ -9,6 +9,14 @@ news
 * [title](link)
 -->
 
+## Feb 12
+
+* [Windows 95 as an Electron app](https://old.reddit.com/r/programming/comments/appa94/endgame_reached_windows_95_now_available_as_an/)
+
+  * https://github.com/felixrieseberg/windows95
+
+  * https://github.com/copy/v86/
+
 ## Feb 11
 
 * [Microsoft - 70% of all security bugs are memory safety issues](https://old.reddit.com/r/programming/comments/apm5g6/microsoft_70_percent_of_all_security_bugs_are)
