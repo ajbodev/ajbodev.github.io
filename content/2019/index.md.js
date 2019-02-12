@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Feb 11
+
+* [Microsoft - 70% of all security bugs are memory safety issues](https://old.reddit.com/r/programming/comments/apm5g6/microsoft_70_percent_of_all_security_bugs_are)
+
 ## Feb 8
 
 * [Business software books](https://www.zeroequalsfalse.press/2019/02/09/business-software-books/)
