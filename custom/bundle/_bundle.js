@@ -12,7 +12,7 @@ __$require();
 
 __script = function(script, options) {
   options = options || {};
-  if (typeof __root === 'undefined')  __root  = undefined;
+  if (typeof __root === 'undefined')  __root  = '';
   if (typeof __cache === 'undefined') __cache = undefined;
 
   var _root   = '';
@@ -43,7 +43,7 @@ __script.onload  = function(script) {
 
 __style = function(style, options) {
   options = options || {};
-  if (typeof __root === 'undefined')  __root  = undefined;
+  if (typeof __root === 'undefined')  __root  = '';
   if (typeof __cache === 'undefined') __cache = undefined;
 
   var _root   = '';
@@ -119,3 +119,5 @@ __c.t = function(t) {
 
   return f;
 };
+
+// env, mobile, ..
