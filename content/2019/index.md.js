@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Feb 21
+
+* [Dont give me a DSL - give me a library](https://old.reddit.com/r/programming/comments/asp9uf/dont_give_me_another_dsl_give_me_a_library/)
+
 ## Feb 12
 
 * [Windows 95 as an Electron app](https://old.reddit.com/r/programming/comments/appa94/endgame_reached_windows_95_now_available_as_an/)
