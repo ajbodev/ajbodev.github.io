@@ -9,6 +9,18 @@ news
 * [title](link)
 -->
 
+## Feb 25
+
+* [Side projects ..](https://old.reddit.com/r/programming/comments/au7zt1/7_things_you_should_know_before_starting_with/)
+
+* [Fearless concurrency ..](https://old.reddit.com/r/programming/comments/aucqq8/fearless_concurrency_how_clojure_rust_pony_erlang/)
+
+* [gt 2.21](https://old.reddit.com/r/programming/comments/aubo1h/git_221_released_some_highlights/)
+
+* [Thoughts on Phoenix project](https://old.reddit.com/r/devops/comments/aubdie/the_phoenix_project_my_thoughts/)
+
+* [CSS 3D Engine](https://old.reddit.com/r/programming/comments/au6i4u/css_powered_3d_engine/)
+
 ## Feb 21
 
 * [Dont give me a DSL - give me a library](https://old.reddit.com/r/programming/comments/asp9uf/dont_give_me_another_dsl_give_me_a_library/)
