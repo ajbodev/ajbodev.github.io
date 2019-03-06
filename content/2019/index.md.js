@@ -9,6 +9,12 @@ news
 * [title](link)
 -->
 
+## Mar 6
+
+* [How software is developed at Amazon](https://old.reddit.com/r/programming/comments/axxaar/how_software_is_developed_at_amazon/)
+
+  * [High Scalability](http://highscalability.com/blog/2019/3/4/how-is-software-developed-at-amazon.html)
+
 ## Feb 25
 
 * [Side projects ..](https://old.reddit.com/r/programming/comments/au7zt1/7_things_you_should_know_before_starting_with/)
