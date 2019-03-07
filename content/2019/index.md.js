@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Mar 7
+
+* [Microservices, containers and kubernetes](https://old.reddit.com/r/devops/comments/ay2u8f/microservices_containers_and_kubernetes_in_10/)
+
 ## Mar 6
 
 * [How software is developed at Amazon](https://old.reddit.com/r/programming/comments/axxaar/how_software_is_developed_at_amazon/)
