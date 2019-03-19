@@ -9,6 +9,16 @@ news
 * [title](link)
 -->
 
+## Mar 18
+
+* [TypeScript 3.4 - Incremental Compilation](https://old.reddit.com/r/programming/comments/b2a4j3/typescript_34_now_supports_incremental_compilation/)
+
+* [Checked C - Incremental Safety](https://old.reddit.com/r/programming/comments/b25r6o/achieving_safety_incrementally_with_checked_c/)
+
+* [Ghidra](https://old.reddit.com/r/programming/comments/b2gsyt/pull_apart_an_exe_file_with_ghidra_nsa_tool/)
+
+* [Rust Cookbook](https://old.reddit.com/r/programming/comments/b2ftug/rust_cookbook/)
+
 ## Mar 7
 
 * [Microservices, containers and kubernetes](https://old.reddit.com/r/devops/comments/ay2u8f/microservices_containers_and_kubernetes_in_10/)
