@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Mar 22
+
+* [TypeScript quiet, steady rise among programming languages](https://old.reddit.com/r/programming/comments/b3yp7a/typescripts_quiet_steady_rise_among_programming/)
+
 ## Mar 18
 
 * [TypeScript 3.4 - Incremental Compilation](https://old.reddit.com/r/programming/comments/b2a4j3/typescript_34_now_supports_incremental_compilation/)
