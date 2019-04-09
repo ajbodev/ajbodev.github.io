@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Apr 8
+
+* [Microsoft releases new Microsoft Edge based on Chromium](https://old.reddit.com/r/programming/comments/bawjft/microsoft_releases_new_microsoft_edge_based_on/?st=ju93ar8v&sh=ba9fe49e)
+
 ## Mar 22
 
 * [TypeScript quiet, steady rise among programming languages](https://old.reddit.com/r/programming/comments/b3yp7a/typescripts_quiet_steady_rise_among_programming/)
