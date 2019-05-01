@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## May 1
+
+* [Strat - cloud language](https://old.reddit.com/r/programming/comments/bj4no6/introducing_the_strat_cloud_language/)
+
 ## Apr 8
 
 * [Microsoft releases new Microsoft Edge based on Chromium](https://old.reddit.com/r/programming/comments/bawjft/microsoft_releases_new_microsoft_edge_based_on/?st=ju93ar8v&sh=ba9fe49e)
