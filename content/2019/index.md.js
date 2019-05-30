@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## May 29
+
+* [Typescript 3.5](https://old.reddit.com/r/programming/comments/buhg3a/announcing_typescript_35/)
+
 ## May 1
 
 * [Strat - cloud language](https://old.reddit.com/r/programming/comments/bj4no6/introducing_the_strat_cloud_language/)
