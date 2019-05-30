@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## May 30
+
+* [Is High Quality Software Worth the Cost?](https://old.reddit.com/r/programming/comments/busp2o/is_high_quality_software_worth_the_cost/)
+
 ## May 29
 
 * [Typescript 3.5](https://old.reddit.com/r/programming/comments/buhg3a/announcing_typescript_35/)
