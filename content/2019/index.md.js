@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Jun 17
+
+* [npm is-windows has 25 million downloads](https://old.reddit.com/r/programming/comments/c0zwxb/one_liner_npm_package_iswindows_has_25_million/)
+
 ## Jun 10
 
 * [Go's error handling](https://old.reddit.com/r/programming/comments/byivvv/gos_error_handling_sucks_a_quantitative_analysis/)
