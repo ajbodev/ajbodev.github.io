@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Jun 27
+
+* [TypeScript exploding](https://old.reddit.com/r/programming/comments/c6e700/typescript_is_exploding_javascript_is_the_fittest/)
+
 ## Jun 17
 
 * [npm is-windows has 25 million downloads](https://old.reddit.com/r/programming/comments/c0zwxb/one_liner_npm_package_iswindows_has_25_million/)
