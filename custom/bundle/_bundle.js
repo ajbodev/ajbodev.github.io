@@ -1,4 +1,8 @@
 
+
+
+////////////////////////////////////////////////////////////////////////////////
+
 __$require = function(modules) {
   var _modules = modules || {1:[function(require,module,exports){},{}]};
   require = (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})(_modules,{},[]);
@@ -9,6 +13,8 @@ __require = function(name, func) {
   __$require(o);
 };
 __$require();
+
+////////////////////////////////////////////////////////////////////////////////
 
 __script = function(script, options) {
   options = options || {};
@@ -40,6 +46,8 @@ __script.onerror = function(script) {
 __script.onload  = function(script) {
   __script.scripts[script] = true;
 };
+
+////////////////////////////////////////////////////////////////////////////////
 
 __style = function(style, options) {
   options = options || {};
@@ -120,4 +128,38 @@ __c.t = function(t) {
   return f;
 };
 
-// env, mobile, ..
+////////////////////////////////////////////////////////////////////////////////
+
+__boot = function() {
+  // ?
+  /**
+   * https://stackoverflow.com/questions/979975/how-to-get-the-value-from-the-get-parameters
+   * __root = url.searchParams.get('root');
+   * theme, (refactor to window[]), ..
+   */
+  var url = new URL(window.location.href);
+  
+  //var _root  = url.searchParams.get('root'); // ~ local, ..
+  var _index = url.searchParams.get('index');
+  var _env   = url.searchParams.get('env');
+  var _local = url.searchParams.get('local');
+  var _cache = url.searchParams.get('cache');
+  var _tests = url.searchParams.get('tests');
+  var _prod  = url.searchParams.get('prod');
+  
+  if (typeof __root === undefined) __root = '';
+  __index = _index ? _index : undefined;
+  __env   = _env   ? _env   : undefined;
+  __local = _local ? _local : undefined;
+  __cache = _cache ? _cache : undefined;
+  __tests = _tests ? _tests : undefined;
+  __prod  = _prod  ? _prod  : undefined;
+
+  if (__index === 'tests' && !url.searchParams.get('random')) document.location += '&random=false';
+  // ?
+};
+__boot();
+
+////////////////////////////////////////////////////////////////////////////////
+
+
