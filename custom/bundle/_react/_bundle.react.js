@@ -11,7 +11,8 @@ __script('https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.0.1/react-ro
 __script('https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.1.0/react-redux.js');
 __script('https://cdnjs.cloudflare.com/ajax/libs/reselect/4.0.0/reselect.js');
 __script('https://cdnjs.cloudflare.com/ajax/libs/recompose/0.26.0/Recompose.js');
-__script('http://ajbodev.github.io/custom/vendor/jsxtransformer/0.13.3/jsxtransformer.js');
+__script('https://ajbodev.github.io/custom/vendor/jsxtransformer/0.13.3/jsxtransformer.js');
+__script('https://ajbodev.github.io/custom/bundle/_react/_bundle.react.global.js');
 
 __require('react',            (r, m, e) => { m.exports = React;          });
 __require('react-dom',        (r, m, e) => { m.exports = ReactDOM;       });
