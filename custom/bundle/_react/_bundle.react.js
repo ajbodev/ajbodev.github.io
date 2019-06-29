@@ -24,10 +24,6 @@ __require('reselect',         (r, m, e) => { m.exports = Reselect;       });
 __require('recompose',        (r, m, e) => { m.exports = Recompose;      });
 __require('jsxtransformer',   (r, m, e) => { m.exports = JSXTransformer; });
 
-React.__spread = Object.assign;
-h              = React.createElement;
-jsx            = (t) => JSXTransformer.transform(t[0]).code;
-
 ////////////////////////////////////////////////////////////////////////////////
 
 
