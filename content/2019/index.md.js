@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Jul 1
+
+* [Linux on Azure more used than Microsoft](https://old.reddit.com/r/programming/comments/c7nu7u/microsoft_developer_reveals_linux_is_now_more/)
+
 ## Jun 27
 
 * [TypeScript exploding](https://old.reddit.com/r/programming/comments/c6e700/typescript_is_exploding_javascript_is_the_fittest/)
