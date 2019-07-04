@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Jul 3
+
+* [Wiggling mouse in Windows 95](https://old.reddit.com/r/programming/comments/c8p9fs/why_did_moving_the_mouse_cursor_cause_windows_95/)
+
 ## Jul 1
 
 * [Linux on Azure more used than Microsoft](https://old.reddit.com/r/programming/comments/c7nu7u/microsoft_developer_reveals_linux_is_now_more/)
