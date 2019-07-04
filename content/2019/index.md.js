@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Jul 4
+
+* [TLS ~ Rust vs OpenSSL](https://old.reddit.com/r/programming/comments/c8pymx/tls_performance_rustls_versus_openssl/)
+
 ## Jul 3
 
 * [Wiggling mouse in Windows 95](https://old.reddit.com/r/programming/comments/c8p9fs/why_did_moving_the_mouse_cursor_cause_windows_95/)
