@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Jul 6
+
+* [Free online alternative to Photoshop](https://old.reddit.com/r/IAmA/comments/c8ru2y/i_made_a_free_alternative_to_photoshop_that_is/)
+
 ## Jul 4
 
 * [TLS ~ Rust vs OpenSSL](https://old.reddit.com/r/programming/comments/c8pymx/tls_performance_rustls_versus_openssl/)
