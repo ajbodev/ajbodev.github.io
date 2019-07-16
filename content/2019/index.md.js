@@ -9,6 +9,10 @@ news
 * [title](link)
 -->
 
+## Jul 15
+
+* [Helm charts for Kubernetes ready apps](https://hub.helm.sh/)
+
 ## Jul 6
 
 * [Free online alternative to Photoshop](https://old.reddit.com/r/IAmA/comments/c8ru2y/i_made_a_free_alternative_to_photoshop_that_is/)
