@@ -32,6 +32,8 @@ __main.render = function() {
   } else {
     $('#app').html('');
   };
+
+  renderMathInElement(document.body); //
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -40,6 +42,8 @@ __scripts = function() {
   //__script('https://ajbodev.bitbucket.io/custom/bundle/_react/_bundle.react.js');
   __script('https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js');
   __script('https://cdnjs.cloudflare.com/ajax/libs/marked/0.7.0/marked.min.js');
+  __script('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.2/katex.min.js'); //
+  __script('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.2/contrib/auto-render.min.js'); //
   //__script('<..>');
   //__require('<vendor>', (r, m, e) => { m.exports = <Vendor>; });
 };
@@ -48,6 +52,7 @@ __scripts = function() {
 
 __styles = function() {
   __style('https://cdnjs.cloudflare.com/ajax/libs/Primer/11.0.0/build.css');
+  __style('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.2/katex.min.css'); //
   //__style('styles.css');
   //__style('<..>');
 };
