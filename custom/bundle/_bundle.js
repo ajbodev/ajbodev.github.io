@@ -89,6 +89,8 @@ __style.onload  = function(style) {
 };
 __link = __style;
 
+////////////////////////////////////////////////////////////////////////////////
+
 __c = function(f, o, texts) {
   var text = f.toString()
     .replace(/^[^\/]+\/\*!?/, '')
