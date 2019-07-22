@@ -23,11 +23,12 @@ function App() {
 
 function _Component(props) {
   let _component = props.match.params[0];
+  if (_component === '') _component = 'index';
   let Component;
   try {
     Component = require(`@/${_component}`);
   } catch(e) {
-    Component = require(`@/index`);
+    Component = () => eval(jsx`<div></div>`);
   }
   return eval(jsx`<Component/>`);
 }
