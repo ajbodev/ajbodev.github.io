@@ -12,6 +12,9 @@ __main.pre = function() {
     let id = $(el).data('id');
     __c.texts[id] = $(el).html();
   });
+  for (el in __c.texts) {
+    __c.texts[el] = __c.texts[el].replace(/(\{\~\|)/g, '{{{').replace(/(\|\~\})/g, '}}}');
+  }
   for (i in __c.texts) {
     let _texts_i = {};
     for (j in __c.texts) {

@@ -8,11 +8,27 @@ __main = function() {
   __main.render();
 };
 __main.pre = function() {
-  for (var el in __c.texts) __c.texts[el] = marked(__c.texts[el]);
+  for (el in __c.texts) __c.texts[el] = marked(__c.texts[el]);
   $('script[type="text/markdown"][data-id]').each((i, el) => {
     let id = $(el).data('id');
     __c.texts[id] = marked($(el).html());
   });
+  for (el in __c.texts) {
+    __c.texts[el] = __c.texts[el].replace(/(\{\~\|)/g, '{{{').replace(/(\|\~\})/g, '}}}');
+  }
+  for (i in __c.texts) {
+    let _texts_i = {};
+    for (j in __c.texts) {
+      let _texts_j = {};
+      if (i === j) continue;
+      for (k in __c.texts) {
+        if ([i, j].indexOf(k) !== -1) continue;
+        _texts_j[k] = __c.supplant(__c.texts[k], __c.texts);
+      }
+      _texts_i[j] = __c.supplant(__c.texts[j], _texts_j);
+    }
+    __c.texts[i] = __c.supplant(__c.texts[i], _texts_i);
+  }
   $('#app').replaceWith($('script[type="text/html"][data-layout]').html());
   $(window).on('hashchange', (e) => __main.render());
   /*
