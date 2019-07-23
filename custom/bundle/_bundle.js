@@ -118,7 +118,9 @@ __c.text = function(text, start, end, texts) {
   return null;
 };
 __c.supplant = function (text, o) {
-  return text.replace(/{([^{}]*)}/g,
+  //var rgx = /{([^{}]*)}/g;
+  var rgx = /{{{([^{}]*)}}}/g;
+  return text.replace(rgx,
     function (a, b) {
       var r = o[b];
       return typeof r === 'string' || typeof r === 'number' ? r : a;
