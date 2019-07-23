@@ -8,6 +8,7 @@ __main = function() {
   __main.render();
 };
 __main.pre = function() {
+  for (var el in __c.texts) __c.texts[el] = marked(__c.texts[el]);
   $('script[type="text/markdown"][data-id]').each((i, el) => {
     let id = $(el).data('id');
     __c.texts[id] = marked($(el).html());
