@@ -10,7 +10,7 @@ __c([function(){/*!
 
 
 
-*/}/**/], [function(){/*!
+***/}], ['<content>', function(){/*!
 
 
 
@@ -22,7 +22,7 @@ __c([function(){/*!
 
 
 
-*/}/**/, '<content>'], [function(){/*!
+***/}], ['tmpl', function(){/*!
 
 
 
@@ -34,4 +34,4 @@ __c([function(){/*!
 
 
 
-*/}/**/, 'tmpl']);
+***/}]);
