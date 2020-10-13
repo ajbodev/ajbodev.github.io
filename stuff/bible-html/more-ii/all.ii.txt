@@ -1,0 +1,420 @@
+~~---- .json
+{
+  "mode": "complex",
+  ":": {
+    "filters": {
+      "tags": []
+    },
+    "filter_groups": {
+      "tags": {}
+    },
+    "root": {
+      "depth": 2
+    },
+    "branch": [
+      "536eab64"
+    ],
+    "branches": [
+      {
+        "id": "aeb624dc",
+        "name": "docs",
+        "tags": [
+          "docs"
+        ],
+        "root": [
+          "docs"
+        ],
+        "src": ""
+      },
+      {
+        "id": "536eab64",
+        "name": "app",
+        "tags": [
+          "app",
+          "api",
+          "react",
+          "vue"
+        ],
+        "root": [
+          "app"
+        ],
+        "src": ""
+      },
+      {
+        "id": "8d24cf47",
+        "name": "api-js",
+        "tags": [
+          "frontend",
+          "api",
+          "js"
+        ],
+        "root": [
+          ".",
+          "src"
+        ],
+        "src": ""
+      },
+      {
+        "id": "7782ade4",
+        "name": "api-ts",
+        "tags": [
+          "frontend",
+          "api",
+          "ts"
+        ],
+        "root": [
+          ".",
+          "src"
+        ],
+        "src": ""
+      },
+      {
+        "id": "5b036291",
+        "name": "react-js",
+        "tags": [
+          "frontend",
+          "react",
+          "js"
+        ],
+        "root": [
+          ".",
+          "src"
+        ],
+        "src": ""
+      },
+      {
+        "id": "23fc7a44",
+        "name": "react-ts",
+        "tags": [
+          "frontend",
+          "react",
+          "js"
+        ],
+        "root": [
+          ".",
+          "src"
+        ],
+        "src": ""
+      },
+      {
+        "id": "ac732b05",
+        "name": "vue-js",
+        "tags": [
+          "frontend",
+          "vue",
+          "js"
+        ],
+        "root": [
+          ".",
+          "src"
+        ],
+        "src": ""
+      },
+      {
+        "id": "88282ecb",
+        "name": "vue-ts",
+        "tags": [
+          "frontend",
+          "vue",
+          "js"
+        ],
+        "root": [
+          ".",
+          "src"
+        ],
+        "src": ""
+      },
+      {
+        "id": "4ac83016",
+        "name": "express-js",
+        "tags": [
+          "backend",
+          "express",
+          "js"
+        ],
+        "root": [
+          "lib"
+        ],
+        "src": ""
+      },
+      {
+        "id": "95810b16",
+        "name": "express-ts",
+        "tags": [
+          "backend",
+          "express",
+          "ts"
+        ],
+        "root": [
+          "lib"
+        ],
+        "src": ""
+      }
+    ]
+  }
+}
+~~---- notes.txt
+
+
+~~---- aeb624dc:docs/docs.i.html
+<!DOCTYPE html><html><head><title>title</title><script type='text/markdown'>
+
+
+
+--------------------------------------------------------------------------------
+
+* file:///C://more/<..>/@@.i.html
+
+--------------------------------------------------------------------------------
+
+
+
+</script><script type='text/markdown' data-name='more/notes'>
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+</script><script type='text/markdown' data-name='tmpl'>
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+</script><script>
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+</script><script src='https://throwaway7777.bitbucket.io/more/docs.js'>
+</script><meta charset='utf-8'></head><body><div id='app'></div></body></html>
+~~---- 536eab64:app/app.j.html
+<!DOCTYPE html><html><head><title>title</title><script>__require([function(){/**!
+
+
+
+--------------------------------------------------------------------------------
+
+* file:///C://more/index/tmp/tent/app/app.j.html
+  * ?r=att
+
+--------------------------------------------------------------------------------
+
+
+
+/**/}], ['@/att', function(require, module, exports){/**/
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+alert(11)
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+/**/}], ['tmpl', function(require, module, exports){/**/
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+/**/}]);
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+function __require($) {
+  __require._ = __require._ || {};
+  __require.$ = __require.$ || { group: '', root: '' };
+
+  if (typeof $[0] === 'function') return Array.from(arguments).slice(1).map($ => __require[$[0]] = $[1]);
+
+  if ($.substring(0, 2) === '@/' && !$.includes(':')) {
+    $ = `@${__require.$.group}/${__require.$.root}/${$.substring(2)}`.replace(/(\/\/)/g, '/');
+  }
+  
+  if (!__require._[$]) {
+    const _  = { 'exports':{} };
+    __require[$].apply({}, [__require, _]);
+    __require._[$] = _['exports'];
+  }
+
+  return __require._[$];
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
+async function __script(src, options={}) {
+  if (typeof __root === 'undefined')  __root  = '';
+  if (typeof __cache === 'undefined') __cache = undefined;
+
+  let root   = '';
+  if ((src.substring(0,7) !== 'http://') && (src.substring(0,8) !== 'https://')) {
+    root     = options.root  || (__root + __script.root);
+  }
+  let cache  = (options.cache || (__cache || __script.cache)) ? '' : ('?' + Math.random());
+
+  return await new Promise((resolve, reject) => {
+    let script = document.createElement('script');
+    script.src = root + src + cache;
+    script.onload = function() {
+      __script.scripts[root + src] = true;
+      resolve();
+    };
+    script.onerror = function() {
+      __script.scripts[root + src] = false;
+      reject();
+    };
+    document.getElementsByTagName('body')[0].appendChild(script);
+  });
+};
+__script.scripts = {};
+__script.root    = '';
+__script.cache   = true;
+
+////////////////////////////////////////////////////////////////////////////////
+
+async function __style(href, options={}) {
+  if (typeof __root === 'undefined')  __root  = '';
+  if (typeof __cache === 'undefined') __cache = undefined;
+
+  let root   = '';
+  if ((href.substring(0,7) !== 'http://') && (href.substring(0,8) !== 'https://')) {
+    root     = options.root  || (__root + __style.root);
+  }
+  let cache  = (options.cache || (__cache || __style.cache)) ? '' : ('?' + Math.random());
+
+  return await new Promise((resolve, reject) => {
+    var style = document.createElement('link');
+    style.href = root + href + cache;
+    style.rel = 'stylesheet';
+    style.onload = function() {
+      __style.styles[root + href] = true;
+      resolve();
+    };
+    style.onerror = function() {
+      __style.styles[root + href] = false;
+      reject();
+    };
+    document.getElementsByTagName('head')[0].appendChild(style);
+  });
+};
+__style.styles = {};
+__style.root   = '';
+__style.cache  = true;
+
+////////////////////////////////////////////////////////////////////////////////
+
+/*
+async function __scripts() {
+  //for (const $ of Object.keys(__scripts)) await __scripts[$]();
+  //await __script('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js');
+
+  //__require['react'] = function(require, module, exports){ module.exports = React };
+};
+*/
+
+////////////////////////////////////////////////////////////////////////////////
+
+/*
+async function __styles() {
+  //for (const $ of Object.keys(__styles)) await __styles[$]();
+  //await __style('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css');
+};
+*/
+
+////////////////////////////////////////////////////////////////////////////////
+
+function __query() {
+  for ([key, val] of new URLSearchParams(window.location.search).entries()) {
+    __query[key] = val;
+  }
+};
+
+////////////////////////////////////////////////////////////////////////////////
+
+function jsx(t) { return JSXTransformer.transform(t[0]).code };
+
+////////////////////////////////////////////////////////////////////////////////
+
+if (typeof window !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', async function() {
+    __query();
+    
+    const r = __query['r'];
+
+    if (r) {
+      const [ group, file ] = r.includes(':') ? r.split(':') : [ false, r ];
+      const req             = __require(`@${group ? ':' + group : ''}/${file}`);
+
+      if (typeof req === 'function') {
+        await req();
+      } else {
+        // .. __$, __bundle$, ..
+      }
+    } else {
+      // .. page ..
+    }
+  });
+} else {
+  // ..
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+</script><script src='https://throwaway7777.bitbucket.io/index.js'>
+</script><meta charset='utf-8'></head><body><div id='app'></div></body></html>
+~~---- 8d24cf47:notes.txt
+
+
+~~---- 7782ade4:notes.txt
+
+
+~~---- 5b036291:notes.txt
+
+
+~~---- 23fc7a44:notes.txt
+
+
+~~---- ac732b05:notes.txt
+
+
+~~---- 88282ecb:notes.txt
+
+
+~~---- 4ac83016:notes.txt
+
+
+~~---- 95810b16:notes.txt
+
+

@@ -1,0 +1,171 @@
+ /* min-width 481px : Tablets, Laptops, .. */
+ /* max-width 480px : Extra Small Devices, Phones */
+ 
+ html, body, #container, .ember-application {
+   height:      100%;
+   width:       100%;
+   margin:      0px;
+   padding:     0px;
+ }
+ li { list-style-type: none; }
+ ul {
+   font-family: Cambria;
+   font-size:   18px;
+   margin-left: -37px; /* Hackish */
+ }
+ /* Search */
+ #search {
+   min-height:         28px;
+   width:              100%;
+ }
+ #search input[type='button'] {
+   height:      36px;
+   width:       100%;
+   border-color: #555;
+   cursor: pointer;
+   background-color: #555;
+   color: #ffffff;
+   -webkit-border-radius: 5px;
+   border: 1px solid #000;
+   font-family: Cambria;
+   font-size: 18px;
+ }
+ @media (min-width: 481px) { 
+   .search__button { width: 195px; }
+ }
+ @media (max-width: 480px) { 
+   .search__button { width: 99px; }
+ }  
+ 
+ #search input[type='text'] {
+   width: 97%;
+   line-height: 1.7em;
+   border: 1px solid #000;
+   margin: 1px;
+   padding-left: 4px;
+   font-family: Cambria;
+   font-size: 18px;
+ }
+ #search span {
+   display:          block;
+   overflow:         hidden;
+ } 
+ 
+ /* Books */
+ #books { }  
+ @media (min-width: 481px) {
+   #books { width: 145px; }
+   li:after { content: attr(data-book); }
+ }
+ @media (max-width: 480px) { 
+   #books { width: 59px; }
+ }
+ 
+ /* Chapters */
+ #chapters {
+   width:            54px;
+ }
+ 
+ /* Verses */
+ #verses {
+   /*min-width:        60%; */
+ }
+ 
+ #books, #verses, #chapters {
+   font-family: Cambria;
+   font-size: 18px;
+   height:           95%;
+ }
+ 
+ /* Helpers */
+ .fl { float: left; }
+ .ovf { overflow-y: scroll; overflow-x: hidden; }
+ 
+ /* Philemon */
+ @media (min-width: 481px) { 
+   li[data-book='lemon']:before { 
+     content: 'Philemon' !important; 
+     color:   black      !important; 
+   }
+ }
+ @media (max-width: 480px) { 
+   li[data-book='lemon']:before { 
+     content: 'Phm'      !important; 
+     color:   black      !important; 
+   }
+ }
+ li[data-book='lemon'] { color: white; }
+ 
+ /* Judges */
+ @media (min-width: 481px) { 
+   li[data-book='ges']:before { 
+     content: 'Judges' !important; 
+     color:   black      !important; 
+   }
+ }
+ @media (max-width: 480px) { 
+   li[data-book='ges']:before { 
+     content: 'Jdg'      !important; 
+     color:   black      !important; 
+   }
+ }
+ li[data-book='ges'] { color: white; }
+ 
+ .search__result {
+   background-color: yellow;
+ }
+ 
+ /* Book highlighting */
+ .highlight-book:not([data-book='lemon']):not([data-book='ges']) {
+     background-color: #0099FF;
+     color: white;
+ }
+ 
+ /* Judges, Philemon*/ 
+ li[data-book='lemon'].highlight-book:before,
+ li[data-book='ges'].highlight-book:before {
+     background-color: #0099FF !important; 
+     color: white !important;
+ }
+ 
+ /* Chapter highlighting */
+ .highlight-chapter {
+     background-color: #0099FF;
+     color: white;
+ }
+ 
+ /* Anchor tag for routing 
+ * http://stackoverflow.com/questions/2041388/how-to-remove-the-underline-for-anchorslinks
+ */
+ a {
+   text-decoration: none !important;
+   color: inherit;
+ }
+ 
+ /* Autosuggest, typeahead */
+ #search__actual {position: absolute;}
+ #search__actual .tt-menu {
+     top: 0% !important;
+ }
+ #search__actual .typeahead {
+     top: -40px !important;
+     z-index: -20;
+ }
+ 
+ .twitter-typeahead {
+     position: static !important;
+     height: 1px !important;
+ }
+ 
+ .tt-menu.tt-open {
+     background-color: white;
+     width: 100%;
+     left: 7px !important;
+     font-family: Cambria;
+     font-size: 18px;
+ }
+ 
+ .tt-dropdown-menu {
+   height: 124px;
+   overflow-y: auto;
+ }
