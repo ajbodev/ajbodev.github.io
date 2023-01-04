@@ -1,6 +1,10 @@
 
 # 2023
 
+## 2023-01-03
+
+* [(/r/startups Did you find the problem or did the problem find you?)](https://old.reddit.com/r/startups/comments/zy8ny9/hey_founders_i_have_a_question_for_you_all_did/)
+
 ## 2023-01-02
 
 * [(/r/startups) What goals have you set for your startup this year?](https://old.reddit.com/r/startups/comments/100rg2f/what_goals_have_you_set_for_your_startup_this_year/)
