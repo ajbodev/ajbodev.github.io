@@ -1,6 +1,11 @@
 
 # 2023
 
+## 2023-01-05
+
+* [(/r/linux) Will this be the year of Linux?](https://old.reddit.com/r/linux/comments/100sixd/will_this_be_the_year_of_linux_i_have_to_do_it/)
+* [(/r/linux) Linux developments you're looking forward to in 2023](https://old.reddit.com/r/linux/comments/102nh3i/linux_developments_youre_looking_forward_to_in/)
+
 ## 2023-01-03
 
 * [(/r/startups Did you find the problem or did the problem find you?)](https://old.reddit.com/r/startups/comments/zy8ny9/hey_founders_i_have_a_question_for_you_all_did/)
