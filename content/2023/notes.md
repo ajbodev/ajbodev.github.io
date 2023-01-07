@@ -1,6 +1,10 @@
 
 # 2023
 
+## 2023-01-06
+
+* [(/r/node) Which ORM are you using with Node?](https://old.reddit.com/r/node/comments/1056d09/which_orm_are_you_using_with_node/)
+
 ## 2023-01-05
 
 * [(/r/linux) Will this be the year of Linux?](https://old.reddit.com/r/linux/comments/100sixd/will_this_be_the_year_of_linux_i_have_to_do_it/)
@@ -8,7 +12,7 @@
 
 ## 2023-01-03
 
-* [(/r/startups Did you find the problem or did the problem find you?)](https://old.reddit.com/r/startups/comments/zy8ny9/hey_founders_i_have_a_question_for_you_all_did/)
+* [(/r/startups) Did you find the problem or did the problem find you?)](https://old.reddit.com/r/startups/comments/zy8ny9/hey_founders_i_have_a_question_for_you_all_did/)
 
 ## 2023-01-02
 
