@@ -1,6 +1,11 @@
 
 # 2023
 
+## 2023-01-10
+
+* [(/r/devops) 
+Linux System Config Management Tools](https://old.reddit.com/r/devops/comments/107yutf/linux_system_config_management_tools/)
+
 ## 2023-01-06
 
 * [(/r/node) Which ORM are you using with Node?](https://old.reddit.com/r/node/comments/1056d09/which_orm_are_you_using_with_node/)
