@@ -1,6 +1,14 @@
 
 # 2023
 
+## 2023-01-12
+
+* [(/r/devops) Worthness of K8s when running application on single node cluster](https://old.reddit.com/r/devops/comments/109etr8/worthness_of_k8s_when_running_application_on/)
+
+* [(/r/startups) CTO left our tech startup. What to do?](https://old.reddit.com/r/startups/comments/108yj7t/cto_left_our_tech_startup_what_to_do/)
+
+* [(/r/startups) Rank a CEO's stakeholders: customers, employees, and investors](https://old.reddit.com/r/startups/comments/109f3yc/rank_a_ceos_stakeholders_customers_employees_and/)
+
 ## 2023-01-10
 
 * [(/r/devops) 
