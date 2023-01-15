@@ -1,6 +1,10 @@
 
 # 2023
 
+## 2023-01-14
+
+* [(/r/devops) Scaling a web application which is growing very fast](https://old.reddit.com/r/devops/comments/10bqi0f/scaling_a_web_application_which_is_growing_very/)
+
 ## 2023-01-12
 
 * [(/r/devops) Worthness of K8s when running application on single node cluster](https://old.reddit.com/r/devops/comments/109etr8/worthness_of_k8s_when_running_application_on/)
