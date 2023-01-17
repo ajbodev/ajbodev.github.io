@@ -1,6 +1,10 @@
 
 # 2023
 
+## 2023-01-16
+
+* [(/r/startups) Startup Hiring: How to Choose Between Competency and Motivation](https://old.reddit.com/r/startups/comments/10dijhj/startup_hiring_how_to_choose_between_competency/)
+
 ## 2023-01-14
 
 * [(/r/devops) Scaling a web application which is growing very fast](https://old.reddit.com/r/devops/comments/10bqi0f/scaling_a_web_application_which_is_growing_very/)
