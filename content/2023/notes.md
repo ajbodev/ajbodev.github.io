@@ -1,6 +1,14 @@
 
 # 2023
 
+## 2023-01-31
+
+* [The State of WebAssembly – 2022 and 2023](https://old.reddit.com/r/programming/comments/10pb55t/the_state_of_webassembly_2022_and_2023/)
+
+* [When Do I Need Microservices?](https://old.reddit.com/r/programming/comments/10p6qg9/when_do_i_need_microservices/)
+
+* [Dan Abramov: extensive response on the history and future of Create React App ](https://old.reddit.com/r/reactjs/comments/10pqcfq/dan_abramov_extensive_response_on_the_history_and/)
+
 ## 2023-01-16
 
 * [(/r/startups) Startup Hiring: How to Choose Between Competency and Motivation](https://old.reddit.com/r/startups/comments/10dijhj/startup_hiring_how_to_choose_between_competency/)
