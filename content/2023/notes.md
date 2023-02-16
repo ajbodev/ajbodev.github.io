@@ -1,6 +1,16 @@
 
 # 2023
 
+## 2023-02-15
+
+* [When Rust hurts](https://old.reddit.com/r/rust/comments/112hmga/blog_post_when_rust_hurts/)
+
+* [How Rust went from a side project to the world's most-loved programming language](https://old.reddit.com/r/rust/comments/1127kgj/how_rust_went_from_a_side_project_to_the_worlds/)
+
+* [Explain Why Kubernetes and Containers are Better Than VMs Like I'm 5](https://old.reddit.com/r/devops/comments/112bnxt/how_do_i_learn_to_love_kubernetes/)
+
+* [How do I learn to love Kubernetes](https://old.reddit.com/r/devops/comments/112r20w/explain_why_kubernetes_and_containers_are_better/)
+
 ## 2023-01-31
 
 * [The State of WebAssembly – 2022 and 2023](https://old.reddit.com/r/programming/comments/10pb55t/the_state_of_webassembly_2022_and_2023/)
