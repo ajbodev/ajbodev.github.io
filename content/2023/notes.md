@@ -1,6 +1,10 @@
 
 # 2023
 
+## 2023-02-16
+
+* [Scientists find first evidence that black holes are the source of dark energy](https://old.reddit.com/r/space/comments/113468w/scientists_find_first_evidence_that_black_holes/)
+
 ## 2023-02-15
 
 * [When Rust hurts](https://old.reddit.com/r/rust/comments/112hmga/blog_post_when_rust_hurts/)
