@@ -1,6 +1,10 @@
 
 # 2023
 
+## 2023-03-02
+
+* [The imperfect translation between thoughts and language](https://old.reddit.com/r/philosophy/comments/11eov7t/the_imperfect_translation_between_thoughts_and/)
+
 ## 2023-02-16
 
 * [Scientists find first evidence that black holes are the source of dark energy](https://old.reddit.com/r/space/comments/113468w/scientists_find_first_evidence_that_black_holes/)
