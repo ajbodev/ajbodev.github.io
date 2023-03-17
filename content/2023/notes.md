@@ -1,6 +1,10 @@
 
 # 2023
 
+## 2023-03-16
+
+* [Announcing TypeScript 5.0](https://old.reddit.com/r/programming/comments/11szqim/announcing_typescript_50/)
+
 ## 2023-03-02
 
 * [The imperfect translation between thoughts and language](https://old.reddit.com/r/philosophy/comments/11eov7t/the_imperfect_translation_between_thoughts_and/)
