@@ -1,6 +1,20 @@
 
 # 2023
 
+## 2023-03-17
+
+* [My takeaways from my 1st and 2nd startup](https://old.reddit.com/r/startups/comments/11t4lxa/my_takeaways_from_my_1st_and_2nd_startup/)
+
+* [How much to pay or offer advisory board members](https://old.reddit.com/r/startups/comments/11u9oj8/how_much_to_pay_or_offer_advisory_board_members/)
+
+  * [Founder / Advisor Standard Template (FAST)](https://fi.co/fast)
+
+* [How to solve the network effect…?](https://old.reddit.com/r/startups/comments/11t6p3c/how_to_solve_the_network_effect/)
+
+* [The Small Business Model For Tech Startups](https://old.reddit.com/r/startups/comments/11rk2ok/the_small_business_model_for_tech_startups/)
+
+* [person or skills?? when hiring](https://old.reddit.com/r/startups/comments/11trgg4/person_or_skills_when_hiring/)
+
 ## 2023-03-16
 
 * [Announcing TypeScript 5.0](https://old.reddit.com/r/programming/comments/11szqim/announcing_typescript_50/)
