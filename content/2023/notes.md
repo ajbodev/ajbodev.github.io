@@ -1,6 +1,13 @@
 
 # 2023
 
+## 2023-08-07
+
+* [Startups and Intentional Communities](https://aeon.co/essays/like-start-ups-most-intentional-communities-fail-why)
+* [Achieving the Utopia of Hiring](https://medium.com/startup-studio-indonesia/achieving-the-utopia-of-hiring-570e2f1cfbf4)
+* [A Startup is your own Personal Utopia](https://raad.substack.com/p/a-startup-is-your-own-personal-utopia#details)
+
+
 ## 2023-03-17
 
 * [My takeaways from my 1st and 2nd startup](https://old.reddit.com/r/startups/comments/11t4lxa/my_takeaways_from_my_1st_and_2nd_startup/)
