@@ -41,7 +41,9 @@
 
 <!-- #region | .. .. -->
 
+<!--
 * // ..
+-->
 
 <!-- #endregion -->
 
@@ -59,13 +61,25 @@
 
 <!----------------------------------------------------------------------------->
 
-<!-- #region | .. .. -->
+<!-- #region | .. ..2 2024-01-02 .. -->
+
+## 2024-01-02
+
+* [PostgreSQL is the DBMS of the Year 2023](https://old.reddit.com/r/programming/comments/18wxjvm/postgresql_is_the_dbms_of_the_year_2023/)
+* [Why do big companies seem to use MySQL over PostgreSQL](https://old.reddit.com/r/ExperiencedDevs/comments/18v8jxv/why_do_big_companies_seem_to_use_mysql_over/)
+* [Migrate production database advice](https://old.reddit.com/r/devops/comments/18x66m1/migrate_production_database_advice/)
+
+<!-- #endregion -->
 
 <!-- #region | .. .. -->
 
 <!-- #region | .. .. -->
 
+<!-- #region | .. .. -->
+
+<!--
 * // ..
+-->
 
 <!-- #endregion -->
 
@@ -89,7 +103,9 @@
 
 <!-- #region | .. .. -->
 
+<!--
 * // ..
+-->
 
 <!-- #endregion -->
 
