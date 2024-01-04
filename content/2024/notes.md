@@ -61,7 +61,17 @@
 
 <!----------------------------------------------------------------------------->
 
+<!-- #region | .. ..2 2024 .. -->
+
+# 2024
+
+<!-- #endregion -->
+
 <!-- #region | .. ..2 2024-01-02 .. -->
+
+## 2024-01-03
+
+* [The hottest startup of 2023?](https://old.reddit.com/r/startups/comments/18s7nij/the_hottest_startup_of_2023/)
 
 ## 2024-01-02
 
