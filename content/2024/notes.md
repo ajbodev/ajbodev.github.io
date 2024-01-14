@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-01-13
+
+* [The Techno-Optimist Manifesto (Marc Andreessen)](https://a16z.com/the-techno-optimist-manifesto/)
+
 ## 2024-01-05
 
 * [Invision shutdown - $356.2M in 10 funding rounds and valutation $1-10B](https://old.reddit.com/r/startups/comments/18z4ok9/invision_shutdown_3562m_in_10_funding_rounds_and/)
