@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-01-16
+
+* [Guide: How to Find Business Ideas That Don't Suck](https://old.reddit.com/r/startups/comments/197hbl1/guide_how_to_find_business_ideas_that_dont_suck/)
+
 ## 2024-01-13
 
 * [The Techno-Optimist Manifesto (Marc Andreessen)](https://a16z.com/the-techno-optimist-manifesto/)
