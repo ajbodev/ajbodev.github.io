@@ -69,6 +69,12 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-01-22
+
+* [10 Weird HTML Hacks That Shaped The Internet](https://old.reddit.com/r/programming/comments/19cu7fz/10_weird_html_hacks_that_shaped_the_internet/)
+* [The Bun Shell](https://old.reddit.com/r/programming/comments/19d0fb9/the_bun_shell/)
+* [Most deadly Linux commands](https://old.reddit.com/r/linux/comments/19b0asa/most_deadly_linux_commands/)
+
 ## 2024-01-16
 
 * [Guide: How to Find Business Ideas That Don't Suck](https://old.reddit.com/r/startups/comments/197hbl1/guide_how_to_find_business_ideas_that_dont_suck/)
@@ -96,6 +102,12 @@
 * [PostgreSQL is the DBMS of the Year 2023](https://old.reddit.com/r/programming/comments/18wxjvm/postgresql_is_the_dbms_of_the_year_2023/)
 * [Why do big companies seem to use MySQL over PostgreSQL](https://old.reddit.com/r/ExperiencedDevs/comments/18v8jxv/why_do_big_companies_seem_to_use_mysql_over/)
 * [Migrate production database advice](https://old.reddit.com/r/devops/comments/18x66m1/migrate_production_database_advice/)
+
+<!--
+
+* [title](url)
+
+-->
 
 <!-- #endregion -->
 
