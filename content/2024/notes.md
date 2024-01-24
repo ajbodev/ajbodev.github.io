@@ -69,6 +69,11 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-01-23
+
+* [Is Ubuntu slowly becoming like RHEL?](https://old.reddit.com/r/Ubuntu/comments/19dyh7m/is_ubuntu_slowly_becoming_like_rhel/)
+* [You don't need JavaScript for that](https://old.reddit.com/r/programming/comments/19dqg4w/you_dont_need_javascript_for_that/)
+
 ## 2024-01-22
 
 * [10 Weird HTML Hacks That Shaped The Internet](https://old.reddit.com/r/programming/comments/19cu7fz/10_weird_html_hacks_that_shaped_the_internet/)
