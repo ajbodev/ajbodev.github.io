@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-01-24
+
+* [Looking for an Exhaustive List of Remote-First Companies](https://old.reddit.com/r/ExperiencedDevs/comments/19emc8f/looking_for_an_exhaustive_list_of_remotefirst/)
+
 ## 2024-01-23
 
 * [Is Ubuntu slowly becoming like RHEL?](https://old.reddit.com/r/Ubuntu/comments/19dyh7m/is_ubuntu_slowly_becoming_like_rhel/)
