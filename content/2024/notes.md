@@ -69,6 +69,13 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-01-25
+
+* [How do you guys keep up with news in the industry?](https://old.reddit.com/r/ExperiencedDevs/comments/19fe5ru/how_do_you_guys_keep_up_with_news_in_the_industry/)
+* [Why do internal development platform technologies feel half-baked?](https://old.reddit.com/r/devops/comments/19fhzk7/why_do_internal_development_platform_technologies/)
+* [Do you use Okta ?](https://old.reddit.com/r/devops/comments/19f4sku/do_you_use_okta/)
+* [Start up goes K8s? vs PaaS](https://old.reddit.com/r/devops/comments/19etm88/start_up_goes_k8s_vs_paas/)
+
 ## 2024-01-24
 
 * [Looking for an Exhaustive List of Remote-First Companies](https://old.reddit.com/r/ExperiencedDevs/comments/19emc8f/looking_for_an_exhaustive_list_of_remotefirst/)
