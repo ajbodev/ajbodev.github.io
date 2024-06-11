@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-06-10
+
+* [So, you want to be a CEO?](https://old.reddit.com/r/startups/comments/1dcvikd/so_you_want_to_be_a_ceo/)
+
 ## 2024-01-26
 
 * [Founders! How did you decide whether to be (or not to be) CEO of your start-up?](https://old.reddit.com/r/startups/comments/1abaxuf/founders_how_did_you_decide_whether_to_be_or_not/)
