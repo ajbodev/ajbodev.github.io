@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-06-11
+
+* [What do you think you know NOW that would have 10X your startup success?](https://old.reddit.com/r/startups/comments/1ddb4x4/what_do_you_think_you_know_now_that_would_have/)
+
 ## 2024-06-10
 
 * [So, you want to be a CEO?](https://old.reddit.com/r/startups/comments/1dcvikd/so_you_want_to_be_a_ceo/)
