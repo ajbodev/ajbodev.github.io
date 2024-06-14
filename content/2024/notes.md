@@ -69,6 +69,18 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-06-14
+
+* [What are the key success factors for a startup business?](https://old.reddit.com/r/startups/comments/1df0lhg/what_are_the_key_success_factors_for_a_startup/)
+* [How to stay focused and motivated](https://old.reddit.com/r/startups/comments/1df5cbi/how_to_stay_focused_and_motivated/)
+* [What is that one thing that can easily sink a startup?](https://old.reddit.com/r/startups/comments/1devoji/what_is_that_one_thing_that_can_easily_sink_a/)
+* [When Is the Right Time to Start Hiring for Your Startup?](https://old.reddit.com/r/startups/comments/1dezikv/when_is_the_right_time_to_start_hiring_for_your/)
+* [How to efficiently manage job applications in an early-stage startup ??](https://old.reddit.com/r/startups/comments/1df7wvj/how_to_efficiently_manage_job_applications_in_an/)
+* [API Startup Lessons](https://old.reddit.com/r/startups/comments/1df5xsv/api_startup_lessons/)
+* [Want the insights on best practices for Frontend-Backend Integration with React, Node.js, & Express?](https://old.reddit.com/r/startups/comments/1dfkt8g/want_the_insights_on_best_practices_for/)
+* [How much should a CEO of a $300M ARR startup make?](https://old.reddit.com/r/startups/comments/1denpah/how_much_should_a_ceo_of_a_300m_arr_startup_make/)
+* [Am I a fool?](https://old.reddit.com/r/startups/comments/1dfgfsg/am_i_a_fool/)
+
 ## 2024-06-13
 
 * [Linus Torvalds Throws Down The Hammer: Extensible Scheduler "sched_ext" In Linux 6.11](https://old.reddit.com/r/linux/comments/1ddvlfx/linus_torvalds_throws_down_the_hammer_extensible/)
