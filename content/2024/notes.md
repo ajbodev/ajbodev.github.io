@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-06-13
+
+* [Linus Torvalds Throws Down The Hammer: Extensible Scheduler "sched_ext" In Linux 6.11](https://old.reddit.com/r/linux/comments/1ddvlfx/linus_torvalds_throws_down_the_hammer_extensible/)
+
 ## 2024-06-11
 
 * [What do you think you know NOW that would have 10X your startup success?](https://old.reddit.com/r/startups/comments/1ddb4x4/what_do_you_think_you_know_now_that_would_have/)
