@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-06-17
+
+* [How do you find a developer?](https://old.reddit.com/r/startups/comments/1dhzi5l/how_do_you_find_a_developer/)
+
 ## 2024-06-14
 
 * [What are the key success factors for a startup business?](https://old.reddit.com/r/startups/comments/1df0lhg/what_are_the_key_success_factors_for_a_startup/)
