@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-06-18
+
+* [I’m the hacker that brought down North Korea’s Internet For Over A Week. AMA](https://old.reddit.com/r/IAmA/comments/1divlp3/im_the_hacker_that_brought_down_north_koreas/)
+
 ## 2024-06-17
 
 * [How do you find a developer?](https://old.reddit.com/r/startups/comments/1dhzi5l/how_do_you_find_a_developer/)
