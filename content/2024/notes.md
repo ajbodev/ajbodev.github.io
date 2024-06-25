@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-06-24
+
+* [How NASA found an ingenious way to bring Voyager 1 back to life](https://old.reddit.com/r/technology/comments/1dng85e/how_nasa_found_an_ingenious_way_to_bring_voyager/)
+
 ## 2024-06-21
 
 * [Are tech businesses more successful than others?](https://old.reddit.com/r/startups/comments/1dl8mzy/are_tech_businesses_more_successful_than_others/)
