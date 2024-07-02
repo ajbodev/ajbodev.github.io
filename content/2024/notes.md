@@ -69,6 +69,13 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-07-01
+
+* [Is it possible to do a tech startup while full time employed?](https://old.reddit.com/r/startups/comments/1dshzmy/is_it_possible_to_do_a_tech_startup_while_full/)
+* [What do entrepreneurs say when people ask `What do you do'?](https://old.reddit.com/r/startups/comments/1dssrmx/what_do_entrepreneurs_say_when_people_ask_what_do/)
+* [Crossplane for IaC](https://old.reddit.com/r/devops/comments/1dqu68q/crossplane_for_iac/)
+* [A Git story: Not so fun this time](https://old.reddit.com/r/programming/comments/1dstq65/a_git_story_not_so_fun_this_time/)
+
 ## 2024-06-24
 
 * [How NASA found an ingenious way to bring Voyager 1 back to life](https://old.reddit.com/r/technology/comments/1dng85e/how_nasa_found_an_ingenious_way_to_bring_voyager/)
