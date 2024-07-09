@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-07-08
+
+* [What do I do with my competitors?](https://old.reddit.com/r/startups/comments/1dxf1wm/what_do_i_do_with_my_competitors/)
+
 ## 2024-07-01
 
 * [Is it possible to do a tech startup while full time employed?](https://old.reddit.com/r/startups/comments/1dshzmy/is_it_possible_to_do_a_tech_startup_while_full/)
