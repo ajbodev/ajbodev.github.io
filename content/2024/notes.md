@@ -69,6 +69,11 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-07-09
+
+* [How to Over-engineer static website using kubernetes? Give me ideas?](https://old.reddit.com/r/kubernetes/comments/1dwlthf/how_to_overengineer_static_website_using/)
+* [Kubernetes is up, running, and rocking! But what's the easiest way to do local development in a K8s cluster with a few components?](https://old.reddit.com/r/kubernetes/comments/1dyfw19/kubernetes_is_up_running_and_rocking_but_whats/)
+
 ## 2024-07-08
 
 * [What do I do with my competitors?](https://old.reddit.com/r/startups/comments/1dxf1wm/what_do_i_do_with_my_competitors/)
