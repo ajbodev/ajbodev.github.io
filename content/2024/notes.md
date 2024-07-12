@@ -69,6 +69,12 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-07-11
+
+* [Whats the most complex piece of technology in DevOps currently?](https://old.reddit.com/r/devops/comments/1dzzshs/whats_the_most_complex_piece_of_technology_in/)
+* [Personal Experience: How I raised over $4.5M on the early stage for my startups](https://old.reddit.com/r/startups/comments/1e0mn0k/personal_experience_how_i_raised_over_45m_on_the/)
+* [Yo, cold outreach ..](https://old.reddit.com/r/startups/comments/1e02ckz/yo_cold_outreach_sucks_that_is_all/)
+
 ## 2024-07-09
 
 * [How to Over-engineer static website using kubernetes? Give me ideas?](https://old.reddit.com/r/kubernetes/comments/1dwlthf/how_to_overengineer_static_website_using/)
