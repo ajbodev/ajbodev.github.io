@@ -69,6 +69,12 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-07-12
+
+* [Pro tip: you have to be a bit delusional to be a successful entrepreneur](https://old.reddit.com/r/Entrepreneur/comments/1e1uisc/pro_tip_you_have_to_be_a_bit_delusional_to_be_a/)
+* [Ansible Vs Chef](https://old.reddit.com/r/devops/comments/1e1653m/ansible_vs_chef/)
+* [What approach you would use, VPS or AWS/Azure/GCP... ?](https://old.reddit.com/r/devops/comments/1e1r8b7/what_approach_you_would_use_vps_or_awsazuregcp/)
+
 ## 2024-07-11
 
 * [Whats the most complex piece of technology in DevOps currently?](https://old.reddit.com/r/devops/comments/1dzzshs/whats_the_most_complex_piece_of_technology_in/)
