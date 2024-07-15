@@ -69,6 +69,18 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-07-15
+
+* [Why Facebook abandoned Git](https://old.reddit.com/r/programming/comments/1e3fwyl/why_facebook_abandoned_git/)
+* [Why I’m Over GraphQL](https://old.reddit.com/r/programming/comments/1e3q8ru/why_im_over_graphql/)
+* [gRPC Decoded: The API Protocol That's Changing Everything](https://old.reddit.com/r/programming/comments/1e3qxos/grpc_decoded_the_api_protocol_thats_changing/)
+* [Is anyone else in jumpbox and/or MFA hell?](https://old.reddit.com/r/devops/comments/1e3m0as/is_anyone_else_in_jumpbox_andor_mfa_hell/)
+* [Scripting alternative to Make](https://old.reddit.com/r/devops/comments/1e3v2e3/scripting_alternative_to_make/)
+* [What’s the one development tool you can’t live without?](https://old.reddit.com/r/devops/comments/1e2elhq/whats_the_one_development_tool_you_cant_live/)
+* [How I deployed my web app with $0](https://old.reddit.com/r/devops/comments/1e2knds/how_i_deployed_my_web_app_with_0/)
+* [The advice you wish you had earlier](https://old.reddit.com/r/startups/comments/1e3eyt6/the_advice_you_wish_you_had_earlier/)
+* [/r/cofounderhunt/](https://old.reddit.com/r/cofounderhunt/)
+
 ## 2024-07-12
 
 * [Pro tip: you have to be a bit delusional to be a successful entrepreneur](https://old.reddit.com/r/Entrepreneur/comments/1e1uisc/pro_tip_you_have_to_be_a_bit_delusional_to_be_a/)
