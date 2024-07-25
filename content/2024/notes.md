@@ -69,6 +69,16 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-07-25
+
+* [2024 results from Stack Overflow’s Annual Developer Survey](https://old.reddit.com/r/programming/comments/1eb3xph/2024_results_from_stack_overflows_annual/)
+  * [Blog](https://stackoverflow.blog/2024/07/24/developers-want-more-more-more-the-2024-results-from-stack-overflow-s-annual-developer-survey/)
+  * [Survery](https://survey.stackoverflow.co/2024/)
+  * [Technology](https://survey.stackoverflow.co/2024/technology/)
+* [Node.js adds experimental support for TypeScript](https://old.reddit.com/r/programming/comments/1ebtt4s/nodejs_adds_experimental_support_for_typescript/)
+* [Modular: Announcing stack-pr: an open source tool for managing stacked PRs on GitHub](https://old.reddit.com/r/programming/comments/1ebgzgh/modular_announcing_stackpr_an_open_source_tool/)
+* [Tanked Series A, what are my options to fund the company](https://old.reddit.com/r/startups/comments/1ebpysd/tanked_series_a_what_are_my_options_to_fund_the/)
+
 ## 2024-07-15
 
 * [Why Facebook abandoned Git](https://old.reddit.com/r/programming/comments/1e3fwyl/why_facebook_abandoned_git/)
