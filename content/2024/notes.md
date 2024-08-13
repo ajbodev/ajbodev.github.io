@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-08-12
+
+* [How to start a business - An in-depth guide from a successful business owner](https://old.reddit.com/r/Entrepreneur/comments/zazagy/how_to_start_a_business_an_indepth_guide_from_a/)
+
 ## 2024-07-25
 
 * [2024 results from Stack Overflow’s Annual Developer Survey](https://old.reddit.com/r/programming/comments/1eb3xph/2024_results_from_stack_overflows_annual/)
