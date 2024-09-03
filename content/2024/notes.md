@@ -69,6 +69,10 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-09-02
+
+* [Experience hiring very smart people vs people with experience](https://old.reddit.com/r/startups/comments/1f78mhi/experience_hiring_very_smart_people_vs_people/)
+
 ## 2024-08-12
 
 * [How to start a business - An in-depth guide from a successful business owner](https://old.reddit.com/r/Entrepreneur/comments/zazagy/how_to_start_a_business_an_indepth_guide_from_a/)
