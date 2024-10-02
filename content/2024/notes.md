@@ -69,6 +69,12 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-10-01
+
+* [Arrogant CEO Decisions That Backfired: Let’s Build the Ultimate List](https://old.reddit.com/r/business/comments/1ft5ibb/arrogant_ceo_decisions_that_backfired_lets_build/)
+* [Ben Chestnut bootstrapped Mailchimp from nothing and sold for $12 billion cash (sharing)](https://old.reddit.com/r/startups/comments/1ftk7n3/ben_chestnut_bootstrapped_mailchimp_from_nothing/)
+* [Starting my first business. How do I price my objects?](https://old.reddit.com/r/Entrepreneurship/comments/1fmfzlh/starting_my_first_business_how_do_i_price_my/)
+
 ## 2024-09-02
 
 * [Experience hiring very smart people vs people with experience](https://old.reddit.com/r/startups/comments/1f78mhi/experience_hiring_very_smart_people_vs_people/)
