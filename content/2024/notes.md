@@ -69,6 +69,13 @@
 
 <!-- #region | .. ..2 2024-01-02 .. -->
 
+## 2024-10-07
+
+* [Where Is Everything In The Universe Going?](https://www.youtube.com/watch?v=5mDn2oq9OV8)
+* [Predictions for this year's Nobel prize?](https://old.reddit.com/r/Physics/comments/1fydwg3/predictions_for_this_years_nobel_prize/)
+* [What would a theory of everything allow us to do ](https://old.reddit.com/r/Physics/comments/1fwv1yd/what_would_a_theory_of_everything_allow_us_to_do/)
+* [Award winning essay by String Theorist, Breakthrough Prize winner, Professor Ashoke Sen](https://old.reddit.com/r/Physics/comments/1fts0f7/award_winning_essay_by_string_theorist/)
+
 ## 2024-10-01
 
 * [Arrogant CEO Decisions That Backfired: Let’s Build the Ultimate List](https://old.reddit.com/r/business/comments/1ft5ibb/arrogant_ceo_decisions_that_backfired_lets_build/)
